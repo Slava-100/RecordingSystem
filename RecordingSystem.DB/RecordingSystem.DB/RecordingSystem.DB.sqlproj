@@ -87,5 +87,6 @@
     <Build Include="dbo\Stored Procedures\AddTimeSpan.sql" />
     <Build Include="dbo\Stored Procedures\GetAllServicesByMale.sql" />
     <Build Include="dbo\Stored Procedures\GetAllServiceByMale.sql" />
+    <Build Include="dbo\Stored Procedures\GetTimeTableByDoctorId.sql" />
   </ItemGroup>
 </Project>
