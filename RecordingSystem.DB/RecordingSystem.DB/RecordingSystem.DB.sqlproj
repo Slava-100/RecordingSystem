@@ -13,7 +13,7 @@
     </RootPath>
     <RootNamespace>RecordingSystem.DB</RootNamespace>
     <AssemblyName>RecordingSystem.DB</AssemblyName>
-    <ModelCollation>1033, CI</ModelCollation>
+    <ModelCollation>1049,CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -22,6 +22,8 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>Cyrillic_General_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -56,5 +58,34 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Stored Procedures\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\Service.sql" />
+    <Build Include="dbo\Tables\Specialization.sql" />
+    <Build Include="dbo\Tables\Dop_Service.sql" />
+    <Build Include="dbo\Tables\Cabinet.sql" />
+    <Build Include="dbo\Tables\Patient.sql" />
+    <Build Include="dbo\Tables\Diagnosis.sql" />
+    <Build Include="dbo\Tables\RecordingHistory.sql" />
+    <Build Include="dbo\Tables\ActiveRecording.sql" />
+    <Build Include="dbo\Tables\TimeSpan.sql" />
+    <Build Include="dbo\Tables\DayOfWeek.sql" />
+    <Build Include="dbo\Tables\TimeTable.sql" />
+    <Build Include="dbo\Tables\TimeRecording.sql" />
+    <Build Include="dbo\Tables\Status.sql" />
+    <Build Include="dbo\Tables\Doctor.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllDoctorByServices.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllServiceByDoctor.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllDoctorBySpecialization.sql" />
+    <Build Include="dbo\Stored Procedures\AddPatient.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllDoctors.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllServices.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllSpecializations.sql" />
+    <Build Include="dbo\Stored Procedures\AddTimeSpan.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllServicesByMale.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllServiceByMale.sql" />
   </ItemGroup>
 </Project>
