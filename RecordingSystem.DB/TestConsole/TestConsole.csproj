@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RecordingSystem.DAL\RecordingSystem.DAL.csproj" />
-    <ProjectReference Include="..\RecordingSystem.DB\RecordingSystem.DB.sqlproj" />
   </ItemGroup>
 
 </Project>
