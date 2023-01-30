@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace RecordingSystem.DAL.Repositories
 {
-    internal class StoredNamesProcedure
+    public class StoredNamesProcedures
     {
+        public const string GetAllDoctors = "GetAllDoctors";
+        public const string AddPatient = "AddPatient";
     }
 }
