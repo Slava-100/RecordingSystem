@@ -89,5 +89,6 @@
     <Build Include="dbo\Stored Procedures\GetAllFreeDoctorsByDayOfWeekId.sql" />
     <Build Include="dbo\Stored Procedures\AddService.sql" />
     <Build Include="dbo\Stored Procedures\UpdateServiceById.sql" />
+    <Build Include="dbo\Stored Procedures\UpdatePatientById.sql" />
   </ItemGroup>
 </Project>
