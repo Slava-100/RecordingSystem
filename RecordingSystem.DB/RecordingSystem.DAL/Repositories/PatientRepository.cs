@@ -7,7 +7,7 @@ namespace RecordingSystem.DAL.Repositories
 {
     public class PatientRepository
     {
-        public void AddPatient(string name, string lastName, string phoneNumber, string email, int? statusId, bool male, string birthday)
+        public void AddPatient(string name, string lastName, string phoneNumber, string email, int? statusId, bool male, DateTime birthday)
         {
             using (var sqlConnection = new SqlConnection(Options.sqlConnection))
             {

@@ -7,7 +7,7 @@
     [StatusId]    INT           NULL,
     [Male]        BIT           NOT NULL,
     [IsDeleted]   BIT           CONSTRAINT [DF__Patient__IsDelet__49C3F6B7] DEFAULT ((0)) NULL,
-    [Birthday]    DATE          NOT NULL,
+    [Birthday]    datetime2(7)          NOT NULL,
     CONSTRAINT [PK__Patient__3214EC078B1FA5B0] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_Patient_Status] FOREIGN KEY ([StatusId]) REFERENCES [dbo].[Status] ([Id])
 );
