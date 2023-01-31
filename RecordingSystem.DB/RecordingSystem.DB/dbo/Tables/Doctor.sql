@@ -7,7 +7,6 @@
     [Email]            NVARCHAR (20) NULL,
     [SpecializationId] INT           NULL,
     [CabinetId]        INT           NULL,
-    [TimeTableId]      INT           NULL,
     [IsDeleted]        BIT           CONSTRAINT [DF__Doctor__IsDelete__778AC167] DEFAULT ((0)) NULL,
     [Birthday]         datetime2(7)          NOT NULL,
     CONSTRAINT [PK__Doctor__3214EC07A918EE95] PRIMARY KEY CLUSTERED ([Id] ASC),
