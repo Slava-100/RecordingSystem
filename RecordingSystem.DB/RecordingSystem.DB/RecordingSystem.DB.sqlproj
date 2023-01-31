@@ -82,10 +82,8 @@
     <Build Include="dbo\Stored Procedures\GetAllDoctorBySpecialization.sql" />
     <Build Include="dbo\Stored Procedures\AddPatient.sql" />
     <Build Include="dbo\Stored Procedures\GetAllDoctors.sql" />
-    <Build Include="dbo\Stored Procedures\GetAllServices.sql" />
     <Build Include="dbo\Stored Procedures\GetAllSpecializations.sql" />
     <Build Include="dbo\Stored Procedures\AddTimeSpan.sql" />
-    <Build Include="dbo\Stored Procedures\GetAllServicesByMale.sql" />
     <Build Include="dbo\Stored Procedures\GetAllServiceByMale.sql" />
     <Build Include="dbo\Stored Procedures\GetTimeTableByDoctorId.sql" />
   </ItemGroup>
