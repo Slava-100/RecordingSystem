@@ -9,7 +9,7 @@
     [CabinetId]        INT           NULL,
     [TimeTableId]      INT           NULL,
     [IsDeleted]        BIT           CONSTRAINT [DF__Doctor__IsDelete__778AC167] DEFAULT ((0)) NULL,
-    [Birthday]         DATE          NOT NULL,
+    [Birthday]         datetime2(7)          NOT NULL,
     CONSTRAINT [PK__Doctor__3214EC07A918EE95] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK__Doctor__CabinetI__08B54D69] FOREIGN KEY ([CabinetId]) REFERENCES [dbo].[Cabinet] ([Id]),
     CONSTRAINT [FK__Doctor__Speciali__0A9D95DB] FOREIGN KEY ([SpecializationId]) REFERENCES [dbo].[Specialization] ([Id])
