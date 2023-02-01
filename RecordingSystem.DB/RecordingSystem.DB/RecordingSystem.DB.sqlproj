@@ -91,5 +91,8 @@
     <Build Include="dbo\Stored Procedures\UpdateServiceById.sql" />
     <Build Include="dbo\Stored Procedures\UpdatePatientById.sql" />
     <Build Include="dbo\Stored Procedures\GetAllCabinets.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllPatients.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllPatientsByStatus.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllActiveRecordingsByPatient.sql" />
   </ItemGroup>
 </Project>
