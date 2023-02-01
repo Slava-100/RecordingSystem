@@ -18,5 +18,15 @@ namespace RecordingSystem.DAL.Repositories
                     commandType: CommandType.StoredProcedure);
             }
         }
+
+        public List<CabinetDto> GetAllCabinets()
+        {
+            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            {
+                sqlConnection.Open();
+                return sqlConnection.Query<CabinetDto>(StoredNamesProcedures.GetAllCabinets,
+                    commandType: CommandType.StoredProcedure).ToList();
+            }
+        }
     }
 }
