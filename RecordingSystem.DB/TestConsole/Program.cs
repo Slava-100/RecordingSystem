@@ -1,20 +1,14 @@
 ﻿using RecordingSystem.DAL.Repositories;
 
+DateTime someDate = new DateTime(2001,01,01);
+Console.WriteLine(someDate);
 
-//TimeSpan time1 = new TimeSpan(14, 2, 8);
-Console.WriteLine("start");
-
-var p = new CabinetRepository();
-var ppp = p.GetAllCabinets();
-
-Console.WriteLine(ppp[0].Number);
-
-//var d = new TimeSpanRepository();
-//d.AddTimeSpan(time1, time1);
+var d = new PatientRepository();
+d.AddPatient("Vova", "Str", "123-123", "@", null, true, someDate);
 
 
-//var p = new PatientRepository();
-//var ppp = p.GetAllPatients();
+//var p = new DoctorRepository();
+//var ppp = p.GetAllDoctors();
 
 
 
