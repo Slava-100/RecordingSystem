@@ -13,9 +13,9 @@ namespace RecordingSystem.DAL.Repositories
             {
                 sqlConnection.Open();
 
-                sqlConnection.Query(StoredNamesProcedures.AddPatient,
+                sqlConnection.Execute(StoredNamesProcedures.AddPatient,
                     new { name, lastName, phoneNumber, email, statusId, male, birthday },
-                    commandType: CommandType.StoredProcedure).ToList();
+                    commandType: CommandType.StoredProcedure);
             }
         }
     }
