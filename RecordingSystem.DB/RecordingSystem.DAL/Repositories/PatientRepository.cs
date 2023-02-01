@@ -36,8 +36,18 @@ namespace RecordingSystem.DAL.Repositories
                 sqlConnection.Open();
 
                 sqlConnection.Execute(StoredNamesProcedures.UpdatePatientById,
-                    new { patient.Id, patient.Name, patient.LastName, patient.PhoneNumber,
-                        patient.Email, patient.StatusId, patient.Male, patient.IsDeleted, patient.Birthday},
+                    new
+                    {
+                        patient.Id,
+                        patient.Name,
+                        patient.LastName,
+                        patient.PhoneNumber,
+                        patient.Email,
+                        patient.StatusId,
+                        patient.Male,
+                        patient.IsDeleted,
+                        patient.Birthday
+                    },
                     commandType: CommandType.StoredProcedure);
             }
         }
