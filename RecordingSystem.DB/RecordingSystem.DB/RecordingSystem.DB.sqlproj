@@ -95,5 +95,6 @@
     <Build Include="dbo\Stored Procedures\GetAllPatientsByStatus.sql" />
     <Build Include="dbo\Stored Procedures\GetAllActiveRecordingsByPatient.sql" />
     <Build Include="dbo\Stored Procedures\AddCabinet.sql" />
+    <Build Include="dbo\Stored Procedures\GetRecordingHistoryByPatientId.sql" />
   </ItemGroup>
 </Project>
