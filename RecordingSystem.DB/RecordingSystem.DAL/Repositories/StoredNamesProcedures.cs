@@ -13,5 +13,6 @@ namespace RecordingSystem.DAL.Repositories
         public const string GettAllPatients = "GetAllPatients";
         public const string AddCabinet = "AddCabinet";
         public const string AddService = "AddService";
+        public const string AddTimeSpan = "AddTimeSpan";
     }
 }
