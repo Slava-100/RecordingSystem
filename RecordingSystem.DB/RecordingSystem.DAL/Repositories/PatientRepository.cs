@@ -18,5 +18,15 @@ namespace RecordingSystem.DAL.Repositories
                     commandType: CommandType.StoredProcedure);
             }
         }
+
+        public List<PatientDto> GetAllPatients()
+        {
+            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            {
+                sqlConnection.Open();
+                return sqlConnection.Query<PatientDto>(StoredNamesProcedures.GettAllPatients,
+                    commandType: CommandType.StoredProcedure).ToList();
+            }
+        }
     }
 }
