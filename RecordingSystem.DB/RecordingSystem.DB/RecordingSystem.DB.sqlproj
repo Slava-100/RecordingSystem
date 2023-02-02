@@ -99,5 +99,6 @@
     <Build Include="dbo\Stored Procedures\AddSpecialization.sql" />
     <Build Include="dbo\Stored Procedures\UpdateDoctorById.sql" />
     <Build Include="dbo\Stored Procedures\AddDoctor.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateCabinetById.sql" />
   </ItemGroup>
 </Project>
