@@ -97,5 +97,6 @@
     <Build Include="dbo\Stored Procedures\AddCabinet.sql" />
     <Build Include="dbo\Stored Procedures\GetRecordingHistoryByPatientId.sql" />
     <Build Include="dbo\Stored Procedures\UpdateDoctorById.sql" />
+    <Build Include="dbo\Stored Procedures\AddDoctor.sql" />
   </ItemGroup>
 </Project>
