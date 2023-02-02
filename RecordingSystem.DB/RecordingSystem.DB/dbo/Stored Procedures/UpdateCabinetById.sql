@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[UpdateCabinetStatusBuNumber]
+﻿CREATE PROCEDURE [dbo].[UpdateCabinetById]
 	@Id int,
 	@Number int,
 	@Status bit
