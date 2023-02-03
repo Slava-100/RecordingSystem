@@ -77,8 +77,8 @@
     <Build Include="dbo\Tables\TimeRecording.sql" />
     <Build Include="dbo\Tables\Status.sql" />
     <Build Include="dbo\Tables\Doctor.sql" />
-    <Build Include="dbo\Stored Procedures\GetAllDoctorByServices.sql" />
-    <Build Include="dbo\Stored Procedures\GetAllServiceByDoctor.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllDoctorsByServiceId.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllServiceByDoctorId.sql" />
     <Build Include="dbo\Stored Procedures\GetAllDoctorBySpecialization.sql" />
     <Build Include="dbo\Stored Procedures\AddPatient.sql" />
     <Build Include="dbo\Stored Procedures\GetAllDoctors.sql" />
@@ -92,8 +92,8 @@
     <Build Include="dbo\Stored Procedures\UpdatePatientById.sql" />
     <Build Include="dbo\Stored Procedures\GetAllCabinets.sql" />
     <Build Include="dbo\Stored Procedures\GetAllPatients.sql" />
-    <Build Include="dbo\Stored Procedures\GetAllPatientsByStatus.sql" />
-    <Build Include="dbo\Stored Procedures\GetAllActiveRecordingsByPatient.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllPatientsByStatusId.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllActiveRecordingsByPatientId.sql" />
     <Build Include="dbo\Stored Procedures\AddCabinet.sql" />
     <Build Include="dbo\Stored Procedures\GetRecordingHistoryByPatientId.sql" />
     <Build Include="dbo\Stored Procedures\AddSpecialization.sql" />
