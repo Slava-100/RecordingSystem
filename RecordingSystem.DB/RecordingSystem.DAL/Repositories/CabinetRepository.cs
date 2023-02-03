@@ -28,5 +28,21 @@ namespace RecordingSystem.DAL.Repositories
                     commandType: CommandType.StoredProcedure).ToList();
             }
         }
+
+        public void UpdateCabinetById(CabinetDto cabinet)
+        {
+            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            {
+                sqlConnection.Open();
+
+                sqlConnection.Execute(StoredNamesProcedures.UpdateCabinetById,
+                    new
+                    {
+                        cabinet.Number,
+                        cabinet.Status
+                    },
+                    commandType: CommandType.StoredProcedure);
+            }
+        }
     }
 }
