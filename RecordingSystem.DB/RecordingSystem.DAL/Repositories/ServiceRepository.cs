@@ -8,7 +8,7 @@ namespace RecordingSystem.DAL.Repositories
 {
     public class ServiceRepository
     {
-        public void AddService(string name, float price, int specializationId, bool? male)
+        public void AddService(string name, float price, int? specializationId, bool? male)
         {
             using (var sqlConnection = new SqlConnection(Options.sqlConnection))
             {
