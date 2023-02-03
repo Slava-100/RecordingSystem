@@ -79,7 +79,7 @@
     <Build Include="dbo\Tables\Doctor.sql" />
     <Build Include="dbo\Stored Procedures\GetAllDoctorsByServiceId.sql" />
     <Build Include="dbo\Stored Procedures\GetAllServiceByDoctorId.sql" />
-    <Build Include="dbo\Stored Procedures\GetAllDoctorBySpecialization.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllDoctorBySpecializationId.sql" />
     <Build Include="dbo\Stored Procedures\AddPatient.sql" />
     <Build Include="dbo\Stored Procedures\GetAllDoctors.sql" />
     <Build Include="dbo\Stored Procedures\GetAllSpecializations.sql" />

@@ -1,4 +1,4 @@
-﻿CREATE procedure [dbo].[GetAllDoctorBySpecialization]
+﻿CREATE procedure [dbo].[GetAllDoctorBySpecializationId]
 @Id_Specialization Int
 AS
 select S.Id, S.Name, D.Id, D.Name, D.LastName from dbo.[Specialization] AS S
