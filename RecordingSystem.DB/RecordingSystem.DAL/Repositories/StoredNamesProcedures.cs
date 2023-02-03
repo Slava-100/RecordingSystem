@@ -23,5 +23,6 @@ namespace RecordingSystem.DAL.Repositories
         public const string UpdateDoctortById = "UpdateDoctortById";
         public const string GetAllServiceByMale = "GetAllServiceByMale";
         public const string UpdateServiceById = "UpdateServiceById";
+        public const string GetAllDoctorsByServiceId = "GetAllDoctorsByServiceId";
     }
 }
