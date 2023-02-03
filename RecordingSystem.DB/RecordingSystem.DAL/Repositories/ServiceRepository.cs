@@ -73,7 +73,7 @@ namespace RecordingSystem.DAL.Repositories
                         {
                             if (a.Id == Id_doctor)
                             {
-                                doctor.Doctors.Add(doctor);
+                                result[result.FindIndex(a => a.Id == Id_doctor)].Services.Add(doctor;
                             }
                             else
                             {
@@ -86,6 +86,7 @@ namespace RecordingSystem.DAL.Repositories
                     new { Id_doctor },
                     splitOn: "Id",
                     commandType: CommandType.StoredProcedure).ToList();
+
                 return result;
             }
         }
