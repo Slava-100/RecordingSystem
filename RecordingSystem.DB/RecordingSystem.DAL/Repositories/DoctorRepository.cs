@@ -29,5 +29,29 @@ namespace RecordingSystem.DAL.Repositories
                     commandType: CommandType.StoredProcedure);
             }
         }
+
+        public void UpdateDoctor(DoctorDto doctor)
+        {
+            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            {
+                sqlConnection.Open();
+
+                sqlConnection.Execute(StoredNamesProcedures.UpdateDoctortById,
+                    new
+                    {
+                        doctor.Id,
+                        doctor.Name,
+                        doctor.LastName,
+                        doctor.Male,
+                        doctor.PhoneNumber,
+                        doctor.Email,
+                        doctor.SpecializationId,
+                        doctor.CabinetId,
+                        doctor.Birthday,
+                        doctor.IsDeleted
+                    },
+                    commandType: CommandType.StoredProcedure);
+            }
+        }
     }
 }

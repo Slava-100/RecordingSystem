@@ -7,7 +7,8 @@
 	@Email nvarchar(20), 
 	@SpecializationId int, 
 	@CabinetId int, 
-	@Birthday datetime2(7) 
+	@Birthday datetime2(7),
+	@IsDeleted bit
 AS
 UPDATE Doctor
 SET
@@ -18,5 +19,6 @@ SET
 	Email = @Email, 
 	SpecializationId = @SpecializationId, 
 	CabinetId = @CabinetId, 
-	Birthday = @Birthday  
+	Birthday = @Birthday,
+	IsDeleted = @IsDeleted
 WHERE Doctor.Id = @Id
