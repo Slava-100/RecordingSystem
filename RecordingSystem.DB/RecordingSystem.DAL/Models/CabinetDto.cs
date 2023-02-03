@@ -8,8 +8,8 @@ namespace RecordingSystem.DAL.Models
 {
     public class CabinetDto
     {
-        public int CabinetId { get; set; }
-        public int CabinetNumber { get; set; }
+        public int Id { get; set; }
+        public int Number { get; set; }
         public bool? Status { get; set; }
     }
 }

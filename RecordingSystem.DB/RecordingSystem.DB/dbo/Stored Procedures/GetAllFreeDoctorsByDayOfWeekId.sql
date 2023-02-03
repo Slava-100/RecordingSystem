@@ -1,7 +1,7 @@
 ﻿create procedure GetAllFreeDoctorsByDayOfWeekId
 @Id_DayOfWeek Int
 AS
-select Da.Id AS DayOfWeekId, Da.Name AS DayOfWeekName, D.Id AS DoctorId, D.Name AS DoctorName, D.LastName, TT.Id AS TimeTableId, TS.Start, TS.[End], TR.Id AS TimeRecordingId, TR.[Date], TR.Occupied
+select Da.Id, Da.Name, D.Id, D.Name, D.LastName, TT.Id, TS.Start, TS.[End], TR.Id, TR.[Date], TR.Occupied
 FROM dbo.[DayOfWeek] AS Da
 Left Join dbo.TimeTable AS TT ON Da.Id = TT.DayOfWeekId
 Left Join dbo.TimeSpan AS TS ON TT.TimeSpanId = TS.Id

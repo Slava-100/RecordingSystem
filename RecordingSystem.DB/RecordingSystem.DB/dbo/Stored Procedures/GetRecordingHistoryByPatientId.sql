@@ -2,17 +2,17 @@
 @Id int
 AS
 SELECT 
-P.Id AS PatientId,
-P.[Name] AS PatientName,
-P.LastName AS PatientLastName,
-RH.ActiveRecordingId AS RecordingId,
-AR.[DateTime] AS DateTime,
-Doc.Id AS DoctorId,
-Doc.[Name] AS DoctorName,
-Doc.LastName As DoctorLastName,
-Diag.Id As DiagnosisId,
-Diag.[Name] As DiagnosisName,
-Diag.[Recommendations] As Recomendations
+P.Id,
+P.[Name],
+P.LastName,
+RH.ActiveRecordingId,
+AR.[DateTime],
+Doc.Id,
+Doc.[Name],
+Doc.LastName,
+Diag.Id,
+Diag.[Name],
+Diag.[Recommendations]
 From dbo.RecordingHistory As RH
 Left Join dbo.ActiveRecording AS AR ON AR.Id = RH.ActiveRecordingId
 Left Join dbo.Patient As P ON P.Id = AR.PatientId
