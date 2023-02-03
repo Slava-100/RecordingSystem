@@ -38,6 +38,7 @@ namespace RecordingSystem.DAL.Repositories
                 sqlConnection.Execute(StoredNamesProcedures.UpdateCabinetById,
                     new
                     {
+                        cabinet.Id,
                         cabinet.Number,
                         cabinet.Status
                     },
