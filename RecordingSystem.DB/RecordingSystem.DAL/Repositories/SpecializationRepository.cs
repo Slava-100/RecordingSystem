@@ -21,5 +21,17 @@ namespace RecordingSystem.DAL.Repositories
                     commandType: CommandType.StoredProcedure).ToList();
             }
         }
+
+        public void AddSpecialization(string name)
+        {
+            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            {
+                sqlConnection.Open();
+
+                sqlConnection.Execute(StoredNamesProcedures.AddSpecialization,
+                    new { name },
+                    commandType: CommandType.StoredProcedure);
+            }
+        }
     }
 }
