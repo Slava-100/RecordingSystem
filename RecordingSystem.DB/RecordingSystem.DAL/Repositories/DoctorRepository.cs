@@ -16,5 +16,18 @@ namespace RecordingSystem.DAL.Repositories
                     commandType: CommandType.StoredProcedure).ToList();
             }
         }
+
+        public void AddDoctor(string name, string lastName, bool male, string phoneNumber,
+            string email, int? specializationId, int? cabinetId, DateTime birthday)
+        {
+            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            {
+                sqlConnection.Open();
+
+                sqlConnection.Execute(StoredNamesProcedures.AddDoctor,
+                    new { name, lastName, male, phoneNumber, email, specializationId, cabinetId, birthday },
+                    commandType: CommandType.StoredProcedure);
+            }
+        }
     }
 }
