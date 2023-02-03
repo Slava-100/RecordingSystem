@@ -48,6 +48,7 @@ namespace RecordingSystem.DAL.Repositories
                 sqlConnection.Execute(StoredNamesProcedures.UpdateServiceById,
                     new
                     {
+                        service.Id,
                         service.Name,
                         service.Price,
                         service.SpecializationId,
