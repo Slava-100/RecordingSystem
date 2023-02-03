@@ -15,8 +15,7 @@ namespace RecordingSystem.DAL.Models
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public int? StatusId { get; set; }
-        public bool? Male { get; set; }
-        public int? Status { get; set; }
+        public bool Male { get; set; }
         public bool IsDeleted { get; set; }
     }
 }
