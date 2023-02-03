@@ -1,6 +1,6 @@
-﻿using RecordingSystem.DAL.Models;
-using Dapper;
+﻿using Dapper;
 using Microsoft.Data.SqlClient;
+using RecordingSystem.DAL.Models;
 using System.Data;
 
 
@@ -29,12 +29,31 @@ namespace RecordingSystem.DAL.Repositories
                 sqlConnection.Execute(StoredNamesProcedures.UpdatePatientById,
                     new
                     {
-                       service.Id,
-                       service.Name,
-                       service.Price,
-                       service.SpecializationId,
-                       service.IsDeleted,
-                       service.Male
+                        service.Id,
+                        service.Name,
+                        service.Price,
+                        service.SpecializationId,
+                        service.IsDeleted,
+                        service.Male
+                    },
+                    commandType: CommandType.StoredProcedure);
+            }
+        }
+        public void UpdateServiceById(ServiceDto service)
+        {
+            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            {
+                sqlConnection.Open();
+
+                sqlConnection.Execute(StoredNamesProcedures.UpdateServiceById,
+                    new
+                    {
+                        service.Id,
+                        service.Name,
+                        service.Price,
+                        service.SpecializationId,
+                        service.IsDeleted,
+                        service.Male
                     },
                     commandType: CommandType.StoredProcedure);
             }
