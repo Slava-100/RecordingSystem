@@ -14,8 +14,8 @@ namespace RecordingSystem.DAL.Models
         public bool Male { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
-        public int SpecializationId { get; set; }
-        public int CabinetId { get; set;}
+        public int? SpecializationId { get; set; }
+        public int? CabinetId { get; set;}
         public bool IsDeleted { get; set; }
         public DateTime Birthday { get; set; }
     }

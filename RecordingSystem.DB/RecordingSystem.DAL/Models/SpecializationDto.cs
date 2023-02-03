@@ -8,7 +8,7 @@ namespace RecordingSystem.DAL.Models
 {
     public class SpecializationDto
     {
-        public int? Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
     }
 }
