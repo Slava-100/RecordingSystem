@@ -14,6 +14,6 @@ namespace RecordingSystem.DAL.Models
         public int? SpecializationId { get; set; }
         public bool IsDeleted { get; set; }
         public bool? Male { get; set; }
-        
+        public List<DoctorDto> Doctors { get; set; }
     }
 }
