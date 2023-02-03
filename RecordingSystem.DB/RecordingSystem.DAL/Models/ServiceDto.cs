@@ -11,9 +11,9 @@ namespace RecordingSystem.DAL.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public float Price { get; set; }
-        public int SpecializationId { get; set; }
+        public int? SpecializationId { get; set; }
         public int IsDeleted { get; set; }
-        public bool Male { get; set; }
+        public bool? Male { get; set; }
         
     }
 }
