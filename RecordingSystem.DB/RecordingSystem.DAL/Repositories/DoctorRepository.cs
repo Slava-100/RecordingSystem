@@ -12,7 +12,15 @@ namespace RecordingSystem.DAL.Repositories
             using (var sqlConnection = new SqlConnection(Options.sqlConnection))
             {
                 sqlConnection.Open();
-                return sqlConnection.Query<DoctorDto>(StoredNamesProcedures.GetAllDoctors,
+                return sqlConnection.Query<DoctorDto, SpecializationDto, CabinetDto, DoctorDto>(StoredNamesProcedures.GetAllDoctors,
+                    (doctor, specialization, cabinet) =>
+                    {
+                        doctor.Specialization = specialization;
+                        doctor.Cabinet = cabinet;
+
+                        return doctor;
+                    },
+                    splitOn: "Id",
                     commandType: CommandType.StoredProcedure).ToList();
             }
         }
@@ -26,6 +34,30 @@ namespace RecordingSystem.DAL.Repositories
 
                 sqlConnection.Execute(StoredNamesProcedures.AddDoctor,
                     new { name, lastName, male, phoneNumber, email, specializationId, cabinetId, birthday },
+                    commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public void UpdateDoctor(DoctorDto doctor)
+        {
+            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            {
+                sqlConnection.Open();
+
+                sqlConnection.Execute(StoredNamesProcedures.UpdateDoctortById,
+                    new
+                    {
+                        doctor.Id,
+                        doctor.Name,
+                        doctor.LastName,
+                        doctor.Male,
+                        doctor.PhoneNumber,
+                        doctor.Email,
+                        doctor.SpecializationId,
+                        doctor.CabinetId,
+                        doctor.Birthday,
+                        doctor.IsDeleted
+                    },
                     commandType: CommandType.StoredProcedure);
             }
         }

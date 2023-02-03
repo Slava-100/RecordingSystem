@@ -1,4 +1,4 @@
-﻿CREATE procedure [dbo].[GetAllDoctorByServices]
+﻿CREATE procedure [dbo].[GetAllDoctorsByServiceId]
 @Id_Services Int
 AS
 select S.Id, S.Name, D.Id, D.Name, D.LastName from dbo.Service AS S

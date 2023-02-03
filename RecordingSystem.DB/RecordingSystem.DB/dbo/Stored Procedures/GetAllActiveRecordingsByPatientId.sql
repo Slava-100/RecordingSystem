@@ -1,4 +1,4 @@
-﻿create procedure GetAllActiveRecordingsByPatient
+﻿create procedure GetAllActiveRecordingsByPatientId
 @Id_Patient Int
 AS
 select P.Id, P.Name, P.LastName, A.Id, A.DateTime, A.Coming, D.Name, D.LastName, C.Id, C.Number  from dbo.Patient AS P

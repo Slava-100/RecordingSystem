@@ -1,4 +1,4 @@
-﻿create procedure GetAllPatientsByStatus
+﻿create procedure GetAllPatientsByStatusId
 @Id_Status INT
 AS
 select S.Id,S.Name, P.Id, P.Name, P.LastName, P.Male, P.Birthday from dbo.Patient AS P

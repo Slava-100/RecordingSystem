@@ -30,7 +30,7 @@ namespace RecordingSystem.DAL.Repositories
             }
         }
 
-        public void UpdatePatient(PatientDto patient)
+        public void UpdatePatientById(PatientDto patient)
         {
             using (var sqlConnection = new SqlConnection(Options.sqlConnection))
             {
