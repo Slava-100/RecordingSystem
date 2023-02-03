@@ -15,8 +15,8 @@ namespace RecordingSystem.DAL.Repositories
                 return sqlConnection.Query<DoctorDto, SpecializationDto, CabinetDto, DoctorDto>(StoredNamesProcedures.GetAllDoctors,
                     (doctor, specialization, cabinet) =>
                     {
-                        doctor.specialization = specialization;
-                        doctor.cabinet = cabinet;
+                        doctor.Specialization = specialization;
+                        doctor.Cabinet = cabinet;
 
                         return doctor;
                     },

@@ -39,23 +39,5 @@ namespace RecordingSystem.DAL.Repositories
                     commandType: CommandType.StoredProcedure);
             }
         }
-
-        public List<ServiceDto> GetAllServiceByMale()
-        {
-            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
-            {
-                sqlConnection.Open();
-                return sqlConnection.Query<DoctorDto, SpecializationDto, CabinetDto, DoctorDto>(StoredNamesProcedures.GetAllDoctors,
-                    (doctor, specialization, cabinet) =>
-                    {
-                        doctor.specialization = specialization;
-                        doctor.cabinet = cabinet;
-
-                        return doctor;
-                    },
-                    splitOn: "Id",
-                    commandType: CommandType.StoredProcedure).ToList();
-            }
-        }
     }
 }

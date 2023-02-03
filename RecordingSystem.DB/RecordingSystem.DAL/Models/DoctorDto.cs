@@ -18,7 +18,7 @@ namespace RecordingSystem.DAL.Models
         public int? CabinetId { get; set;}
         public bool IsDeleted { get; set; }
         public DateTime Birthday { get; set; }
-        public SpecializationDto specialization { get; set; }
-        public CabinetDto cabinet { get; set; }
+        public SpecializationDto Specialization { get; set; }
+        public CabinetDto Cabinet { get; set; }
     }
 }
