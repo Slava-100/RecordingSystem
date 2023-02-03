@@ -20,7 +20,6 @@ namespace RecordingSystem.DAL.Repositories
         public const string AddDoctor = "AddDoctor";
         public const string AddSpecialization = "AddSpecialization";
         public const string UpdateCabinetById = "UpdateCabinetById";
-        public const string AddSpecialization = "AddSpecialization"; 
         public const string UpdateDoctortById = "UpdateDoctortById";
     }
 }
