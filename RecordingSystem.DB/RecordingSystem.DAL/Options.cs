@@ -8,6 +8,6 @@ namespace RecordingSystem.DAL
 {
     public class Options
     {
-        public const string sqlConnection = @"";
+        public static string sqlConnection = Environment.GetEnvironmentVariable("RecordingSystem");
     }
 }
