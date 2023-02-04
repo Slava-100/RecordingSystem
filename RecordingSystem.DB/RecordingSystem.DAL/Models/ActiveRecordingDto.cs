@@ -14,5 +14,6 @@ namespace RecordingSystem.DAL.Models
         public DateTime DateTime { get; set; }
         public bool? Coming { get; set; }
         public bool IsDeleted { get; set; }
+        public List<PatientDto> Patients { get; set; }
     }
 }

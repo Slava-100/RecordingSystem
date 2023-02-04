@@ -5,4 +5,4 @@ AS
 UPDATE Service
 SET
 	IsDeleted = @IsDeleted
-WHERE Doctor.Id = @Id
+WHERE Service.Id = @Id

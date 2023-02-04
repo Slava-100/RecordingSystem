@@ -5,4 +5,4 @@ AS
 UPDATE ActiveRecording
 SET
 	IsDeleted = @IsDeleted
-WHERE Doctor.Id = @Id
+WHERE ActiveRecording.Id = @Id
