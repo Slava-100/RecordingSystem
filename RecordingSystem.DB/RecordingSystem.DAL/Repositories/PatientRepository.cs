@@ -1,6 +1,6 @@
-﻿using RecordingSystem.DAL.Models;
-using Dapper;
+﻿using Dapper;
 using Microsoft.Data.SqlClient;
+using RecordingSystem.DAL.Models;
 using System.Data;
 
 namespace RecordingSystem.DAL.Repositories
@@ -46,9 +46,20 @@ namespace RecordingSystem.DAL.Repositories
                         patient.Email,
                         patient.StatusId,
                         patient.Male,
-                        patient.IsDeleted,
                         patient.Birthday
                     },
+                    commandType: CommandType.StoredProcedure);
+            }
+        }
+        public void UpdateIsDeletedPatientById(PatientDto patient)
+        {
+            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            {
+                sqlConnection.Open();
+
+                sqlConnection.Execute(StoredNamesProcedures.UpdateIsDeletedPatientById,
+                    new
+                    { patient.IsDeleted },
                     commandType: CommandType.StoredProcedure);
             }
         }
