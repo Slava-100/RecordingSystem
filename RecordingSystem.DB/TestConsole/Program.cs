@@ -7,8 +7,8 @@
 //d.AddPatient("Vova", "Str", "123-123", "@", null, true, someDate);
 
 
-var p = new DoctorRepository();
-var ppp = p.GetAllDoctors();
+var p = new ServiceRepository();
+var ppp = p.GetAllServicesByDoctorId(11);
 
 
 

@@ -20,7 +20,7 @@ namespace RecordingSystem.DAL.Models
         public DateTime Birthday { get; set; }
         public SpecializationDto Specialization { get; set; }
         public CabinetDto Cabinet { get; set; }
-        public List<ServiceDto> Services { get; set; }
+        public List<ServiceDto> Services { get; set; } = new List<ServiceDto>();
 
     }
 }
