@@ -73,7 +73,6 @@ namespace RecordingSystem.DAL.Repositories
                     (service, doctor) =>
                     {
                         ServiceDto crnt = null;
-
                         if (result.Any(s => s.Id == service.Id))
                         {
                             crnt = result.Find(s => s.Id == service.Id);
@@ -84,10 +83,15 @@ namespace RecordingSystem.DAL.Repositories
                             result.Add(crnt);
                         }
 
-                        //crnt.Doctors.Add(doctor);
+                        if (crnt.Doctors is null)
+                        {
+                            crnt.Doctors = new List<DoctorDto>();
+                        }
+
+                        crnt.Doctors.Add(doctor);
                         return service;
                     },
-                    new { id },
+                    new { Id_Services = id },
                     splitOn: "Id",
                     commandType: CommandType.StoredProcedure).ToList();
 

@@ -8,7 +8,7 @@
 
 
 var p = new DoctorRepository();
-var ppp = p.GetAllDoctorsByServiceId(1);
+var ppp = p.GetAllDoctorsByServiceId(14);
 
 
 
