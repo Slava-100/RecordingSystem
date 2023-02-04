@@ -104,5 +104,7 @@
     <Build Include="dbo\Stored Procedures\UpdateIsDeletedPatientById.sql" />
     <Build Include="dbo\Stored Procedures\UpdateIsDeletedActiveRecordingById.sql" />
     <Build Include="dbo\Stored Procedures\UpdateIsDeletedServiceById.sql" />
+    <Build Include="dbo\Stored Procedures\AddActiveRecording.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateComingInActiveRecordingById.sql" />
   </ItemGroup>
 </Project>
