@@ -61,35 +61,21 @@ namespace RecordingSystem.DAL.Repositories
                     commandType: CommandType.StoredProcedure);
             }
         }
-        public List<ServiceDto> GetAllDoctorsByServiceId(int id)
+        public List<DoctorDto> GetAllDoctorsByServiceId(int id)
         {
             using (var sqlConnection = new SqlConnection(Options.sqlConnection))
             {
-                List<ServiceDto> result = new List<ServiceDto>();
+                List<DoctorDto> result = new List<DoctorDto>();
 
                 sqlConnection.Open();
-                sqlConnection.Query<ServiceDto, DoctorDto, ServiceDto>(
+                sqlConnection.Query<ServiceDto, DoctorDto, DoctorDto>(
                     StoredNamesProcedures.GetAllDoctorsByServiceId,
                     (service, doctor) =>
                     {
-                        ServiceDto crnt = null;
-                        if (result.Any(s => s.Id == service.Id))
-                        {
-                            crnt = result.Find(s => s.Id == service.Id);
-                        }
-                        else
-                        {
-                            crnt = service;
-                            result.Add(crnt);
-                        }
-
-                        if (crnt.Doctors is null)
-                        {
-                            crnt.Doctors = new List<DoctorDto>();
-                        }
-
-                        crnt.Doctors.Add(doctor);
-                        return service;
+                        doctor.Services.Add(service);
+                        result.Add(doctor);
+    
+                        return doctor;
                     },
                     new { Id_Services = id },
                     splitOn: "Id",
