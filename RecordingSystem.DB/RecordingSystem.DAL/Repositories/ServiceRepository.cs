@@ -52,10 +52,48 @@ namespace RecordingSystem.DAL.Repositories
                         service.Name,
                         service.Price,
                         service.SpecializationId,
-                        service.IsDeleted,
                         service.Male
                     },
                     commandType: CommandType.StoredProcedure);
+            }
+        }
+        public void UpdateIsDeletedServiceById(ServiceDto service)
+        {
+            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            {
+                sqlConnection.Open();
+
+                sqlConnection.Execute(StoredNamesProcedures.UpdateIsDeletedServiceById,
+                    new
+                    { service.IsDeleted },
+                    commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public DoctorDto GetAllDoctorInfoById(int Id_doctor)
+        {
+            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            {
+                DoctorDto result = null;
+                
+                sqlConnection.Open();
+                sqlConnection.Query< DoctorDto, ServiceDto, DoctorDto > (StoredNamesProcedures.GetAllServiceByDoctorId,
+                    (doctor,service) =>
+                    {
+                        if (result is null)
+                        {
+                            result = doctor;
+                        }
+
+                        result.Services.Add(service);
+
+                        return doctor;
+                    },
+                    new { Id_doctor },
+                    splitOn: "Id",
+                    commandType: CommandType.StoredProcedure).ToList();
+
+                return result;
             }
         }
     }

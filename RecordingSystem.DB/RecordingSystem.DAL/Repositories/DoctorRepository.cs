@@ -55,9 +55,19 @@ namespace RecordingSystem.DAL.Repositories
                         doctor.Email,
                         doctor.SpecializationId,
                         doctor.CabinetId,
-                        doctor.Birthday,
-                        doctor.IsDeleted
+                        doctor.Birthday
                     },
+                    commandType: CommandType.StoredProcedure);
+            }
+        }
+        public void UpdateIsDeletedDoctorById(DoctorDto doctor)
+        {
+            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            {
+                sqlConnection.Open();
+
+                sqlConnection.Execute(StoredNamesProcedures.UpdateIsDeletedDoctorById,
+                    new { doctor.IsDeleted },
                     commandType: CommandType.StoredProcedure);
             }
         }

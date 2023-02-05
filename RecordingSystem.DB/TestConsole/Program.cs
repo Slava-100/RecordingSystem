@@ -9,7 +9,12 @@
 
 var p = new DoctorRepository();
 var ppp = p.GetAllDoctorsByServiceId(14);
+//var p = new DoctorRepository();
+//var ppp = p.GetAllDoctors();
+var p = new ServiceRepository();
+var ppp = p.GetAllServicesByDoctorId(11);
 
-
+var p = new PatientRepository();
+var ppp = p.GetAllPatientsByStatusId(3);
 
 Console.WriteLine("qwe");
