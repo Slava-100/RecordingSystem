@@ -30,5 +30,6 @@ namespace RecordingSystem.DAL.Repositories
         public const string UpdateComingInActiveRecordingById = "AddActiveRecording";
         public const string UpdateIsDeletedActiveRecordingById = "UpdateIsDeletedActiveRecordingById";
         public const string GetAllPatientsByStatusId = "GetAllPatientsByStatusId";
+        public const string GetAllServiceByDoctorId = "GetAllServiceByDoctorId";
     }
 }
