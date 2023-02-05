@@ -44,5 +44,31 @@ namespace RecordingSystem.DAL.Repositories
                     commandType: CommandType.StoredProcedure);
             }
         }
+
+        public List<ActiveRecordingDto> GetAllActiveRecordingsByPatientId(int id)
+        {
+            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            {
+                List<ActiveRecordingDto> result = new List<ActiveRecordingDto>();
+
+                sqlConnection.Open();
+                sqlConnection.Query<PatientDto, ActiveRecordingDto, DoctorDto, CabinetDto, ActiveRecordingDto>(
+                    StoredNamesProcedures.GetAllActiveRecordingsByPatientId,
+                    (patient, activeRecording, doctor, cabinet) =>
+                    {
+                        activeRecording.Patient = patient;
+                        result.Add(activeRecording);
+                        activeRecording.Doctor = doctor;
+                        activeRecording.Cabinet= cabinet;
+
+                        return activeRecording;
+                    },
+                    new { Id_Patient = id },
+                    splitOn: "Id",
+                    commandType: CommandType.StoredProcedure).ToList();
+
+                return result;
+            }
+        }
     }
 }
