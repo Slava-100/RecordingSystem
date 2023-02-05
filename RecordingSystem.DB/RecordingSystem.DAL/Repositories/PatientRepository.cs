@@ -63,5 +63,28 @@ namespace RecordingSystem.DAL.Repositories
                     commandType: CommandType.StoredProcedure);
             }
         }
+
+        public List<PatientDto> GetAllPatientsByStatusId(int Id_Status)
+        {
+            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            {
+                List<PatientDto> result = new List<PatientDto>();
+
+                sqlConnection.Open();
+                sqlConnection.Query<StatusDto,PatientDto,PatientDto>(StoredNamesProcedures.GetAllPatientsByStatusId,
+                    (status,patient) =>
+                    {
+                        patient.Status = status;
+                        result.Add(patient);
+
+                        return patient;
+                    },
+                    new { Id_Status },
+                    splitOn: "Id",
+                    commandType: CommandType.StoredProcedure).ToList();
+
+                return result;
+            }
+        }
     }
 }
