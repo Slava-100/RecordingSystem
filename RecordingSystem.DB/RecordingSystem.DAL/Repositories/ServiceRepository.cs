@@ -59,7 +59,7 @@ namespace RecordingSystem.DAL.Repositories
             }
         }
 
-        public DoctorDto GetAllServicesByDoctorId(int Id_doctor)
+        public DoctorDto GetAllDoctorInfoById(int Id_doctor)
         {
             using (var sqlConnection = new SqlConnection(Options.sqlConnection))
             {
