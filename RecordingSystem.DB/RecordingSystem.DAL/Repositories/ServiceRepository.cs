@@ -52,9 +52,20 @@ namespace RecordingSystem.DAL.Repositories
                         service.Name,
                         service.Price,
                         service.SpecializationId,
-                        service.IsDeleted,
                         service.Male
                     },
+                    commandType: CommandType.StoredProcedure);
+            }
+        }
+        public void UpdateIsDeletedServiceById(ServiceDto service)
+        {
+            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            {
+                sqlConnection.Open();
+
+                sqlConnection.Execute(StoredNamesProcedures.UpdateIsDeletedServiceById,
+                    new
+                    { service.IsDeleted },
                     commandType: CommandType.StoredProcedure);
             }
         }
