@@ -20,6 +20,8 @@
 //var ppp = p.GetAllPatientsByStatusId(3);
 
 var p = new TimeTableRepository();
-var ppp = p.GetTimeTableByDoctorId(1112);
+var ppp = p.GetTimeTableByDoctorId(11);
+
+
 
 Console.WriteLine("qwe");
