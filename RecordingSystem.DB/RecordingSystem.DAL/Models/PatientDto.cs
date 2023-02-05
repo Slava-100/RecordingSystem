@@ -17,5 +17,6 @@ namespace RecordingSystem.DAL.Models
         public int? StatusId { get; set; }
         public bool? Male { get; set; }
         public bool? IsDeleted { get; set; }
+        public StatusDto Status { get; set; }
     }
 }
