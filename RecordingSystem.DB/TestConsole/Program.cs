@@ -8,7 +8,7 @@
 
 
 var p = new ActiveRecordingRepository();
-var ppp = p.GetAllActiveRecordingsByPatientId(11);
+var ppp = p.GetAllActiveRecordingsByPatientId(6);
 
 
 

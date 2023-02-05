@@ -52,27 +52,15 @@ namespace RecordingSystem.DAL.Repositories
                 List<ActiveRecordingDto> result = new List<ActiveRecordingDto>();
 
                 sqlConnection.Open();
-                sqlConnection.Query<PatientDto, ActiveRecordingDto, ActiveRecordingDto>(
+                sqlConnection.Query<PatientDto, ActiveRecordingDto, DoctorDto, CabinetDto, ActiveRecordingDto>(
                     StoredNamesProcedures.GetAllActiveRecordingsByPatientId,
-                    (patient, activeRecording) =>
+                    (patient, activeRecording, doctor, cabinet) =>
                     {
-                        ActiveRecordingDto crnt = null;
+                        activeRecording.Patient = patient;
+                        result.Add(activeRecording);
+                        activeRecording.Doctor = doctor;
+                        activeRecording.Cabinet= cabinet;
 
-                        if (result.Any(s => s.Id == activeRecording.Id))
-                        {
-                            crnt = result.Find(s => s.Id == activeRecording.Id);
-                        }
-                        else
-                        {
-                            crnt = activeRecording;
-                            result.Add(crnt);
-                        }
-                        if (crnt.Patients is null)
-                        {
-                            crnt.Patients = new List<PatientDto>();
-                        }
-
-                        crnt.Patients.Add(patient); 
                         return activeRecording;
                     },
                     new { Id_Patient = id },
