@@ -5,9 +5,11 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "RecordingSystem.DB", "RecordingSystem.DB\RecordingSystem.DB.sqlproj", "{176BC284-887D-4754-B618-35B2F6A248DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecordingSystem.DAL", "RecordingSystem.DAL\RecordingSystem.DAL.csproj", "{CFDEB01D-98C9-43AE-A05F-FAFF51B28CF8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecordingSystem.DAL", "RecordingSystem.DAL\RecordingSystem.DAL.csproj", "{CFDEB01D-98C9-43AE-A05F-FAFF51B28CF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsole", "TestConsole\TestConsole.csproj", "{A93F5A78-8EC2-4A32-944F-9EC65F66BAEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestConsole", "TestConsole\TestConsole.csproj", "{A93F5A78-8EC2-4A32-944F-9EC65F66BAEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecordingSystem.BLL", "RecordingSytem.BLL\RecordingSystem.BLL.csproj", "{DE4B484D-1CEC-43AD-9ACC-6CC55AB9848F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{A93F5A78-8EC2-4A32-944F-9EC65F66BAEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A93F5A78-8EC2-4A32-944F-9EC65F66BAEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A93F5A78-8EC2-4A32-944F-9EC65F66BAEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE4B484D-1CEC-43AD-9ACC-6CC55AB9848F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE4B484D-1CEC-43AD-9ACC-6CC55AB9848F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE4B484D-1CEC-43AD-9ACC-6CC55AB9848F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE4B484D-1CEC-43AD-9ACC-6CC55AB9848F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
