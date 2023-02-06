@@ -109,6 +109,8 @@ namespace RecordingSystem.DAL.Repositories
                     (service, specialization) =>
                     {
                         result.Add(service);
+                        service.Specialization = specialization;
+
                         return service;
                     },
                     new { Male },

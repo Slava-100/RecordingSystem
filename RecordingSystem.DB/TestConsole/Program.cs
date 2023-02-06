@@ -19,7 +19,7 @@
 //var p = new PatientRepository();
 //var ppp = p.GetAllPatientsByStatusId(3);
 var p = new ServiceRepository();
-var ppp = p.GetAllServiceByMale(false);
+var ppp = p.GetAllServiceByMale(true);
 
 //var p = new TimeTableRepository();
 //var ppp = p.GetTimeTableByDoctorId(11);
