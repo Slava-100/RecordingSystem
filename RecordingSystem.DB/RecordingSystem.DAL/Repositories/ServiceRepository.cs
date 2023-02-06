@@ -2,6 +2,7 @@
 using Microsoft.Data.SqlClient;
 using RecordingSystem.DAL.Models;
 using System.Data;
+using System.Numerics;
 
 
 namespace RecordingSystem.DAL.Repositories
@@ -90,6 +91,27 @@ namespace RecordingSystem.DAL.Repositories
                         return doctor;
                     },
                     new { Id_doctor },
+                    splitOn: "Id",
+                    commandType: CommandType.StoredProcedure).ToList();
+
+                return result;
+            }
+        }
+
+        public List<ServiceDto> GetAllServiceByMale(bool Male)
+        {
+            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            {
+                var result = new List<ServiceDto>();
+
+                sqlConnection.Open();
+                sqlConnection.Query<ServiceDto, SpecializationDto, ServiceDto>(StoredNamesProcedures.GetAllServiceByMale,
+                    (service, specialization) =>
+                    {
+                        result.Add(service);
+                        return service;
+                    },
+                    new { Male },
                     splitOn: "Id",
                     commandType: CommandType.StoredProcedure).ToList();
 
