@@ -33,6 +33,7 @@ namespace RecordingSystem.DAL.Repositories
         public const string GetAllServiceByDoctorId = "GetAllServiceByDoctorId";
         public const string GetAllDoctorsByServiceId = "GetAllDoctorsByServiceId";
         public const string GetAllActiveRecordingsByPatientId = "GetAllActiveRecordingsByPatientId"; 
-        public const string GetTimeTableByDoctorId = "GetTimeTableByDoctorId";
+        public const string GetTimeTableByDoctorId = "GetTimeTableByDoctorId"; 
+        public const string GetAllFreeDoctorsByDayOfWeekId = "GetAllFreeDoctorsByDayOfWeekId";
     }
 }

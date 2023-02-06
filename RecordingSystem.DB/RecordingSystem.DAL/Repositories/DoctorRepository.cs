@@ -94,5 +94,43 @@ namespace RecordingSystem.DAL.Repositories
                 return result;
             }
         }
+
+        public List<DoctorDto> GetAllFreeDoctorsByDayOfWeekId(int Id_DayOfWeek)
+        {
+            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            {
+                TimeTableDto timeTable = new TimeTableDto();
+                List<DoctorDto> result = new List<DoctorDto>();
+
+                sqlConnection.Open();
+                sqlConnection.Query<DayOfWeekDto, DoctorDto, TimeSpanDto, TimeRecordingDto, DoctorDto >(StoredNamesProcedures.GetAllFreeDoctorsByDayOfWeekId,
+                    (dayOfWeek, doctor, timeSpan, timeRecording) =>
+                    {
+                        timeTable.DayOfWeek = dayOfWeek;
+                        timeTable.TimeSpan = timeSpan;
+                        timeRecording.TimeTable = timeTable;
+
+                        DoctorDto crnt = null;
+                        if (result.Any(d => d.Id == doctor.Id))
+                        {
+                            crnt = result.Find(d => d.Id == doctor.Id);
+                        }
+                        else
+                        {
+                            crnt = doctor;
+                            result.Add(crnt);
+                        }
+
+                        crnt.TimeRecording.Add(timeRecording);
+
+                        return crnt;
+                    },
+                    new { Id_DayOfWeek },
+                    splitOn: "Id",
+                    commandType: CommandType.StoredProcedure).ToList();
+
+                return result;
+            }
+        }
     }
 }

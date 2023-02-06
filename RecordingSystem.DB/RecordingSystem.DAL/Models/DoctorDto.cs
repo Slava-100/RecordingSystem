@@ -21,6 +21,6 @@ namespace RecordingSystem.DAL.Models
         public SpecializationDto Specialization { get; set; }
         public CabinetDto Cabinet { get; set; }
         public List<ServiceDto> Services { get; set; } = new List<ServiceDto>();
-
+        public List<TimeRecordingDto> TimeRecording { get; set; } = new List<TimeRecordingDto>();
     }
 }
