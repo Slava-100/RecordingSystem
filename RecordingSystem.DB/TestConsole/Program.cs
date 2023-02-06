@@ -1,4 +1,5 @@
-﻿using RecordingSystem.DAL.Repositories;
+﻿using RecordingSystem.BLL;
+using RecordingSystem.DAL.Repositories;
 
 //DateTime someDate = new DateTime(2001,01,01);
 //Console.WriteLine(someDate);
@@ -19,9 +20,10 @@
 //var p = new PatientRepository();
 //var ppp = p.GetAllPatientsByStatusId(3);
 
-var p = new TimeTableRepository();
-var ppp = p.GetTimeTableByDoctorId(11);
+//var p = new TimeTableRepository();
+//var ppp = p.GetTimeTableByDoctorId(11);
 
-
+var a = new DoctorManager();
+var aaa = a.GetAllDoctors; 
 
 Console.WriteLine("qwe");
