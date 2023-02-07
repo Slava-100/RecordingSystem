@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RecordingSystem.DAL.Repositories
+﻿namespace RecordingSystem.DAL.Repositories
 {
     public class StoredNamesProcedures
     {
@@ -34,6 +28,9 @@ namespace RecordingSystem.DAL.Repositories
         public const string GetAllDoctorsByServiceId = "GetAllDoctorsByServiceId";
         public const string GetTimeTableByDoctorId = "GetTimeTableByDoctorId";
         public const string GetAllDoctorBySpecializationId = "GetAllDoctorBySpecializationId";
-        public const string GetAllActiveRecordingsByPatientId = "GetAllActiveRecordingsByPatientId"; 
+        public const string GetAllActiveRecordingsByPatientId = "GetAllActiveRecordingsByPatientId";
+        public const string GetRecordingHistoryByPatientId = "GetRecordingHistoryByPatientId";
+        public const string AddDiagnosis = "AddDiagnosis";
+        public const string AddRecordingHistory = "AddRecordingHistory";
     }
 }
