@@ -71,24 +71,17 @@ namespace RecordingSystem.DAL.Repositories
             }
         }
 
-        public DoctorDto GetAllDoctorInfoById(int Id_doctor)
+        public List<ServiceDto> GetAllDoctorInfoById(int Id_doctor)
         {
             using (var sqlConnection = new SqlConnection(Options.sqlConnection))
             {
-                DoctorDto result = null;
                 
                 sqlConnection.Open();
-                sqlConnection.Query< DoctorDto, ServiceDto, DoctorDto > (StoredNamesProcedures.GetAllServiceByDoctorId,
+              var result = sqlConnection.Query< DoctorDto, ServiceDto, ServiceDto > (StoredNamesProcedures.GetAllServiceByDoctorId,
                     (doctor,service) =>
                     {
-                        if (result is null)
-                        {
-                            result = doctor;
-                        }
 
-                        result.Services.Add(service);
-
-                        return doctor;
+                        return service;
                     },
                     new { Id_doctor },
                     splitOn: "Id",

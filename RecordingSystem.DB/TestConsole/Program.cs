@@ -27,8 +27,8 @@
 //var ppp = p.GetAllServicesByDoctorId(11);
 //var p = new PatientRepository();
 //var ppp = p.GetAllPatientsByStatusId(3);
-var p = new ServiceRepository();
-var ppp = p.GetAllServiceByMale(null);
+//var p = new ServiceRepository();
+//var ppp = p.GetAllServiceByMale(null);
 
 //var p = new TimeTableRepository();
 //var ppp = p.GetTimeTableByDoctorId(11);
@@ -41,8 +41,9 @@ var ppp = p.GetAllServiceByMale(null);
 //var p = new TimeTableRepository();
 //var ppp = p.GetTimeTableByDoctorId(11);
 
-//var p = new DoctorRepository();
-//var ppp = p.GetAllFreeDoctorsByDayOfWeekId(3);
+var p = new ServiceRepository();
+var ppp = p.GetAllDoctorInfoById(11);
+
 
 
 Console.WriteLine("qwe");
