@@ -5,7 +5,7 @@ using System.Data;
 
 namespace RecordingSystem.DAL.Repositories
 {
-    public class TimeTableRepository
+    public class TimeTableRepository : ITimeTableRepository
     {
         public List<TimeTableDto> GetTimeTableByDoctorId(int Id)
         {

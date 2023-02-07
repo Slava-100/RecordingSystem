@@ -5,7 +5,7 @@ using System.Data;
 
 namespace RecordingSystem.DAL.Repositories
 {
-    public class TimeSpanRepository
+    public class TimeSpanRepository : ITimeSpanRepository
     {
         public void AddTimeSpan(TimeSpan start, TimeSpan end)
         {

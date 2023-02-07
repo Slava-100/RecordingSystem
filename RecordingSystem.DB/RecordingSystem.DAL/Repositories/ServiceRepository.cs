@@ -7,7 +7,7 @@ using System.Numerics;
 
 namespace RecordingSystem.DAL.Repositories
 {
-    public class ServiceRepository
+    public class ServiceRepository : IServiceRepository
     {
         public void AddService(string name, float price, int? specializationId, bool? male)
         {
