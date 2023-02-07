@@ -60,6 +60,7 @@ namespace RecordingSystem.DAL.Repositories
                     commandType: CommandType.StoredProcedure);
             }
         }
+
         public void UpdateIsDeletedDoctorById(DoctorDto doctor)
         {
             using (var sqlConnection = new SqlConnection(Options.sqlConnection))
@@ -71,6 +72,7 @@ namespace RecordingSystem.DAL.Repositories
                     commandType: CommandType.StoredProcedure);
             }
         }
+
         public List<DoctorDto> GetAllDoctorsByServiceId(int id)
         {
             using (var sqlConnection = new SqlConnection(Options.sqlConnection))
@@ -88,6 +90,30 @@ namespace RecordingSystem.DAL.Repositories
                         return doctor;
                     },
                     new { Id_Services = id },
+                    splitOn: "Id",
+                    commandType: CommandType.StoredProcedure).ToList();
+
+                return result;
+            }
+        }
+
+        public List<DoctorDto> GetAllDoctorBySpecializationId(int id)
+        {
+            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            {
+                List<DoctorDto> result = new List<DoctorDto>();
+
+                sqlConnection.Open();
+                sqlConnection.Query<SpecializationDto, DoctorDto, DoctorDto>(
+                    StoredNamesProcedures.GetAllDoctorBySpecializationId,
+                    (specialization, doctor) =>
+                    {
+                        doctor.Specialization= specialization;
+                        result.Add(doctor);
+
+                        return doctor;
+                    },
+                    new { Id_Specialization = id },
                     splitOn: "Id",
                     commandType: CommandType.StoredProcedure).ToList();
 
