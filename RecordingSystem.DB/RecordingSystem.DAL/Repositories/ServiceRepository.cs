@@ -98,7 +98,7 @@ namespace RecordingSystem.DAL.Repositories
             }
         }
 
-        public List<ServiceDto> GetAllServiceByMale(bool Male)
+        public List<ServiceDto> GetAllServiceByMale(bool? Male)
         {
             using (var sqlConnection = new SqlConnection(Options.sqlConnection))
             {
