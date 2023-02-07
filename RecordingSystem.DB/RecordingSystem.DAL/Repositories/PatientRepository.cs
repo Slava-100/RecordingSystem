@@ -5,7 +5,7 @@ using System.Data;
 
 namespace RecordingSystem.DAL.Repositories
 {
-    public class PatientRepository
+    public class PatientRepository : IPatientRepository
     {
         public void AddPatient(string name, string lastName, string phoneNumber,
             string email, int? statusId, bool male, DateTime birthday)
