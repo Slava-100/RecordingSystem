@@ -8,7 +8,7 @@ namespace RecordingSystem.DAL.Models
 {
     internal class RecordingHistoryDto
     {
-        public string Name { get; set; }
-        public string Recommendations { get; set; }
+        public int DiagnosisId { get; set; }
+        public int ActiveRecordingId { get; set; }
     }
 }
