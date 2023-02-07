@@ -5,7 +5,7 @@ using System.Data;
 
 namespace RecordingSystem.DAL.Repositories
 {
-    internal class DiagnosRepository
+    public class DiagnosRepository
     {
         public void AddDiagnosis(string name, string recommendations)
         {

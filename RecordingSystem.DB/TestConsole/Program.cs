@@ -29,12 +29,13 @@
 //var p = new PatientRepository();
 //var ppp = p.GetAllPatientsByStatusId(3);
 
-var p = new DoctorRepository();
-var ppp = p.GetAllDoctorBySpecializationId(1);
+//var p = new DoctorRepository();
+//var ppp = p.GetAllDoctorBySpecializationId(1);
 
-var p = new TimeTableRepository();
-var ppp = p.GetTimeTableByDoctorId(11);
+//var p = new TimeTableRepository();
+//var ppp = p.GetTimeTableByDoctorId(11);
 
-
+var p = new RecordingHistoryRepository();
+var ppp = p.GetRecordingHistoryByPatientId(5);
 
 Console.WriteLine("qwe");
