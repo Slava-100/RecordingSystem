@@ -5,7 +5,7 @@ using System.Data;
 
 namespace RecordingSystem.DAL.Repositories
 {
-    public class ActiveRecordingRepository
+    public class ActiveRecordingRepository : IActiveRecordingRepository
     {
         public void AddActiveRecording(int patientId, int doctorId, DateTime date)
         {

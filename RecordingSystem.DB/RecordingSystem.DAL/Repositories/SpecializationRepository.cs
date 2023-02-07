@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace RecordingSystem.DAL.Repositories
 {
-    public class SpecializationRepository
+    public class SpecializationRepository : ISpecializationRepository
     {
         public List<SpecializationDto> GetAllSpecializations()
         {

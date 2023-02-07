@@ -5,7 +5,7 @@ using System.Data;
 
 namespace RecordingSystem.DAL.Repositories
 {
-    public class CabinetRepository
+    public class CabinetRepository : ICabinetRepository
     {
         public void AddCabinet(int number, bool? status)
         {
