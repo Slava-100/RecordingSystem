@@ -24,6 +24,6 @@ using RecordingSystem.DAL.Repositories;
 //var ppp = p.GetTimeTableByDoctorId(11);
 
 var a = new DoctorManager();
-var aaa = a.GetAllDoctors; 
+var aaa = a.GetAllDoctors(); 
 
 Console.WriteLine("qwe");
