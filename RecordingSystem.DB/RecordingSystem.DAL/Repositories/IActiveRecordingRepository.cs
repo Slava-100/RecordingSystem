@@ -12,6 +12,6 @@ namespace RecordingSystem.DAL.Repositories
         public void AddActiveRecording(int patientId, int doctorId, DateTime date);
         public void UpdateComingInActiveRecordingById(ActiveRecordingDto recording);
         public void UpdateIsDeletedActiveRecordingById(ActiveRecordingDto recording);
-        public List<ActiveRecordingDto> GetAllActiveRecordingsByPatientId(int id)
+        public List<ActiveRecordingDto> GetAllActiveRecordingsByPatientId(int id);
     }
 }

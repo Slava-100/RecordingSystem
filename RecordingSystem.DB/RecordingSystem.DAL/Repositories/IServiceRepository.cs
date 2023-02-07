@@ -14,5 +14,6 @@ namespace RecordingSystem.DAL.Repositories
         public void UpdateServiceById(ServiceDto service);
         public void UpdateIsDeletedServiceById(ServiceDto service);
         public DoctorDto GetAllDoctorInfoById(int Id_doctor);
+        public List<ServiceDto> GetAllServiceByMale(bool? Male);
     }
 }
