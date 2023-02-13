@@ -11,7 +11,7 @@ using RecordingSystem.DAL.Repositories;
 //var p = new ActiveRecordingRepository();
 //var ppp = p.GetAllActiveRecordingsByPatientId(6);
 //var p = new DoctorRepository();
-//var ppp = p.GetAllDoctorsByServiceId(14);
+//var ppp = p.GetAllDoctors();
 //var p = new DoctorRepository();
 //var ppp = p.GetAllDoctors();
 //var p = new ServiceRepository();
@@ -24,6 +24,8 @@ using RecordingSystem.DAL.Repositories;
 //var ppp = p.GetTimeTableByDoctorId(11);
 
 var a = new DoctorManager();
-var aaa = a.GetAllDoctors(); 
+var aaa = a.GetAllDoctors();
+
+
 
 Console.WriteLine("qwe");

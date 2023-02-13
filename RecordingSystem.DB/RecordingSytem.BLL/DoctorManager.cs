@@ -14,8 +14,7 @@ namespace RecordingSystem.BLL
             var doctors = repository.GetAllDoctors();
 
             var doctorDtoToDoctorOutputModelConfiguration = new MapperConfiguration(
-                cfg => cfg.CreateMap<DoctorDto, DoctorOutputModel>()
-                .ForMember(outputModel => outputModel.Name, opt => opt.MapFrom(doctorDto => doctorDto.Name)));
+                cfg => cfg.CreateMap<DoctorDto, DoctorOutputModel>());
 
             IMapper mapper = doctorDtoToDoctorOutputModelConfiguration.CreateMapper();
 
