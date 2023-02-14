@@ -43,7 +43,10 @@ using RecordingSystem.BLL;
 //var p = new DoctorRepository();
 //var ppp = p.GetAllFreeDoctorsByDayOfWeekId(3);
 
-var m = new ServiceManager();
-var qqq = m.GetAllDoctorInfoById(14);
+//var m = new ServiceManager();
+//var qqq = m.GetAllDoctorInfoById(14);
+
+var m = new CabinetManager();
+var qqq = m.GetAllCabinets();
 
 Console.WriteLine("qwe");
