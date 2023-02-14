@@ -29,7 +29,10 @@ namespace RecordingSystem.DAL.Repositories
 
                 sqlConnection.Execute(StoredNamesProcedures.UpdateComingInActiveRecordingById,
                     new
-                    { recording.Coming },
+                    {   
+                        recording.Id,
+                        recording.Coming
+                    },
                     commandType: CommandType.StoredProcedure);
             }
         }
@@ -42,7 +45,10 @@ namespace RecordingSystem.DAL.Repositories
 
                 sqlConnection.Execute(StoredNamesProcedures.UpdateIsDeletedActiveRecordingById,
                     new
-                    { recording.IsDeleted },
+                    {
+                        recording.Id,
+                        recording.IsDeleted
+                    },
                     commandType: CommandType.StoredProcedure);
             }
         }
@@ -65,7 +71,7 @@ namespace RecordingSystem.DAL.Repositories
 
                         return activeRecording;
                     },
-                    new { Id_Patient = id },
+                    new { id },
                     splitOn: "Id",
                     commandType: CommandType.StoredProcedure).ToList();
 

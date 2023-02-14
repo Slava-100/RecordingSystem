@@ -45,7 +45,7 @@ namespace RecordingSystem.DAL.Repositories
             {
                 sqlConnection.Open();
 
-                sqlConnection.Execute(StoredNamesProcedures.UpdateDoctortById,
+                sqlConnection.Execute(StoredNamesProcedures.UpdateDoctorById,
                     new
                     {
                         doctor.Id,

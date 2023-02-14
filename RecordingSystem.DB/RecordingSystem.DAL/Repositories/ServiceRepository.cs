@@ -22,25 +22,6 @@ namespace RecordingSystem.DAL.Repositories
             }
         }
 
-        public void UpdateService(ServiceDto service)
-        {
-            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
-            {
-                sqlConnection.Open();
-
-                sqlConnection.Execute(StoredNamesProcedures.UpdatePatientById,
-                    new
-                    {
-                        service.Id,
-                        service.Name,
-                        service.Price,
-                        service.SpecializationId,
-                        service.IsDeleted,
-                        service.Male
-                    },
-                    commandType: CommandType.StoredProcedure);
-            }
-        }
         public void UpdateServiceById(ServiceDto service)
         {
             using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
@@ -72,7 +53,7 @@ namespace RecordingSystem.DAL.Repositories
             }
         }
 
-        public List<ServiceDto> GetAllDoctorInfoById(int id)
+        public List<ServiceDto> GetAllServicesByDoctorId(int id)
         {
             using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
             {
