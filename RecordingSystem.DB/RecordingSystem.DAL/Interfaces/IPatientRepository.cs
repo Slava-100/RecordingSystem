@@ -9,6 +9,6 @@ namespace RecordingSystem.DAL.Interfaces
         public List<PatientDto> GetAllPatients();
         public void UpdatePatientById(PatientDto patient);
         public void UpdateIsDeletedPatientById(PatientDto patient);
-        public List<PatientDto> GetAllPatientsByStatusId(int Id_Status);
+        public List<PatientDto> GetAllPatientsByStatusId(int id);
     }
 }

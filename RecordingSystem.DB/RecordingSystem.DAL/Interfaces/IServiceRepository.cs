@@ -9,8 +9,8 @@ namespace RecordingSystem.DAL.Interfaces
         public void UpdateService(ServiceDto service);
         public void UpdateServiceById(ServiceDto service);
         public void UpdateIsDeletedServiceById(ServiceDto service);
-        public List<ServiceDto> GetAllDoctorInfoById(int Id_doctor);
-        public List<ServiceDto> GetAllServiceByMale(bool? Male);
+        public List<ServiceDto> GetAllDoctorInfoById(int id);
+        public List<ServiceDto> GetAllServiceByMale(bool? male);
 
     }
 }

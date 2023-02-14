@@ -9,7 +9,7 @@ namespace RecordingSystem.DAL.Repositories
 {
     public class TimeTableRepository : ITimeTableRepository
     {
-        public List<TimeTableDto> GetTimeTableByDoctorId(int Id)
+        public List<TimeTableDto> GetTimeTableByDoctorId(int id)
         {
             using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
             {
@@ -25,7 +25,7 @@ namespace RecordingSystem.DAL.Repositories
 
                         return timeTable;
                     },
-                    new { Id },
+                    new { Id = id },
                     splitOn: "Id",
                     commandType: CommandType.StoredProcedure).ToList();
             }

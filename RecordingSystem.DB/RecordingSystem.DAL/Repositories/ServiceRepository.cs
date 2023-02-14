@@ -72,7 +72,7 @@ namespace RecordingSystem.DAL.Repositories
             }
         }
 
-        public List<ServiceDto> GetAllDoctorInfoById(int Id_doctor)
+        public List<ServiceDto> GetAllDoctorInfoById(int id)
         {
             using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
             {
@@ -84,7 +84,7 @@ namespace RecordingSystem.DAL.Repositories
 
                         return service;
                     },
-                    new { Id_doctor },
+                    new { Id_doctor = id },
                     splitOn: "Id",
                     commandType: CommandType.StoredProcedure).ToList();
 
@@ -92,7 +92,7 @@ namespace RecordingSystem.DAL.Repositories
             }
         }
 
-        public List<ServiceDto> GetAllServiceByMale(bool? Male)
+        public List<ServiceDto> GetAllServiceByMale(bool? male)
         {
             using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
             {
@@ -107,7 +107,7 @@ namespace RecordingSystem.DAL.Repositories
 
                         return service;
                     },
-                    new { Male },
+                    new { Male = male },
                     splitOn: "Id",
                     commandType: CommandType.StoredProcedure).ToList();
 

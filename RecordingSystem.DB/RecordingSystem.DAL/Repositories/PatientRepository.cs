@@ -65,7 +65,7 @@ namespace RecordingSystem.DAL.Repositories
             }
         }
 
-        public List<PatientDto> GetAllPatientsByStatusId(int Id_Status)
+        public List<PatientDto> GetAllPatientsByStatusId(int id)
         {
             using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
             {
@@ -80,7 +80,7 @@ namespace RecordingSystem.DAL.Repositories
 
                         return patient;
                     },
-                    new { Id_Status },
+                    new { Id_Status = id },
                     splitOn: "Id",
                     commandType: CommandType.StoredProcedure).ToList();
 

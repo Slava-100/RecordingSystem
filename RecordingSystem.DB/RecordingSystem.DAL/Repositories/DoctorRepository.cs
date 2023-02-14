@@ -122,7 +122,7 @@ namespace RecordingSystem.DAL.Repositories
             }
         }
 
-        public List<DoctorDto> GetAllFreeDoctorsByDayOfWeekId(int Id_DayOfWeek)
+        public List<DoctorDto> GetAllFreeDoctorsByDayOfWeekId(int id)
         {
             using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
             {
@@ -152,7 +152,7 @@ namespace RecordingSystem.DAL.Repositories
 
                         return crnt;
                     },
-                    new { Id_DayOfWeek },
+                    new { Id_DayOfWeek = id },
                     splitOn: "Id",
                     commandType: CommandType.StoredProcedure).ToList();
 

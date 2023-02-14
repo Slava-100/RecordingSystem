@@ -11,6 +11,6 @@ namespace RecordingSystem.DAL.Interfaces
         public void UpdateIsDeletedDoctorById(DoctorDto doctor);
         public List<DoctorDto> GetAllDoctorsByServiceId(int id);
         public List<DoctorDto> GetAllDoctorBySpecializationId(int id);
-        public List<DoctorDto> GetAllFreeDoctorsByDayOfWeekId(int Id_DayOfWeek);
+        public List<DoctorDto> GetAllFreeDoctorsByDayOfWeekId(int id);
     }
 }

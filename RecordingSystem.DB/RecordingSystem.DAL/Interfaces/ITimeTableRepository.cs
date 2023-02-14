@@ -4,6 +4,6 @@ namespace RecordingSystem.DAL.Interfaces
 {
     public interface ITimeTableRepository
     {
-        public List<TimeTableDto> GetTimeTableByDoctorId(int Id);
+        public List<TimeTableDto> GetTimeTableByDoctorId(int id);
     }
 }
