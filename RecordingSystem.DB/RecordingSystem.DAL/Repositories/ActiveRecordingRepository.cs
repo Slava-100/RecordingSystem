@@ -1,27 +1,29 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
+using RecordingSystem.DAL.Interfaces;
 using RecordingSystem.DAL.Models;
+using RecordingSystem.DAL.Options;
 using System.Data;
 
 namespace RecordingSystem.DAL.Repositories
 {
     public class ActiveRecordingRepository : IActiveRecordingRepository
     {
-        public void AddActiveRecording(int patientId, int doctorId, DateTime date)
+        public void AddActiveRecording(ActiveRecordingDto activeRecordingDto)
         {
-            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
             {
                 sqlConnection.Open();
 
                 sqlConnection.Execute(StoredNamesProcedures.AddActiveRecording,
-                    new { patientId, doctorId, date },
+                    new { activeRecordingDto.PatientId, activeRecordingDto.DoctorId, activeRecordingDto.DateTime},
                     commandType: CommandType.StoredProcedure);
             }
         }
 
         public void UpdateComingInActiveRecordingById(ActiveRecordingDto recording)
         {
-            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
             {
                 sqlConnection.Open();
 
@@ -34,7 +36,7 @@ namespace RecordingSystem.DAL.Repositories
 
         public void UpdateIsDeletedActiveRecordingById(ActiveRecordingDto recording)
         {
-            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
             {
                 sqlConnection.Open();
 
@@ -47,7 +49,7 @@ namespace RecordingSystem.DAL.Repositories
 
         public List<ActiveRecordingDto> GetAllActiveRecordingsByPatientId(int id)
         {
-            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
             {
                 List<ActiveRecordingDto> result = new List<ActiveRecordingDto>();
 

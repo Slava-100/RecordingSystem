@@ -1,7 +1,9 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
+using RecordingSystem.DAL.Interfaces;
 using RecordingSystem.DAL.Models;
 using System.Data;
+using RecordingSystem.DAL.Options;
 
 namespace RecordingSystem.DAL.Repositories
 {
@@ -9,7 +11,7 @@ namespace RecordingSystem.DAL.Repositories
     {
         public List<TimeTableDto> GetTimeTableByDoctorId(int Id)
         {
-            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
             {
                 sqlConnection.Open();
                 return sqlConnection.Query<TimeTableDto, DoctorDto,SpecializationDto,CabinetDto,DayOfWeekDto,TimeSpanDto,TimeTableDto>(StoredNamesProcedures.GetTimeTableByDoctorId,

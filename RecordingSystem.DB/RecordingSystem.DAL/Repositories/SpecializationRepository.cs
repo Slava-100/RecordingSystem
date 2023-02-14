@@ -1,12 +1,9 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
+using RecordingSystem.DAL.Interfaces;
 using RecordingSystem.DAL.Models;
-using System;
-using System.Collections.Generic;
+using RecordingSystem.DAL.Options;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RecordingSystem.DAL.Repositories
 {
@@ -14,7 +11,7 @@ namespace RecordingSystem.DAL.Repositories
     {
         public List<SpecializationDto> GetAllSpecializations()
         {
-            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
             {
                 sqlConnection.Open();
                 return sqlConnection.Query<SpecializationDto>(StoredNamesProcedures.GetAllSpecializations,
@@ -22,14 +19,14 @@ namespace RecordingSystem.DAL.Repositories
             }
         }
 
-        public void AddSpecialization(string name)
+        public void AddSpecialization(SpecializationDto specializationDto)
         {
-            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
             {
                 sqlConnection.Open();
 
                 sqlConnection.Execute(StoredNamesProcedures.AddSpecialization,
-                    new { name },
+                    new { specializationDto.Name },
                     commandType: CommandType.StoredProcedure);
             }
         }

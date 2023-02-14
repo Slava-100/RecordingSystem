@@ -1,29 +1,30 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
+using RecordingSystem.DAL.Interfaces;
 using RecordingSystem.DAL.Models;
 using System.Data;
-using System.Numerics;
+using RecordingSystem.DAL.Options;
 
 
 namespace RecordingSystem.DAL.Repositories
 {
     public class ServiceRepository : IServiceRepository
     {
-        public void AddService(string name, float price, int? specializationId, bool? male)
+        public void AddService(ServiceDto serviceDto)
         {
-            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
             {
                 sqlConnection.Open();
 
                 sqlConnection.Execute(StoredNamesProcedures.AddService,
-                    new { name, price, specializationId, male },
+                    new { serviceDto.Name, serviceDto.Price, serviceDto.SpecializationId, serviceDto.Male },
                     commandType: CommandType.StoredProcedure);
             }
         }
 
         public void UpdateService(ServiceDto service)
         {
-            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
             {
                 sqlConnection.Open();
 
@@ -42,7 +43,7 @@ namespace RecordingSystem.DAL.Repositories
         }
         public void UpdateServiceById(ServiceDto service)
         {
-            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
             {
                 sqlConnection.Open();
 
@@ -60,7 +61,7 @@ namespace RecordingSystem.DAL.Repositories
         }
         public void UpdateIsDeletedServiceById(ServiceDto service)
         {
-            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
             {
                 sqlConnection.Open();
 
@@ -73,7 +74,7 @@ namespace RecordingSystem.DAL.Repositories
 
         public List<ServiceDto> GetAllDoctorInfoById(int Id_doctor)
         {
-            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
             {
                 
                 sqlConnection.Open();
@@ -93,7 +94,7 @@ namespace RecordingSystem.DAL.Repositories
 
         public List<ServiceDto> GetAllServiceByMale(bool? Male)
         {
-            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
             {
                 var result = new List<ServiceDto>();
 

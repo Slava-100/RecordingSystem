@@ -1,11 +1,6 @@
 ﻿using RecordingSystem.DAL.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace RecordingSystem.DAL.Repositories
+namespace RecordingSystem.DAL.Interfaces
 {
     public interface ITimeTableRepository
     {
