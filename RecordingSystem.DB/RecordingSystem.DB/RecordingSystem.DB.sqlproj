@@ -106,6 +106,8 @@
     <Build Include="dbo\Stored Procedures\UpdateIsDeletedServiceById.sql" />
     <Build Include="dbo\Stored Procedures\AddActiveRecording.sql" />
     <Build Include="dbo\Stored Procedures\UpdateComingInActiveRecordingById.sql" />
+    <Build Include="dbo\Stored Procedures\AddRecordingHistory.sql" />
+    <Build Include="dbo\Stored Procedures\AddDiagnosis.sql" />
     <Build Include="dbo\Stored Procedures\GetAllStatuses.sql" />
     <Build Include="dbo\Stored Procedures\UpdateStatusById.sql" />
     <Build Include="dbo\Stored Procedures\GetAllTimeRecordings.sql" />

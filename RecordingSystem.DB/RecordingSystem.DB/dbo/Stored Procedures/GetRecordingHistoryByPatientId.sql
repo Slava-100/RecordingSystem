@@ -1,12 +1,14 @@
 ﻿CREATE PROCEDURE [dbo].[GetRecordingHistoryByPatientId]
 @Id int
 AS
-SELECT 
+SELECT
+RH.Id,
+RH.ActiveRecordingId,
+AR.Id,
+AR.[DateTime],
 P.Id,
 P.[Name],
 P.LastName,
-RH.ActiveRecordingId,
-AR.[DateTime],
 Doc.Id,
 Doc.[Name],
 Doc.LastName,

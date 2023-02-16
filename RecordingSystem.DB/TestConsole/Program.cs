@@ -55,12 +55,16 @@ using RecordingSystem.DAL.Models;
 
 //var p = new DoctorRepository();
 //var ppp = p.GetAllDoctorBySpecializationId(3);
+//var p = new DoctorRepository();
+//var ppp = p.GetAllDoctorBySpecializationId(1);
 
 //var p = new TimeTableRepository();
 //var ppp = p.GetTimeTableByDoctorId(11);
 
 //var p = new DoctorRepository();
 //var ppp = p.GetAllFreeDoctorsByDayOfWeekId(3);
+var p = new RecordingHistoryRepository();
+var ppp = p.GetRecordingHistoryByPatientId(5);
 
 //var m = new ServiceManager();
 //var qqq = m.GetAllDoctorInfoById(14);
