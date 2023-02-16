@@ -60,7 +60,10 @@ namespace RecordingSystem.DAL.Repositories
 
                 sqlConnection.Execute(StoredNamesProcedures.UpdateIsDeletedPatientById,
                     new
-                    { patient.IsDeleted },
+                    {
+                        patient.Id,
+                        patient.IsDeleted 
+                    },
                     commandType: CommandType.StoredProcedure);
             }
         }
