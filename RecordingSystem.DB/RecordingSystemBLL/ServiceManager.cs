@@ -11,7 +11,7 @@ namespace RecordingSystem.BLL
         public ServiceOutputModel GetAllDoctorInfoById(int id)
         {
             ServiceRepository repository = new ServiceRepository();
-            var service = repository.GetAllDoctorInfoById(id);
+            var service = repository.GetAllServicesByDoctorId(id);
 
             var configuration = new MapperConfiguration(
                 cfg => cfg.CreateMap<ServiceDto, ServiceOutputModel>());
