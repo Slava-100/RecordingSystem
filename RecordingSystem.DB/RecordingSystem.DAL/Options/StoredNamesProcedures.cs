@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,5 +38,6 @@ namespace RecordingSystem.DAL.Options
         public const string GetAllFreeDoctorsByDayOfWeekId = "GetAllFreeDoctorsByDayOfWeekId";
         public const string GetAllStatuses = "GetAllStatuses";
         public const string UpdateStatusById = "UpdateStatusById";
+        public const string GetAllServiceBySpecializationId = "GetAllServiceBySpecializationId"; 
     }
 }

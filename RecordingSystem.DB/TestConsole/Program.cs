@@ -49,12 +49,16 @@ using RecordingSystem.DAL.Models;
 //var m = new ServiceManager();
 //var qqq = m.GetAllDoctorInfoById(14);
 
-var m = new StatusRepository();
+//var m = new StatusRepository();
 //var qqq = m.GetAllStatuses();
 
-var a = new StatusDto();
-a.Id = 1;
-a.Discount = 69;
-m.UpdateStatusById(a);
+//var a = new StatusDto();
+//a.Id = 1;
+//a.Discount = 69;
+//m.UpdateStatusById(a);
+
+var a = new ServiceRepository();
+
+var b = a.GetAllServiceBySpecializationId(3);
 
 Console.WriteLine("qwe");

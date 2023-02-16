@@ -108,5 +108,6 @@
     <Build Include="dbo\Stored Procedures\UpdateComingInActiveRecordingById.sql" />
     <Build Include="dbo\Stored Procedures\GetAllStatuses.sql" />
     <Build Include="dbo\Stored Procedures\UpdateStatusById.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllServiceBySpecializationId.sql" />
   </ItemGroup>
 </Project>
