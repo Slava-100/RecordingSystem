@@ -1,5 +1,6 @@
 using RecordingSystem.DAL.Repositories;
 using RecordingSystem.BLL;
+using RecordingSystem.DAL.Models;
 
 //DateTime someDate = new DateTime(2001,01,01);
 //Console.WriteLine(someDate);
@@ -48,7 +49,12 @@ using RecordingSystem.BLL;
 //var m = new ServiceManager();
 //var qqq = m.GetAllDoctorInfoById(14);
 
-var m = new CabinetManager();
-var qqq = m.GetAllCabinets();
+var m = new StatusRepository();
+//var qqq = m.GetAllStatuses();
+
+var a = new StatusDto();
+a.Id = 1;
+a.Discount = 69;
+m.UpdateStatusById(a);
 
 Console.WriteLine("qwe");

@@ -36,5 +36,7 @@ namespace RecordingSystem.DAL.Options
         public const string GetAllDoctorBySpecializationId = "GetAllDoctorBySpecializationId";
         public const string GetAllActiveRecordingsByPatientId = "GetAllActiveRecordingsByPatientId";
         public const string GetAllFreeDoctorsByDayOfWeekId = "GetAllFreeDoctorsByDayOfWeekId";
+        public const string GetAllStatuses = "GetAllStatuses";
+        public const string UpdateStatusById = "UpdateStatusById";
     }
 }
