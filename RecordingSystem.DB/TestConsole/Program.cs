@@ -49,12 +49,20 @@ using RecordingSystem.DAL.Models;
 //var m = new ServiceManager();
 //var qqq = m.GetAllDoctorInfoById(14);
 
-var m = new StatusRepository();
+//var m = new StatusRepository();
 //var qqq = m.GetAllStatuses();
 
-var a = new StatusDto();
-a.Id = 1;
-a.Discount = 69;
-m.UpdateStatusById(a);
+//var a = new StatusDto();
+//a.Id = 1;
+//a.Discount = 69;
+//m.UpdateStatusById(a);
+
+
+var a = new TimeRecordingRepository();
+//var b = a.GetAllTimeRecordings();
+var b = new TimeRecordingDto();
+b.TimeTableId = 28;
+b.Occupied=true;
+a.AddTimeRecording(b);
 
 Console.WriteLine("qwe");

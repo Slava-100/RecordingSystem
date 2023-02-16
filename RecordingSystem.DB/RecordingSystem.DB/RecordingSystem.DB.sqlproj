@@ -108,5 +108,8 @@
     <Build Include="dbo\Stored Procedures\UpdateComingInActiveRecordingById.sql" />
     <Build Include="dbo\Stored Procedures\GetAllStatuses.sql" />
     <Build Include="dbo\Stored Procedures\UpdateStatusById.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllTimeRecordings.sql" />
+    <Build Include="dbo\Stored Procedures\AddTimeRecording.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateTimeRecordingById.sql" />
   </ItemGroup>
 </Project>
