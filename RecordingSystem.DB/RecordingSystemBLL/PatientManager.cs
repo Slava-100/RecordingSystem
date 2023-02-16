@@ -8,7 +8,7 @@ namespace RecordingSystem.BLL
         Mapperrr _mapperrr = new Mapperrr();
         public IPatientRepository PatientRepository { get; set; } 
 
-        public List<PatientOutputModel> GetAllPatient()
+        public List<PatientOutputModel> GetAllPatients()
         {
             var patients = PatientRepository.GetAllPatients();
             var result = _mapperrr.MapPatientDtoToPatientOutputModel(patients);
