@@ -48,7 +48,10 @@ namespace RecordingSystem.DAL.Repositories
 
                 sqlConnection.Execute(StoredNamesProcedures.UpdateIsDeletedServiceById,
                     new
-                    { service.IsDeleted },
+                    {   
+                        service.Id,
+                        service.IsDeleted 
+                    },
                     commandType: CommandType.StoredProcedure);
             }
         }
