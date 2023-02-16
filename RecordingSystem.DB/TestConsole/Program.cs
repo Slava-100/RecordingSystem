@@ -71,8 +71,8 @@ var ppp = p.GetRecordingHistoryByPatientId(5);
 
 //var m = new StatusRepository();
 //var qqq = m.GetAllStatuses();
-var m = new CabinetManager();
-var qqq = m.GetAllCabinets();
+//var m = new CabinetManager();
+//var qqq = m.GetAllCabinets();
 
 //var a = new StatusDto();
 //a.Id = 1;
@@ -80,15 +80,15 @@ var qqq = m.GetAllCabinets();
 //m.UpdateStatusById(a);
 
 
-var a = new TimeRecordingRepository();
+//var a = new TimeRecordingRepository();
 //var b = a.GetAllTimeRecordings();
-var b = new TimeRecordingDto();
-b.TimeTableId = 28;
-b.Occupied=true;
-a.AddTimeRecording(b);
+//var b = new TimeRecordingDto();
+//b.TimeTableId = 28;
+//b.Occupied = true;
+//a.AddTimeRecording(b);
 
-var a = new ServiceRepository();
+//var a = new ServiceRepository();
 
-var b = a.GetAllServiceBySpecializationId(3);
+//var b = a.GetAllServiceBySpecializationId(3);
 
 Console.WriteLine("qwe");

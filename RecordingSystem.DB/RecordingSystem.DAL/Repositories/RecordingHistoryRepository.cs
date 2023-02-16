@@ -2,14 +2,16 @@
 using Microsoft.Data.SqlClient;
 using RecordingSystem.DAL.Models;
 using System.Data;
+using RecordingSystem.DAL.Options;
+using RecordingSystem.DAL.Interfaces;
 
 namespace RecordingSystem.DAL.Repositories
 {
-    public class RecordingHistoryRepository
+    public class RecordingHistoryRepository : IRecordingHistoryRepository
     {
         public void AddRecordingHistory(int diagnosisId, int activeRecordingId)
         {
-            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
             {
                 sqlConnection.Open();
 
@@ -21,7 +23,7 @@ namespace RecordingSystem.DAL.Repositories
 
         public List<RecordingHistoryDto> GetRecordingHistoryByPatientId(int id)
         {
-            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
             {
                 List<RecordingHistoryDto> result = new List<RecordingHistoryDto>();
 

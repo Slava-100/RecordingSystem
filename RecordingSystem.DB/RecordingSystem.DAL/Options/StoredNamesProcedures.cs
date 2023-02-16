@@ -41,6 +41,9 @@ namespace RecordingSystem.DAL.Options
         public const string GetAllTimeRecordings = "GetAllTimeRecordings";
         public const string AddTimeRecording = "AddTimeRecording";
         public const string UpdateTimeRecordingById = "UpdateTimeRecordingById"; 
-        public const string GetAllServiceBySpecializationId = "GetAllServiceBySpecializationId";
+        public const string GetAllServiceBySpecializationId = "GetAllServiceBySpecializationId"; 
+        public const string AddDiagnosis = "AddDiagnosis"; 
+        public const string AddRecordingHistory = "AddRecordingHistory"; 
+        public const string GetRecordingHistoryByPatientId = "GetRecordingHistoryByPatientId";
     }
 }
