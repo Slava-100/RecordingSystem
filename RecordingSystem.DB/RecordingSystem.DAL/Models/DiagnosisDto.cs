@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RecordingSystem.DAL.Models
 {
-    internal class DiagnosisDto
+    public class DiagnosisDto
     {
         public int Id { get; set; }
         public string Name { get; set; }

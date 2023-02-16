@@ -30,18 +30,18 @@ namespace RecordingSystem.DAL.Repositories
                     StoredNamesProcedures.GetRecordingHistoryByPatientId,
                     (recordingHistory, activeRecording, patient, doctor, diagnosis) =>
                     {
-                        recordingHistory.Id = recordingHistory.Id;
-                        recordingHistory.ActiveRecordingId = recordingHistory.ActiveRecordingId;
-                        recordingHistory.Patient = patient;
-                        recordingHistory.Doctor = doctor;
+                        activeRecording.Patient = patient;
+                        activeRecording.Doctor = doctor;
+                        recordingHistory.ActiveRecording = activeRecording;
                         recordingHistory.Diagnosis = diagnosis;
+                        result.Add(recordingHistory);
 
                         return recordingHistory;
                     },
                     new { Id = id },
                     splitOn: "Id",
                     commandType: CommandType.StoredProcedure).ToList();
-
+                
                 return result;
             }
         }
