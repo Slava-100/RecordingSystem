@@ -10,6 +10,7 @@ namespace RecordingSystem.DAL.Models
     {
         public int Id { get; set; }
         public DateTime? Date { get; set; }
+        public int TimeTableId { get; set; }
         public bool? Occupied { get; set; }
         public TimeTableDto TimeTable { get; set; }
     }

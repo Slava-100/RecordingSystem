@@ -75,6 +75,14 @@ var qqq = m.GetAllCabinets();
 //a.Discount = 69;
 //m.UpdateStatusById(a);
 
+
+var a = new TimeRecordingRepository();
+//var b = a.GetAllTimeRecordings();
+var b = new TimeRecordingDto();
+b.TimeTableId = 28;
+b.Occupied=true;
+a.AddTimeRecording(b);
+
 var a = new ServiceRepository();
 
 var b = a.GetAllServiceBySpecializationId(3);
