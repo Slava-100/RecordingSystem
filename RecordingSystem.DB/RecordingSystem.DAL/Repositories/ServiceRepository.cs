@@ -85,6 +85,10 @@ namespace RecordingSystem.DAL.Repositories
                     {
                         result.Add(service);
                         service.Specialization = specialization;
+                        if (service.Specialization is not null)
+                        {
+                            service.SpecializationId = service.Specialization.Id;
+                        }
 
                         return service;
                     },
