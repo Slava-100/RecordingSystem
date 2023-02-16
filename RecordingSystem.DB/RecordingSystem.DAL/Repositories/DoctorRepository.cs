@@ -69,7 +69,11 @@ namespace RecordingSystem.DAL.Repositories
                 sqlConnection.Open();
 
                 sqlConnection.Execute(StoredNamesProcedures.UpdateIsDeletedDoctorById,
-                    new { doctor.IsDeleted },
+                    new 
+                    {
+                        doctor.Id,
+                        doctor.IsDeleted
+                    },
                     commandType: CommandType.StoredProcedure);
             }
         }

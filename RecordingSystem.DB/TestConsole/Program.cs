@@ -2,23 +2,39 @@ using RecordingSystem.DAL.Repositories;
 using RecordingSystem.BLL;
 using RecordingSystem.DAL.Models;
 
-//DateTime someDate = new DateTime(2001,01,01);
+//DateTime someDate = new DateTime(2001, 01, 01);
 //Console.WriteLine(someDate);
 
 //var d = new PatientRepository();
-//d.AddPatient("Vova", "Str", "123-123", "@", null, true, someDate);
+//var patient = new PatientDto() { Name = "Gosha", LastName = "Str", PhoneNumber = "123-123", Email = "@", Status = null, Male = true, Birthday = someDate };
+//d.AddPatient(patient);
+
+//var ppp = d.GetAllPatients();
+
+//ppp[ppp.Count - 1].IsDeleted = true;
+
+//d.UpdateIsDeletedPatientById(ppp[ppp.Count - 1]);
 
 //var p = new ActiveRecordingRepository();
 //var ppp = p.GetAllActiveRecordingsByPatientId(6);
 
+//var pppp = ppp[0];
+//pppp.Coming = false;
+
+//p.UpdateComingInActiveRecordingById(pppp);
+
+
 //var p = new ActiveRecordingRepository();
 //var ppp = p.GetAllActiveRecordingsByPatientId(6);
 
-//var p = new DoctorRepository();
-//var ppp = p.GetAllDoctorsByServiceId(14);
 
-//var p = new DoctorRepository();
-//var ppp = p.GetAllDoctorsByServiceId(14);
+
+
+//var pppp = ppp[0];
+//pppp.Name = "Kavkaz";
+//p.UpdateDoctor(ppp[0]);
+
+
 //var p = new DoctorRepository();
 //var ppp = p.GetAllDoctors();
 
@@ -38,7 +54,7 @@ using RecordingSystem.DAL.Models;
 //var ppp = p.GetAllPatientsByStatusId(3);
 
 //var p = new DoctorRepository();
-//var ppp = p.GetAllDoctorBySpecializationId(1);
+//var ppp = p.GetAllDoctorBySpecializationId(3);
 
 //var p = new TimeTableRepository();
 //var ppp = p.GetTimeTableByDoctorId(11);
@@ -51,6 +67,8 @@ using RecordingSystem.DAL.Models;
 
 //var m = new StatusRepository();
 //var qqq = m.GetAllStatuses();
+var m = new CabinetManager();
+var qqq = m.GetAllCabinets();
 
 //var a = new StatusDto();
 //a.Id = 1;
@@ -64,5 +82,9 @@ var b = new TimeRecordingDto();
 b.TimeTableId = 28;
 b.Occupied=true;
 a.AddTimeRecording(b);
+
+var a = new ServiceRepository();
+
+var b = a.GetAllServiceBySpecializationId(3);
 
 Console.WriteLine("qwe");

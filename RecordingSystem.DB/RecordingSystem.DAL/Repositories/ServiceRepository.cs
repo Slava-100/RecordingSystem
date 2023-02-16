@@ -85,6 +85,10 @@ namespace RecordingSystem.DAL.Repositories
                     {
                         result.Add(service);
                         service.Specialization = specialization;
+                        if (service.Specialization is not null)
+                        {
+                            service.SpecializationId = service.Specialization.Id;
+                        }
 
                         return service;
                     },
@@ -93,6 +97,18 @@ namespace RecordingSystem.DAL.Repositories
                     commandType: CommandType.StoredProcedure).ToList();
 
                 return result;
+            }
+        }
+
+        public List<ServiceDto> GetAllServiceBySpecializationId(int id)
+        {
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
+            {
+
+                sqlConnection.Open();
+                return sqlConnection.Query<ServiceDto>(StoredNamesProcedures.GetAllServiceBySpecializationId,
+                      new { SpecializationId = id },
+                      commandType: CommandType.StoredProcedure).ToList();
             }
         }
     }
