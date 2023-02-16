@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -108,5 +108,11 @@
     <Build Include="dbo\Stored Procedures\UpdateComingInActiveRecordingById.sql" />
     <Build Include="dbo\Stored Procedures\AddRecordingHistory.sql" />
     <Build Include="dbo\Stored Procedures\AddDiagnosis.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllStatuses.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateStatusById.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllTimeRecordings.sql" />
+    <Build Include="dbo\Stored Procedures\AddTimeRecording.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateTimeRecordingById.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllServiceBySpecializationId.sql" />
   </ItemGroup>
 </Project>

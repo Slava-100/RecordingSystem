@@ -1,15 +1,17 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
+using RecordingSystem.DAL.Interfaces;
 using RecordingSystem.DAL.Models;
+using RecordingSystem.DAL.Options;
 using System.Data;
 
 namespace RecordingSystem.DAL.Repositories
 {
-    public class DoctorRepository
+    public class DoctorRepository : IDoctorRepository
     {
         public List<DoctorDto> GetAllDoctors()
         {
-            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
             {
                 sqlConnection.Open();
                 return sqlConnection.Query<DoctorDto, SpecializationDto, CabinetDto, DoctorDto>(StoredNamesProcedures.GetAllDoctors,
@@ -25,26 +27,25 @@ namespace RecordingSystem.DAL.Repositories
             }
         }
 
-        public void AddDoctor(string name, string lastName, bool male, string phoneNumber,
-            string email, int? specializationId, int? cabinetId, DateTime birthday)
+        public void AddDoctor(DoctorDto doctorDto)
         {
-            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
             {
                 sqlConnection.Open();
 
                 sqlConnection.Execute(StoredNamesProcedures.AddDoctor,
-                    new { name, lastName, male, phoneNumber, email, specializationId, cabinetId, birthday },
+                    new { doctorDto.Name, doctorDto.LastName, doctorDto.Male, doctorDto.PhoneNumber, doctorDto.Email, doctorDto.SpecializationId, doctorDto.CabinetId, doctorDto.Birthday },
                     commandType: CommandType.StoredProcedure);
             }
         }
 
         public void UpdateDoctor(DoctorDto doctor)
         {
-            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
             {
                 sqlConnection.Open();
 
-                sqlConnection.Execute(StoredNamesProcedures.UpdateDoctortById,
+                sqlConnection.Execute(StoredNamesProcedures.UpdateDoctorById,
                     new
                     {
                         doctor.Id,
@@ -63,19 +64,23 @@ namespace RecordingSystem.DAL.Repositories
 
         public void UpdateIsDeletedDoctorById(DoctorDto doctor)
         {
-            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
             {
                 sqlConnection.Open();
 
                 sqlConnection.Execute(StoredNamesProcedures.UpdateIsDeletedDoctorById,
-                    new { doctor.IsDeleted },
+                    new 
+                    {
+                        doctor.Id,
+                        doctor.IsDeleted
+                    },
                     commandType: CommandType.StoredProcedure);
             }
         }
 
         public List<DoctorDto> GetAllDoctorsByServiceId(int id)
         {
-            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
             {
                 List<DoctorDto> result = new List<DoctorDto>();
 
@@ -99,7 +104,7 @@ namespace RecordingSystem.DAL.Repositories
 
         public List<DoctorDto> GetAllDoctorBySpecializationId(int id)
         {
-            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
             {
                 List<DoctorDto> result = new List<DoctorDto>();
 
@@ -108,12 +113,50 @@ namespace RecordingSystem.DAL.Repositories
                     StoredNamesProcedures.GetAllDoctorBySpecializationId,
                     (specialization, doctor) =>
                     {
-                        doctor.Specialization= specialization;
+                        doctor.Specialization = specialization;
                         result.Add(doctor);
 
                         return doctor;
                     },
                     new { Id_Specialization = id },
+                    splitOn: "Id",
+                    commandType: CommandType.StoredProcedure).ToList();
+
+                return result;
+            }
+        }
+
+        public List<DoctorDto> GetAllFreeDoctorsByDayOfWeekId(int id)
+        {
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
+            {
+                TimeTableDto timeTable = new TimeTableDto();
+                List<DoctorDto> result = new List<DoctorDto>();
+
+                sqlConnection.Open();
+                sqlConnection.Query<DayOfWeekDto, DoctorDto, TimeSpanDto, TimeRecordingDto, DoctorDto >(StoredNamesProcedures.GetAllFreeDoctorsByDayOfWeekId,
+                    (dayOfWeek, doctor, timeSpan, timeRecording) =>
+                    {
+                        timeTable.DayOfWeek = dayOfWeek;
+                        timeTable.TimeSpan = timeSpan;
+                        timeRecording.TimeTable = timeTable;
+
+                        DoctorDto crnt = null;
+                        if (result.Any(d => d.Id == doctor.Id))
+                        {
+                            crnt = result.Find(d => d.Id == doctor.Id);
+                        }
+                        else
+                        {
+                            crnt = doctor;
+                            result.Add(crnt);
+                        }
+
+                        crnt.TimeRecording.Add(timeRecording);
+
+                        return crnt;
+                    },
+                    new { Id_DayOfWeek = id },
                     splitOn: "Id",
                     commandType: CommandType.StoredProcedure).ToList();
 

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RecordingSystem.DAL
+namespace RecordingSystem.DAL.Options
 {
-    public class Options
+    public class Сonnection
     {
         public static string sqlConnection = Environment.GetEnvironmentVariable("RecordingSystem");
     }

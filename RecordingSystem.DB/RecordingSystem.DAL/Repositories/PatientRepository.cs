@@ -1,28 +1,29 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
+using RecordingSystem.DAL.Interfaces;
 using RecordingSystem.DAL.Models;
 using System.Data;
+using RecordingSystem.DAL.Options;
 
 namespace RecordingSystem.DAL.Repositories
 {
-    public class PatientRepository
+    public class PatientRepository : IPatientRepository
     {
-        public void AddPatient(string name, string lastName, string phoneNumber,
-            string email, int? statusId, bool male, DateTime birthday)
+        public void AddPatient(PatientDto patientDto)
         {
-            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
             {
                 sqlConnection.Open();
 
                 sqlConnection.Execute(StoredNamesProcedures.AddPatient,
-                    new { name, lastName, phoneNumber, email, statusId, male, birthday },
+                    new { patientDto.Name, patientDto.LastName, patientDto.PhoneNumber, patientDto.Email, patientDto.StatusId, patientDto.Male, patientDto.Birthday },
                     commandType: CommandType.StoredProcedure);
             }
         }
 
         public List<PatientDto> GetAllPatients()
         {
-            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
             {
                 sqlConnection.Open();
                 return sqlConnection.Query<PatientDto>(StoredNamesProcedures.GettAllPatients,
@@ -32,7 +33,7 @@ namespace RecordingSystem.DAL.Repositories
 
         public void UpdatePatientById(PatientDto patient)
         {
-            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
             {
                 sqlConnection.Open();
 
@@ -53,20 +54,23 @@ namespace RecordingSystem.DAL.Repositories
         }
         public void UpdateIsDeletedPatientById(PatientDto patient)
         {
-            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
             {
                 sqlConnection.Open();
 
                 sqlConnection.Execute(StoredNamesProcedures.UpdateIsDeletedPatientById,
                     new
-                    { patient.IsDeleted },
+                    {
+                        patient.Id,
+                        patient.IsDeleted 
+                    },
                     commandType: CommandType.StoredProcedure);
             }
         }
 
-        public List<PatientDto> GetAllPatientsByStatusId(int Id_Status)
+        public List<PatientDto> GetAllPatientsByStatusId(int id)
         {
-            using (var sqlConnection = new SqlConnection(Options.sqlConnection))
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
             {
                 List<PatientDto> result = new List<PatientDto>();
 
@@ -79,7 +83,7 @@ namespace RecordingSystem.DAL.Repositories
 
                         return patient;
                     },
-                    new { Id_Status },
+                    new { Id_Status = id },
                     splitOn: "Id",
                     commandType: CommandType.StoredProcedure).ToList();
 
