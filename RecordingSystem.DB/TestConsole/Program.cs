@@ -41,7 +41,7 @@ using RecordingSystem.DAL.Interfaces;
 //var ppp = p.GetAllDoctors();
 
 //var p = new ServiceRepository();
-//var ppp = p.GetAllServicesByDoctorId(11);
+//var ppp = p.GetAllServiceByMale(true);
 
 //var p = new ServiceRepository();
 //var ppp = p.GetAllServicesByDoctorId(11);
@@ -89,9 +89,16 @@ using RecordingSystem.DAL.Interfaces;
 
 //var b = a.GetAllServiceBySpecializationId(3);
 
+//var rep = new DoctorRepository();
+//var d = new DoctorManager(rep);
+//var ddd = d.GetAllDoctors();
+
+//var rep = new DoctorRepository();
+//var d = new DoctorManager(rep);
+//var ddd = d.GetAllDoctorsByServiceId(18);
+
 var rep = new DoctorRepository();
 var d = new DoctorManager(rep);
-var ddd = d.GetAllDoctorsByServiceId(18);
-
+var ddd = d.GetAllDoctorBySpecializationId(3);
 
 Console.WriteLine("qwe");

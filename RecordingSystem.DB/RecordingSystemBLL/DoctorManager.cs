@@ -1,7 +1,6 @@
 ﻿using RecordingSystem.BLL.Models;
 using RecordingSystem.DAL.Interfaces;
 using RecordingSystem.DAL.Models;
-using RecordingSystem.DAL.Repositories;
 
 namespace RecordingSystem.BLL
 {
@@ -19,16 +18,26 @@ namespace RecordingSystem.BLL
         {
             var doctors = DoctorRepository.GetAllDoctors();
             var result = _mapperrr.MapDoctorDtoToDoctorOutputModel(doctors);
-            
+
             return result;
         }
 
         public List<DoctorOutputModel> GetAllDoctorsByServiceId(int id)
         {
             var doctors = DoctorRepository.GetAllDoctorsByServiceId(id);
-            var result = _mapperrr.MapDoctorDtoToDoctorOutputModelById(doctors);
+            var result = _mapperrr.MapDoctorDtoToDoctorOutputModel(doctors);
 
             return result;
         }
+
+        public List<DoctorOutputModel> GetAllDoctorBySpecializationId(int id)
+        {
+            var doctors = DoctorRepository.GetAllDoctorBySpecializationId(id);
+            var result = _mapperrr.MapDoctorDtoToDoctorOutputModel(doctors);
+
+            return result;
+        }
+
+
     }
 }

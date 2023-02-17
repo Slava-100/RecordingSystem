@@ -40,9 +40,5 @@ namespace RecordingSystem.BLL
             return _configuration.CreateMapper().Map<List<DoctorOutputModel>>(doctors);
         }
 
-        public List<DoctorOutputModel> MapDoctorDtoToDoctorOutputModelById (List<DoctorDto> doctors)
-        {
-            return _configuration.CreateMapper().Map<List<DoctorOutputModel>>(doctors);
-        }
     }
 }
