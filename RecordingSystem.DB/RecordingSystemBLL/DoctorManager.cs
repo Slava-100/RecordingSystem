@@ -37,6 +37,13 @@ namespace RecordingSystem.BLL
 
             return result;
         }
+        public List<DoctorOutputModel> GetAllFreeDoctorsByDayOfWeekId(int id)
+        {
+            var doctors = DoctorRepository.GetAllFreeDoctorsByDayOfWeekId(id);
+            var result = _mapperrr.MapDoctorDtoToDoctorOutputModel(doctors);
+
+            return result;
+        }
 
 
     }
