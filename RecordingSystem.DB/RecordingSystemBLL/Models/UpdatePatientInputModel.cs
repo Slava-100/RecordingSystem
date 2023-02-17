@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
-namespace RecordingSystem.DAL.Models
+namespace RecordingSystem.BLL.Models
 {
-    public class PatientDto
+    public class UpdatePatientInputModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -16,7 +12,5 @@ namespace RecordingSystem.DAL.Models
         public string Email { get; set; }
         public int? StatusId { get; set; }
         public bool? Male { get; set; }
-        public bool? IsDeleted { get; set; }
-        public StatusDto Status { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using RecordingSystem.BLL;
 using RecordingSystem.DAL.Models;
 using System.Collections.Generic;
 using RecordingSystem.DAL.Interfaces;
+using RecordingSystem.BLL.Models;
 
 //DateTime someDate = new DateTime(2001, 01, 01);
 //Console.WriteLine(someDate);
@@ -91,10 +92,10 @@ using RecordingSystem.DAL.Interfaces;
 
 //var a = new TimeRecordingRepository();
 //var b = a.GetAllTimeRecordings();
-var b = new TimeRecordingDto();
-b.TimeTableId = 28;
-b.Occupied=true;
-a.AddTimeRecording(b);
+//var b = new TimeRecordingDto();
+//b.TimeTableId = 28;
+//b.Occupied=true;
+//a.AddTimeRecording(b);
 
 //var a = new ServiceRepository();
 
@@ -117,23 +118,38 @@ a.AddTimeRecording(b);
 //var ddd = d.GetAllFreeDoctorsByDayOfWeekId(3);
 
 DateTime someDate = new DateTime(2001, 01, 01);
-var rep = new DoctorRepository();
-var d = new DoctorManager(rep);
-var doctor = new DoctorDto { 
-    Id = 22,
-    Name = "Andrey",
-    LastName = "Strelnikov",
-    Male = true,
-    PhoneNumber = "1",
-    Email = "2",
-    SpecializationId = 3,
-    CabinetId = null,
-    IsDeleted = false,
-    Birthday = someDate };
+//var rep = new DoctorRepository();
+//var d = new DoctorManager(rep);
+//var doctor = new DoctorDto { 
+//    Id = 22,
+//    Name = "Andrey",
+//    LastName = "Strelnikov",
+//    Male = true,
+//    PhoneNumber = "1",
+//    Email = "2",
+//    SpecializationId = 3,
+//    CabinetId = null,
+//    IsDeleted = false,
+//    Birthday = someDate };
 
-d.AddDoctor(doctor);
+//d.AddDoctor(doctor);
 
 
+
+var rep = new PatientRepository();
+var p = new PatientManager(rep);
+var patient = new UpdatePatientInputModel() { Name = "Busaaa", LastName = "Cat", Birthday = someDate, Email = "@", Male = false, PhoneNumber = "123", StatusId = 1, Id = 1006 };
+
+//p.AddPatient(patient);
+
+
+var ppp = p.GetAllPatients();
+
+patient.LastName = "Dog";
+p.UpdatePatient(patient);
+
+ppp = p.GetAllPatients();
 Console.WriteLine("qwe");
+
 
 

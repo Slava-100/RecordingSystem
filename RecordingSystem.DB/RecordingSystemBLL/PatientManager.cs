@@ -28,5 +28,17 @@ namespace RecordingSystem.BLL
             return result;
         }
 
+        public void AddPatient(PatientInputModel patient)
+        {
+            var patientDto = _mapperrr.MapPatientInputModelToPatientDto(patient);
+            PatientRepository.AddPatient(patientDto);
+        }
+
+        public void UpdatePatient(UpdatePatientInputModel patient)
+        {
+            var patientDto = _mapperrr.MapUpdatePatientInputModelToPatientDto(patient);
+            PatientRepository.UpdatePatientById(patientDto);
+        }
+
     }
 }

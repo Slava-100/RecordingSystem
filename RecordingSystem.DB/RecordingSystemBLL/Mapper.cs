@@ -21,6 +21,8 @@ namespace RecordingSystem.BLL
                 cfg.CreateMap<ServiceDto, ServiceOutputModel>();
                 cfg.CreateMap<PatientDto, PatientOutputModel>();
                 cfg.CreateMap<DoctorDto, DoctorOutputModel>();
+                cfg.CreateMap<PatientInputModel, PatientDto>();
+                cfg.CreateMap<UpdatePatientInputModel, PatientDto>();
                 });
         }
 
@@ -39,11 +41,23 @@ namespace RecordingSystem.BLL
             return _configuration.CreateMapper().Map<List<PatientOutputModel>>(patients);
         }
 
+        public PatientDto MapPatientInputModelToPatientDto(PatientInputModel patient)
+        {
+            return _configuration.CreateMapper().Map<PatientDto>(patient);
+        }
+
+        public PatientDto MapUpdatePatientInputModelToPatientDto(UpdatePatientInputModel patient)
+        {
+            return _configuration.CreateMapper().Map<PatientDto>(patient);
+        }
 
         public List<DoctorOutputModel> MapDoctorDtoToDoctorOutputModel(List<DoctorDto> doctors)
         {
             return _configuration.CreateMapper().Map<List<DoctorOutputModel>>(doctors);
         }
+
+      
+
 
     }
 }
