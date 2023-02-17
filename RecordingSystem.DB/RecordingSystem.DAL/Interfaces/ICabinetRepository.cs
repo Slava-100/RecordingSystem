@@ -10,3 +10,5 @@ namespace RecordingSystem.DAL.Interfaces
         public void UpdateCabinetById(CabinetDto cabinet);
     }
 }
+
+

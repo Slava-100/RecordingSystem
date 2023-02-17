@@ -36,7 +36,19 @@ using RecordingSystem.DAL.Interfaces;
 //rep.UpdateDoctor(doctor);
 
 //var p = new ServiceRepository();
-//var ppp = p.GetAllServiceByMale(true);
+//var ppp = p.GetAllServicesByDoctorId(11);
+
+//var d = new DoctorRepository();
+
+//var ppp = d.GetAllDoctors();
+
+//var p = new RecordingHistoryRepository();    
+//var pp = p.GetRecordingHistoryByPatientId(5);
+
+
+//ppp[1].Name = "qqqqqqqqqq";
+
+//d.UpdateDoctor(ppp[1]);
 
 //var p = new ServiceRepository();
 //var ppp = p.GetAllServicesByDoctorId(11);
@@ -52,12 +64,16 @@ using RecordingSystem.DAL.Interfaces;
 
 //var p = new DoctorRepository();
 //var ppp = p.GetAllDoctorBySpecializationId(3);
+//var p = new DoctorRepository();
+//var ppp = p.GetAllDoctorBySpecializationId(1);
 
 //var p = new TimeTableRepository();
 //var ppp = p.GetTimeTableByDoctorId(11);
 
 //var p = new DoctorRepository();
 //var ppp = p.GetAllFreeDoctorsByDayOfWeekId(3);
+//var p = new RecordingHistoryRepository();
+//var ppp = p.GetRecordingHistoryByPatientId(5);
 
 //var m = new ServiceManager();
 //var qqq = m.GetAllDoctorInfoById(14);
@@ -75,10 +91,10 @@ using RecordingSystem.DAL.Interfaces;
 
 //var a = new TimeRecordingRepository();
 //var b = a.GetAllTimeRecordings();
-//var b = new TimeRecordingDto();
-//b.TimeTableId = 28;
-//b.Occupied=true;
-//a.AddTimeRecording(b);
+var b = new TimeRecordingDto();
+b.TimeTableId = 28;
+b.Occupied=true;
+a.AddTimeRecording(b);
 
 //var a = new ServiceRepository();
 
@@ -119,3 +135,5 @@ d.AddDoctor(doctor);
 
 
 Console.WriteLine("qwe");
+
+
