@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +20,7 @@ namespace RecordingSystem.BLL
                 {
                 cfg.CreateMap<ServiceDto, ServiceOutputModel>();
                 cfg.CreateMap<PatientDto, PatientOutputModel>();
+                cfg.CreateMap<DoctorDto, DoctorOutputModel>();
                 });
         }
 
@@ -36,6 +37,12 @@ namespace RecordingSystem.BLL
         public List<PatientOutputModel> MapListPatientDtoToListPatientOutputModelByStatusId(List<PatientDto> patients)
         {
             return _configuration.CreateMapper().Map<List<PatientOutputModel>>(patients);
+        }
+
+
+        public List<DoctorOutputModel> MapDoctorDtoToDoctorOutputModel(List<DoctorDto> doctors)
+        {
+            return _configuration.CreateMapper().Map<List<DoctorOutputModel>>(doctors);
         }
 
     }

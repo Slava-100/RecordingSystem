@@ -14,7 +14,7 @@ namespace RecordingSystem.BLL
             PatientRepository = repository;
         }
 
-        public List<PatientOutputModel> GetAllPatient()
+        public List<PatientOutputModel> GetAllPatients()
         {
             var patients = PatientRepository.GetAllPatients();
             var result = _mapperrr.MapListPatientDtoToListPatientOutputModel(patients);

@@ -1,6 +1,8 @@
 using RecordingSystem.DAL.Repositories;
 using RecordingSystem.BLL;
 using RecordingSystem.DAL.Models;
+using System.Collections.Generic;
+using RecordingSystem.DAL.Interfaces;
 
 //DateTime someDate = new DateTime(2001, 01, 01);
 //Console.WriteLine(someDate);
@@ -27,19 +29,14 @@ using RecordingSystem.DAL.Models;
 //var p = new ActiveRecordingRepository();
 //var ppp = p.GetAllActiveRecordingsByPatientId(6);
 
-
-
-
-//var pppp = ppp[0];
-//pppp.Name = "Kavkaz";
-//p.UpdateDoctor(ppp[0]);
-
-
-//var p = new DoctorRepository();
-//var ppp = p.GetAllDoctors();
+//DateTime someDate = new DateTime(2001, 01, 01);
+//var doctor = new DoctorDto { Id = 11, Name = "ewq", LastName = "Strelnikov", Male = true, PhoneNumber = "1" , Email = "2" , SpecializationId = 3, CabinetId = 3, IsDeleted = false, Birthday = someDate};
+//doctor.Name = "Andrey";
+//var rep = new DoctorRepository();
+//rep.UpdateDoctor(doctor);
 
 //var p = new ServiceRepository();
-//var ppp = p.GetAllServiceByMale(null);
+//var ppp = p.GetAllServicesByDoctorId(11);
 
 //var d = new DoctorRepository();
 
@@ -94,33 +91,47 @@ using RecordingSystem.DAL.Models;
 
 //var a = new TimeRecordingRepository();
 //var b = a.GetAllTimeRecordings();
-//var b = new TimeRecordingDto();
-//b.TimeTableId = 28;
-//b.Occupied = true;
-//a.AddTimeRecording(b);
+var b = new TimeRecordingDto();
+b.TimeTableId = 28;
+b.Occupied=true;
+a.AddTimeRecording(b);
 
 //var a = new ServiceRepository();
 
 //var b = a.GetAllServiceBySpecializationId(3);
 
-//var patient = new PatientRepository();
-//var ppp = patient.GetAllPatients(); 
+//var rep = new DoctorRepository();
+//var d = new DoctorManager(rep);
+//var ddd = d.GetAllDoctors();
 
+//var rep = new DoctorRepository();
+//var d = new DoctorManager(rep);
+//var ddd = d.GetAllDoctorsByServiceId(18);
 
+//var rep = new DoctorRepository();
+//var d = new DoctorManager(rep);
+//var ddd = d.GetAllDoctorBySpecializationId(3);
 
-var patient = new PatientRepository();
+//var rep = new DoctorRepository();
+//var d = new DoctorManager(rep);
+//var ddd = d.GetAllFreeDoctorsByDayOfWeekId(3);
 
-var p = new PatientManager(patient);
+DateTime someDate = new DateTime(2001, 01, 01);
+var rep = new DoctorRepository();
+var d = new DoctorManager(rep);
+var doctor = new DoctorDto { 
+    Id = 22,
+    Name = "Andrey",
+    LastName = "Strelnikov",
+    Male = true,
+    PhoneNumber = "1",
+    Email = "2",
+    SpecializationId = 3,
+    CabinetId = null,
+    IsDeleted = false,
+    Birthday = someDate };
 
-var ppp = p.GetAllPatientsByStatusId(2);
-
-//var p = new TimeRecordingRepository();
-
-//var ppp = p.GetAllTimeRecordings();
-
-//var d = new DoctorRepository();
-
-//var ppp = d.GetAllDoctors();
+d.AddDoctor(doctor);
 
 
 Console.WriteLine("qwe");
