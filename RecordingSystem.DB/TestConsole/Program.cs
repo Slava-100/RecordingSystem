@@ -91,7 +91,7 @@ using RecordingSystem.DAL.Interfaces;
 
 var rep = new DoctorRepository();
 var d = new DoctorManager(rep);
-var ddd = d.GetAllDoctors();
+var ddd = d.GetAllDoctorsByServiceId(18);
 
 
 Console.WriteLine("qwe");
