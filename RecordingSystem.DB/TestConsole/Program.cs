@@ -39,7 +39,19 @@ using RecordingSystem.DAL.Models;
 //var ppp = p.GetAllDoctors();
 
 //var p = new ServiceRepository();
-//var ppp = p.GetAllServicesByDoctorId(11);
+//var ppp = p.GetAllServiceByMale(null);
+
+//var d = new DoctorRepository();
+
+//var ppp = d.GetAllDoctors();
+
+//var p = new RecordingHistoryRepository();    
+//var pp = p.GetRecordingHistoryByPatientId(5);
+
+
+//ppp[1].Name = "qqqqqqqqqq";
+
+//d.UpdateDoctor(ppp[1]);
 
 //var p = new ServiceRepository();
 //var ppp = p.GetAllServicesByDoctorId(11);
@@ -63,8 +75,8 @@ using RecordingSystem.DAL.Models;
 
 //var p = new DoctorRepository();
 //var ppp = p.GetAllFreeDoctorsByDayOfWeekId(3);
-var p = new RecordingHistoryRepository();
-var ppp = p.GetRecordingHistoryByPatientId(5);
+//var p = new RecordingHistoryRepository();
+//var ppp = p.GetRecordingHistoryByPatientId(5);
 
 //var m = new ServiceManager();
 //var qqq = m.GetAllDoctorInfoById(14);
@@ -91,4 +103,26 @@ var ppp = p.GetRecordingHistoryByPatientId(5);
 
 //var b = a.GetAllServiceBySpecializationId(3);
 
+//var patient = new PatientRepository();
+//var ppp = patient.GetAllPatients(); 
+
+
+
+var patient = new PatientRepository();
+
+var p = new PatientManager(patient);
+
+var ppp = p.GetAllPatientsByStatusId(2);
+
+//var p = new TimeRecordingRepository();
+
+//var ppp = p.GetAllTimeRecordings();
+
+//var d = new DoctorRepository();
+
+//var ppp = d.GetAllDoctors();
+
+
 Console.WriteLine("qwe");
+
+

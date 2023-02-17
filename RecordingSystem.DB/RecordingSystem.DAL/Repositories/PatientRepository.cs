@@ -26,7 +26,18 @@ namespace RecordingSystem.DAL.Repositories
             using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
             {
                 sqlConnection.Open();
-                return sqlConnection.Query<PatientDto>(StoredNamesProcedures.GettAllPatients,
+                return sqlConnection.Query<PatientDto, StatusDto,PatientDto>(StoredNamesProcedures.GettAllPatients,
+                    (patient,status)  =>
+                    {
+                        patient.Status = status;
+                        if (patient.Status is not null)
+                        {
+                            patient.StatusId = patient.Status.Id;
+                        }
+
+                        return patient;
+                    },
+                    splitOn: "Id",
                     commandType: CommandType.StoredProcedure).ToList();
             }
         }

@@ -1,18 +1,32 @@
 ﻿using RecordingSystem.BLL.Models;
 using RecordingSystem.DAL.Interfaces;
+using RecordingSystem.DAL.Models;
 
 namespace RecordingSystem.BLL
 {
     public class PatientManager
     {
         Mapperrr _mapperrr = new Mapperrr();
-        public IPatientRepository PatientRepository { get; set; } 
+        public IPatientRepository PatientRepository { get; set; }
+
+        public PatientManager(IPatientRepository repository)
+        {
+            PatientRepository = repository;
+        }
 
         public List<PatientOutputModel> GetAllPatient()
         {
             var patients = PatientRepository.GetAllPatients();
-            var result = _mapperrr.MapPatientDtoToPatientOutputModel(patients);
+            var result = _mapperrr.MapListPatientDtoToListPatientOutputModel(patients);
             return result;
         }
+
+        public List<PatientOutputModel> GetAllPatientsByStatusId(int id)
+        {
+            var patients = PatientRepository.GetAllPatientsByStatusId(id);
+            var result = _mapperrr.MapListPatientDtoToListPatientOutputModelByStatusId(patients);
+            return result;
+        }
+
     }
 }
