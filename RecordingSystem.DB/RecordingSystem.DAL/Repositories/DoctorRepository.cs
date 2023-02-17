@@ -19,6 +19,10 @@ namespace RecordingSystem.DAL.Repositories
                     {
                         doctor.Specialization = specialization;
                         doctor.Cabinet = cabinet;
+                        if (doctor.Specialization is not null)
+                        {
+                            doctor.SpecializationId = doctor.Specialization.Id;
+                        }
 
                         return doctor;
                     },
