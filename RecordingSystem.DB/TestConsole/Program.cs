@@ -29,16 +29,11 @@ using RecordingSystem.DAL.Interfaces;
 //var p = new ActiveRecordingRepository();
 //var ppp = p.GetAllActiveRecordingsByPatientId(6);
 
-
-
-
-//var pppp = ppp[0];
-//pppp.Name = "Kavkaz";
-//p.UpdateDoctor(ppp[0]);
-
-
-//var p = new DoctorRepository();
-//var ppp = p.GetAllDoctors();
+//DateTime someDate = new DateTime(2001, 01, 01);
+//var doctor = new DoctorDto { Id = 11, Name = "ewq", LastName = "Strelnikov", Male = true, PhoneNumber = "1" , Email = "2" , SpecializationId = 3, CabinetId = 3, IsDeleted = false, Birthday = someDate};
+//doctor.Name = "Andrey";
+//var rep = new DoctorRepository();
+//rep.UpdateDoctor(doctor);
 
 //var p = new ServiceRepository();
 //var ppp = p.GetAllServiceByMale(true);
@@ -101,8 +96,26 @@ using RecordingSystem.DAL.Interfaces;
 //var d = new DoctorManager(rep);
 //var ddd = d.GetAllDoctorBySpecializationId(3);
 
+//var rep = new DoctorRepository();
+//var d = new DoctorManager(rep);
+//var ddd = d.GetAllFreeDoctorsByDayOfWeekId(3);
+
+DateTime someDate = new DateTime(2001, 01, 01);
 var rep = new DoctorRepository();
 var d = new DoctorManager(rep);
-var ddd = d.GetAllFreeDoctorsByDayOfWeekId(1);
+var doctor = new DoctorDto { 
+    Id = 22,
+    Name = "Andrey",
+    LastName = "Strelnikov",
+    Male = true,
+    PhoneNumber = "1",
+    Email = "2",
+    SpecializationId = 3,
+    CabinetId = null,
+    IsDeleted = false,
+    Birthday = someDate };
+
+d.AddDoctor(doctor);
+
 
 Console.WriteLine("qwe");

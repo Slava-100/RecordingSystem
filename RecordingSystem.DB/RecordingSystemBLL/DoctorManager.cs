@@ -45,6 +45,11 @@ namespace RecordingSystem.BLL
             return result;
         }
 
+        public void AddDoctor(DoctorDto doctorDto)
+        {
+            DoctorRepository.AddDoctor(doctorDto);
+        }
+
 
     }
 }
