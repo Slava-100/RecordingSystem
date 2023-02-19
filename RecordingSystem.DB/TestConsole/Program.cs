@@ -142,8 +142,7 @@ using RecordingSystem.BLL.Models;
 
 //p.AddPatient(patient);
 
-var rep = new CabinetRepository();
-var c = new CabinetManager(rep);
+var c = new CabinetManager();
 //var patient = c.GetAllCabinets();
 //var cabinet = new CabinetInputModel() {Number = 228, Status = true};
 var cabinet = new UpdateCabinetInputModel();

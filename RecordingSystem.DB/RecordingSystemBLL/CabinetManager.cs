@@ -10,13 +10,9 @@ namespace RecordingSystem.BLL
         Mapperrr _mapperrr = new Mapperrr();
         public ICabinetRepository CabinetRepository { get; set; }
 
-        //public CabinetManager()
-        //{
-        //    CabinetRepository = new CabinetRepository();
-        //}
-        public CabinetManager(ICabinetRepository repository)
+        public CabinetManager()
         {
-            CabinetRepository = repository;
+            CabinetRepository = new CabinetRepository();
         }
 
         public List<CabinetOutputModel> GetAllCabinets()
