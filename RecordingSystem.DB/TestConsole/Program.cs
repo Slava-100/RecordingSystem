@@ -136,16 +136,16 @@ DateTime someDate = new DateTime(2001, 01, 01);
 
 
 
-var rep = new PatientRepository();
-var p = new PatientManager(rep);
-var patient = new UpdatePatientInputModel() { Name = "Busaaa", LastName = "Cat", Birthday = someDate, Email = "@", Male = false, PhoneNumber = "123", StatusId = 1, Id = 1006 };
+
+var p = new PatientManager();
+var patient = new PatientInputModel() { Name = "Busaaa", LastName = "Cat", Birthday = someDate, Email = "@", Male = false, PhoneNumber = "123", StatusId = 1, Id = 1016 };
 
 //p.AddPatient(patient);
 
 
 var ppp = p.GetAllPatients();
 
-patient.LastName = "Dog";
+patient.Name = "Dog";
 p.UpdatePatient(patient);
 
 ppp = p.GetAllPatients();
