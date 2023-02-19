@@ -1,5 +1,5 @@
-﻿using AutoMapper;
-using RecordingSystem.BLL.Models;
+﻿using RecordingSystem.BLL.Models;
+using RecordingSystem.DAL.Interfaces;
 using RecordingSystem.DAL.Models;
 using RecordingSystem.DAL.Repositories;
 
@@ -7,21 +7,35 @@ namespace RecordingSystem.BLL
 {
     public class CabinetManager
     {
+        Mapperrr _mapperrr = new Mapperrr();
+        public ICabinetRepository CabinetRepository { get; set; }
+
+        //public CabinetManager()
+        //{
+        //    CabinetRepository = new CabinetRepository();
+        //}
+        public CabinetManager(ICabinetRepository repository)
+        {
+            CabinetRepository = repository;
+        }
+
         public List<CabinetOutputModel> GetAllCabinets()
         {
-            CabinetRepository repository = new CabinetRepository();
-            var service = repository.GetAllCabinets();
+            var cabinets = CabinetRepository.GetAllCabinets();
+            var result = _mapperrr.MapListCabinetDtoToListCabinetOutputModel(cabinets);
+            return result;
+        }
 
-            var configuration = new MapperConfiguration(
-                cfg => cfg.CreateMap<CabinetDto, CabinetOutputModel>());
+        public void AddCabinet(CabinetInputModel cabinet)
+        {
+            var cabinetDto = _mapperrr.MapCabinetInputModelToCabinetDto(cabinet);
+            CabinetRepository.AddCabinet(cabinetDto);
+        }
 
-            IMapper mapper = configuration.CreateMapper();
-
-            return mapper.Map<List<CabinetOutputModel>>(service);
-
-            //var result = _mapperrr.MapServiceDtoToProductOutputModel(products);
-
-            //return result;
+        public void UpdateCabinetById(UpdateCabinetInputModel cabinet)
+        {
+            var cabinetDto = _mapperrr.MapUpdateCabinetInputModelToCabinetDto(cabinet);
+            CabinetRepository.UpdateCabinetById(cabinetDto);
         }
     }
 }
