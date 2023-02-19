@@ -1,6 +1,7 @@
 ﻿using RecordingSystem.BLL.Models;
 using RecordingSystem.DAL.Interfaces;
 using RecordingSystem.DAL.Models;
+using RecordingSystem.DAL.Repositories;
 
 namespace RecordingSystem.BLL
 {
@@ -45,11 +46,16 @@ namespace RecordingSystem.BLL
             return result;
         }
 
-        public void AddDoctor(DoctorDto doctorDto)
+        public void AddDoctor(DoctorInputModel doctor)
         {
+            var doctorDto = _mapperrr.MapDoctorInputModelToDoctorDto(doctor);
             DoctorRepository.AddDoctor(doctorDto);
         }
 
-
+        public void UpdateDoctor(DoctorInputModel doctor)
+        {
+            var doctorDto = _mapperrr.MapDoctorInputModelToDoctorDto(doctor);
+            DoctorRepository.UpdateDoctor(doctorDto);
+        }
     }
 }

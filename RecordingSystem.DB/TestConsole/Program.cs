@@ -101,9 +101,8 @@ using RecordingSystem.BLL.Models;
 
 //var b = a.GetAllServiceBySpecializationId(3);
 
-//var rep = new DoctorRepository();
-//var d = new DoctorManager(rep);
-//var ddd = d.GetAllDoctors();
+var d = new DoctorManager();
+var ddd = d.GetAllDoctors();
 
 //var rep = new DoctorRepository();
 //var d = new DoctorManager(rep);
@@ -117,7 +116,7 @@ using RecordingSystem.BLL.Models;
 //var d = new DoctorManager(rep);
 //var ddd = d.GetAllFreeDoctorsByDayOfWeekId(3);
 
-DateTime someDate = new DateTime(2001, 01, 01);
+//DateTime someDate = new DateTime(2001, 01, 01);
 //var rep = new DoctorRepository();
 //var d = new DoctorManager(rep);
 //var doctor = new DoctorDto { 
@@ -136,19 +135,19 @@ DateTime someDate = new DateTime(2001, 01, 01);
 
 
 
-var rep = new PatientRepository();
-var p = new PatientManager(rep);
-var patient = new UpdatePatientInputModel() { Name = "Busaaa", LastName = "Cat", Birthday = someDate, Email = "@", Male = false, PhoneNumber = "123", StatusId = 1, Id = 1006 };
+//var rep = new PatientRepository();
+//var p = new PatientManager(rep);
+//var patient = new UpdatePatientInputModel() { Name = "Busaaa", LastName = "Cat", Birthday = someDate, Email = "@", Male = false, PhoneNumber = "123", StatusId = 1, Id = 1006 };
 
-//p.AddPatient(patient);
+////p.AddPatient(patient);
 
 
-var ppp = p.GetAllPatients();
+//var ppp = p.GetAllPatients();
 
-patient.LastName = "Dog";
-p.UpdatePatient(patient);
+//patient.LastName = "Dog";
+//p.UpdatePatient(patient);
 
-ppp = p.GetAllPatients();
+//ppp = p.GetAllPatients();
 Console.WriteLine("qwe");
 
 
