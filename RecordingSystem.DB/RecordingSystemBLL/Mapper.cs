@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AutoMapper;
 using RecordingSystem.BLL.Models;
 using RecordingSystem.DAL.Models;
@@ -18,10 +13,14 @@ namespace RecordingSystem.BLL
             _configuration = new MapperConfiguration(
                 cfg =>
                 {
-                cfg.CreateMap<ServiceDto, ServiceOutputModel>();
-                cfg.CreateMap<PatientDto, PatientOutputModel>();
-                cfg.CreateMap<DoctorDto, DoctorOutputModel>();
-                cfg.CreateMap<PatientInputModel, PatientDto>();
+                    cfg.CreateMap<ServiceDto, ServiceOutputModel>();
+                    cfg.CreateMap<PatientDto, PatientOutputModel>();
+                    cfg.CreateMap<DoctorDto, DoctorOutputModel>();
+                    cfg.CreateMap<PatientInputModel, PatientDto>();
+                    cfg.CreateMap<UpdatePatientInputModel, PatientDto>();
+                    cfg.CreateMap<CabinetDto, CabinetOutputModel>();
+                    cfg.CreateMap<CabinetInputModel, CabinetDto>();
+                    cfg.CreateMap<UpdateCabinetInputModel, CabinetDto>();
                 });
         }
 
@@ -55,8 +54,18 @@ namespace RecordingSystem.BLL
             return _configuration.CreateMapper().Map<List<DoctorOutputModel>>(doctors);
         }
 
-      
+        public List<CabinetOutputModel> MapListCabinetDtoToListCabinetOutputModel(List<CabinetDto> cabinets)
+        {
+            return _configuration.CreateMapper().Map<List<CabinetOutputModel>>(cabinets);
+        }
 
-
+        public CabinetDto MapCabinetInputModelToCabinetDto(CabinetInputModel cabinet)
+        {
+            return _configuration.CreateMapper().Map<CabinetDto>(cabinet);
+        }
+        public CabinetDto MapUpdateCabinetInputModelToCabinetDto(UpdateCabinetInputModel cabinet)
+        {
+            return _configuration.CreateMapper().Map<CabinetDto>(cabinet);
+        }
     }
 }
