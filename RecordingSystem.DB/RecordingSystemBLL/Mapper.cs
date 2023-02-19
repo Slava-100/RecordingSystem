@@ -44,7 +44,7 @@ namespace RecordingSystem.BLL
             return _configuration.CreateMapper().Map<PatientDto>(patient);
         }
 
-        public PatientDto MapUpdatePatientInputModelToPatientDto(UpdatePatientInputModel patient)
+        public PatientDto MapUpdatePatientInputModelToPatientDto(PatientInputModel patient)
         {
             return _configuration.CreateMapper().Map<PatientDto>(patient);
         }
