@@ -13,5 +13,19 @@ namespace RecordingSystem.BLL.Models
         public int? StatusId { get; set; }
         public bool? Male { get; set; }
         public StatusDto Status { get; set; }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is PatientOutputModel model &&
+                   Id == model.Id &&
+                   Name == model.Name &&
+                   LastName == model.LastName &&
+                   Birthday == model.Birthday &&
+                   PhoneNumber == model.PhoneNumber &&
+                   Email == model.Email &&
+                   StatusId == model.StatusId &&
+                   Male == model.Male &&
+                   Status.Equals(model.Status);
+        }
     }
 }
