@@ -1,5 +1,6 @@
 using Moq;
 using RecordingSystem.BLL.Models;
+using RecordingSystem.BLL.Tests.TestCaseSource;
 using RecordingSystem.DAL.Interfaces;
 using RecordingSystem.DAL.Models;
 
@@ -18,58 +19,43 @@ namespace RecordingSystem.BLL.Tests
             _patientManager.PatientRepository = _mock.Object;
         }
 
-        [Test]
-        public void GetAllPatients()
+        [TestCaseSource(typeof(PatientManagerTestCaseSource), nameof(PatientManagerTestCaseSource.GetAllPatientsTestCaseSource))]
+        public void GetAllPatientsTest(List<PatientDto> patients, List<PatientOutputModel> expectedPatients)
         {
-            List<PatientDto> patients = new List<PatientDto>()
-            {
-                new PatientDto()
-                {
-                    Id= 1,
-                    Name = "wwwwwww",
-                    LastName = "",
-                    Birthday = new DateTime(2001, 01, 01),
-                    PhoneNumber = "123123",
-                    Email = "@",
-                    StatusId = 1,
-                    Male = true,
-                    IsDeleted= false,
-                    Status = new StatusDto()
-                    {
-                        Id = 1,
-                        Name = "Invalid",
-                        Discount= 70
-
-                    }
-                }
-            };
-            _mock.Setup(o => o.GetAllPatients()).Returns(patients);
-
-            List<PatientOutputModel> expected = new List<PatientOutputModel>()
-            {
-                new PatientOutputModel()
-                {
-                    Id= 1,
-                    Name = "wwwwwww",
-                    LastName = "",
-                    Birthday = new DateTime(2001, 01, 01),
-                    PhoneNumber = "123123",
-                    Email = "@",
-                    StatusId = 1,
-                    Male = true,
-                    Status = new StatusDto()
-                    {
-                        Id = 1,
-                        Name = "Invalid",
-                        Discount= 70
-                    }
-                }
-            };
-
-            List< PatientOutputModel> actual = _patientManager.GetAllPatients();
-
+            _mock.Setup(o => o.GetAllPatients()).Returns(patients).Verifiable();
+            List<PatientOutputModel> expected = expectedPatients;
+            List<PatientOutputModel> actual = _patientManager.GetAllPatients();
+            _mock.VerifyAll();
             CollectionAssert.AreEqual(expected, actual);
+        }
 
+        [TestCaseSource(typeof(PatientManagerTestCaseSource), nameof(PatientManagerTestCaseSource.GetAllPatientsByStatusIdTestCaseSource))]
+        public void GetAllPatientsByStatusIdTest(int id, List<PatientDto> patients, List<PatientOutputModel> expectedPatients)
+        {
+            _mock.Setup(o => o.GetAllPatientsByStatusId(id)).Returns(patients).Verifiable();
+            List<PatientOutputModel> expected = expectedPatients;
+            List<PatientOutputModel> actual = _patientManager.GetAllPatientsByStatusId(id);
+            _mock.VerifyAll();
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+
+        [TestCaseSource(typeof(PatientManagerTestCaseSource), nameof(PatientManagerTestCaseSource.AddPatientTestCaseSource))]
+        public void AddPatientTest(PatientInputModel inputPatient, PatientInputModel expectedResult)
+        {
+            _patientManager.AddPatient(inputPatient);
+            PatientInputModel expected = expectedResult;
+            PatientInputModel actual = inputPatient;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCaseSource(typeof(PatientManagerTestCaseSource), nameof(PatientManagerTestCaseSource.UpdatePatientTestCaseSource))]
+        public void UpdatePatientTest(PatientInputModel inputPatient, PatientInputModel expectedResult)
+        {
+            _patientManager.UpdatePatient(inputPatient);
+            PatientInputModel expected = expectedResult;
+            PatientInputModel actual = inputPatient;
+            Assert.AreEqual(expected, actual);
         }
     }
 }

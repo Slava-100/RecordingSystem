@@ -53,8 +53,8 @@ using RecordingSystem.BLL.Models;
 
 //var p = new ServiceRepository();
 //var ppp = p.GetAllServicesByDoctorId(11);
-//var p = new PatientRepository();
-//var ppp = p.GetAllPatientsByStatusId(3);
+var p = new PatientRepository();
+var ppp = p.GetAllPatientsByStatusId(3);
 //var p = new ServiceRepository();
 //var ppp = p.GetAllServiceByMale(null);
 
@@ -117,10 +117,11 @@ using RecordingSystem.BLL.Models;
 //var d = new DoctorManager(rep);
 //var ddd = d.GetAllFreeDoctorsByDayOfWeekId(3);
 
-DateTime someDate = new DateTime(2001, 01, 01);
+//DateTime someDate = new DateTime(2001, 01, 01);
 //var rep = new DoctorRepository();
 //var d = new DoctorManager(rep);
-//var doctor = new DoctorDto { 
+//var doctor = new DoctorDto
+//{
 //    Id = 22,
 //    Name = "Andrey",
 //    LastName = "Strelnikov",
@@ -130,25 +131,26 @@ DateTime someDate = new DateTime(2001, 01, 01);
 //    SpecializationId = 3,
 //    CabinetId = null,
 //    IsDeleted = false,
-//    Birthday = someDate };
+//    Birthday = someDate
+//};
 
 //d.AddDoctor(doctor);
 
 
 
 
-var p = new PatientManager();
-var patient = new PatientInputModel() { Name = "Busaaa", LastName = "Cat", Birthday = someDate, Email = "@", Male = false, PhoneNumber = "123", StatusId = 1, Id = 1016 };
+//var p = new PatientManager();
+//var patient = new PatientInputModel() { Name = "Busaaa", LastName = "Cat", Birthday = someDate, Email = "@", Male = false, PhoneNumber = "123", StatusId = 1, Id = 1016 };
 
 //p.AddPatient(patient);
 
 
-var ppp = p.GetAllPatients();
+//var ppp = p.GetAllPatients();
 
-patient.Name = "Dog";
-p.UpdatePatient(patient);
+//patient.Name = "Dog";
+//p.UpdatePatient(patient);
 
-ppp = p.GetAllPatients();
+//ppp = p.GetAllPatients();
 Console.WriteLine("qwe");
 
 
