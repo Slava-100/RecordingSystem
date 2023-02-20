@@ -140,23 +140,23 @@ using RecordingSystem.BLL.Models;
 //var p = new PatientManager(rep);
 //var patient = new UpdatePatientInputModel() { Name = "Busaaa", LastName = "Cat", Birthday = someDate, Email = "@", Male = false, PhoneNumber = "123", StatusId = 1, Id = 1006 };
 
-var p = new PatientManager();
-var patient = new PatientInputModel() { Name = "Busaaa", LastName = "Cat", Birthday = someDate, Email = "@", Male = false, PhoneNumber = "123", StatusId = 1, Id = 1016 };
+//var p = new PatientManager();
+//var patient = new PatientInputModel() { Name = "Busaaa", LastName = "Cat", Birthday = someDate, Email = "@", Male = false, PhoneNumber = "123", StatusId = 1, Id = 1016 };
 
 //p.AddPatient(patient);
 
-var c = new CabinetManager();
+//var c = new CabinetManager();
 //var patient = c.GetAllCabinets();
 //var cabinet = new CabinetInputModel() {Number = 228, Status = true};
-var cabinet = new UpdateCabinetInputModel();
-cabinet.Id = 5;
-cabinet.Number= 8881;
-cabinet.Status = false;
-c.UpdateCabinetById(cabinet);
+//var cabinet = new UpdateCabinetInputModel();
+//cabinet.Id = 5;
+//cabinet.Number= 8881;
+//cabinet.Status = false;
+//c.UpdateCabinetById(cabinet);
 
 
-patient.LastName = "Dog";
-p.UpdatePatient(patient);
+//patient.LastName = "Dog";
+//p.UpdatePatient(patient);
 
 //var ppp = p.GetAllPatients();
 
@@ -164,4 +164,13 @@ p.UpdatePatient(patient);
 //p.UpdatePatient(patient);
 
 //ppp = p.GetAllPatients();
+
+var s = new ServiceManager();
+//var service = new ServiceOutputModel();
+//service.Id = 1009;
+//service.Name = "bestmassage";
+//service.Price = 2222;
+//s.UpdateService(service);
+var service = s.GetAllServiceByMale(false);
+
 Console.WriteLine("qwe");
