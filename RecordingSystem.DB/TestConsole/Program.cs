@@ -138,12 +138,23 @@ using RecordingSystem.BLL.Models;
 
 
 
+//var rep = new PatientRepository();
+//var p = new PatientManager(rep);
+//var patient = new UpdatePatientInputModel() { Name = "Busaaa", LastName = "Cat", Birthday = someDate, Email = "@", Male = false, PhoneNumber = "123", StatusId = 1, Id = 1006 };
 
 //var p = new PatientManager();
 //var patient = new PatientInputModel() { Name = "Busaaa", LastName = "Cat", Birthday = someDate, Email = "@", Male = false, PhoneNumber = "123", StatusId = 1, Id = 1016 };
 
 //p.AddPatient(patient);
 
+var c = new CabinetManager();
+//var patient = c.GetAllCabinets();
+//var cabinet = new CabinetInputModel() {Number = 228, Status = true};
+var cabinet = new UpdateCabinetInputModel();
+cabinet.Id = 5;
+cabinet.Number= 8881;
+cabinet.Status = false;
+c.UpdateCabinetById(cabinet);
 
 //var ppp = p.GetAllPatients();
 
@@ -169,5 +180,7 @@ ppp = p.GetAllActiveRecordingsByPatientId(6);
 
 Console.WriteLine("qwe");
 
+//patient.LastName = "Dog";
+//p.UpdatePatient(patient);
 
- 
+
