@@ -65,5 +65,61 @@ namespace RecordingSystem.BLL.Tests.TestCaseSource
 
             yield return new Object[] { doctors, expected };
         }
+
+        public static IEnumerable GetAllDoctorBySpecializationIdTestCaseSource()
+        {
+            List<DoctorDto> doctors = new List<DoctorDto>()
+            {
+                new DoctorDto()
+                {
+                    Id = 1,
+                    Name = "Andrey",
+                    LastName = "Strelnikov",
+                    Male = true,
+                    IsDeleted = false,
+                    Birthday = new DateTime(2001, 05, 20),
+                    Specialization = new SpecializationDto()
+                    {
+                        Id = 3,
+                        Name = "doctor"
+                    },
+                    Cabinet = new CabinetDto()
+                    {
+                        Id = 1,
+                        Number = 101,
+                        Status = null
+                    }
+                }
+            };
+
+
+            List<DoctorOutputModel> expected = new List<DoctorOutputModel>()
+            {
+                new DoctorOutputModel()
+                {
+                    Id = 1,
+                    Name = "Andrey",
+                    LastName = "Strelnikov",
+                    Male = true,
+                    Birthday = new DateTime(2001, 05, 20),
+                    Specialization = new SpecializationDto()
+                    {
+                        Id = 3,
+                        Name = "doctor"
+                    },
+                    Cabinet = new CabinetDto()
+                    {
+                        Id = 1,
+                        Number = 101,
+                        Status = null
+                    }
+                }
+            };
+
+            int id = 3;
+
+            yield return new Object[] { doctors, expected , id };
+        }
     }
+
 }
