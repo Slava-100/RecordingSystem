@@ -1,6 +1,7 @@
 ﻿using RecordingSystem.BLL.Models;
 using RecordingSystem.DAL.Interfaces;
 using RecordingSystem.DAL.Models;
+using RecordingSystem.DAL.Repositories;
 
 namespace RecordingSystem.BLL
 {
@@ -9,9 +10,9 @@ namespace RecordingSystem.BLL
         Mapperrr _mapperrr = new Mapperrr();
         public IPatientRepository PatientRepository { get; set; }
 
-        public PatientManager(IPatientRepository repository)
+        public PatientManager()
         {
-            PatientRepository = repository;
+            PatientRepository = new PatientRepository();
         }
 
         public List<PatientOutputModel> GetAllPatients()
@@ -34,7 +35,7 @@ namespace RecordingSystem.BLL
             PatientRepository.AddPatient(patientDto);
         }
 
-        public void UpdatePatient(UpdatePatientInputModel patient)
+        public void UpdatePatient(PatientInputModel patient)
         {
             var patientDto = _mapperrr.MapUpdatePatientInputModelToPatientDto(patient);
             PatientRepository.UpdatePatientById(patientDto);
