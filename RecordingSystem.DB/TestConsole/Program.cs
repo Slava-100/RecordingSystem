@@ -53,8 +53,8 @@ using RecordingSystem.BLL.Models;
 
 //var p = new ServiceRepository();
 //var ppp = p.GetAllServicesByDoctorId(11);
-var p = new PatientRepository();
-var ppp = p.GetAllPatientsByStatusId(3);
+//var p = new PatientRepository();
+//var ppp = p.GetAllPatientsByStatusId(3);
 //var p = new ServiceRepository();
 //var ppp = p.GetAllServiceByMale(null);
 
@@ -151,7 +151,23 @@ var ppp = p.GetAllPatientsByStatusId(3);
 //p.UpdatePatient(patient);
 
 //ppp = p.GetAllPatients();
+
+var p = new ActiveRecordingManager();
+var ppp = p.GetAllActiveRecordingsByPatientId(6);
+
+var a = new UpdateActiveRecordingModel()
+{
+    Id = 3,
+    Coming = true
+};
+
+p.UpdateComingInActiveRecordingById(a);
+
+//p.AddActiveRecording(a);
+
+ppp = p.GetAllActiveRecordingsByPatientId(6);
+
 Console.WriteLine("qwe");
 
 
-
+ 

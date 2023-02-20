@@ -67,7 +67,22 @@ namespace RecordingSystem.DAL.Repositories
                         activeRecording.Patient = patient;
                         result.Add(activeRecording);
                         activeRecording.Doctor = doctor;
-                        activeRecording.Cabinet= cabinet;
+                        activeRecording.Doctor.Cabinet = cabinet;
+
+                        if (activeRecording.Patient is not null)
+                        {
+                            activeRecording.PatientId = activeRecording.Patient.Id;
+                        }
+
+                        if (activeRecording.Doctor is not null)
+                        {
+                            activeRecording.DoctorId = activeRecording.Doctor.Id;
+                        }
+
+                        if (activeRecording.Doctor.Cabinet is not null)
+                        {
+                            activeRecording.Doctor.CabinetId = activeRecording.Doctor.Cabinet.Id;
+                        }
 
                         return activeRecording;
                     },
