@@ -1,6 +1,5 @@
 ﻿using RecordingSystem.DAL.Models;
 
-
 namespace RecordingSystem.DAL.Interfaces
 {
     public interface IServiceRepository
@@ -10,5 +9,6 @@ namespace RecordingSystem.DAL.Interfaces
         public void UpdateIsDeletedServiceById(ServiceDto service);
         public List<ServiceDto> GetAllServicesByDoctorId(int id);
         public List<ServiceDto> GetAllServiceByMale(bool? male);
+        public List<ServiceDto> GetAllServiceBySpecializationId(int id);
     }
 }

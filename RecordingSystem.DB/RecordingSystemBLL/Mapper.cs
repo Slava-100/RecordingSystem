@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AutoMapper;
 using RecordingSystem.BLL.Models;
 using RecordingSystem.DAL.Models;
@@ -21,8 +16,16 @@ namespace RecordingSystem.BLL
                 cfg.CreateMap<ServiceDto, ServiceOutputModel>();
                 cfg.CreateMap<PatientDto, PatientOutputModel>();
                 cfg.CreateMap<DoctorDto, DoctorOutputModel>();
-                cfg.CreateMap<DoctorInputModel, DoctorDto>();
                 cfg.CreateMap<PatientInputModel, PatientDto>();
+                cfg.CreateMap<ActiveRecordingDto, ActiveRecordingOutputModel>()
+                .ForMember(outputModel => outputModel.Cabinet, opt => opt.MapFrom(activeRecordingDto => activeRecordingDto.Doctor.Cabinet));
+                cfg.CreateMap<ActiveRecordingInputModel, ActiveRecordingDto>();
+                cfg.CreateMap<UpdateActiveRecordingModel, ActiveRecordingDto>();
+                    cfg.CreateMap<ServiceInputModel, ServiceDto>();
+                    cfg.CreateMap<UpdateServiceInputModel, ServiceDto>();
+                    cfg.CreateMap<CabinetDto, CabinetOutputModel>();
+                    cfg.CreateMap<CabinetInputModel, CabinetDto>();
+                    cfg.CreateMap<UpdateCabinetInputModel, CabinetDto>();
                 });
         }
 
@@ -61,6 +64,48 @@ namespace RecordingSystem.BLL
         }
            
 
+        public List<ActiveRecordingOutputModel> MapListActiveRecordingDtotoListActiveRecordingOutputModel(List<ActiveRecordingDto> activeRecordings)
+        {
+            return _configuration.CreateMapper().Map<List<ActiveRecordingOutputModel>>(activeRecordings);
+        }
+        public List<CabinetOutputModel> MapListCabinetDtoToListCabinetOutputModel(List<CabinetDto> cabinets)
+        {
+            return _configuration.CreateMapper().Map<List<CabinetOutputModel>>(cabinets);
+        }
+
+        public ActiveRecordingDto MapUpdateActiveRecordingModelToActiveRecordingDto(UpdateActiveRecordingModel activeRecording)
+        {
+            return _configuration.CreateMapper().Map<ActiveRecordingDto>(activeRecording);
+        }
+        public ActiveRecordingDto MapActiveRecordingInputModelToActiveRecordingDto(ActiveRecordingInputModel activeRecording)
+        {
+            return _configuration.CreateMapper().Map<ActiveRecordingDto>(activeRecording);
+        }
+
+
+
+        public CabinetDto MapCabinetInputModelToCabinetDto(CabinetInputModel cabinet)
+        {
+            return _configuration.CreateMapper().Map<CabinetDto>(cabinet);
+        }
+        public CabinetDto MapUpdateCabinetInputModelToCabinetDto(UpdateCabinetInputModel cabinet)
+        {
+            return _configuration.CreateMapper().Map<CabinetDto>(cabinet);
+        }
+        public ServiceDto MapServiceInputModelToServiceDto(ServiceInputModel service)
+        {
+            return _configuration.CreateMapper().Map<ServiceDto>(service);
+        }
+
+        public ServiceDto MapUpdateServiceInputModelToServiceDto(UpdateServiceInputModel service)
+        {
+            return _configuration.CreateMapper().Map<ServiceDto>(service);
+        }
+
+        public List<ServiceOutputModel> MapListServiceDtoToListServiceOutputModel(List<ServiceDto> service)
+        {
+            return _configuration.CreateMapper().Map<List<ServiceOutputModel>>(service);
+        }
 
     }
 }
