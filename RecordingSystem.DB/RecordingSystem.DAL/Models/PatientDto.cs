@@ -18,5 +18,20 @@ namespace RecordingSystem.DAL.Models
         public bool? Male { get; set; }
         public bool? IsDeleted { get; set; }
         public StatusDto Status { get; set; }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is PatientDto dto &&
+                   Id == dto.Id &&
+                   Name == dto.Name &&
+                   LastName == dto.LastName &&
+                   Birthday == dto.Birthday &&
+                   PhoneNumber == dto.PhoneNumber &&
+                   Email == dto.Email &&
+                   StatusId == dto.StatusId &&
+                   Male == dto.Male &&
+                   IsDeleted == dto.IsDeleted &&
+                   Status.Equals(dto.Status);
+        }
     }
 }

@@ -120,7 +120,8 @@ using RecordingSystem.BLL.Models;
 //DateTime someDate = new DateTime(2001, 01, 01);
 //var rep = new DoctorRepository();
 //var d = new DoctorManager(rep);
-//var doctor = new DoctorDto { 
+//var doctor = new DoctorDto
+//{
 //    Id = 22,
 //    Name = "Andrey",
 //    LastName = "Strelnikov",
@@ -130,7 +131,8 @@ using RecordingSystem.BLL.Models;
 //    SpecializationId = 3,
 //    CabinetId = null,
 //    IsDeleted = false,
-//    Birthday = someDate };
+//    Birthday = someDate
+//};
 
 //d.AddDoctor(doctor);
 
@@ -140,8 +142,8 @@ using RecordingSystem.BLL.Models;
 //var p = new PatientManager(rep);
 //var patient = new UpdatePatientInputModel() { Name = "Busaaa", LastName = "Cat", Birthday = someDate, Email = "@", Male = false, PhoneNumber = "123", StatusId = 1, Id = 1006 };
 
-var p = new PatientManager();
-var patient = new PatientInputModel() { Name = "Busaaa", LastName = "Cat", Birthday = someDate, Email = "@", Male = false, PhoneNumber = "123", StatusId = 1, Id = 1016 };
+//var p = new PatientManager();
+//var patient = new PatientInputModel() { Name = "Busaaa", LastName = "Cat", Birthday = someDate, Email = "@", Male = false, PhoneNumber = "123", StatusId = 1, Id = 1016 };
 
 //p.AddPatient(patient);
 
@@ -154,14 +156,31 @@ cabinet.Number= 8881;
 cabinet.Status = false;
 c.UpdateCabinetById(cabinet);
 
-
-patient.LastName = "Dog";
-p.UpdatePatient(patient);
-
 //var ppp = p.GetAllPatients();
+
+//patient.Name = "Dog";
+//p.UpdatePatient(patient);
+
+//ppp = p.GetAllPatients();
+
+var p = new ActiveRecordingManager();
+var ppp = p.GetAllActiveRecordingsByPatientId(6);
+
+var a = new UpdateActiveRecordingModel()
+{
+    Id = 3,
+    Coming = true
+};
+
+p.UpdateComingInActiveRecordingById(a);
+
+//p.AddActiveRecording(a);
+
+ppp = p.GetAllActiveRecordingsByPatientId(6);
+
+Console.WriteLine("qwe");
 
 //patient.LastName = "Dog";
 //p.UpdatePatient(patient);
 
-//ppp = p.GetAllPatients();
-Console.WriteLine("qwe");
+

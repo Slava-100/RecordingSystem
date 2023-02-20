@@ -13,11 +13,14 @@ namespace RecordingSystem.BLL
             _configuration = new MapperConfiguration(
                 cfg =>
                 {
-                    cfg.CreateMap<ServiceDto, ServiceOutputModel>();
-                    cfg.CreateMap<PatientDto, PatientOutputModel>();
-                    cfg.CreateMap<DoctorDto, DoctorOutputModel>();
-                    cfg.CreateMap<PatientInputModel, PatientDto>();
-                    cfg.CreateMap<UpdatePatientInputModel, PatientDto>();
+                cfg.CreateMap<ServiceDto, ServiceOutputModel>();
+                cfg.CreateMap<PatientDto, PatientOutputModel>();
+                cfg.CreateMap<DoctorDto, DoctorOutputModel>();
+                cfg.CreateMap<PatientInputModel, PatientDto>();
+                cfg.CreateMap<ActiveRecordingDto, ActiveRecordingOutputModel>()
+                .ForMember(outputModel => outputModel.Cabinet, opt => opt.MapFrom(activeRecordingDto => activeRecordingDto.Doctor.Cabinet));
+                cfg.CreateMap<ActiveRecordingInputModel, ActiveRecordingDto>();
+                cfg.CreateMap<UpdateActiveRecordingModel, ActiveRecordingDto>();
                     cfg.CreateMap<CabinetDto, CabinetOutputModel>();
                     cfg.CreateMap<CabinetInputModel, CabinetDto>();
                     cfg.CreateMap<UpdateCabinetInputModel, CabinetDto>();
@@ -54,10 +57,25 @@ namespace RecordingSystem.BLL
             return _configuration.CreateMapper().Map<List<DoctorOutputModel>>(doctors);
         }
 
+        public List<ActiveRecordingOutputModel> MapListActiveRecordingDtotoListActiveRecordingOutputModel(List<ActiveRecordingDto> activeRecordings)
+        {
+            return _configuration.CreateMapper().Map<List<ActiveRecordingOutputModel>>(activeRecordings);
+        }
         public List<CabinetOutputModel> MapListCabinetDtoToListCabinetOutputModel(List<CabinetDto> cabinets)
         {
             return _configuration.CreateMapper().Map<List<CabinetOutputModel>>(cabinets);
         }
+
+        public ActiveRecordingDto MapUpdateActiveRecordingModelToActiveRecordingDto(UpdateActiveRecordingModel activeRecording)
+        {
+            return _configuration.CreateMapper().Map<ActiveRecordingDto>(activeRecording);
+        }
+        public ActiveRecordingDto MapActiveRecordingInputModelToActiveRecordingDto(ActiveRecordingInputModel activeRecording)
+        {
+            return _configuration.CreateMapper().Map<ActiveRecordingDto>(activeRecording);
+        }
+
+
 
         public CabinetDto MapCabinetInputModelToCabinetDto(CabinetInputModel cabinet)
         {
