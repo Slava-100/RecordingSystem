@@ -12,5 +12,18 @@ namespace RecordingSystem.BLL.Models
         public string Email { get; set; }
         public int? StatusId { get; set; }
         public bool? Male { get; set; }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is PatientInputModel model &&
+                   Id == model.Id &&
+                   Name == model.Name &&
+                   LastName == model.LastName &&
+                   Birthday == model.Birthday &&
+                   PhoneNumber == model.PhoneNumber &&
+                   Email == model.Email &&
+                   StatusId == model.StatusId &&
+                   Male == model.Male;
+        }
     }
 }

@@ -90,6 +90,10 @@ namespace RecordingSystem.DAL.Repositories
                     (status,patient) =>
                     {
                         patient.Status = status;
+                        if (patient.Status is not null)
+                        {
+                            patient.StatusId = patient.Status.Id;
+                        }
                         result.Add(patient);
 
                         return patient;

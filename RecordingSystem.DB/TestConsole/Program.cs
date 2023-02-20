@@ -101,8 +101,7 @@ using RecordingSystem.BLL.Models;
 
 //var b = a.GetAllServiceBySpecializationId(3);
 
-//var rep = new DoctorRepository();
-//var d = new DoctorManager(rep);
+//var d = new DoctorManager();
 //var ddd = d.GetAllDoctors();
 
 //var rep = new DoctorRepository();
@@ -120,7 +119,8 @@ using RecordingSystem.BLL.Models;
 //DateTime someDate = new DateTime(2001, 01, 01);
 //var rep = new DoctorRepository();
 //var d = new DoctorManager(rep);
-//var doctor = new DoctorDto { 
+//var doctor = new DoctorDto
+//{
 //    Id = 22,
 //    Name = "Andrey",
 //    LastName = "Strelnikov",
@@ -130,7 +130,8 @@ using RecordingSystem.BLL.Models;
 //    SpecializationId = 3,
 //    CabinetId = null,
 //    IsDeleted = false,
-//    Birthday = someDate };
+//    Birthday = someDate
+//};
 
 //d.AddDoctor(doctor);
 
