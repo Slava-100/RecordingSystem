@@ -1,5 +1,6 @@
 ﻿using Moq;
 using RecordingSystem.BLL.Models;
+using RecordingSystem.BLL.Tests.TestCaseSource;
 using RecordingSystem.DAL.Interfaces;
 using RecordingSystem.DAL.Models;
 
@@ -18,67 +19,15 @@ namespace RecordingSystem.BLL.Tests
             _doctorManager.DoctorRepository = _mock.Object;
         }
 
-        [Test]
-        public void GetAllDoctors()
+        [TestCaseSource(typeof(DoctorManagerTestCaseSource), nameof(DoctorManagerTestCaseSource.GetAllDoctorsTestCaseSource))]
+        public void GetAllDoctors(List<DoctorDto> doctors, List<DoctorOutputModel> expectedDoctors)
         {
-            List<DoctorDto> doctors = new List<DoctorDto>()
-            {
-                new DoctorDto()
-                {
-                    Id = 1,
-                    Name = "Andrey",
-                    LastName = "Strelnikov",
-                    Male = true,
-                    PhoneNumber = "123",
-                    Email = "@ya",
-                    SpecializationId = 3,
-                    CabinetId = null,
-                    IsDeleted = false,
-                    Birthday = new DateTime(2001, 05, 20),
-                    Specialization = new SpecializationDto()
-                    {
-                        Id = 1,
-                        Name = "doctor"
-                    },
-                    Cabinet = new CabinetDto()
-                    {
-                        Id = 1,
-                        Number = 101,
-                        Status = null
-                    }
-                }
-            };
-            _mock.Setup(o => o.GetAllDoctors()).Returns(doctors);
-
-            List<DoctorOutputModel> expected = new List<DoctorOutputModel>()
-            {
-                new DoctorOutputModel()
-                {
-                    Id = 1,
-                    Name = "Andrey",
-                    LastName = "Strelnikov",
-                    Male = true,
-                    PhoneNumber = "123",
-                    Email = "@ya",
-                    Birthday = new DateTime(2001, 05, 20),
-                    Specialization = new SpecializationDto()
-                    {
-                        Id = 1,
-                        Name = "doctor"
-                    },
-                    Cabinet = new CabinetDto()
-                    {
-                        Id = 1,
-                        Number = 101,
-                        Status = null
-                    }
-                }
-            };
-
+            _mock.Setup(o => o.GetAllDoctors()).Returns(doctors).Verifiable();
+            List<DoctorOutputModel> expected = expectedDoctors;
             List<DoctorOutputModel> actual = _doctorManager.GetAllDoctors();
+            _mock.VerifyAll();
 
             CollectionAssert.AreEqual(expected, actual);
-
         }
     }
 }

@@ -27,9 +27,7 @@ namespace RecordingSystem.BLL.Models
                    Email == model.Email &&
                    Birthday == model.Birthday &&
                    Specialization.Equals(model.Specialization) &&
-                   Cabinet.Equals(model.Cabinet) &&
-                   Services.Equals(model.Services) &&
-                   TimeRecording.Equals(model.TimeRecording);
+                   Cabinet.Equals(model.Cabinet);
         }
     }
 }
