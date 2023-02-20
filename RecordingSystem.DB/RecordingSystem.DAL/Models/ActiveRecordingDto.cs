@@ -16,7 +16,6 @@ namespace RecordingSystem.DAL.Models
         public bool? IsDeleted { get; set; }
         public PatientDto Patient { get; set; }
         public DoctorDto Doctor { get; set; }
-        public CabinetDto Cabinet { get; set; }
 
     }
 }

@@ -166,6 +166,23 @@ using RecordingSystem.BLL.Models;
 
 //ppp = p.GetAllPatients();
 
+var p = new ActiveRecordingManager();
+var ppp = p.GetAllActiveRecordingsByPatientId(6);
+
+var a = new UpdateActiveRecordingModel()
+{
+    Id = 3,
+    Coming = true
+};
+
+p.UpdateComingInActiveRecordingById(a);
+
+//p.AddActiveRecording(a);
+
+ppp = p.GetAllActiveRecordingsByPatientId(6);
+
+Console.WriteLine("qwe");
+
 var s = new ServiceManager();
 //var service = new ServiceOutputModel();
 //service.Id = 1009;
@@ -175,3 +192,7 @@ var s = new ServiceManager();
 var service = s.GetAllServiceByMale(false);
 
 Console.WriteLine("qwe");
+//patient.LastName = "Dog";
+//p.UpdatePatient(patient);
+
+
