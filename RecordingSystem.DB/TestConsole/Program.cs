@@ -53,8 +53,8 @@ using RecordingSystem.BLL.Models;
 
 //var p = new ServiceRepository();
 //var ppp = p.GetAllServicesByDoctorId(11);
-var p = new PatientRepository();
-var ppp = p.GetAllPatientsByStatusId(3);
+//var p = new PatientRepository();
+//var ppp = p.GetAllPatientsByStatusId(3);
 //var p = new ServiceRepository();
 //var ppp = p.GetAllServiceByMale(null);
 
@@ -101,8 +101,8 @@ var ppp = p.GetAllPatientsByStatusId(3);
 
 //var b = a.GetAllServiceBySpecializationId(3);
 
-var d = new DoctorManager();
-var ddd = d.GetAllDoctors();
+//var d = new DoctorManager();
+//var ddd = d.GetAllDoctors();
 
 //var rep = new DoctorRepository();
 //var d = new DoctorManager(rep);
@@ -137,17 +137,17 @@ var ddd = d.GetAllDoctors();
 
 
 
-var rep = new PatientRepository();
-var p = new PatientManager(rep);
-var patient = new UpdatePatientInputModel() { Name = "Busaaa", LastName = "Cat", Birthday = someDate, Email = "@", Male = false, PhoneNumber = "123", StatusId = 1, Id = 1006 };
+//var rep = new PatientRepository();
+//var p = new PatientManager(rep);
+//var patient = new UpdatePatientInputModel() { Name = "Busaaa", LastName = "Cat", Birthday = someDate, Email = "@", Male = false, PhoneNumber = "123", StatusId = 1, Id = 1006 };
 
 //p.AddPatient(patient);
 
 
 //var ppp = p.GetAllPatients();
 
-patient.LastName = "Dog";
-p.UpdatePatient(patient);
+//patient.LastName = "Dog";
+//p.UpdatePatient(patient);
 
 //ppp = p.GetAllPatients();
 Console.WriteLine("qwe");

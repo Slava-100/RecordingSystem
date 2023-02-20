@@ -15,5 +15,21 @@ namespace RecordingSystem.BLL.Models
         public CabinetDto Cabinet { get; set; }
         public List<ServiceDto> Services { get; set; } = new List<ServiceDto>();
         public List<TimeRecordingDto> TimeRecording { get; set; } = new List<TimeRecordingDto>();
+
+        public override bool Equals(object? obj)
+        {
+            return obj is DoctorOutputModel model &&
+                   Id == model.Id &&
+                   Name == model.Name &&
+                   LastName == model.LastName &&
+                   Male == model.Male &&
+                   PhoneNumber == model.PhoneNumber &&
+                   Email == model.Email &&
+                   Birthday == model.Birthday &&
+                   Specialization.Equals(model.Specialization) &&
+                   Cabinet.Equals(model.Cabinet) &&
+                   Services.Equals(model.Services) &&
+                   TimeRecording.Equals(model.TimeRecording);
+        }
     }
 }

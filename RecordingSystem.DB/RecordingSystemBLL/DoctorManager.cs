@@ -10,9 +10,9 @@ namespace RecordingSystem.BLL
         Mapperrr _mapperrr = new Mapperrr();
         public IDoctorRepository DoctorRepository { get; set; }
 
-        public DoctorManager(IDoctorRepository repository)
+        public DoctorManager()
         {
-            DoctorRepository = repository;
+            DoctorRepository = new DoctorRepository();
         }
 
         public List<DoctorOutputModel> GetAllDoctors()

@@ -22,5 +22,24 @@ namespace RecordingSystem.DAL.Models
         public CabinetDto Cabinet { get; set; }
         public List<ServiceDto> Services { get; set; } = new List<ServiceDto>();
         public List<TimeRecordingDto> TimeRecording { get; set; } = new List<TimeRecordingDto>();
+
+        public override bool Equals(object? obj)
+        {
+            return obj is DoctorDto dto &&
+                   Id == dto.Id &&
+                   Name == dto.Name &&
+                   LastName == dto.LastName &&
+                   Male == dto.Male &&
+                   PhoneNumber == dto.PhoneNumber &&
+                   Email == dto.Email &&
+                   SpecializationId == dto.SpecializationId &&
+                   CabinetId == dto.CabinetId &&
+                   IsDeleted == dto.IsDeleted &&
+                   Birthday == dto.Birthday &&
+                   Specialization.Equals(dto.Specialization) &&
+                   Cabinet.Equals(dto.Cabinet) &&
+                   Services.Equals(dto.Services) &&
+                   TimeRecording.Equals(dto.TimeRecording);
+        }
     }
 }
