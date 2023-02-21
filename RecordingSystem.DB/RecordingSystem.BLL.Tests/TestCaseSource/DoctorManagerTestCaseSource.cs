@@ -335,6 +335,46 @@ namespace RecordingSystem.BLL.Tests.TestCaseSource
 
             yield return new Object[] { inputDoctor, expected };
         }
+
+        public static IEnumerable UpdateDoctorTestCaseSource()
+        {
+
+            DoctorInputModel inputDoctor = new DoctorInputModel()
+            {
+                Id = 1,
+                Name = "Andrey",
+                LastName = "Strelnikov",
+                Male = true,
+                Birthday = new DateTime(2001, 05, 20),
+                Specialization = new SpecializationDto
+                {
+                    Id = 123
+                },
+                Cabinet = new CabinetDto
+                {
+                    Id =77
+                }
+            };
+            DoctorInputModel expected = new DoctorInputModel()
+            {
+                Id = 1,
+                Name = "Andrey",
+                LastName = "Strelnikov",
+                Male = true,
+                Birthday = new DateTime(2001, 05, 20),
+                Specialization = new SpecializationDto
+                {
+                    Id = 123
+                },
+                Cabinet = new CabinetDto
+                {
+                    Id = 77
+                }
+            };
+
+            yield return new Object[] { inputDoctor, expected };
+        }
+        
     }
 
 }
