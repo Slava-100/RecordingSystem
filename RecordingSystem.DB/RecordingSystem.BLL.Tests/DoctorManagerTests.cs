@@ -40,5 +40,16 @@ namespace RecordingSystem.BLL.Tests
 
             CollectionAssert.AreEqual(expected, actual);
         }
+
+        [TestCaseSource(typeof(DoctorManagerTestCaseSource), nameof(DoctorManagerTestCaseSource.GetAllDoctorsByServiceIdTestCaseSource))]
+        public void GetAllDoctorsByServiceId(List<DoctorDto> doctors, List<DoctorOutputModel> expectedDoctors, int ServiceId)
+        {
+            _mock.Setup(o => o.GetAllDoctorsByServiceId(ServiceId)).Returns(doctors).Verifiable();
+            List<DoctorOutputModel> expected = expectedDoctors;
+            List<DoctorOutputModel> actual = _doctorManager.GetAllDoctorsByServiceId(ServiceId);
+            _mock.VerifyAll();
+
+            CollectionAssert.AreEqual(expected, actual);
+        }
     }
 }

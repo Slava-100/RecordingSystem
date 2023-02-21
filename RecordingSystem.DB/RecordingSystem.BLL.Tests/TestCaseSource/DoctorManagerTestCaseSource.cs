@@ -142,6 +142,14 @@ namespace RecordingSystem.BLL.Tests.TestCaseSource
                         Id = 1,
                         Number = 101,
                         Status = null
+                    },
+                    Services=new List<ServiceDto>
+                    {
+                        new ServiceDto()
+                        {
+                            Id = 2,
+                            Name = "massage"
+                        }
                     }
                 }
             };
@@ -166,11 +174,19 @@ namespace RecordingSystem.BLL.Tests.TestCaseSource
                         Id = 1,
                         Number = 101,
                         Status = null
+                    },
+                    Services=new List<ServiceDto>
+                    {
+                        new ServiceDto()
+                        {
+                            Id = 2,
+                            Name = "massage"
+                        }
                     }
                 }
             };
 
-            int id = 3;
+            int id = 2;
 
             yield return new Object[] { doctors, expected, id };
         }
