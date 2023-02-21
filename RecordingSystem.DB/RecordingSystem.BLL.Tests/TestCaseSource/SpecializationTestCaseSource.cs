@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RecordingSystem.BLL.Tests.TestCaseSource
 {
-    public class SpecializationTestCaseSource
+    public static class SpecializationTestCaseSource
     {
         public static IEnumerable GetAllSpecializationsTestCaseSource()
         {

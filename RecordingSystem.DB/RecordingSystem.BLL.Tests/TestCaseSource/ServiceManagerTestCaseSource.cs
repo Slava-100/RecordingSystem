@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RecordingSystem.BLL.Tests.TestCaseSource
 {
-    public class ServiceManagerTestCaseSource
+    public static class ServiceManagerTestCaseSource
     {
         public static IEnumerable GetAllServiceByMaleTestCaseSource()
         {

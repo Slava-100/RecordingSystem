@@ -191,17 +191,22 @@ using RecordingSystem.BLL.Models;
 ////s.UpdateService(service);
 //var service = s.GetAllServiceByMale(false);
 
-SpecializationManager s = new SpecializationManager();
-var ppp = s.GetAllSpecializations();
+//SpecializationManager s = new SpecializationManager();
+//var ppp = s.GetAllSpecializations();
 
-var m = new SpecializationInputModel()
-{
-    Name = "Shaurmist"
-};
+//var m = new SpecializationInputModel()
+//{
+//    Name = "Shaurmist"
+//};
 
-s.AddSpecialization(m);
-ppp = s.GetAllSpecializations();
+//s.AddSpecialization(m);
+//ppp = s.GetAllSpecializations();
+
+var p = new TimeRecordingManager();
+var ppp = p.GetAllTimeRecordingsByDoctorId(11);
+
 Console.WriteLine("qwe");
+
 //patient.LastName = "Dog";
 //p.UpdatePatient(patient);
 
