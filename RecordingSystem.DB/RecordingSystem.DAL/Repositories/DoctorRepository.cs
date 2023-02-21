@@ -38,7 +38,17 @@ namespace RecordingSystem.DAL.Repositories
                 sqlConnection.Open();
 
                 sqlConnection.Execute(StoredNamesProcedures.AddDoctor,
-                    new { doctorDto.Name, doctorDto.LastName, doctorDto.Male, doctorDto.PhoneNumber, doctorDto.Email, doctorDto.SpecializationId, doctorDto.CabinetId, doctorDto.Birthday },
+                    new 
+                    { 
+                        doctorDto.Name,
+                        doctorDto.LastName,
+                        doctorDto.Male,
+                        doctorDto.PhoneNumber,
+                        doctorDto.Email,
+                        doctorDto.SpecializationId,
+                        doctorDto.CabinetId,
+                        doctorDto.Birthday
+                    },
                     commandType: CommandType.StoredProcedure);
             }
         }
