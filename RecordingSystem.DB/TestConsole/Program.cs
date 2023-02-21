@@ -166,31 +166,41 @@ using RecordingSystem.BLL.Models;
 
 //ppp = p.GetAllPatients();
 
-var p = new ActiveRecordingManager();
-var ppp = p.GetAllActiveRecordingsByPatientId(6);
+//var p = new ActiveRecordingManager();
+//var ppp = p.GetAllActiveRecordingsByPatientId(6);
 
-var a = new UpdateActiveRecordingModel()
+//var a = new UpdateActiveRecordingModel()
+//{
+//    Id = 3,
+//    Coming = true
+//};
+
+//p.UpdateComingInActiveRecordingById(a);
+
+////p.AddActiveRecording(a);
+
+//ppp = p.GetAllActiveRecordingsByPatientId(6);
+
+//Console.WriteLine("qwe");
+
+//var s = new ServiceManager();
+////var service = new ServiceOutputModel();
+////service.Id = 1009;
+////service.Name = "bestmassage";
+////service.Price = 2222;
+////s.UpdateService(service);
+//var service = s.GetAllServiceByMale(false);
+
+SpecializationManager s = new SpecializationManager();
+var ppp = s.GetAllSpecializations();
+
+var m = new SpecializationInputModel()
 {
-    Id = 3,
-    Coming = true
+    Name = "Shaurmist"
 };
 
-p.UpdateComingInActiveRecordingById(a);
-
-//p.AddActiveRecording(a);
-
-ppp = p.GetAllActiveRecordingsByPatientId(6);
-
-Console.WriteLine("qwe");
-
-var s = new ServiceManager();
-//var service = new ServiceOutputModel();
-//service.Id = 1009;
-//service.Name = "bestmassage";
-//service.Price = 2222;
-//s.UpdateService(service);
-var service = s.GetAllServiceByMale(false);
-
+s.AddSpecialization(m);
+ppp = s.GetAllSpecializations();
 Console.WriteLine("qwe");
 //patient.LastName = "Dog";
 //p.UpdatePatient(patient);

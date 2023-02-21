@@ -21,11 +21,13 @@ namespace RecordingSystem.BLL
                 .ForMember(outputModel => outputModel.Cabinet, opt => opt.MapFrom(activeRecordingDto => activeRecordingDto.Doctor.Cabinet));
                 cfg.CreateMap<ActiveRecordingInputModel, ActiveRecordingDto>();
                 cfg.CreateMap<UpdateActiveRecordingModel, ActiveRecordingDto>();
-                    cfg.CreateMap<ServiceInputModel, ServiceDto>();
-                    cfg.CreateMap<UpdateServiceInputModel, ServiceDto>();
-                    cfg.CreateMap<CabinetDto, CabinetOutputModel>();
-                    cfg.CreateMap<CabinetInputModel, CabinetDto>();
-                    cfg.CreateMap<UpdateCabinetInputModel, CabinetDto>();
+                cfg.CreateMap<ServiceInputModel, ServiceDto>();
+                cfg.CreateMap<UpdateServiceInputModel, ServiceDto>();
+                cfg.CreateMap<CabinetDto, CabinetOutputModel>();
+                cfg.CreateMap<CabinetInputModel, CabinetDto>();
+                cfg.CreateMap<UpdateCabinetInputModel, CabinetDto>();
+                cfg.CreateMap<SpecializationDto,SpecializationOutputModel>();
+                cfg.CreateMap<SpecializationInputModel, SpecializationDto>();
                 });
         }
 
@@ -82,8 +84,6 @@ namespace RecordingSystem.BLL
             return _configuration.CreateMapper().Map<ActiveRecordingDto>(activeRecording);
         }
 
-
-
         public CabinetDto MapCabinetInputModelToCabinetDto(CabinetInputModel cabinet)
         {
             return _configuration.CreateMapper().Map<CabinetDto>(cabinet);
@@ -102,10 +102,19 @@ namespace RecordingSystem.BLL
             return _configuration.CreateMapper().Map<ServiceDto>(service);
         }
 
-        public List<ServiceOutputModel> MapListServiceDtoToListServiceOutputModel(List<ServiceDto> service)
+        public List<ServiceOutputModel> MapListServiceDtoToListServiceOutputModel(List<ServiceDto> services)
         {
-            return _configuration.CreateMapper().Map<List<ServiceOutputModel>>(service);
+            return _configuration.CreateMapper().Map<List<ServiceOutputModel>>(services);
         }
 
+        public List<SpecializationOutputModel> MapListSpecializationDtoToListSpecializationOutputModel(List<SpecializationDto> specializations)
+        {
+            return _configuration.CreateMapper().Map<List<SpecializationOutputModel>>(specializations);
+        }
+
+        public SpecializationDto MapSpecializationInputModelToSpecializationDto(SpecializationInputModel specialization)
+        {
+            return _configuration.CreateMapper().Map<SpecializationDto>(specialization);
+        }
     }
 }
