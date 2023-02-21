@@ -1,8 +1,13 @@
-﻿using RecordingSystem.DAL.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using RecordingSystem.DAL.Models;
 
 namespace RecordingSystem.BLL.Models
 {
-    public class DoctorOutputModel
+    public class DoctorInputModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -15,19 +20,5 @@ namespace RecordingSystem.BLL.Models
         public CabinetDto Cabinet { get; set; }
         public List<ServiceDto> Services { get; set; } = new List<ServiceDto>();
         public List<TimeRecordingDto> TimeRecording { get; set; } = new List<TimeRecordingDto>();
-
-        public override bool Equals(object? obj)
-        {
-            return obj is DoctorOutputModel model &&
-                   Id == model.Id &&
-                   Name == model.Name &&
-                   LastName == model.LastName &&
-                   Male == model.Male &&
-                   PhoneNumber == model.PhoneNumber &&
-                   Email == model.Email &&
-                   Birthday == model.Birthday &&
-                   Specialization.Equals(model.Specialization) &&
-                   Cabinet.Equals(model.Cabinet);
-        }
     }
 }

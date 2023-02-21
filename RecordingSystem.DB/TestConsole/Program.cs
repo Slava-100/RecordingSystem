@@ -101,8 +101,7 @@ using RecordingSystem.BLL.Models;
 
 //var b = a.GetAllServiceBySpecializationId(3);
 
-//var rep = new DoctorRepository();
-//var d = new DoctorManager(rep);
+//var d = new DoctorManager();
 //var ddd = d.GetAllDoctors();
 
 //var rep = new DoctorRepository();
@@ -147,18 +146,22 @@ using RecordingSystem.BLL.Models;
 
 //p.AddPatient(patient);
 
-var c = new CabinetManager();
+//var c = new CabinetManager();
 //var patient = c.GetAllCabinets();
 //var cabinet = new CabinetInputModel() {Number = 228, Status = true};
-var cabinet = new UpdateCabinetInputModel();
-cabinet.Id = 5;
-cabinet.Number= 8881;
-cabinet.Status = false;
-c.UpdateCabinetById(cabinet);
+//var cabinet = new UpdateCabinetInputModel();
+//cabinet.Id = 5;
+//cabinet.Number= 8881;
+//cabinet.Status = false;
+//c.UpdateCabinetById(cabinet);
+
+
+//patient.LastName = "Dog";
+//p.UpdatePatient(patient);
 
 //var ppp = p.GetAllPatients();
 
-//patient.Name = "Dog";
+//patient.LastName = "Dog";
 //p.UpdatePatient(patient);
 
 //ppp = p.GetAllPatients();
@@ -180,6 +183,15 @@ ppp = p.GetAllActiveRecordingsByPatientId(6);
 
 Console.WriteLine("qwe");
 
+var s = new ServiceManager();
+//var service = new ServiceOutputModel();
+//service.Id = 1009;
+//service.Name = "bestmassage";
+//service.Price = 2222;
+//s.UpdateService(service);
+var service = s.GetAllServiceByMale(false);
+
+Console.WriteLine("qwe");
 //patient.LastName = "Dog";
 //p.UpdatePatient(patient);
 

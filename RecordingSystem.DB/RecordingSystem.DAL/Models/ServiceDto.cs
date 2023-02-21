@@ -15,5 +15,17 @@ namespace RecordingSystem.DAL.Models
         public bool? IsDeleted { get; set; }
         public bool? Male { get; set; }
         public SpecializationDto Specialization { get; set; }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is ServiceDto dto &&
+                   Id == dto.Id &&
+                   Name == dto.Name &&
+                   Price == dto.Price &&
+                   SpecializationId == dto.SpecializationId &&
+                   IsDeleted == dto.IsDeleted &&
+                   Male == dto.Male &&
+                   Specialization.Equals(dto.Specialization);
+        }
     }
 }

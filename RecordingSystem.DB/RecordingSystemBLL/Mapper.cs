@@ -21,6 +21,8 @@ namespace RecordingSystem.BLL
                 .ForMember(outputModel => outputModel.Cabinet, opt => opt.MapFrom(activeRecordingDto => activeRecordingDto.Doctor.Cabinet));
                 cfg.CreateMap<ActiveRecordingInputModel, ActiveRecordingDto>();
                 cfg.CreateMap<UpdateActiveRecordingModel, ActiveRecordingDto>();
+                    cfg.CreateMap<ServiceInputModel, ServiceDto>();
+                    cfg.CreateMap<UpdateServiceInputModel, ServiceDto>();
                     cfg.CreateMap<CabinetDto, CabinetOutputModel>();
                     cfg.CreateMap<CabinetInputModel, CabinetDto>();
                     cfg.CreateMap<UpdateCabinetInputModel, CabinetDto>();
@@ -56,6 +58,11 @@ namespace RecordingSystem.BLL
         {
             return _configuration.CreateMapper().Map<List<DoctorOutputModel>>(doctors);
         }
+        public DoctorDto MapDoctorInputModelToDoctorDto(DoctorInputModel doctor)
+        {
+            return _configuration.CreateMapper().Map<DoctorDto>(doctor);
+        }
+           
 
         public List<ActiveRecordingOutputModel> MapListActiveRecordingDtotoListActiveRecordingOutputModel(List<ActiveRecordingDto> activeRecordings)
         {
@@ -85,5 +92,20 @@ namespace RecordingSystem.BLL
         {
             return _configuration.CreateMapper().Map<CabinetDto>(cabinet);
         }
+        public ServiceDto MapServiceInputModelToServiceDto(ServiceInputModel service)
+        {
+            return _configuration.CreateMapper().Map<ServiceDto>(service);
+        }
+
+        public ServiceDto MapUpdateServiceInputModelToServiceDto(UpdateServiceInputModel service)
+        {
+            return _configuration.CreateMapper().Map<ServiceDto>(service);
+        }
+
+        public List<ServiceOutputModel> MapListServiceDtoToListServiceOutputModel(List<ServiceDto> service)
+        {
+            return _configuration.CreateMapper().Map<List<ServiceOutputModel>>(service);
+        }
+
     }
 }

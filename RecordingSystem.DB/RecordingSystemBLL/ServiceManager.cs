@@ -1,28 +1,54 @@
-﻿using AutoMapper;
-using RecordingSystem.BLL.Models;
-using RecordingSystem.DAL.Models;
+﻿using RecordingSystem.BLL.Models;
+using RecordingSystem.DAL.Interfaces;
 using RecordingSystem.DAL.Repositories;
 
 namespace RecordingSystem.BLL
 {
     public class ServiceManager
     {
-        //Mapperrr _mapperrr = new Mapperrr();
-        public ServiceOutputModel GetAllDoctorInfoById(int id)
+        Mapperrr _mapperrr = new Mapperrr();
+        public IServiceRepository ServiceRepository { get; set; }
+
+        public ServiceManager()
         {
-            ServiceRepository repository = new ServiceRepository();
-            var service = repository.GetAllServicesByDoctorId(id);
+            ServiceRepository = new ServiceRepository();
+        }
 
-            var configuration = new MapperConfiguration(
-                cfg => cfg.CreateMap<ServiceDto, ServiceOutputModel>());
+        public void AddService(ServiceInputModel service)
+        {
+            var serviceDto = _mapperrr.MapServiceInputModelToServiceDto(service);
+            ServiceRepository.AddService(serviceDto);
+        }
 
-            IMapper mapper = configuration.CreateMapper();
+        public void UpdateService(UpdateServiceInputModel service)
+        {
+            var serviceDto = _mapperrr.MapUpdateServiceInputModelToServiceDto(service);
+            ServiceRepository.UpdateServiceById(serviceDto);
+        }
 
-            return mapper.Map<ServiceOutputModel>(service);
+        public void UpdateIsDeletedServiceById(UpdateServiceInputModel service)
+        {
+            var serviceDto = _mapperrr.MapUpdateServiceInputModelToServiceDto(service);
+            ServiceRepository.UpdateIsDeletedServiceById(serviceDto);
+        }
 
-            //var result = _mapperrr.MapServiceDtoToProductOutputModel(products);
-
-            //return result;
+        public List<ServiceOutputModel> GetAllServicesByDoctorId(int id)
+        {
+            var service = ServiceRepository.GetAllServicesByDoctorId(id);
+            var result = _mapperrr.MapListServiceDtoToListServiceOutputModel(service);
+            return result;
+        }
+        public List<ServiceOutputModel> GetAllServiceByMale(bool male)
+        {
+            var service = ServiceRepository.GetAllServiceByMale(male);
+            var result = _mapperrr.MapListServiceDtoToListServiceOutputModel(service);
+            return result;
+        }
+        public List<ServiceOutputModel> GetAllServiceBySpecializationId(int id)
+        {
+            var service = ServiceRepository.GetAllServiceBySpecializationId(id);
+            var result = _mapperrr.MapListServiceDtoToListServiceOutputModel(service);
+            return result;
         }
     }
 }
