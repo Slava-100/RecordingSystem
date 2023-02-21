@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +25,36 @@ namespace RecordingSystem.DAL.Models
 
         public override bool Equals(object? obj)
         {
+            if (obj is DoctorDto)
+            {
+                List<ServiceDto> sd = ((DoctorDto)obj).Services;
+                if (sd.Count != Services.Count)
+                {
+                    return false;
+                }
+                for (int i = 0; i < Services.Count; i++)
+                {
+                    if (Services[i] != sd[i])
+                    {
+                        return false;
+                    }
+                }
+
+                List<TimeRecordingDto> tr = ((DoctorDto)obj).TimeRecording;
+                if (tr.Count != TimeRecording.Count)
+                {
+                    return false;
+                }
+                for (int i = 0; i < TimeRecording.Count; i++)
+                {
+                    if (TimeRecording[i] != tr[i])
+                    {
+                        return false;
+                    }
+                }
+            }
+
+
             return obj is DoctorDto dto &&
                    Id == dto.Id &&
                    Name == dto.Name &&
@@ -37,9 +67,8 @@ namespace RecordingSystem.DAL.Models
                    IsDeleted == dto.IsDeleted &&
                    Birthday == dto.Birthday &&
                    Specialization.Equals(dto.Specialization) &&
-                   Cabinet.Equals(dto.Cabinet) &&
-                   Services.Equals(dto.Services) &&
-                   TimeRecording.Equals(dto.TimeRecording);
+                   Cabinet.Equals(dto.Cabinet);
+
         }
     }
 }

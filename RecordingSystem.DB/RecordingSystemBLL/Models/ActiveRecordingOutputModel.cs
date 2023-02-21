@@ -22,8 +22,8 @@ namespace RecordingSystem.BLL.Models
                    DateTime == model.DateTime &&
                    Coming == model.Coming &&
                    Patient.Equals(model.Patient) &&
-                   Doctor.Equals(model.Doctor) &&
-                   Cabinet.Equals(model.Cabinet);
+                   Cabinet.Equals(model.Cabinet) &&
+                   Doctor.Equals(model.Doctor);
         }
     }
 }
