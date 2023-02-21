@@ -12,5 +12,13 @@ namespace RecordingSystem.BLL.Models
         public int? PatientId { get; set; }
         public int? DoctorId { get; set; }
         public DateTime? DateTime { get; set; }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is ActiveRecordingInputModel model &&
+                   PatientId == model.PatientId &&
+                   DoctorId == model.DoctorId &&
+                   DateTime == model.DateTime;
+        }   
     }
 }
