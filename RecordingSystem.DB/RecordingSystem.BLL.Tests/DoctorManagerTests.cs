@@ -62,5 +62,15 @@ namespace RecordingSystem.BLL.Tests
 
             CollectionAssert.AreEqual(expected, actual);
         }
+
+        [TestCaseSource(typeof(DoctorManagerTestCaseSource), nameof(DoctorManagerTestCaseSource.AddDoctorTestCaseSource))]
+        public void AddDoctor(DoctorInputModel inputDoctor, DoctorInputModel expectedDoctor)
+        {
+            _doctorManager.AddDoctor(inputDoctor);
+            DoctorInputModel expected = expectedDoctor;
+            DoctorInputModel actual = inputDoctor;
+            _mock.VerifyAll();
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

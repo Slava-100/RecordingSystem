@@ -16,16 +16,17 @@ namespace RecordingSystem.BLL
                 cfg.CreateMap<ServiceDto, ServiceOutputModel>();
                 cfg.CreateMap<PatientDto, PatientOutputModel>();
                 cfg.CreateMap<DoctorDto, DoctorOutputModel>();
+                cfg.CreateMap<DoctorInputModel, DoctorDto>();
                 cfg.CreateMap<PatientInputModel, PatientDto>();
                 cfg.CreateMap<ActiveRecordingDto, ActiveRecordingOutputModel>()
                 .ForMember(outputModel => outputModel.Cabinet, opt => opt.MapFrom(activeRecordingDto => activeRecordingDto.Doctor.Cabinet));
                 cfg.CreateMap<ActiveRecordingInputModel, ActiveRecordingDto>();
                 cfg.CreateMap<UpdateActiveRecordingModel, ActiveRecordingDto>();
-                    cfg.CreateMap<ServiceInputModel, ServiceDto>();
-                    cfg.CreateMap<UpdateServiceInputModel, ServiceDto>();
-                    cfg.CreateMap<CabinetDto, CabinetOutputModel>();
-                    cfg.CreateMap<CabinetInputModel, CabinetDto>();
-                    cfg.CreateMap<UpdateCabinetInputModel, CabinetDto>();
+                cfg.CreateMap<ServiceInputModel, ServiceDto>();
+                cfg.CreateMap<UpdateServiceInputModel, ServiceDto>();
+                cfg.CreateMap<CabinetDto, CabinetOutputModel>();
+                cfg.CreateMap<CabinetInputModel, CabinetDto>();
+                cfg.CreateMap<UpdateCabinetInputModel, CabinetDto>();
                 });
         }
 
@@ -58,11 +59,10 @@ namespace RecordingSystem.BLL
         {
             return _configuration.CreateMapper().Map<List<DoctorOutputModel>>(doctors);
         }
-        public DoctorDto MapDoctorInputModelToDoctorDto(DoctorInputModel doctor)
+        public DoctorDto MapDoctorInputModelToDoctorDto(DoctorInputModel inputDoctor)
         {
-            return _configuration.CreateMapper().Map<DoctorDto>(doctor);
+            return _configuration.CreateMapper().Map<DoctorDto>(inputDoctor);
         }
-           
 
         public List<ActiveRecordingOutputModel> MapListActiveRecordingDtotoListActiveRecordingOutputModel(List<ActiveRecordingDto> activeRecordings)
         {
@@ -81,8 +81,6 @@ namespace RecordingSystem.BLL
         {
             return _configuration.CreateMapper().Map<ActiveRecordingDto>(activeRecording);
         }
-
-
 
         public CabinetDto MapCabinetInputModelToCabinetDto(CabinetInputModel cabinet)
         {
