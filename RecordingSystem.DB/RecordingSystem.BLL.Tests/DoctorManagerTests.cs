@@ -51,5 +51,16 @@ namespace RecordingSystem.BLL.Tests
 
             CollectionAssert.AreEqual(expected, actual);
         }
+
+        [TestCaseSource(typeof(DoctorManagerTestCaseSource), nameof(DoctorManagerTestCaseSource.GetAllFreeDoctorsByDayOfWeekIdTestCaseSource))]
+        public void GetAllFreeDoctorsByDayOfWeekId(List<DoctorDto> doctors, List<DoctorOutputModel> expectedDoctors, int DayOfWeekId)
+        {
+            _mock.Setup(o => o.GetAllFreeDoctorsByDayOfWeekId(DayOfWeekId)).Returns(doctors).Verifiable();
+            List<DoctorOutputModel> expected = expectedDoctors;
+            List<DoctorOutputModel> actual = _doctorManager.GetAllFreeDoctorsByDayOfWeekId(DayOfWeekId);
+            _mock.VerifyAll();
+
+            CollectionAssert.AreEqual(expected, actual);
+        }
     }
 }
