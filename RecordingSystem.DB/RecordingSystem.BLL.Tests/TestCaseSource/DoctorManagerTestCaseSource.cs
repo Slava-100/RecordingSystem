@@ -307,8 +307,14 @@ namespace RecordingSystem.BLL.Tests.TestCaseSource
                 LastName = "Strelnikov",
                 Male = true,
                 Birthday = new DateTime(2001, 05, 20),
-                SpecializationId =3,
-                CabinetId = 1
+                Specialization = new SpecializationDto
+                {
+                    Id = 123
+                },
+                Cabinet = new CabinetDto
+                {
+                    Id =77
+                }
             };
             DoctorInputModel expected = new DoctorInputModel()
             {
@@ -317,8 +323,14 @@ namespace RecordingSystem.BLL.Tests.TestCaseSource
                 LastName = "Strelnikov",
                 Male = true,
                 Birthday = new DateTime(2001, 05, 20),
-                SpecializationId = 3,
-                CabinetId = 1
+                Specialization = new SpecializationDto
+                {
+                    Id = 123
+                },
+                Cabinet = new CabinetDto
+                {
+                    Id = 77
+                }
             };
 
             yield return new Object[] { inputDoctor, expected };

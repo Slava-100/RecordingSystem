@@ -30,6 +30,8 @@ namespace RecordingSystem.BLL.Models
                    Male == model.Male &&
                    PhoneNumber == model.PhoneNumber &&
                    Email == model.Email &&
+                   SpecializationId == model.SpecializationId &&
+                   CabinetId == model.CabinetId &&
                    Birthday == model.Birthday &&
                    Specialization.Equals(model.Specialization) &&
                    Cabinet.Equals(model.Cabinet);
