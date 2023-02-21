@@ -10,5 +10,12 @@ namespace RecordingSystem.BLL.Models
     {
         public int? Id { get; set; }
         public bool? Coming { get; set; }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is UpdateActiveRecordingModel model &&
+                   Id == model.Id &&
+                   Coming == model.Coming;
+        }
     }
 }
