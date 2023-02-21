@@ -65,18 +65,18 @@ namespace RecordingSystem.BLL.Tests.TestCaseSource
                     TimeTable = new TimeTableDto()
                     {
                         Id = 1,
-                        Doctor = null,
-                        //{
-                        //    Id = 1,
-                        //    Specialization= new SpecializationDto()
-                        //    {
-                        //        Id = 1,
-                        //    },
-                        //    Cabinet = new CabinetDto()
-                        //    {
-                        //        Id = 1,
-                        //    }
-                        //},
+                        Doctor = new DoctorDto()
+                        {
+                            Id = 1,
+                            Specialization= new SpecializationDto()
+                            {
+                                Id = 1,
+                            },
+                            Cabinet = new CabinetDto()
+                            {
+                                Id = 1,
+                            }
+                        },
                         DayOfWeek = new DayOfWeekDto()
                         {
                             Id = 1
