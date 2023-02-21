@@ -11,5 +11,13 @@ namespace RecordingSystem.DAL.Models
         public int Id { get; set; }
         public TimeSpan? Start { get; set; }
         public TimeSpan? End { get; set; }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is TimeSpanDto model &&
+                   Id == model.Id &&
+                   Start == model.Start && 
+                   End == model.End;
+        }
     }
 }

@@ -1,22 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RecordingSystem.DAL.Models
+namespace RecordingSystem.BLL.Models
 {
-    public class DayOfWeekDto
+    public class SpecializationInputModel
     {
-        public int Id { get; set; }
         public string Name { get; set; }
 
         public override bool Equals(object? obj)
         {
-            return obj is DayOfWeekDto model &&
-                   Id == model.Id &&
-                   Name == model.Name;
+            return obj is SpecializationInputModel dto &&
+                   Name == dto.Name;
         }
     }
 }

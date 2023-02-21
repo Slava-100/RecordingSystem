@@ -27,6 +27,9 @@ namespace RecordingSystem.BLL
                 cfg.CreateMap<CabinetDto, CabinetOutputModel>();
                 cfg.CreateMap<CabinetInputModel, CabinetDto>();
                 cfg.CreateMap<UpdateCabinetInputModel, CabinetDto>();
+                cfg.CreateMap<SpecializationDto,SpecializationOutputModel>();
+                cfg.CreateMap<SpecializationInputModel, SpecializationDto>();
+                cfg.CreateMap<TimeRecordingDto, TimeRecordingOutputModel>();
                 });
         }
 
@@ -100,10 +103,24 @@ namespace RecordingSystem.BLL
             return _configuration.CreateMapper().Map<ServiceDto>(service);
         }
 
-        public List<ServiceOutputModel> MapListServiceDtoToListServiceOutputModel(List<ServiceDto> service)
+        public List<ServiceOutputModel> MapListServiceDtoToListServiceOutputModel(List<ServiceDto> services)
         {
-            return _configuration.CreateMapper().Map<List<ServiceOutputModel>>(service);
+            return _configuration.CreateMapper().Map<List<ServiceOutputModel>>(services);
         }
 
+        public List<SpecializationOutputModel> MapListSpecializationDtoToListSpecializationOutputModel(List<SpecializationDto> specializations)
+        {
+            return _configuration.CreateMapper().Map<List<SpecializationOutputModel>>(specializations);
+        }
+
+        public SpecializationDto MapSpecializationInputModelToSpecializationDto(SpecializationInputModel specialization)
+        {
+            return _configuration.CreateMapper().Map<SpecializationDto>(specialization);
+        }
+
+        public List<TimeRecordingOutputModel> MapListTimeRecordingDtoToListTimeRecordingOutputModel(List<TimeRecordingDto> timeRecordings)
+        {
+            return _configuration.CreateMapper().Map<List<TimeRecordingOutputModel>>(timeRecordings);
+        }
     }
 }

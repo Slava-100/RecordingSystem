@@ -2,8 +2,8 @@
 using Microsoft.Data.SqlClient;
 using RecordingSystem.DAL.Interfaces;
 using RecordingSystem.DAL.Models;
-using RecordingSystem.DAL.Options;
 using System.Data;
+using RecordingSystem.DAL.Options;
 
 namespace RecordingSystem.DAL.Repositories
 {
@@ -26,14 +26,31 @@ namespace RecordingSystem.DAL.Repositories
                     commandType: CommandType.StoredProcedure);
             }
         }
-        public List<TimeRecordingDto> GetAllTimeRecordings()
+        public List<TimeRecordingDto> GetAllTimeRecordingsByDoctorId(int id)
         {
             using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
             {
+                List<TimeRecordingDto> result = new List<TimeRecordingDto>();
+
                 sqlConnection.Open();
-                return sqlConnection.Query<TimeRecordingDto>(
-                    StoredNamesProcedures.GetAllTimeRecordings,
+                sqlConnection.Query<DoctorDto, TimeRecordingDto, TimeTableDto, TimeSpanDto, TimeRecordingDto>(StoredNamesProcedures.GetAllTimeRecordingsByDoctorId,
+                    (doctor, timeRecording, timeTable, timeSpan) =>
+                    {
+                        if (!result.Any(tr => tr.TimeTable.Id == timeTable.Id && tr.Date == timeRecording.Date))
+                        {
+                            timeRecording.TimeTable = timeTable;
+                            timeTable.TimeSpan = timeSpan;
+                            timeTable.Doctor = doctor;
+                            result.Add(timeRecording);
+                        }
+
+                        return timeRecording;
+                    },
+                    new { id },
+                    splitOn: "Id",
                     commandType: CommandType.StoredProcedure).ToList();
+
+                return result;
             }
         }
 

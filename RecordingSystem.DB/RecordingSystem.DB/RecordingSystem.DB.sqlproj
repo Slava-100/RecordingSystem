@@ -110,7 +110,7 @@
     <Build Include="dbo\Stored Procedures\AddDiagnosis.sql" />
     <Build Include="dbo\Stored Procedures\GetAllStatuses.sql" />
     <Build Include="dbo\Stored Procedures\UpdateStatusById.sql" />
-    <Build Include="dbo\Stored Procedures\GetAllTimeRecordings.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllTimeRecordingsByDoctorId.sql" />
     <Build Include="dbo\Stored Procedures\AddTimeRecording.sql" />
     <Build Include="dbo\Stored Procedures\UpdateTimeRecordingById.sql" />
     <Build Include="dbo\Stored Procedures\GetAllServiceBySpecializationId.sql" />
