@@ -7,7 +7,7 @@ namespace RecordingSystem.BLL
 {
     public class SpecializationManager
     {
-        Mapperrr _mapperrr = new Mapperrr();
+        private Mapperrr _mapperrr = new Mapperrr();
         public ISpecializationRepository SpecializationRepository { get; set; }
 
         public SpecializationManager()

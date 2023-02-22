@@ -8,7 +8,7 @@ namespace RecordingSystem.BLL
     public class TimeRecordingManager
     {
 
-        Mapperrr _mapperrr = new Mapperrr();
+        private Mapperrr _mapperrr = new Mapperrr();
         public ITimeRecordingRepository TimeRecordingRepository { get; set; }
 
         public TimeRecordingManager()

@@ -7,7 +7,7 @@ namespace RecordingSystem.BLL
 {
     public class CabinetManager
     {
-        Mapperrr _mapperrr = new Mapperrr();
+        private Mapperrr _mapperrr = new Mapperrr();
         public ICabinetRepository CabinetRepository { get; set; }
 
         public CabinetManager()

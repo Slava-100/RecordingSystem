@@ -6,7 +6,7 @@ namespace RecordingSystem.BLL
 {
     public class ServiceManager
     {
-        Mapperrr _mapperrr = new Mapperrr();
+        private Mapperrr _mapperrr = new Mapperrr();
         public IServiceRepository ServiceRepository { get; set; }
 
         public ServiceManager()

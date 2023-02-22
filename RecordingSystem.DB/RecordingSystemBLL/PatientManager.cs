@@ -7,7 +7,7 @@ namespace RecordingSystem.BLL
 {
     public class PatientManager
     {
-        Mapperrr _mapperrr = new Mapperrr();
+        private Mapperrr _mapperrr = new Mapperrr();
         public IPatientRepository PatientRepository { get; set; }
 
         public PatientManager()

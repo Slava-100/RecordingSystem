@@ -8,7 +8,7 @@ namespace RecordingSystem.BLL
 {
     public class ActiveRecordingManager
     {
-        Mapperrr _mapperrr = new Mapperrr();
+        private Mapperrr _mapperrr = new Mapperrr();
         public IActiveRecordingRepository ActiveRecordingRepository { get; set; }
 
         public ActiveRecordingManager()
