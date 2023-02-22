@@ -36,12 +36,19 @@ namespace RecordingSystem.DAL.Repositories
                 sqlConnection.Query<DoctorDto, TimeRecordingDto, TimeTableDto, TimeSpanDto, TimeRecordingDto>(StoredNamesProcedures.GetAllTimeRecordingsByDoctorId,
                     (doctor, timeRecording, timeTable, timeSpan) =>
                     {
-                        if (!result.Any(tr => tr.TimeTable.Id == timeTable.Id && tr.Date == timeRecording.Date))
+                        if (result.Count == 0 || !result.Any(tr => tr.TimeTable.Id == timeTable.Id && tr.Date == timeRecording.Date))
                         {
-                            timeRecording.TimeTable = timeTable;
-                            timeTable.TimeSpan = timeSpan;
-                            timeTable.Doctor = doctor;
-                            result.Add(timeRecording);
+                            AddTimeRecordingInList(timeRecording, timeTable, timeSpan, doctor, result);
+                        }
+                        else
+                        {
+                            TimeRecordingDto crnt = result.Find(tr => tr.TimeTable.Id == timeTable.Id && tr.Date == timeRecording.Date)!;
+
+                            if (timeRecording.Occupied == true && crnt.Occupied == false) 
+                            { 
+                                result.Remove(crnt);
+                                AddTimeRecordingInList(timeRecording, timeTable, timeSpan, doctor, result);
+                            }
                         }
 
                         return timeRecording;
@@ -52,6 +59,14 @@ namespace RecordingSystem.DAL.Repositories
 
                 return result;
             }
+        }
+
+        private void AddTimeRecordingInList(TimeRecordingDto timeRecording, TimeTableDto timeTable, TimeSpanDto timeSpan, DoctorDto doctor, List<TimeRecordingDto> result)
+        {
+            timeRecording.TimeTable = timeTable;
+            timeTable.TimeSpan = timeSpan;
+            timeTable.Doctor = doctor;
+            result.Add(timeRecording);
         }
 
 
