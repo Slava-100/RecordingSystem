@@ -202,18 +202,22 @@ using RecordingSystem.BLL.Models;
 //s.AddSpecialization(m);
 //ppp = s.GetAllSpecializations();
 
-var p = new TimeRecordingManager();
-var ppp = p.GetAllTimeRecordingsByDoctorId(11);
+//var p = new TimeRecordingManager();
+//var ppp = p.GetAllTimeRecordingsByDoctorId(11);
 
-UpdateTimeRecordingInputModel t = new UpdateTimeRecordingInputModel()
-{
-    Id = 1,
-    Date = DateTime.Now,
-    TimeTableId = 28,
-    Occupied= true
-};
+//UpdateTimeRecordingInputModel t = new UpdateTimeRecordingInputModel()
+//{
+//    Id = 1,
+//    Date = DateTime.Now,
+//    TimeTableId = 28,
+//    Occupied = false
+//};
 
-p.UpdateTimeRecordingById(t);
+//p.UpdateTimeRecordingById(t);
+
+var p = new TimeTableManager();
+
+var ppp = p.GetTimeTableByDoctorId(11);
 
 Console.WriteLine("qwe");
 
