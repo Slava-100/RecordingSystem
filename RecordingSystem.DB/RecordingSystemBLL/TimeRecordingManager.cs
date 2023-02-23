@@ -22,5 +22,17 @@ namespace RecordingSystem.BLL
             var result = _mapperrr.MapListTimeRecordingDtoToListTimeRecordingOutputModel(timeRecordings);
             return result;
         }
+
+        public void AddTimeRecording(TimeRecordingInputModel timeRecording)
+        {
+            var timeRecordingDto = _mapperrr.MapTimeRecordingInputModelToTimeRecordingDto(timeRecording);
+            TimeRecordingRepository.AddTimeRecording(timeRecordingDto);
+        }
+
+        public void UpdateTimeRecordingById(UpdateTimeRecordingInputModel timeRecording)
+        {
+            var timeRecordingDto = _mapperrr.MapUpdateTimeRecordingInputModelToTimeRecordingDto(timeRecording);
+            TimeRecordingRepository.UpdateTimeRecordingById(timeRecordingDto);
+        }
     }
 }

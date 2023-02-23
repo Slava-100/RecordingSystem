@@ -205,6 +205,16 @@ using RecordingSystem.BLL.Models;
 var p = new TimeRecordingManager();
 var ppp = p.GetAllTimeRecordingsByDoctorId(11);
 
+UpdateTimeRecordingInputModel t = new UpdateTimeRecordingInputModel()
+{
+    Id = 1,
+    Date = DateTime.Now,
+    TimeTableId = 28,
+    Occupied= true
+};
+
+p.UpdateTimeRecordingById(t);
+
 Console.WriteLine("qwe");
 
 //patient.LastName = "Dog";

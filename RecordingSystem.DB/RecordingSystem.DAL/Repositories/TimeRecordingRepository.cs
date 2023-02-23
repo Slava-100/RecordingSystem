@@ -81,25 +81,8 @@ namespace RecordingSystem.DAL.Repositories
                     {
                         timeRecordingById.Id,
                         timeRecordingById.Date,
-                        timeRecordingById.TimeTable,
+                        timeRecordingById.TimeTableId,
                         timeRecordingById.Occupied
-                    },
-                    commandType: CommandType.StoredProcedure);
-            }
-        }
-
-        public void UpdateCabinetById(CabinetDto cabinet)
-        {
-            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
-            {
-                sqlConnection.Open();
-
-                sqlConnection.Execute(StoredNamesProcedures.UpdateCabinetById,
-                    new
-                    {
-                        cabinet.Id,
-                        cabinet.Number,
-                        cabinet.Status
                     },
                     commandType: CommandType.StoredProcedure);
             }

@@ -30,6 +30,8 @@ namespace RecordingSystem.BLL
                 cfg.CreateMap<SpecializationDto,SpecializationOutputModel>();
                 cfg.CreateMap<SpecializationInputModel, SpecializationDto>();
                 cfg.CreateMap<TimeRecordingDto, TimeRecordingOutputModel>();
+                cfg.CreateMap<TimeRecordingInputModel, TimeRecordingDto>();
+                cfg.CreateMap<UpdateTimeRecordingInputModel, TimeRecordingDto>();
                 });
         }
 
@@ -121,6 +123,16 @@ namespace RecordingSystem.BLL
         public List<TimeRecordingOutputModel> MapListTimeRecordingDtoToListTimeRecordingOutputModel(List<TimeRecordingDto> timeRecordings)
         {
             return _configuration.CreateMapper().Map<List<TimeRecordingOutputModel>>(timeRecordings);
+        }
+
+        public TimeRecordingDto MapTimeRecordingInputModelToTimeRecordingDto(TimeRecordingInputModel timeRecording)
+        {
+            return _configuration.CreateMapper().Map<TimeRecordingDto>(timeRecording);
+        }
+
+        public TimeRecordingDto MapUpdateTimeRecordingInputModelToTimeRecordingDto(UpdateTimeRecordingInputModel timeRecording)
+        {
+            return _configuration.CreateMapper().Map<TimeRecordingDto>(timeRecording);
         }
     }
 }
