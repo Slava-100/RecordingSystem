@@ -14,7 +14,7 @@ namespace RecordingSystem.BLL.Models
         public DateTime? Date { get; set; }
         public int TimeTableId { get; set; }
         public bool? Occupied { get; set; }
-        public TimeTableDto TimeTable { get; set; }
+        public TimeTableOutputModel TimeTable { get; set; }
 
         public override bool Equals(object? obj)
         {

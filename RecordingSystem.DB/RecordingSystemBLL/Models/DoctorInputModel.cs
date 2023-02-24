@@ -18,8 +18,6 @@ namespace RecordingSystem.BLL.Models
         public int? SpecializationId { get; set; }
         public int? CabinetId { get; set; }
         public DateTime? Birthday { get; set; }
-        public SpecializationDto Specialization { get; set; }
-        public CabinetDto Cabinet { get; set; }
 
         public override bool Equals(object? obj)
         {
@@ -32,9 +30,7 @@ namespace RecordingSystem.BLL.Models
                    Email == model.Email &&
                    SpecializationId == model.SpecializationId &&
                    CabinetId == model.CabinetId &&
-                   Birthday == model.Birthday &&
-                   Specialization.Equals(model.Specialization) &&
-                   Cabinet.Equals(model.Cabinet);
+                   Birthday == model.Birthday;
         }
     }
 }

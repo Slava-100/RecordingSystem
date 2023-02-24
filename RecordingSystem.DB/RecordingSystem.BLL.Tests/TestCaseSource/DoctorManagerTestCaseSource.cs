@@ -49,12 +49,12 @@ namespace RecordingSystem.BLL.Tests.TestCaseSource
                     LastName = "Strelnikov",
                     Male = true,
                     Birthday = new DateTime(2001, 05, 20),
-                    Specialization = new SpecializationDto()
+                    Specialization = new SpecializationOutputModel()
                     {
                         Id = 1,
                         Name = "doctor"
                     },
-                    Cabinet = new CabinetDto()
+                    Cabinet = new CabinetOutputModel()
                     {
                         Id = 1,
                         Number = 101,
@@ -102,12 +102,12 @@ namespace RecordingSystem.BLL.Tests.TestCaseSource
                     LastName = "Strelnikov",
                     Male = true,
                     Birthday = new DateTime(2001, 05, 20),
-                    Specialization = new SpecializationDto()
+                    Specialization = new SpecializationOutputModel()
                     {
                         Id = 3,
                         Name = "doctor"
                     },
-                    Cabinet = new CabinetDto()
+                    Cabinet = new CabinetOutputModel()
                     {
                         Id = 1,
                         Number = 101,
@@ -165,20 +165,20 @@ namespace RecordingSystem.BLL.Tests.TestCaseSource
                     LastName = "Strelnikov",
                     Male = true,
                     Birthday = new DateTime(2001, 05, 20),
-                    Specialization = new SpecializationDto()
+                    Specialization = new SpecializationOutputModel()
                     {
                         Id = 3,
                         Name = "doctor"
                     },
-                    Cabinet = new CabinetDto()
+                    Cabinet = new CabinetOutputModel()
                     {
                         Id = 1,
                         Number = 101,
                         Status = null
                     },
-                    Services=new List<ServiceDto>
+                    Services=new List<ServiceOutputModel>
                     {
-                        new ServiceDto()
+                        new ServiceOutputModel()
                         {
                             Id = 2,
                             Name = "massage"
@@ -253,34 +253,34 @@ namespace RecordingSystem.BLL.Tests.TestCaseSource
                     LastName = "Strelnikov",
                     Male = true,
                     Birthday = new DateTime(2001, 05, 20),
-                    Specialization = new SpecializationDto()
+                    Specialization = new SpecializationOutputModel()
                     {
                         Id = 3,
                         Name = "doctor"
                     },
-                    Cabinet = new CabinetDto()
+                    Cabinet = new CabinetOutputModel()
                     {
                         Id = 1,
                         Number = 101,
                         Status = null
                     },
-                    Services=new List<ServiceDto>
+                    Services=new List<ServiceOutputModel>
                     {
-                        new ServiceDto()
+                        new ServiceOutputModel()
                         {
                             Id = 2,
                             Name = "massage"
                         }
                     },
-                    TimeRecording = new List<TimeRecordingDto>
+                    TimeRecording = new List<TimeRecordingOutputModel>
                     {
-                        new TimeRecordingDto()
+                        new TimeRecordingOutputModel()
                         {   Id = 1,
                             Date= new DateTime(2023,02,21),
-                            TimeTable = new TimeTableDto
+                            TimeTable = new TimeTableOutputModel
                             {
                                 Id=1,
-                                DayOfWeek = new DayOfWeekDto()
+                                DayOfWeek = new DayOfWeekOutputModel()
                                 {
                                     Id = 2,
                                     Name = "Monday"
@@ -307,14 +307,6 @@ namespace RecordingSystem.BLL.Tests.TestCaseSource
                 LastName = "Strelnikov",
                 Male = true,
                 Birthday = new DateTime(2001, 05, 20),
-                Specialization = new SpecializationDto
-                {
-                    Id = 123
-                },
-                Cabinet = new CabinetDto
-                {
-                    Id =77
-                }
             };
             DoctorInputModel expected = new DoctorInputModel()
             {
@@ -323,14 +315,6 @@ namespace RecordingSystem.BLL.Tests.TestCaseSource
                 LastName = "Strelnikov",
                 Male = true,
                 Birthday = new DateTime(2001, 05, 20),
-                Specialization = new SpecializationDto
-                {
-                    Id = 123
-                },
-                Cabinet = new CabinetDto
-                {
-                    Id = 77
-                }
             };
 
             yield return new Object[] { inputDoctor, expected };
@@ -346,14 +330,6 @@ namespace RecordingSystem.BLL.Tests.TestCaseSource
                 LastName = "Strelnikov",
                 Male = true,
                 Birthday = new DateTime(2001, 05, 20),
-                Specialization = new SpecializationDto
-                {
-                    Id = 123
-                },
-                Cabinet = new CabinetDto
-                {
-                    Id =77
-                }
             };
             DoctorInputModel expected = new DoctorInputModel()
             {
@@ -362,14 +338,6 @@ namespace RecordingSystem.BLL.Tests.TestCaseSource
                 LastName = "Strelnikov",
                 Male = true,
                 Birthday = new DateTime(2001, 05, 20),
-                Specialization = new SpecializationDto
-                {
-                    Id = 123
-                },
-                Cabinet = new CabinetDto
-                {
-                    Id = 77
-                }
             };
 
             yield return new Object[] { inputDoctor, expected };

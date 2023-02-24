@@ -41,7 +41,7 @@ namespace RecordingSystem.BLL.Tests.TestCaseSource
                     SpecializationId = 1,
                     IsDeleted = false,
                     Male = false,
-                    Specialization = new SpecializationDto()
+                    Specialization = new SpecializationOutputModel()
                     {
                         Id = 1,
                         Name = "massage therapist"

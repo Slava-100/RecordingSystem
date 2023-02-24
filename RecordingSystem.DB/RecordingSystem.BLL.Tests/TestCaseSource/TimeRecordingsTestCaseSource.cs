@@ -62,26 +62,26 @@ namespace RecordingSystem.BLL.Tests.TestCaseSource
                     Date = new DateTime(2001, 01, 01),
                     TimeTableId = 1,
                     Occupied = false,
-                    TimeTable = new TimeTableDto()
+                    TimeTable = new TimeTableOutputModel()
                     {
                         Id = 1,
-                        Doctor = new DoctorDto()
+                        Doctor = new DoctorOutputModel()
                         {
                             Id = 1,
-                            Specialization= new SpecializationDto()
+                            Specialization= new SpecializationOutputModel()
                             {
                                 Id = 1,
                             },
-                            Cabinet = new CabinetDto()
+                            Cabinet = new CabinetOutputModel()
                             {
                                 Id = 1,
                             }
                         },
-                        DayOfWeek = new DayOfWeekDto()
+                        DayOfWeek = new DayOfWeekOutputModel()
                         {
                             Id = 1
                         },
-                        TimeSpan = new TimeSpanDto()
+                        TimeSpan = new TimeSpanOutputModel()
                         {
                             Id = 1
                         }

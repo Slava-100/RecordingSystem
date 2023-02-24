@@ -48,7 +48,7 @@ namespace RecordingSystem.BLL.Tests.TestCaseSource
                     Email = "@",
                     StatusId = 1,
                     Male = true,
-                    Status = new StatusDto()
+                    Status = new StatusOutputModel()
                     {
                         Id = 1,
                         Name = "Invalid",
@@ -90,7 +90,7 @@ namespace RecordingSystem.BLL.Tests.TestCaseSource
                     Birthday = new DateTime(2001, 01, 01),
                     StatusId = 1,
                     Male = true,
-                    Status = new StatusDto()
+                    Status = new StatusOutputModel()
                     {
                         Id = 1,
                         Name = "Invalid",

@@ -33,6 +33,9 @@ namespace RecordingSystem.BLL
                 cfg.CreateMap<TimeRecordingInputModel, TimeRecordingDto>();
                 cfg.CreateMap<UpdateTimeRecordingInputModel, TimeRecordingDto>();
                 cfg.CreateMap<TimeTableDto, TimeTableOutputModel>();
+                cfg.CreateMap<DayOfWeekDto, DayOfWeekOutputModel>();
+                cfg.CreateMap<StatusDto, StatusOutputModel>();
+                cfg.CreateMap<TimeSpanDto, TimeSpanOutputModel>();
                 });
         }
 

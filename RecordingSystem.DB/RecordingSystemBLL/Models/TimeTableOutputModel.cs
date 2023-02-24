@@ -10,9 +10,9 @@ namespace RecordingSystem.BLL.Models
     public class TimeTableOutputModel
     {
         public int Id { get; set; }
-        public DoctorDto Doctor { get; set; }
-        public DayOfWeekDto DayOfWeek { get; set; }
-        public TimeSpanDto TimeSpan { get; set; }
+        public DoctorOutputModel Doctor { get; set; }
+        public DayOfWeekOutputModel DayOfWeek { get; set; }
+        public TimeSpanOutputModel TimeSpan { get; set; }
 
         public override bool Equals(object? obj)
         {

@@ -9,9 +9,9 @@ namespace RecordingSystem.BLL.Models
         public int? DoctorId { get; set; }
         public DateTime? DateTime { get; set; }
         public bool? Coming { get; set; }
-        public PatientDto Patient { get; set; }
-        public DoctorDto Doctor { get; set; }
-        public CabinetDto Cabinet { get; set; }
+        public PatientOutputModel Patient { get; set; }
+        public DoctorOutputModel Doctor { get; set; }
+        public CabinetOutputModel Cabinet { get; set; }
 
         public override bool Equals(object? obj)
         {

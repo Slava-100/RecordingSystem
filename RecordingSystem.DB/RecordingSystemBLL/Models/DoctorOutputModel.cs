@@ -11,17 +11,17 @@ namespace RecordingSystem.BLL.Models
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public DateTime? Birthday { get; set; }
-        public SpecializationDto Specialization { get; set; }
-        public CabinetDto Cabinet { get; set; }
-        public List<ServiceDto> Services { get; set; } = new List<ServiceDto>();
-        public List<TimeRecordingDto> TimeRecording { get; set; } = new List<TimeRecordingDto>();
+        public SpecializationOutputModel Specialization { get; set; }
+        public CabinetOutputModel Cabinet { get; set; }
+        public List<ServiceOutputModel> Services { get; set; } = new List<ServiceOutputModel>();
+        public List<TimeRecordingOutputModel> TimeRecording { get; set; } = new List<TimeRecordingOutputModel>();
 
         public override bool Equals(object? obj)
         {
 
-            if (obj is DoctorDto)
+            if (obj is DoctorOutputModel)
             {
-                List<ServiceDto> sd = ((DoctorDto)obj).Services;
+                List<ServiceOutputModel> sd = ((DoctorOutputModel)obj).Services;
                 if (sd.Count != Services.Count)
                 {
                     return false;
@@ -34,7 +34,7 @@ namespace RecordingSystem.BLL.Models
                     }
                 }
 
-                List<TimeRecordingDto> tr = ((DoctorDto)obj).TimeRecording;
+                List<TimeRecordingOutputModel> tr = ((DoctorOutputModel)obj).TimeRecording;
                 if (tr.Count != TimeRecording.Count)
                 {
                     return false;

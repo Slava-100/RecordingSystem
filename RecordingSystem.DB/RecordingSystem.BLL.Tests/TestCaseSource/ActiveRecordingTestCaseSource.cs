@@ -59,27 +59,27 @@ namespace RecordingSystem.BLL.Tests.TestCaseSource
                     DoctorId = 1,
                     DateTime = new DateTime(2001, 01, 01),
                     Coming = null,
-                    Patient = new PatientDto()
+                    Patient = new PatientOutputModel()
                     {
                         Id = 1,
-                        Status = new StatusDto()
+                        Status = new StatusOutputModel()
                         {
                             Id = 1
                         }
                     },
-                    Doctor = new DoctorDto()
+                    Doctor = new DoctorOutputModel()
                     {
                         Id = 1,
-                        Specialization= new SpecializationDto()
+                        Specialization= new SpecializationOutputModel()
                         {
                             Id = 1
                         },
-                        Cabinet = new CabinetDto()
+                        Cabinet = new CabinetOutputModel()
                         {
                             Id = 1
                         }
                     },
-                    Cabinet = new CabinetDto()
+                    Cabinet = new CabinetOutputModel()
                     {
                         Id = 1
                     }

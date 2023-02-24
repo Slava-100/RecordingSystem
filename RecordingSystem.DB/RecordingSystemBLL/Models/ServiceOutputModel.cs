@@ -10,7 +10,7 @@ namespace RecordingSystem.BLL.Models
         public int? SpecializationId { get; set; }
         public bool? IsDeleted { get; set; }
         public bool? Male { get; set; }
-        public SpecializationDto Specialization { get; set; }
+        public SpecializationOutputModel Specialization { get; set; }
 
         public override bool Equals(object? obj)
         {
