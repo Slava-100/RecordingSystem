@@ -10,6 +10,8 @@ namespace RecordingSystem.BLL
         private DateTime dateTimeNow = DateTime.Now;
         private Mapperrr _mapperrr = new Mapperrr();
         public ITimeRecordingRepository TimeRecordingRepository { get; set; }
+        public IDoctorRepository DoctorRepository { get; set; } 
+        public ITimeTableRepository TimeTableRepository { get; set; }   
 
         public TimeRecordingManager()
         {
@@ -35,9 +37,34 @@ namespace RecordingSystem.BLL
             TimeRecordingRepository.UpdateTimeRecordingById(timeRecordingDto);
         }
 
-        public void FillAllTimeRecordingInForAWeek()
+        public void FillAllTimeRecordingInForAOneDay(DateTime date)
         {
-            //TimeRecordingRepository.
+            var listDoctors = DoctorRepository.GetAllDoctors();
+
+            for (int i = 0; i < listDoctors.Count(); i++)
+            {
+                if (TimeRecordingRepository.GetAllTimeRecordingsByDoctorId(listDoctors[i].Id).Count == 0)
+                {
+                    var crntListTimeTabelByDoctor = TimeTableRepository.GetTimeTableByDoctorId(i);
+                    if (crntListTimeTabelByDoctor.Count() != 0)
+                    {
+                        foreach (var timeTable in crntListTimeTabelByDoctor)
+                        {
+                            if (date.DayOfWeek == timeTable.DayOfWeek.Name.DayOfWeek)
+                            {
+                                TimeRecordingDto crntTimeRecording = new TimeRecordingDto()
+                                {
+                                    Date = date,
+                                    TimeTableId = timeTable.Id,
+                                    Occupied = false
+                                };
+
+                                TimeRecordingRepository.AddTimeRecording(crntTimeRecording);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

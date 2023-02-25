@@ -23,5 +23,17 @@ namespace RecordingSystem.DAL.Repositories
                     commandType: CommandType.StoredProcedure).ToList();
             }
         }
+
+        public void AddDayOfWeek(DayOfWeekDto dayOfWeek)
+        {
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
+            {
+                sqlConnection.Open();
+
+                sqlConnection.Execute(StoredNamesProcedures.AddDayOfWeek,
+                    new { dayOfWeek.Name },
+                    commandType: CommandType.StoredProcedure);
+            }
+        }
     }
 }

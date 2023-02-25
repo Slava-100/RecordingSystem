@@ -47,6 +47,7 @@ namespace RecordingSystem.DAL.Options
         public const string GetRecordingHistoryByPatientId = "GetRecordingHistoryByPatientId"; 
         public const string AddTimeTable = "AddTimeTable"; 
         public const string GetAllTimeSpan = "GetAllTimeSpan"; 
-        public const string GetAllDayOfWeek = "GetAllDayOfWeek";
+        public const string GetAllDayOfWeek = "GetAllDayOfWeek"; 
+        public const string AddDayOfWeek = "AddDayOfWeek";
     }
 }
