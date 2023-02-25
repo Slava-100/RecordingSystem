@@ -21,5 +21,14 @@ namespace RecordingSystem.DAL.Repositories
             }
         }
 
+        public List<TimeSpanDto> GetAllTimeSpan()
+        {
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
+            {
+                sqlConnection.Open();
+                return sqlConnection.Query<TimeSpanDto>(StoredNamesProcedures.GetAllTimeSpan,
+                    commandType: CommandType.StoredProcedure).ToList();
+            }
+        }
     }
 }

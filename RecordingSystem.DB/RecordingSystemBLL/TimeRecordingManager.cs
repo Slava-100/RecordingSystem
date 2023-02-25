@@ -7,7 +7,7 @@ namespace RecordingSystem.BLL
 {
     public class TimeRecordingManager
     {
-
+        private DateTime dateTimeNow = DateTime.Now;
         private Mapperrr _mapperrr = new Mapperrr();
         public ITimeRecordingRepository TimeRecordingRepository { get; set; }
 
@@ -33,6 +33,11 @@ namespace RecordingSystem.BLL
         {
             var timeRecordingDto = _mapperrr.MapUpdateTimeRecordingInputModelToTimeRecordingDto(timeRecording);
             TimeRecordingRepository.UpdateTimeRecordingById(timeRecordingDto);
+        }
+
+        public void FillAllTimeRecordingInForAWeek()
+        {
+            //TimeRecordingRepository.
         }
     }
 }

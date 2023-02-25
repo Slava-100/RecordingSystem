@@ -10,6 +10,9 @@ namespace RecordingSystem.DAL.Models
     public class TimeTableDto
     {
         public int Id { get; set; }
+        public int? DoctorId { get; set; }
+        public int? DayOfWeekId { get; set; }    
+        public int? TimeSpanId { get; set; }
         public DoctorDto Doctor { get; set; } 
         public DayOfWeekDto DayOfWeek { get; set; }
         public TimeSpanDto TimeSpan { get; set; }
