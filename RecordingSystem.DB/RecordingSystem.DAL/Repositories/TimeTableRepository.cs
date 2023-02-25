@@ -22,10 +22,28 @@ namespace RecordingSystem.DAL.Repositories
                         if (result.Count == 0 || !result.Any(tt => tt.DayOfWeek.Id == dayOfWeek.Id && tt.TimeSpan.Id == timeSpan.Id && tt.Doctor.Id == doctor.Id))
                         {
                             timeTable.Doctor = doctor;
+
+                            if (timeTable.Doctor is not null)
+                            {
+                                timeTable.DoctorId = timeTable.Doctor.Id;
+                            }
+
                             doctor.Specialization = specialization;
                             doctor.Cabinet = cabinet;
                             timeTable.DayOfWeek = dayOfWeek;
+
+                            if (timeTable.DayOfWeek is not null)
+                            {
+                                timeTable.DayOfWeekId = timeTable.DayOfWeek.Id;
+                            }
+
                             timeTable.TimeSpan = timeSpan;
+
+                            if (timeTable.TimeSpan is not null)
+                            {
+                                timeTable.TimeSpanId = timeTable.TimeSpan.Id;
+                            }
+                            
                             result.Add(timeTable);
                         }
 
@@ -36,6 +54,18 @@ namespace RecordingSystem.DAL.Repositories
                     commandType: CommandType.StoredProcedure).ToList();
                 
                 return result;
+            }
+        }
+
+        public void AddTimeTable(TimeTableDto timeTableDto)
+        {
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
+            {
+                sqlConnection.Open();
+
+                sqlConnection.Execute(StoredNamesProcedures.AddTimeTable,
+                    new { timeTableDto.DoctorId, timeTableDto.DayOfWeekId, timeTableDto.TimeSpanId },
+                    commandType: CommandType.StoredProcedure);
             }
         }
     }

@@ -114,5 +114,9 @@
     <Build Include="dbo\Stored Procedures\AddTimeRecording.sql" />
     <Build Include="dbo\Stored Procedures\UpdateTimeRecordingById.sql" />
     <Build Include="dbo\Stored Procedures\GetAllServiceBySpecializationId.sql" />
+    <Build Include="dbo\Stored Procedures\AddTimeTable.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllTimeSpan.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllDayOfWeek.sql" />
+    <Build Include="dbo\Stored Procedures\AddDayOfWeek.sql" />
   </ItemGroup>
 </Project>

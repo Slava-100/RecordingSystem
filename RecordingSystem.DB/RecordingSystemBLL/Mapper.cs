@@ -36,6 +36,7 @@ namespace RecordingSystem.BLL
                 cfg.CreateMap<DayOfWeekDto, DayOfWeekOutputModel>();
                 cfg.CreateMap<StatusDto, StatusOutputModel>();
                 cfg.CreateMap<TimeSpanDto, TimeSpanOutputModel>();
+                cfg.CreateMap<TimeTableInputModel, TimeTableDto>();
                 });
         }
 
@@ -142,6 +143,11 @@ namespace RecordingSystem.BLL
         public List<TimeTableOutputModel> MapListTimeTableDtoToListTimeTableOutputModel(List<TimeTableDto> timeTables)
         {
             return _configuration.CreateMapper().Map<List<TimeTableOutputModel>>(timeTables);
+        }
+
+        public TimeTableDto MapTimeTableInputModelToTimeTableDto(TimeTableInputModel timeTable)
+        {
+            return _configuration.CreateMapper().Map<TimeTableDto>(timeTable);
         }
     }
 }
