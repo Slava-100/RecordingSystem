@@ -234,8 +234,8 @@ namespace RecordingSystem.BLL.Tests.TestCaseSource
                                 DayOfWeek = new DayOfWeekDto() 
                                 {
                                     Id = 2,
-                                    Name = "Monday"
-                                }
+                                    Name = new DateTime(2001, 01, 01)
+        }
                             },
                             Occupied = false
                         }
@@ -283,7 +283,7 @@ namespace RecordingSystem.BLL.Tests.TestCaseSource
                                 DayOfWeek = new DayOfWeekOutputModel()
                                 {
                                     Id = 2,
-                                    Name = "Monday"
+                                    Name = new DateTime(2001, 01, 01)
                                 }
                             },
                             Occupied = false
