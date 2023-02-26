@@ -7,5 +7,6 @@ namespace RecordingSystem.DAL.Interfaces
         public void AddTimeRecording(TimeRecordingDto timeRecording);
         public List<TimeRecordingDto> GetAllTimeRecordingsByDoctorId(int id);
         public void UpdateTimeRecordingById(TimeRecordingDto timeRecordingById);
+        public List<TimeRecordingDto> GetAllDaysInTimeRecording();
     }
 }

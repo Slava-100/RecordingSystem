@@ -39,13 +39,17 @@ namespace RecordingSystem.BLL
 
         public void FillAllTimeRecordingInForAOneDay(DateTime date)
         {
-            var listDoctors = DoctorRepository.GetAllDoctors();
+            DoctorRepository = new DoctorRepository();
+            TimeTableRepository = new TimeTableRepository();
 
-            for (int i = 0; i < listDoctors.Count(); i++)
+            var listDoctors = DoctorRepository.GetAllDoctors();
+            var listDays = TimeRecordingRepository.GetAllDaysInTimeRecording();
+
+            foreach (var d in listDoctors)
             {
-                if (TimeRecordingRepository.GetAllTimeRecordingsByDoctorId(listDoctors[i].Id).Count == 0)
+                if (TimeRecordingRepository.GetAllTimeRecordingsByDoctorId(d.Id).Count == 0 || !listDays.Any(d => d.Date == date))
                 {
-                    var crntListTimeTabelByDoctor = TimeTableRepository.GetTimeTableByDoctorId(i);
+                    var crntListTimeTabelByDoctor = TimeTableRepository.GetTimeTableByDoctorId(d.Id);
                     if (crntListTimeTabelByDoctor.Count() != 0)
                     {
                         foreach (var timeTable in crntListTimeTabelByDoctor)

@@ -45,9 +45,9 @@ namespace RecordingSystem.BLL
 
             var listDoctors = DoctorRepository.GetAllDoctors();
 
-            for (int i = 0; i < listDoctors.Count(); i++)
+            foreach (var d in listDoctors)
             {
-                if (TimeTableRepository.GetTimeTableByDoctorId(listDoctors[i].Id).Count() == 0)
+                if (TimeTableRepository.GetTimeTableByDoctorId(d.Id).Count() == 0)
                 {
                     foreach(var day in DayOfWeekRepository.GetAllDayOfWeek())
                     {
@@ -55,7 +55,7 @@ namespace RecordingSystem.BLL
                         {
                             TimeTableDto timeTableDto = new TimeTableDto()
                             {
-                                DoctorId = listDoctors[i].Id,
+                                DoctorId = d.Id,
                                 DayOfWeekId = day.Id,
                                 TimeSpanId = span.Id
                             };
