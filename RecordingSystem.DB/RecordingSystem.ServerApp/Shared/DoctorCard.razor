@@ -1,0 +1,24 @@
+﻿<div class="doctor-card">
+    @if (doctor.Male == true)
+    {
+      <div class="doctor-pic">
+      <img class="photo-doctor" src="/css/Images/Male/{True}.png" alt="photo" />
+      </div>
+    }
+    else
+    {
+      <div class="doctor-pic">
+      <img  class="photo-doctor" src="/css/Images/Male/{False}.png" alt="photo" />
+      </div>
+    }
+    <h2>@doctor.Name  @doctor.LastName</h2>
+    <div class="btn-zapis">
+        <a href="">
+            Записаться на прием
+        </a>
+    </div>
+</div>
+
+@code {
+    [Parameter] public DoctorOutputModel doctor { get; set; }
+}

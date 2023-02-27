@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecordingSystem.BLL", "Reco
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecordingSystem.BLL.Tests", "RecordingSystem.BLL.Tests\RecordingSystem.BLL.Tests.csproj", "{0713F1F9-3EF0-451D-AAAC-24A5E0E7923F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecordingSystem.ServerApp", "RecordingSystem.ServerApp\RecordingSystem.ServerApp.csproj", "{9E895652-3751-4463-B056-29734C466B85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecordingSystem.ServerApp", "RecordingSystem.ServerApp\RecordingSystem.ServerApp.csproj", "{9E895652-3751-4463-B056-29734C466B85}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

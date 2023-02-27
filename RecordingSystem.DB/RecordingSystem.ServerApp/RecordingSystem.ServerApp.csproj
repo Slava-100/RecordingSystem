@@ -10,4 +10,8 @@
     <ProjectReference Include="..\RecordingSystemBLL\RecordingSystem.BLL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\css\Images\Male\" />
+  </ItemGroup>
+
 </Project>
