@@ -7,5 +7,6 @@ namespace RecordingSystem.DAL.Interfaces
     {
         public List<SpecializationDto> GetAllSpecializations();
         public void AddSpecialization(SpecializationDto specializationDto);
+        public SpecializationDto GetSpecializationById(int id);
     }
 }

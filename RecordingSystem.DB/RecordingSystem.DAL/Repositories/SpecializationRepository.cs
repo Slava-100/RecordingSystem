@@ -19,6 +19,17 @@ namespace RecordingSystem.DAL.Repositories
             }
         }
 
+        public SpecializationDto GetSpecializationById(int id)
+        {
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
+            {
+                sqlConnection.Open();
+                return sqlConnection.QuerySingle<SpecializationDto>(StoredNamesProcedures.GetSpecializationById,
+                    new { Id = id},
+                    commandType: CommandType.StoredProcedure);
+            }
+        }
+
         public void AddSpecialization(SpecializationDto specializationDto)
         {
             using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))

@@ -49,6 +49,7 @@ namespace RecordingSystem.DAL.Options
         public const string GetAllTimeSpan = "GetAllTimeSpan"; 
         public const string GetAllDayOfWeek = "GetAllDayOfWeek"; 
         public const string AddDayOfWeek = "AddDayOfWeek"; 
-        public const string GetAllTimeRecording = "GetAllTimeRecording";
+        public const string GetAllTimeRecording = "GetAllTimeRecording"; 
+        public const string GetSpecializationById = "GetSpecializationById";
     }
 }

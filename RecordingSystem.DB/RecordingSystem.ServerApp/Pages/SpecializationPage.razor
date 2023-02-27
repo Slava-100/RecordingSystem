@@ -1,0 +1,27 @@
+﻿@page "/specialization/{Id:int}"
+
+<div>
+    <span>Название:</span><input type="text" @bind="_specialization.Name" /> <br /><br />
+    <div class="Specializations-pozicion">
+        @foreach (var i in _services)
+        {
+                <ServiceCard Service = "i"/>
+        }
+    </div>
+
+</div>
+
+
+
+@code {
+    [Parameter] public int Id { get; set; }
+
+    private SpecializationOutputModel _specialization;
+    private List<ServiceOutputModel> _services;
+
+    protected override void OnInitialized()
+    {
+        _specialization = new SpecializationManager().GetSpecializationById(Id);
+        _services = new ServiceManager().GetAllServiceBySpecializationId(_specialization.Id);
+    }
+}
