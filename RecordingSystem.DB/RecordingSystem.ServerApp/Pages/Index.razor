@@ -1,16 +1,22 @@
 ﻿@page "/"
 
 <div class = "container">
-    <p>
+    <div class="p-specialization">
         Клиника Стрельниковых АО «Медицина» –
         многопрофильный медицинский центр
-    </p> <br/>
+    </div> <br/>
     <div class="Specializations-pozicion">
         @foreach (var i in _specializations)
         {
             <SpecializationCard Specialization = "i"/>
         }
+        <NavLink href="/add-specialization">
+            <div class="card">  
+                <div class="plus"> + </div>
+            </div>
+        </NavLink>
     </div>
+       
 </div>
 
 @code {

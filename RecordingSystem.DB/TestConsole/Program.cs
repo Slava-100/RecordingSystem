@@ -215,9 +215,12 @@ using RecordingSystem.BLL.Models;
 
 //p.UpdateTimeRecordingById(t);
 
-var p = new TimeTableManager();
+//var p = new TimeTableManager();
 
-var ppp = p.GetTimeTableByDoctorId(11);
+//var ppp = p.GetTimeTableByDoctorId(11);
+
+var p = new SpecializationManager();
+var ppp = p.GetSpecializationById(1);
 
 Console.WriteLine("qwe");
 
