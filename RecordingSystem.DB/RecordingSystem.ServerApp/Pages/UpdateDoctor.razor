@@ -1,0 +1,43 @@
+﻿@page "/update-doctor/{Id:int}"
+
+<h3>UpdateDoctor</h3>
+
+<div>
+    <span>@Doctor.Name Имя:</span><input type="text" @bind="Doctor.Name"/> <br />
+    <span>@Doctor.LastName Фамилия:</span><input type="text" @bind="Doctor.LastName"/> <br />
+    <span>@Doctor.PhoneNumber Телефон:</span><input type="number" @bind="Doctor.PhoneNumber"/> <br />
+    <span>@Doctor.Email Почта:</span><input type="text" @bind="Doctor.Email"/> <br />
+    <span>@Doctor.Male Мужчина:</span><input type="checkbox" @bind="Doctor.Male"/> <br />
+    <span>@Doctor.Birthday Мужчина:</span><input type="date" @bind="Doctor.Birthday"/> <br />
+	<button @onclick="EditDoctor">Сохранить изменения</button> <br />
+	<NavLink href="/Doctors"><div class="back">Назад</div></NavLink>
+</div>
+
+@code {
+	[Parameter] public int Id { get; set; }
+
+	public DoctorOutputModel Doctor;
+
+	protected override void OnInitialized()
+	{
+		var doctors = new DoctorManager().GetAllDoctors();
+		Doctor = doctors[0];
+	}
+
+	private void EditDoctor()
+	{
+		var doc = new DoctorInputModel()
+			{
+				Id = Doctor.Id,
+				Name = Doctor.Name,
+				LastName = Doctor.LastName,
+				Male = Doctor.Male,
+				PhoneNumber = Doctor.PhoneNumber,
+				Email = Doctor.Email,
+				SpecializationId = Doctor.Specialization.Id,
+				CabinetId = Doctor.Cabinet.Id,
+				Birthday = Doctor.Birthday
+			};
+		new DoctorManager().UpdateDoctor(doc);
+	}
+}
