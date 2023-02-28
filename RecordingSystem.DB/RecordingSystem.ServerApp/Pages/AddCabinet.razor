@@ -1,0 +1,25 @@
+﻿@page "/add-cabinet"
+
+<h3>AddCabinet</h3>
+
+<div>
+    <span>Number:</span><input type="number" @bind="Cabinet.Number"></input><br />
+    <span>Status:</span><input type="checkbox" @bind="Cabinet.Status"></input><br />
+    <button type="button" class="btn btn-primary" @onclick="AddCabinetFront">Add</button>
+</div>
+
+@code {
+    public CabinetInputModel Cabinet;
+
+    protected override void OnInitialized()
+    {
+        Cabinet = new CabinetInputModel();
+    }
+
+    private void AddCabinetFront()
+    {
+            var acf = new CabinetManager();
+            acf.AddCabinet(Cabinet);
+            Cabinet = new CabinetInputModel();
+    }
+}

@@ -1,0 +1,42 @@
+﻿@page "/cabinet/{Id:int}"
+
+<span>@_cabinet.Number :</span>
+<input type="number" @bind="_cabinet.Number"></input>
+<br />
+<span>@_cabinet.Status 2:</span>
+<input type="checkbox" @bind="_cabinet.Status"></input>
+<br />
+<button @onclick="UpdateCabinet" type="button" class="btn btn-primary">Update</button>
+
+<h3>@_cabinet.Id @_cabinet.Number @_cabinet.Status</h3>
+<h3><CabinetCard cabinet="_cabinet" /></h3>
+
+
+@code {
+    [Parameter] public int Id { get; set; }
+    private List<CabinetOutputModel> _cabinetsList;
+    private CabinetOutputModel _cabinet;
+
+    protected override void OnInitialized()
+    {
+        _cabinetsList = new CabinetManager().GetAllCabinets();
+        foreach (var i in _cabinetsList)
+        {
+            if(i.Id == Id)
+            {
+                _cabinet = i;
+            }
+        }
+
+    }
+    private void UpdateCabinet()
+    {
+        var up = new UpdateCabinetInputModel()
+            {
+                Id = _cabinet.Id,
+                Number = _cabinet.Number,
+                Status = _cabinet.Status
+        };
+        new CabinetManager().UpdateCabinetById(up);
+    }
+}

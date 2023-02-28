@@ -1,0 +1,29 @@
+﻿@page "/cabinets" 
+<h3>CabinetPage</h3>
+<NavLink href="/add-cabinet"><button type="button" class="btn btn-info">Add Cabinet</button></NavLink>
+
+@if (_cabinets.Count != 0)
+{
+        <div class="Cabinets-list">
+        @foreach (var i in _cabinets)
+        {
+            _tmpHref = "/cabinet/"+i.Id;
+            <NavLink href=@{_tmpHref} ><button type="button" class="btn btn-outline-secondary"><CabinetCard cabinet="i" /></button></NavLink>
+        }
+        </div>
+}
+else
+{
+        <h2>there are no offices or an error has occurred</h2>
+}
+
+@code {
+    private string _tmpHref { get; set; }
+    private List<CabinetOutputModel> _cabinets = new List<CabinetOutputModel>();
+
+    protected override void OnInitialized()
+    {
+        var cm = new CabinetManager();
+        _cabinets = cm.GetAllCabinets();
+    }
+}
