@@ -1,14 +1,13 @@
 ﻿@page "/specialization/{Id:int}"
 
-<div>
-    <span>Название:</span><input type="text" @bind="_specialization.Name" /> <br /><br />
-    <div class="Specializations-pozicion">
+<div class="specialization-page">
+    <ul class="specialization-page-menu">
+        <li>@_specialization.Name</li>
         @foreach (var i in _services)
         {
                 <ServiceCard Service = "i"/>
         }
-    </div>
-
+    </ul>
 </div>
 
 

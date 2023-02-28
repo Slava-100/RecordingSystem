@@ -131,7 +131,7 @@ body .button {
     }
 
 
-.card {
+.card-specialization {
     width: 350px;
     height: 185px;
     border: 2px solid black;
@@ -203,4 +203,52 @@ body .button {
     margin-top: 17%;
     position: absolute;
     font-size: 40px;
+}
+
+.specialization-page-menu {
+    list-style: none;
+    padding: 0;
+    border: 1px solid rgba(0,0,0, .2);
+}
+
+.specialization-page-menu li {
+    overflow: hidden;
+    padding: 6px 10px;
+    font-size: 20px;
+}
+
+.specialization-page-menu li:first-child {
+    font-weight: bold;
+    padding: 15px 0 10px 15px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(0,0,0, .2);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    color: #679bb7;
+    font-size: 24px;
+    box-shadow: 0 10px 20px -5px rgba(0,0,0, .2);
+}
+
+.specialization-page-menu li:first-child:before {
+    content: "\2749";
+    margin-right: 10px;
+}
+
+.specialization-page-menu span {
+    float: left;
+    width: 75%;
+    color: #7C7D7F;
+}
+
+.specialization-page-menu em {
+    float: right;
+    color: #9c836e;
+    font-weight: bold;
+}
+
+.specialization-page{
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
 }
