@@ -1,4 +1,7 @@
-﻿<li><span>"@Service.Name"</span><em>@Service.Price руб</em></li>
+﻿
+<a href="/service/@Service.Id">
+    <li><span>"@Service.Name"</span><em>@Service.Price руб</em></li>
+</a>
 
 @code {
     [Parameter] public ServiceOutputModel Service { get; set; }

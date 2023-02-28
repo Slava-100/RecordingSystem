@@ -120,5 +120,6 @@
     <Build Include="dbo\Stored Procedures\AddDayOfWeek.sql" />
     <Build Include="dbo\Stored Procedures\GetAllTimeRecording.sql" />
     <Build Include="dbo\Stored Procedures\GetSpecializationById.sql" />
+    <Build Include="dbo\Stored Procedures\GetServiceById.sql" />
   </ItemGroup>
 </Project>

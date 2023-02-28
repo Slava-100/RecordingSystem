@@ -114,5 +114,16 @@ namespace RecordingSystem.DAL.Repositories
                       commandType: CommandType.StoredProcedure).ToList();
             }
         }
+
+        public ServiceDto GetServiceById(int id)
+        {
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
+            {
+                sqlConnection.Open();
+                return sqlConnection.QuerySingle<ServiceDto>(StoredNamesProcedures.GetServiceById,
+                    new { Id = id },
+                    commandType: CommandType.StoredProcedure);
+            }
+        }
     }
 }
