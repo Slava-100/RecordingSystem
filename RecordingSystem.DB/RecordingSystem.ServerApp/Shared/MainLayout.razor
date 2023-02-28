@@ -1,28 +1,20 @@
-﻿@inherits LayoutComponentBase
+@inherits LayoutComponentBase
 
 <PageTitle>RecordingSystem.ServerApp</PageTitle>
 
   <header>
     <h1>Polyclinic </h1>
-        @*<h2><img width="100" src="./22kkHICGwDo.jpg" alt="Label"></h2>*@
+        <h2><img width="100" src="/css/Images/hospital.svg" alt="Label"></h2>
   </header>
   <nav>
-    <ul>
-      <li>
-        <a class="button" href="./about.html">About</a>
-      </li>
-      <li>
-        <a class="button" href="./services.html">Services</a>
-      </li>
-      <li>
-        <a class="button" href="./doctors">Doctors</a>
-      </li>
-      <li>
-        <a class="button" href="./contacts.html">Contacts</a>
-      </li>
-      <li>
-        <a class="button" href="">Recording</a>
-      </li>
+        <ul>
+            <NavLink href="/"><button type="button" class="btn btn-light">Home</button></NavLink>
+            <NavLink href="/about"><button type="button" class="btn btn-info">About</button></NavLink>
+        <NavLink href="/services"><button type="button" class="btn btn-info">Services</button></NavLink>
+        <NavLink href="/doctors"><button type="button" class="btn btn-info">Doctors</button></NavLink>
+        <NavLink href="/contacts"><button type="button" class="btn btn-info">Contacts</button></NavLink>
+            <NavLink href="/recording"><button type="button" class="btn btn-info">Recording</button></NavLink>
+            <NavLink href="/cabinets"><button type="button" class="btn btn-info">Cabinets</button></NavLink>
     </ul>
   </nav>
   @Body

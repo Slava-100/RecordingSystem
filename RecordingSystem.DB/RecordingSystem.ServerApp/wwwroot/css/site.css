@@ -126,8 +126,8 @@ body .button {
         line-height: 50px;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         font-size: 10px;
-        /*font-weight: semibold;
-    */
+        font-weight: semibold;
+    
     }
 
 body .button {
@@ -138,6 +138,27 @@ body .button {
     body .button:hover {
         opacity: 1;
         box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.8), 6px 6px 10px rgba(0, 0, 0, 0.2);
+    }
+
+.Cabinet-card {
+    width: 350px;
+    border: 2px solid red;
+    margin: 10px;
+}
+
+.Cabinets-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+select {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+    select:focus {
+        outline: none;
     }
 
 

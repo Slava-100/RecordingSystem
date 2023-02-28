@@ -183,13 +183,13 @@ using RecordingSystem.BLL.Models;
 
 //Console.WriteLine("qwe");
 
-//var s = new ServiceManager();
-////var service = new ServiceOutputModel();
-////service.Id = 1009;
-////service.Name = "bestmassage";
-////service.Price = 2222;
-////s.UpdateService(service);
-//var service = s.GetAllServiceByMale(false);
+var s = new ServiceManager();
+//var service = new ServiceOutputModel();
+//service.Id = 1009;
+//service.Name = "bestmassage";
+//service.Price = 2222;
+//s.UpdateService(service);
+var service = s.GetAllServiceByMale(false);
 
 //SpecializationManager s = new SpecializationManager();
 //var ppp = s.GetAllSpecializations();
@@ -227,4 +227,4 @@ Console.WriteLine("qwe");
 //patient.LastName = "Dog";
 //p.UpdatePatient(patient);
 
-
+Console.WriteLine("qwe");

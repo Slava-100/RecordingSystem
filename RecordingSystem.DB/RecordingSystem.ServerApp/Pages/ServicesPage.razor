@@ -1,0 +1,38 @@
+﻿@page "/services"
+
+<h3>ServicesPage</h3>
+<NavLink href="/add-service"><button type="button" class="btn btn-info">Add Service</button></NavLink>
+
+<select name="gender" id="gender">
+    <option value="male">male</option>
+    <option value="female">female</option>
+    <option value="all">all</option>
+</select>
+
+@if (_services.Count != 0)
+{
+    <div class="Services-list">
+        @foreach (var i in _services)
+        {
+            _tmpHref = "/services/" + i.Id;
+            <NavLink href=@{
+        _tmpHref
+}><button type="button" class="btn btn-outline-secondary"><ServiceCard Service="i" /></button></NavLink>
+        }
+        </div>
+}
+else
+{
+            <h2>there are no offices or an error has occurred</h2>
+}
+
+@code {
+    private string _tmpHref { get; set; }
+    private List<ServiceOutputModel> _services = new List<ServiceOutputModel>();
+
+    protected override void OnInitialized()
+    {
+        var sm = new ServiceManager();
+        _services = sm.GetAllServiceByMale(true);
+    }
+}
