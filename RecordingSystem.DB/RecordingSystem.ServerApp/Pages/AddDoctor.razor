@@ -1,4 +1,4 @@
-﻿@page "/AddDoctor"
+﻿@page "/addDoctor"
 
 <h3>AddDoctor</h3>
 
@@ -9,7 +9,7 @@
     <span>@Doctor.Email Почта:</span><input type="text" @bind="Doctor.Email"/> <br />
     <span>@Doctor.Male Мужчина:</span><input type="checkbox" @bind="Doctor.Male"/> <br />
     <span>@Doctor.Birthday Мужчина:</span><input type="date" @bind="Doctor.Birthday"/> <br />
-    <button @onclick="AddNewDoctor" style="margin-left:200px">Добавить</button>
+    <button @onclick="AddNewDoctor">Добавить</button>
 </div>
 
 @code {
