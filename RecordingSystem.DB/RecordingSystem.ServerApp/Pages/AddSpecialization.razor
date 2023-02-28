@@ -1,0 +1,25 @@
+﻿@page "/add-specialization"
+
+<div>
+    <span>@_specialization.Name Название:</span><input type="text" @bind="_specialization.Name"/> 
+    <button @onclick="CreateSpecialization">Добавить!</button>
+</div>
+
+@code {
+    public SpecializationInputModel _specialization;
+
+    protected override void OnInitialized()
+    {
+        _specialization = new SpecializationInputModel();
+    }
+
+    private void CreateSpecialization()
+    {
+        if (_specialization.Name != "")
+        {
+            var pm = new SpecializationManager();
+            pm.AddSpecialization(_specialization);
+            _specialization = new SpecializationInputModel();
+        }
+    }
+}

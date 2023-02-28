@@ -10,9 +10,7 @@ namespace RecordingSystem.BLL
         private DateTime dateTimeNow = DateTime.Now;
         private Mapperrr _mapperrr = new Mapperrr();
         public ITimeRecordingRepository TimeRecordingRepository { get; set; }
-        public IDoctorRepository DoctorRepository { get; set; } 
-        public ITimeTableRepository TimeTableRepository { get; set; }   
-
+      
         public TimeRecordingManager()
         {
             TimeRecordingRepository = new TimeRecordingRepository();
@@ -39,13 +37,17 @@ namespace RecordingSystem.BLL
 
         public void FillAllTimeRecordingInForAOneDay(DateTime date)
         {
-            var listDoctors = DoctorRepository.GetAllDoctors();
+            IDoctorRepository DoctorRepository = new DoctorRepository();
+            ITimeTableRepository TimeTableRepository = new TimeTableRepository();
 
-            for (int i = 0; i < listDoctors.Count(); i++)
+            var listDoctors = DoctorRepository.GetAllDoctors();
+            var listDays = TimeRecordingRepository.GetAllDaysInTimeRecording();
+
+            foreach (var d in listDoctors)
             {
-                if (TimeRecordingRepository.GetAllTimeRecordingsByDoctorId(listDoctors[i].Id).Count == 0)
+                if (TimeRecordingRepository.GetAllTimeRecordingsByDoctorId(d.Id).Count == 0 || !listDays.Any(d => d.Date == date))
                 {
-                    var crntListTimeTabelByDoctor = TimeTableRepository.GetTimeTableByDoctorId(i);
+                    var crntListTimeTabelByDoctor = TimeTableRepository.GetTimeTableByDoctorId(d.Id);
                     if (crntListTimeTabelByDoctor.Count() != 0)
                     {
                         foreach (var timeTable in crntListTimeTabelByDoctor)

@@ -4,6 +4,8 @@ using RecordingSystem.DAL.Interfaces;
 using RecordingSystem.DAL.Models;
 using System.Data;
 using RecordingSystem.DAL.Options;
+using System.Collections.Generic;
+using System.Xml;
 
 namespace RecordingSystem.DAL.Repositories
 {
@@ -64,6 +66,12 @@ namespace RecordingSystem.DAL.Repositories
         private void AddTimeRecordingInList(TimeRecordingDto timeRecording, TimeTableDto timeTable, TimeSpanDto timeSpan, DoctorDto doctor, List<TimeRecordingDto> result)
         {
             timeRecording.TimeTable = timeTable;
+
+            if(timeRecording.TimeTable is not null)
+            {
+                timeRecording.TimeTableId = timeRecording.TimeTable.Id;
+            }
+
             timeTable.TimeSpan = timeSpan;
             timeTable.Doctor = doctor;
             result.Add(timeRecording);
@@ -86,6 +94,31 @@ namespace RecordingSystem.DAL.Repositories
                     },
                     commandType: CommandType.StoredProcedure);
             }
+        }
+
+        private static List<TimeRecordingDto> GetAllTimeRecording()
+        {
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
+            {
+                sqlConnection.Open();
+                return sqlConnection.Query<TimeRecordingDto>(StoredNamesProcedures.GetAllTimeRecording,
+                    commandType: CommandType.StoredProcedure).ToList();
+            }
+        }
+
+        public List<TimeRecordingDto> GetAllDaysInTimeRecording() 
+        {
+            List <TimeRecordingDto> result = new List<TimeRecordingDto>();
+
+            foreach (var t in TimeRecordingRepository.GetAllTimeRecording())
+            {
+                if(!result.Any(tr => tr.Date == t.Date))
+                {
+                    result.Add(t);
+                }
+            }
+
+            return result;
         }
     }
 }

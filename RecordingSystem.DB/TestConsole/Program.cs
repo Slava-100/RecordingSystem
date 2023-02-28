@@ -219,6 +219,11 @@ var service = s.GetAllServiceByMale(false);
 
 //var ppp = p.GetTimeTableByDoctorId(11);
 
+var p = new SpecializationManager();
+var ppp = p.GetSpecializationById(1);
+
+Console.WriteLine("qwe");
+
 //patient.LastName = "Dog";
 //p.UpdatePatient(patient);
 

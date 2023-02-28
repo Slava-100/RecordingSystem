@@ -1,0 +1,16 @@
+﻿<div class="card-specialization">
+        <a href="/specialization/@Specialization.Id">
+            <div class="img-specialization">
+            <img src="/css/Images/Specializations/{@Specialization.Name}.png" onError="this.src='/css/Images/Specializations/default.png'" asp-append-version="true">
+                <div class="background-specialization">
+                </div>
+                <div class="name-specialization "> 
+                   @Specialization.Name 
+                </div>
+            </div>
+        </a>
+</div>
+
+@code {
+    [Parameter] public SpecializationOutputModel Specialization { get; set; }
+}

@@ -1,19 +1,8 @@
-﻿<div class="Service-card">
-    <h1>@Service.Name</h1>
-    <h2>Price: @Service.Price</h2>
-    <h3>Male: @Service.Male</h3>
-    @if (Service.Specialization is not null)
-    {
-        <h2>Specialization: @Service.Specialization.Name</h2>
-    }
-    else
-    {
-        <h2>Specialization: NaN</h2>
-    }
 
-</div>
+<a href="/service/@Service.Id">
+    <li><span>"@Service.Name"</span><em>@Service.Price руб</em></li>
+</a>
 
 @code {
     [Parameter] public ServiceOutputModel Service { get; set; }
-    public string Specialization { get; set; }
 }

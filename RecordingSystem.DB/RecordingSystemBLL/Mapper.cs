@@ -40,11 +40,16 @@ namespace RecordingSystem.BLL
                 });
         }
 
-        public List<ServiceOutputModel> MapServiceDtoToServiceOutputModel(List<ServiceDto> service)
+        public List<ServiceOutputModel> MapListServiceDtoToListServiceOutputModel(List<ServiceDto> services)
         {
-            return _configuration.CreateMapper().Map<List<ServiceOutputModel>>(service);
+            return _configuration.CreateMapper().Map<List<ServiceOutputModel>>(services);
         }
 
+        public ServiceOutputModel MapServiceDtoToServiceOutputModel(ServiceDto services)
+        {
+            return _configuration.CreateMapper().Map<ServiceOutputModel>(services);
+        }
+        
         public List<PatientOutputModel> MapListPatientDtoToListPatientOutputModel(List<PatientDto> patients)
         {
             return _configuration.CreateMapper().Map<List<PatientOutputModel>>(patients);
@@ -110,11 +115,6 @@ namespace RecordingSystem.BLL
             return _configuration.CreateMapper().Map<ServiceDto>(service);
         }
 
-        public List<ServiceOutputModel> MapListServiceDtoToListServiceOutputModel(List<ServiceDto> services)
-        {
-            return _configuration.CreateMapper().Map<List<ServiceOutputModel>>(services);
-        }
-
         public List<SpecializationOutputModel> MapListSpecializationDtoToListSpecializationOutputModel(List<SpecializationDto> specializations)
         {
             return _configuration.CreateMapper().Map<List<SpecializationOutputModel>>(specializations);
@@ -149,5 +149,11 @@ namespace RecordingSystem.BLL
         {
             return _configuration.CreateMapper().Map<TimeTableDto>(timeTable);
         }
+
+        public SpecializationOutputModel MapSpecializationDtoToSpecializationOutputModel(SpecializationDto specialization)
+        {
+            return _configuration.CreateMapper().Map<SpecializationOutputModel>(specialization);
+        }
+        
     }
 }

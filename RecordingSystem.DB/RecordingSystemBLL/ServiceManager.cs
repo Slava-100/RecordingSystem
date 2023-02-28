@@ -50,5 +50,12 @@ namespace RecordingSystem.BLL
             var result = _mapperrr.MapListServiceDtoToListServiceOutputModel(service);
             return result;
         }
+
+        public ServiceOutputModel GetServiceById(int id)
+        {
+            var service = ServiceRepository.GetServiceById(id);
+            var result = _mapperrr.MapServiceDtoToServiceOutputModel(service);
+            return result;
+        }
     }
 }

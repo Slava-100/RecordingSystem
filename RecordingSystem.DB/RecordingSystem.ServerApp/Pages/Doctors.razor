@@ -1,0 +1,27 @@
+﻿@page "/doctors"
+
+<h3>Наши врачи</h3>
+
+<div class="container-doctors">
+    <div class="doctor-setka">
+        <div class="doctor-card">
+            <NavLink href="/add-doctor">
+            <div class="plus-doc">+</div>
+            </NavLink>
+        </div>
+        @foreach (var i in _doctor)
+            {
+                <DoctorCard doctor="i"/>
+            }
+    </div>
+</div>
+
+@code{
+    private List<DoctorOutputModel> _doctor = new List<DoctorOutputModel>();
+
+    protected override void OnInitialized()
+    {
+        var dm = new DoctorManager();
+        _doctor = dm.GetAllDoctors();
+    }
+}
