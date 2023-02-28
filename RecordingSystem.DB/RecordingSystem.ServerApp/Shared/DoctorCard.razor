@@ -11,10 +11,16 @@
       <img  class="photo-doctor" src="/css/Images/Male/{False}.png" alt="photo" />
       </div>
     }
-    <h2>@doctor.Name  @doctor.LastName</h2>
-    <div class="btn-zapis">
-        <a href="/updateDoctor/@doctor.Id">
+    <h4>Имя: @doctor.Name  <br />
+        Фамилия: @doctor.LastName</h4>
+    <div class="">
+        <a href="/update-doctor/@doctor.Id">
             Изменить данные
+        </a>
+    </div>
+    <div class="btn-zapis">
+        <a href="/timetable-doctor/@doctor.Id">
+            Записаться
         </a>
     </div>
 </div>
