@@ -10,5 +10,6 @@ namespace RecordingSystem.DAL.Interfaces
         public List<ServiceDto> GetAllServicesByDoctorId(int id);
         public List<ServiceDto> GetAllServiceByMale(bool? male);
         public List<ServiceDto> GetAllServiceBySpecializationId(int id);
+        public ServiceDto GetServiceById(int id);
     }
 }

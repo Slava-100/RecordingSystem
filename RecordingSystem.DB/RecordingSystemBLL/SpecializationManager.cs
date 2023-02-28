@@ -27,5 +27,12 @@ namespace RecordingSystem.BLL
             var specializationDto = _mapperrr.MapSpecializationInputModelToSpecializationDto(specialization);
             SpecializationRepository.AddSpecialization(specializationDto);
         }
+
+        public SpecializationOutputModel GetSpecializationById(int id)
+        {
+            var specialization = SpecializationRepository.GetSpecializationById(id);
+            var result = _mapperrr.MapSpecializationDtoToSpecializationOutputModel(specialization);
+            return result;
+        }
     }
 }

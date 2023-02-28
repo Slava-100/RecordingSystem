@@ -1,0 +1,15 @@
+﻿@page "/service/{Id:int}"
+
+<h3>@_service.Name</h3>
+
+@code {
+    [Parameter] public int Id { get; set; }
+
+    private ServiceOutputModel _service;
+
+    protected override void OnInitialized()
+    {
+        _service = new ServiceManager().GetServiceById(Id);
+   
+    }
+}
