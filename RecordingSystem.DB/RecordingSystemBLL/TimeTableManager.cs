@@ -15,10 +15,6 @@ namespace RecordingSystem.BLL
         private Mapperrr _mapperrr = new Mapperrr();
         public ITimeTableRepository TimeTableRepository { get; set; }
 
-        public IDoctorRepository DoctorRepository { get; set; }
-        public IDayOfWeekRepository DayOfWeekRepository { get; set; }
-        public ITimeSpanRepository SpanRepository { get; set; }
-
         public TimeTableManager()
         {
             TimeTableRepository = new TimeTableRepository();
@@ -39,9 +35,9 @@ namespace RecordingSystem.BLL
 
         public void FillAllTimeTable()
         {
-            DoctorRepository = new DoctorRepository();
-            DayOfWeekRepository = new DayOfWeekRepository();
-            SpanRepository = new TimeSpanRepository();
+            IDoctorRepository DoctorRepository = new DoctorRepository();
+            IDayOfWeekRepository DayOfWeekRepository = new DayOfWeekRepository();
+            ITimeSpanRepository SpanRepository = new TimeSpanRepository();
 
             var listDoctors = DoctorRepository.GetAllDoctors();
 

@@ -10,9 +10,7 @@ namespace RecordingSystem.BLL
         private DateTime dateTimeNow = DateTime.Now;
         private Mapperrr _mapperrr = new Mapperrr();
         public ITimeRecordingRepository TimeRecordingRepository { get; set; }
-        public IDoctorRepository DoctorRepository { get; set; } 
-        public ITimeTableRepository TimeTableRepository { get; set; }   
-
+      
         public TimeRecordingManager()
         {
             TimeRecordingRepository = new TimeRecordingRepository();
@@ -39,8 +37,8 @@ namespace RecordingSystem.BLL
 
         public void FillAllTimeRecordingInForAOneDay(DateTime date)
         {
-            DoctorRepository = new DoctorRepository();
-            TimeTableRepository = new TimeTableRepository();
+            IDoctorRepository DoctorRepository = new DoctorRepository();
+            ITimeTableRepository TimeTableRepository = new TimeTableRepository();
 
             var listDoctors = DoctorRepository.GetAllDoctors();
             var listDays = TimeRecordingRepository.GetAllDaysInTimeRecording();

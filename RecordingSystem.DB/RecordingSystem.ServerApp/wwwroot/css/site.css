@@ -196,7 +196,7 @@ body .button {
     border-radius: 20px;
 }
 
-.card:hover {
+.card-specialization:hover {
     background-color: red;
     transition: all 0.9s ease;
 }
