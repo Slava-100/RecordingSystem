@@ -1,0 +1,36 @@
+﻿<div class="Patient-card">
+    <h1>@patient.Name, @patient.LastName</h1>
+    
+    <h2><img width="15" src="/css/Images/Birthday.svg" alt="icon of birthday">@patient.Birthday</h2>
+    @if (patient.PhoneNumber is not null){
+        <h4><img width="15" src="/css/Images/Telephone.svg" alt="icon of telephone">@patient.PhoneNumber</h4>
+    }
+    else
+    {
+        <h4><img width="15" src="/css/Images/Telephone.svg" alt="icon of telephone">Номер не указан</h4>
+    }
+
+    @*@if (patient.Email is not null)
+    {
+        <h4><img width="15" src="/css/Images/At.svg" alt="icon of at">@patient.Email</h4>
+    }
+    else
+    {
+        <h4><img width="15" src="/css/Images/At.svg" alt="icon of at">Почта не указана</h4>
+    }*@
+
+    @if (patient.Status is not null)
+    {
+        <h6>@patient.Status.Name</h6>
+        <h6>Скидка: @patient.Status.Discount</h6>
+    }
+    else
+    {
+        <h2>-</h2>
+    }
+</div>
+
+@code {
+    [Parameter] public PatientOutputModel patient { get; set; }
+    public string Status { get; set; }
+}

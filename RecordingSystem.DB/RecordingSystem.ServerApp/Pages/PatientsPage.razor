@@ -1,0 +1,36 @@
+﻿@page "/patients"
+
+<h3>PatientsPage</h3>
+
+<NavLink href="/add-patient"><button type="button" class="btn btn-info">Add Patient</button></NavLink>
+
+@if (_patients.Count != 0)
+{
+    <div class="Patients-list">
+        @foreach (var i in _patients)
+        {
+            _tmpHref = "/patient/" + i.Id;
+            <NavLink href=@{_tmpHref}>
+                <button type="button" class="btn btn-outline-secondary">
+                    <PatiebtCard patient="i" />
+                </button>
+            </NavLink>
+        }
+    </div>
+}
+else
+{
+    <h2>sorry the nothing to this search</h2>
+}
+
+@code {
+    private string _tmpHref { get; set; }
+    private List<PatientOutputModel> _patients = new List<PatientOutputModel>();
+
+    protected override void OnInitialized()
+    {
+        var cm = new PatientManager();
+        _patients = cm.GetAllPatients();
+    }
+}
+
