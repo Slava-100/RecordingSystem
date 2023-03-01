@@ -1,0 +1,41 @@
+﻿@page "/add-service"
+
+<div class="add-service"> 
+    <span>Название:</span><input type="text" @bind="_service.Name" /> <br /> <br/>
+    <span>Специализация:</span><select @bind="_service.SpecializationId">
+        @foreach(var i in _specializations)
+        {
+            <option value="@i.Id"> @i.Name </option>
+        }
+    </select> <br /> <br />
+    <span>Для:</span><select @bind="_service.Male">
+        <option value="True"> Мужчин </option>
+        <option value="False"> Женщин </option>
+        <option value="Null"> Всех </option>
+    </select> <br /> <br />
+    <span>Стоимость:</span><input type="number" @bind="_service.Price" /> <br /> <br />
+    <button @onclick="CreateService">Добавить!</button>
+</div>
+
+    @code {
+    public ServiceInputModel _service;
+    public List<SpecializationOutputModel> _specializations;
+    [Parameter] public int Id { get; set; }
+
+    protected override void OnInitialized()
+    {
+        _service = new ServiceInputModel();
+        _specializations = new SpecializationManager().GetAllSpecializations();
+        _service.SpecializationId = Id;
+    }
+
+    private void CreateService()
+    {
+        if (_service.Name is not null)
+        {
+            var pm = new ServiceManager();
+            pm.AddService(_service);
+            _service = new ServiceInputModel();
+        }
+    }
+}

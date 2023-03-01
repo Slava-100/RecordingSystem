@@ -1,4 +1,4 @@
-@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
 .btn-zapis {
     height: 50px;
@@ -92,7 +92,7 @@ nav {
 
     nav ul {
         list-style: none;
-        margin: 10;
+        margin: 10px;
         padding: 0;
         display: flex;
     }
@@ -250,6 +250,16 @@ select {
     margin-bottom: 5px;
 }
 
+.li-service:hover {
+    background-color: lightyellow;
+    transition: all 0.5s ease;
+}
+
+.li-service {
+    cursor: pointer;
+}
+
+
 .specialization-page-menu li:first-child {
     font-weight: bold;
     padding: 15px 0 10px 15px;
@@ -321,4 +331,27 @@ select {
     text-align: center;
     margin-top: 63%;
     font-size: 70px;
+}
+
+.plus-li {
+    text-align: center;
+    cursor: cell;
+}
+
+.plus-li span{
+    width: 98%;
+    text-align: center;
+}
+
+.plus-li:hover{
+    background-color: lightyellow;
+    transition: all 0.5s ease;
+}
+
+
+.add-service{
+    width: 800px;
+    height: 800px;
+    margin-left: 19%;
+    margin-top: 20px;
 }
