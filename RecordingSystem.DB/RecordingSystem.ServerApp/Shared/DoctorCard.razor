@@ -11,8 +11,18 @@
       <img  class="photo-doctor" src="/css/Images/Male/{False}.png" alt="photo" />
       </div>
     }
-    <h4>Имя: @doctor.Name  <br />
-        Фамилия: @doctor.LastName</h4>
+    <div class="doctor-text-in-card">
+    @if (doctor.Specialization is not null)
+    {
+       <h6>@doctor.Specialization.Name</h6>
+    }
+    else
+    {
+        <h6>СТАЖОР</h6>
+    }
+    <h4>@doctor.LastName</h4>
+    <h5>@doctor.Name</h5>
+    </div>
     <div class="">
         <a href="/update-doctor/@doctor.Id">
             Изменить данные
