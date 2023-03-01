@@ -15,11 +15,11 @@
         @foreach (var i in _services)
         {
             _tmpHref = "/services/" + i.Id;
-            <NavLink href=@{
-        _tmpHref
-}><button type="button" class="btn btn-outline-secondary"><ServiceCard Service="i" /></button></NavLink>
+            <NavLink href=@{_tmpHref}>
+                <button type="button" class="btn btn-outline-secondary"><ServiceCard Service="i" /></button>
+            </NavLink>
         }
-        </div>
+    </div>
 }
 else
 {
