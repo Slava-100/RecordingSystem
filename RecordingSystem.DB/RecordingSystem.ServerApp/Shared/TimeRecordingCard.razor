@@ -3,7 +3,7 @@
     <span>Выбери число:</span><select>
         @for(int i = 0; i < 7; i++)
         {
-            <option value="True"> @_date.ToShortDateString() </option>
+            <option value="@_date"> @_date.ToShortDateString() </option>
             _date = _date.AddDays(1);
         }
     </select>
