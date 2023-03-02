@@ -276,7 +276,7 @@ select {
 
 .specialization-page-menu span {
     float: left;
-    width: 75%;
+    width: 50%;
     color: #7C7D7F;
 }
 
@@ -354,4 +354,29 @@ select {
     height: 800px;
     margin-left: 19%;
     margin-top: 20px;
+}
+
+.recording-div{
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+}
+
+.btn-timeRecording {
+    margin-left: 30px;
+    border: none;
+    background: rgb(13,202,240);
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    position: relative;
+    box-sizing: border-box;
+    transition: all 500ms ease;
+}
+
+.btn-timeRecording:hover {
+  background: rgba(0,0,0,0);
+  color: rgb(13,202,240);
+  box-shadow: inset 0 0 0 3px rgb(13,202,240);
 }
