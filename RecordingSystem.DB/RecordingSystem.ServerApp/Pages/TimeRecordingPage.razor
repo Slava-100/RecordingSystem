@@ -1,6 +1,6 @@
 ﻿@page "/recording"
 <div>
-    <span>Выбери число:</span><select @onclick="ResetDate" @bind="crntDate">
+    <span>Выбери число:</span><select @onclick="ResetDate" @bind="_crntDate">
         @for(int i = 0; i < 7; i++)
         {
             <option value="@_date"> @_date.ToShortDateString() </option>
@@ -18,7 +18,7 @@
         @if (_timeRecordings.Count != 0)
         {
             <ul class="specialization-page-menu">
-                <li class="li-service">
+                <li>
                     <span>|Время|</span>
                     <em>|Свободно/Занято|</em>
                 </li>
@@ -43,7 +43,7 @@
 @code {
     private int _id;
     private DateTime _date;
-    private DateTime crntDate;
+    private DateTime _crntDate;
     private List<DoctorOutputModel> _doctors;
     private List<TimeRecordingOutputModel> _timeRecordings { get; set; }
 
@@ -51,7 +51,7 @@
     {
         _doctors = new DoctorManager().GetAllDoctors();
         _date = DateTime.Now;
-        crntDate = new DateTime();
+        _crntDate = new DateTime();
         _timeRecordings = new List<TimeRecordingOutputModel>();
     }
 
@@ -62,7 +62,7 @@
 
     private void ShowRecording()
     {
-        _timeRecordings = new TimeRecordingManager().GetAllTimeRecordingsByDoctorIdAndDay(crntDate, _id);
+        _timeRecordings = new TimeRecordingManager().GetAllTimeRecordingsByDoctorIdAndDay(_crntDate, _id);
         InvokeAsync(StateHasChanged);
         _date = DateTime.Now;
     }
