@@ -236,18 +236,17 @@ select {
     font-size: 40px;
 }
 
-.specialization-page-menu {
+.page-menu {
     list-style: none;
     padding: 0;
     border: 1px solid gray;
     border-radius: 10px;
 }
 
-.specialization-page-menu li {
+.page-menu li {
     overflow: hidden;
     padding: 6px 10px;
     font-size: 20px;
-    margin-bottom: 5px;
 }
 
 .li-service:hover {
@@ -260,27 +259,26 @@ select {
 }
 
 
-.specialization-page-menu li:first-child {
+.page-menu li:first-child {
     font-weight: bold;
     padding: 15px 0 10px 15px;
     border-bottom: 1px solid rgba(0,0,0, .2);
-    border-radius: 10px;
     color: #679bb7;
     font-size: 24px;
     box-shadow: 0 5px 10px -5px rgba(0,0,0, .2);
 }
 
-.specialization-page-menu li:first-child:before {
+.page-menu li:first-child:before {
     margin-right: 10px;
 }
 
-.specialization-page-menu span {
+.page-menu span {
     float: left;
     width: 50%;
     color: #7C7D7F;
 }
 
-.specialization-page-menu em {
+.page-menu em {
     float: right;
     color: #9c836e;
     font-weight: bold;
@@ -348,7 +346,6 @@ select {
     transition: all 0.5s ease;
 }
 
-
 .add-service{
     width: 800px;
     height: 800px;
@@ -363,7 +360,7 @@ select {
     margin-top: 50px;
 }
 
-.btn-timeRecording {
+.btn-showrecording {
     margin-left: 30px;
     border: none;
     background: rgb(13,202,240);
@@ -375,8 +372,40 @@ select {
     transition: all 500ms ease;
 }
 
-.btn-timeRecording:hover {
+.btn-showrecording:hover {
   background: rgba(0,0,0,0);
   color: rgb(13,202,240);
   box-shadow: inset 0 0 0 3px rgb(13,202,240);
 }
+
+.a-rec{
+    width: 100px;
+}
+
+.btn-recording {
+    left: 100px;
+    border: none;
+    background: lawngreen;
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    position: relative;
+    box-sizing: border-box;
+    transition: all 500ms ease;
+}
+
+#norec {
+    background: Silver;
+}
+
+#rec:hover {
+  background: rgba(0,0,0,0);
+  color: black;
+  box-shadow: inset 0 0 0 3px lawngreen;
+}
+
+.li-recording {
+    cursor: pointer;
+    border-top: 1px solid gray;
+}
+
