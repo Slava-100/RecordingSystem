@@ -8,17 +8,18 @@
             <option value="@i.Id"> @i.Name </option>
         }
     </select> <br /> <br />
-    <span>Для:</span><select @bind="_service.Male">
-        <option value="True"> Мужчин </option>
-        <option value="False"> Женщин </option>
-        <option value="Null"> Всех </option>
+    <span>Для:</span><select @bind="Male">
+        <option value="true"> Мужчин </option>
+        <option value="false"> Женщин </option>
+        <option value="null"> Всех </option>
     </select> <br /> <br />
     <span>Стоимость:</span><input type="number" @bind="_service.Price" /> <br /> <br />
     <button @onclick="CreateService">Добавить!</button>
 </div>
 
-    @code {
+@code {
     public ServiceInputModel _service;
+    private string Male;
     public List<SpecializationOutputModel> _specializations;
     [Parameter] public int Id { get; set; }
 
@@ -27,10 +28,24 @@
         _service = new ServiceInputModel();
         _specializations = new SpecializationManager().GetAllSpecializations();
         _service.SpecializationId = Id;
+        _service.Male = true;
     }
 
     private void CreateService()
     {
+        if (Male == "true")
+        {
+            _service.Male = true;
+        }
+        else if (Male == "false")
+        {
+            _service.Male = false;
+        }
+        else if (Male == "null")
+        {
+            _service.Male = null;
+        }
+
         if (_service.Name is not null)
         {
             var pm = new ServiceManager();

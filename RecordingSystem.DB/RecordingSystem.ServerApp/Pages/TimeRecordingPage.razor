@@ -13,24 +13,30 @@
             <option value="@doc.Id"> @doc.Name @doc.LastName </option>
         }
     </select>
-    <button class="btn-timeRecording" @onclick="ShowRecording">Показать расписание</button>
+    <button class="btn-showrecording" @onclick="ShowRecording">Показать расписание</button>
     <div class="recording-div">
         @if (_timeRecordings.Count != 0)
         {
-            <ul class="specialization-page-menu">
+            <ul class="page-menu">
                 <li>
                     <span>|Время|</span>
                     <em>|Свободно/Занято|</em>
                 </li>
                 @foreach (var tt in _timeRecordings)
                 {
-                    <li class="li-service"><span>@tt.TimeTable.TimeSpan.Start - @tt.TimeTable.TimeSpan.End</span>
+                    <li class="li-recording"><span>@tt.TimeTable.TimeSpan.Start - @tt.TimeTable.TimeSpan.End</span>
                         @if(tt.Occupied == false)
                         {
-                            <em>Свободно</em>
+                            <a href="/recordingall/sign/@tt.Id">
+                            <button  class="btn-recording" id="rec">Записаться</button>
+                            </a>
+                            <em>Свободно</em>  
                         }
                         else
                         {
+
+                            <button class="btn-recording" id="norec">Записаться</button>
+
                             <em>Занято</em>
                         }
                     </li>
@@ -46,6 +52,7 @@
     private DateTime _crntDate;
     private List<DoctorOutputModel> _doctors;
     private List<TimeRecordingOutputModel> _timeRecordings { get; set; }
+    private TimeRecordingOutputModel tt;
 
     protected override void OnInitialized()
     {
@@ -53,6 +60,7 @@
         _date = DateTime.Now;
         _crntDate = new DateTime();
         _timeRecordings = new List<TimeRecordingOutputModel>();
+        tt = new TimeRecordingOutputModel();
     }
 
     private void ResetDate()
