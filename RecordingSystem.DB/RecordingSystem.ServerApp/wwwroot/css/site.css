@@ -331,3 +331,15 @@ select {
 .doctor-update-select{
     border:1px solid black;
 }
+
+.doctor-update-select-red {
+    border: 1px solid red;
+}
+
+.doctor-proverka{
+    color:red;
+}
+
+.input-red {
+    border: 1px solid red;
+}

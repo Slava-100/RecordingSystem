@@ -5,7 +5,10 @@
 <div>
 	<span>Имя:</span><input type="text" @bind="_doctor.Name"/> <br />
 	<span>Фамилия:</span><input type="text" @bind="_doctor.LastName"/> <br />
-	<span>Мужчина: Да</span><input type="checkbox" @bind="_doctor.Male"/> <br />
+	<span>Пол</span><select  class="doctor-update-select" @bind="Male">
+			<option value="true">Мужчина</option>
+			<option value="false">Женщина</option>
+	</select><br />
 	<span>Специализация:</span><select  class="doctor-update-select" @bind="_doctor.Specialization.Id">
 		@foreach (var a in Specializations)
 		{
@@ -35,7 +38,8 @@
 		<br />
 	}
 	<span>Телефон:</span><input type="tel" placeholder="8-999-123-45-67" @bind="_doctor.PhoneNumber"/> <br />
-	<span>Почта:</span><input type="email" @bind="_doctor.Email" /> <br />
+	<span>Почта:</span><input placeholder="default@example.com" type="email" @bind="_doctor.Email" /> <br />
+	<span>День рождения:</span><input type="date" @bind="_doctor.Birthday"/> <br />
 	<button @onclick="EditDoctor">Сохранить изменения</button> <br />
 	<NavLink href="/Doctors"><div class="back">Назад</div></NavLink>
 </div>
@@ -49,6 +53,8 @@
 
 	public List<CabinetOutputModel> Cabinets;
 
+	public string Male;
+
 	protected override void OnInitialized()
 	{
 		var doctors = new DoctorManager().GetAllDoctors();
@@ -56,11 +62,13 @@
 		_doctor = doctors[index];
 		Specializations = new SpecializationManager().GetAllSpecializations();
 		Cabinets = new CabinetManager().GetAllCabinets();
-		_doctor.Email = "default@example.com";
+		var Male = Convert.ToString(_doctor.Male);
+
 	}
 
 	private void EditDoctor()
 	{
+		_doctor.Male = Convert.ToBoolean(Male);
 		var doc = new DoctorInputModel()
 			{
 				Id = _doctor.Id,
@@ -89,9 +97,5 @@
 			}
 		}
 		return index;
-	}
-
-	private void METOD(){
-
 	}
 }
