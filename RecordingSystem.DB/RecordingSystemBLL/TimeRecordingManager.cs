@@ -44,6 +44,13 @@ namespace RecordingSystem.BLL
             TimeRecordingRepository.UpdateTimeRecordingById(timeRecordingDto);
         }
 
+        public TimeRecordingOutputModel GetTimeRecordingById(int id)
+        {
+            var timeRecording = TimeRecordingRepository.GetTimeRecordingById(id);
+            var result = _mapperrr.MapTimeRecordingDtoToTimeRecordingOutputModel(timeRecording);
+            return result;
+        }
+
         public void FillAllTimeRecordingInForAOneDay(DateTime date)
         {
             IDoctorRepository DoctorRepository = new DoctorRepository();
