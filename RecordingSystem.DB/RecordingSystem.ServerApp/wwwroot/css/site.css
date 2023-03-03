@@ -327,3 +327,7 @@ select {
 .doctor-text-in-card{
     margin:20px;
 }
+
+.doctor-update-select{
+    border:1px solid black;
+}

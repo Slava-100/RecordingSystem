@@ -6,8 +6,36 @@
 	<span>Имя:</span><input type="text" @bind="_doctor.Name"/> <br />
 	<span>Фамилия:</span><input type="text" @bind="_doctor.LastName"/> <br />
 	<span>Мужчина: Да</span><input type="checkbox" @bind="_doctor.Male"/> <br />
-	<span>Id cпециализации:</span><input type="text" @bind="_doctor.Specialization.Id"/> <br />    
-	<span>Id кабинета:</span><input type="number" @bind="_doctor.Cabinet.Id"/> <br />    
+	<span>Специализация:</span><select  class="doctor-update-select" @bind="_doctor.Specialization.Id">
+		@foreach (var a in Specializations)
+		{
+			<option value="@a.Id">@a.Name</option>
+		}
+	</select><br />
+	@if(_doctor.Cabinet is not null){
+	<span>Кабинет:</span><select class="doctor-update-select" @bind="_doctor.Cabinet.Id">
+		@foreach( var a in Cabinets )
+		{
+			<option value="@a.Id">@a.Number</option>
+		}
+		</select><br />
+	}
+	else{
+		var cabinet = new CabinetOutputModel() { Id = 1 , Number = 546 };
+		_doctor.Cabinet = cabinet;
+		<span>Кабинет:</span>
+
+		<select class="doctor-update-select" @bind="_doctor.Cabinet.Id">
+			@foreach (var a in Cabinets)
+			{
+					<option value="@a.Id">@a.Number</option>
+			}
+			</select>
+
+		<br />
+	}
+	<span>Телефон:</span><input type="tel" placeholder="8-999-123-45-67" @bind="_doctor.PhoneNumber"/> <br />
+	<span>Почта:</span><input type="email" @bind="_doctor.Email" /> <br />
 	<button @onclick="EditDoctor">Сохранить изменения</button> <br />
 	<NavLink href="/Doctors"><div class="back">Назад</div></NavLink>
 </div>
@@ -17,20 +45,18 @@
 
 	private DoctorOutputModel _doctor;
 
+	public List<SpecializationOutputModel> Specializations;
+
+	public List<CabinetOutputModel> Cabinets;
+
 	protected override void OnInitialized()
 	{
 		var doctors = new DoctorManager().GetAllDoctors();
-		int index = 0;
-		int counter = -1;
-		foreach (var i in doctors)
-		{
-			counter++;
-			if (i.Id == Id)
-			{
-				index = counter;
-			}
-		}
+		var index = IndexDoctorByListDoctors(doctors);
 		_doctor = doctors[index];
+		Specializations = new SpecializationManager().GetAllSpecializations();
+		Cabinets = new CabinetManager().GetAllCabinets();
+		_doctor.Email = "default@example.com";
 	}
 
 	private void EditDoctor()
@@ -48,5 +74,24 @@
 				Birthday = _doctor.Birthday
 			};
 		new DoctorManager().UpdateDoctor(doc);
+	}
+
+	private int IndexDoctorByListDoctors(List<DoctorOutputModel> doctors)
+	{
+		int index = 0;
+		int counter = -1;
+		foreach (var i in doctors)
+		{
+			counter++;
+			if (i.Id == Id)
+			{
+				index = counter;
+			}
+		}
+		return index;
+	}
+
+	private void METOD(){
+
 	}
 }
