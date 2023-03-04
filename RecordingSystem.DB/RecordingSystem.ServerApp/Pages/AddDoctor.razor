@@ -1,32 +1,134 @@
 ﻿@page "/add-doctor"
+@inject NavigationManager Navigator
 
 <h3>AddDoctor</h3>
 
-<div>
-    <span>@Doctor.Name Имя:</span><input type="text" @bind="Doctor.Name"/> <br />
-    <span>@Doctor.LastName Фамилия:</span><input type="text" @bind="Doctor.LastName"/> <br />
-    <span>@Doctor.PhoneNumber Телефон:</span><input type="number" @bind="Doctor.PhoneNumber"/> <br />
-    <span>@Doctor.Email Почта:</span><input type="text" @bind="Doctor.Email"/> <br />
-    <span>@Doctor.Male Мужчина:</span><input type="checkbox" @bind="Doctor.Male"/> <br />
-    <span>@Doctor.Birthday Мужчина:</span><input type="date" @bind="Doctor.Birthday"/> <br />
-    <button @onclick="AddNewDoctor">Добавить</button>
-</div>
+    <div>
+        <span class="span-info">Имя:</span>
+        @if (_doctor.Name is null )
+        {
+            <input class="input-red" type="text" placeholder="Ivan" @bind="_doctor.Name"/>
+        }
+        else
+        {
+            <input type="text" @bind="_doctor.Name"/> 
+        }
+        <br /> 
+        <span>Фамилия:</span>
+        @if (_doctor.LastName is null)
+        {
+                <input class="input-red" type="text" placeholder="Ivanov" @bind="_doctor.LastName"/>
+        }
+        else
+        {
+            <input type="text" @bind="_doctor.LastName"/> 
+        }
+        <br />
+        <span>Телефон:</span>
+        @if (_doctor.PhoneNumber is null)
+        {
+            <input class="input-red" type="number" placeholder="8-999-123-45-67" @bind="_doctor.PhoneNumber" required/>
+        }
+        else
+        {
+            if (Convert.ToInt64(_doctor.PhoneNumber) > 80000000000 & Convert.ToInt64(_doctor.PhoneNumber) < 90000000000)
+            {
+                <input type="tel" @bind="_doctor.PhoneNumber"/>
+            }
+            else
+            {
+                <input class="input-red" type="tel" placeholder="8-999-123-45-67" @bind="_doctor.PhoneNumber"/> <div class="doctor-proverka">Некоректные данные</div>
+            }
+        }
+        <br />
+        <span>Почта:</span>
+        @if (_doctor.Email is null)
+        {
+            <input class="input-red" type="email" placeholder="default@example.com" @bind="_doctor.Email"/> 
+        }
+        else
+        {
+            <input type="email" @bind="_doctor.Email"/> 
+        }
+        <br />
+        <span>Пол</span>
+        @if (Male is null)
+        {
+             <select  class="doctor-update-select-red" @bind="Male">
+                <option value is null> </option>
+                <option value="true">Мужчина</option>
+                <option value="false">Женщина</option>
+            </select>
+        }
+        else
+        {
+            <select  class="doctor-update-select" @bind="Male">
+                <option value="true">Мужчина</option>
+                <option value="false">Женщина</option>
+            </select>
+        }
 
+        <br />
+        <span>День рождения:</span>
+        @if (_doctor.Birthday is null)
+        {
+            <input class="input-red" type="date" @bind="_doctor.Birthday"/> 
+        }
+        else
+        {
+            <input type="text" @bind="_doctor.Birthday"/> 
+        }
+        <br />
+        <span class="span-info">Специализация:</span>
+            <select  class="doctor-update-select-red" @bind="_doctor.SpecializationId">
+               <option value is null> </option>
+               @foreach(var a in Specializations)
+               {
+                     <option value="@a.Id">@a.Name</option>
+               }
+            </select>
+        <br />
+        <span class="span-info">Кабинет:</span>
+            <select  class="doctor-update-select-red" @bind="_doctor.CabinetId">
+               <option value is null> </option>
+               @foreach(var a in Cabinets)
+               {
+                     <option value="@a.Id">@a.Number</option>
+               }
+            </select>
+    </div>
+
+@if (_doctor.Name is not null & _doctor.LastName is not null & _doctor.PhoneNumber is not null & _doctor.Email is not null & Male is not null & _doctor.Birthday is not null & Convert.ToInt64(_doctor.PhoneNumber) > 80000000000 & Convert.ToInt64(_doctor.PhoneNumber) < 90000000000)
+    {
+        <button @onclick="AddNewDoctor">Добавить</button>
+    }
+    else
+    {
+        <div class="doctor-proverka">ЗАПОЛНИТЕ ДАННЫЕ</div>
+    }
+
+    <NavLink href="/Doctors"><div class="back">Назад</div></NavLink>
 @code {
-    public DoctorInputModel Doctor;
+    public DoctorInputModel _doctor;
+
+    public List<SpecializationOutputModel> Specializations;
+
+    public List<CabinetOutputModel> Cabinets;
+
+    public string Male;
 
     protected override void OnInitialized()
     {
-        Doctor = new DoctorInputModel();
+        _doctor = new DoctorInputModel();
+        Specializations = new SpecializationManager().GetAllSpecializations();
+        Cabinets = new CabinetManager().GetAllCabinets();
     }
 
     private void AddNewDoctor()
     {
-        if (Doctor.Name != "")
-        {
-            var dm = new DoctorManager();
-            dm.AddDoctor(Doctor);
-            Doctor = new DoctorInputModel();
-        }
+        _doctor.Male = Convert.ToBoolean(Male);
+        var dm = new DoctorManager();
+        dm.AddDoctor(_doctor);
+        Navigator.NavigateTo("/Doctors", true);
     }
 }

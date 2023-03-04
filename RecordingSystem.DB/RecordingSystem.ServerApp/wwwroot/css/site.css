@@ -1,4 +1,4 @@
-﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
 .btn-zapis {
     height: 50px;
@@ -298,10 +298,10 @@ select {
 }
 
 .doctor-card {
-    margin: 5px;
-    height: 500px;
-    width: 24%;
-    box-shadow: 0px 5px 20px 0px;
+    margin: 10px;
+    height: 550px;
+    width: 23.5%;
+    box-shadow: 0px 5px 15px 0px;
     border-radius: 6px;
     position: relative;
 }
@@ -309,13 +309,14 @@ select {
 .container-doctors {
     margin-left: auto;
     margin-right: auto;
-    width: 1200px;
+    width: 1400px;
 }
 
 .doctor-pic {
     height: 320px;
     background-color: #f8f8f8;
     text-align: center;
+    border-radius: 6px;
 }
 
 .photo-doctor {
@@ -329,6 +330,26 @@ select {
     text-align: center;
     margin-top: 63%;
     font-size: 70px;
+}
+
+.doctor-text-in-card{
+    margin:20px;
+}
+
+.doctor-update-select{
+    border:1px solid black;
+}
+
+.doctor-update-select-red {
+    border: 1px solid red;
+}
+
+.doctor-proverka{
+    color:red;
+}
+
+.input-red {
+    border: 1px solid red;
 }
 
 .plus-li {

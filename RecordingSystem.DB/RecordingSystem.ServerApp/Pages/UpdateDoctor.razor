@@ -1,14 +1,44 @@
 ﻿@page "/update-doctor/{Id:int}"
+@inject NavigationManager Navigator
+
 
 <h3>UpdateDoctor</h3>
 
 <div>
-    <span>@Doctor.Name Имя:</span><input type="text" @bind="Doctor.Name"/> <br />
-    <span>@Doctor.LastName Фамилия:</span><input type="text" @bind="Doctor.LastName"/> <br />
-    <span>@Doctor.PhoneNumber Телефон:</span><input type="number" @bind="Doctor.PhoneNumber"/> <br />
-    <span>@Doctor.Email Почта:</span><input type="text" @bind="Doctor.Email"/> <br />
-    <span>@Doctor.Male Мужчина:</span><input type="checkbox" @bind="Doctor.Male"/> <br />
-    <span>@Doctor.Birthday Мужчина:</span><input type="date" @bind="Doctor.Birthday"/> <br />
+	<span>Имя:</span><input type="text" @bind="_doctor.Name"/> <br />
+	<span>Фамилия:</span><input type="text" @bind="_doctor.LastName"/> <br />
+	<span>Пол</span><select  class="doctor-update-select" @bind="Male">
+			<option value is null></option>
+			<option value="true">Мужчина</option>
+			<option value="false">Женщина</option>
+	</select><br />
+	<span>Специализация:</span><select  class="doctor-update-select" @bind="SpecId">
+		<option value is null></option>
+		@foreach (var a in Specializations)
+		{
+			<option value="@a.Id">@a.Name</option>
+		}
+		</select>
+		@if (SpecId is null)
+		{
+			<span style="color: red">Нет специализации</span>
+		}
+	<br />
+	
+	<span>Кабинет:</span><select class="doctor-update-select" @bind="CabId">
+		<option value is null> </option>
+		@foreach( var a in Cabinets )
+		{
+			<option value="@a.Id">@a.Number</option>
+		}
+		</select>
+		@if(CabId is null){
+			<span style="color: red">Нет кабинета</span>
+		}
+	<br />
+	<span>Телефон:</span><input type="tel" placeholder="8-999-123-45-67" @bind="_doctor.PhoneNumber"/> <br />
+	<span>Почта:</span><input placeholder="default@example.com" type="email" @bind="_doctor.Email" /> <br />
+	<span>День рождения:</span><input type="date" @bind="_doctor.Birthday"/> <br />
 	<button @onclick="EditDoctor">Сохранить изменения</button> <br />
 	<NavLink href="/Doctors"><div class="back">Назад</div></NavLink>
 </div>
@@ -16,28 +46,69 @@
 @code {
 	[Parameter] public int Id { get; set; }
 
-	public DoctorOutputModel Doctor;
+	private DoctorOutputModel _doctor;
+
+	public List<SpecializationOutputModel> Specializations;
+
+	public List<CabinetOutputModel> Cabinets;
+
+	public string Male;
+	public int? SpecId;
+	public int? CabId;
 
 	protected override void OnInitialized()
 	{
 		var doctors = new DoctorManager().GetAllDoctors();
-		Doctor = doctors[0];
+		var index = IndexDoctorByListDoctors(doctors);
+		_doctor = doctors[index];
+		Specializations = new SpecializationManager().GetAllSpecializations();
+		Cabinets = new CabinetManager().GetAllCabinets();
+		if (_doctor.Male)
+			Male = "true";
+		else
+			Male = "false";
+		if (_doctor.Cabinet is null)
+			CabId = null;
+		else
+			CabId = _doctor.Cabinet.Id;
+		if (_doctor.Specialization is null)
+			SpecId = null;
+		else
+			SpecId = _doctor.Specialization.Id;
+
 	}
 
 	private void EditDoctor()
 	{
+		_doctor.Male = Convert.ToBoolean(Male);
 		var doc = new DoctorInputModel()
 			{
-				Id = Doctor.Id,
-				Name = Doctor.Name,
-				LastName = Doctor.LastName,
-				Male = Doctor.Male,
-				PhoneNumber = Doctor.PhoneNumber,
-				Email = Doctor.Email,
-				SpecializationId = Doctor.Specialization.Id,
-				CabinetId = Doctor.Cabinet.Id,
-				Birthday = Doctor.Birthday
+				Id = _doctor.Id,
+				Name = _doctor.Name,
+				LastName = _doctor.LastName,
+				Male = _doctor.Male,
+				PhoneNumber = _doctor.PhoneNumber,
+				Email = _doctor.Email,
+				SpecializationId = SpecId,
+				CabinetId = CabId,
+				Birthday = _doctor.Birthday
 			};
 		new DoctorManager().UpdateDoctor(doc);
+		Navigator.NavigateTo("/Doctors", true);
+	}
+
+	private int IndexDoctorByListDoctors(List<DoctorOutputModel> doctors)
+	{
+		int index = 0;
+		int counter = -1;
+		foreach (var i in doctors)
+		{
+			counter++;
+			if (i.Id == Id)
+			{
+				index = counter;
+			}
+		}
+		return index;
 	}
 }

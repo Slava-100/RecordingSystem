@@ -10,7 +10,7 @@ namespace RecordingSystem.BLL.Models
     public class SpecializationOutputModel
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         public override bool Equals(object? obj)
         {
