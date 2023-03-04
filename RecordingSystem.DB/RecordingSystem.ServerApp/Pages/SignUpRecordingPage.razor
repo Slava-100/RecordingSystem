@@ -1,7 +1,10 @@
 ﻿@page "/recordingall/sign/{Id:int}"
+@inject NavigationManager Navigator
 
-<h1>Запись</h1>
-<span>Дата: @_timeRecording.Date.ToShortDateString() Врач: </span> <br /> 
+<div class="div-recording"><h1>Запись</h1>
+<span>|Дата: @_timeRecording.Date.ToShortDateString()| |Время: @_timeRecording.TimeTable.TimeSpan.Start - @_timeRecording.TimeTable.TimeSpan.End| 
+    |Врач: @_timeRecording.TimeTable.Doctor.Name @_timeRecording.TimeTable.Doctor.LastName| </span>
+<br />
 <span>Авторизуйся:</span>
 <select @bind="_crntId">
     @foreach(var i in _patients)
@@ -10,6 +13,7 @@
     }
 </select> <br />
 <button @onclick="UpdateOccuoied">Подтвердить</button>
+</div>
 
 @code {
     [Parameter] public int Id { get; set; }
@@ -32,6 +36,7 @@
     {
         var t = new TimeRecordingManager();
         _timeRecordingUpdate.Occupied = true;
-        t.UpdateTimeRecordingById(_timeRecordingUpdate);        
+        t.UpdateTimeRecordingById(_timeRecordingUpdate);       
+        Navigator.NavigateTo("/", true);
     }
 }

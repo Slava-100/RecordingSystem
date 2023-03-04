@@ -430,3 +430,9 @@ select {
     border-top: 1px solid gray;
 }
 
+.div-recording{
+    width: 800px;
+    height: 500px;
+    margin-left: 15%;
+    margin-top: 50px;
+}

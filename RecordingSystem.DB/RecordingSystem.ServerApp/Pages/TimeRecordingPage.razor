@@ -1,4 +1,4 @@
-﻿@page "/recording"
+﻿@page "/recording/{Id:int}"
 <div>
     <span>Выбери число:</span><select @onclick="ResetDate" @bind="_crntDate">
         @for(int i = 0; i < 7; i++)
@@ -7,12 +7,18 @@
             _date = _date.AddDays(1);
         }
     </select>
-    <span>Выбери доктора:</span><select @onclick="ResetDate" @bind="_id">
+   @if(Id == null || Id == 0)
+   {<span>Выбери доктора:</span><select @onclick="ResetDate" @bind="_id">
         @foreach (var doc in _doctors)
         {
             <option value="@doc.Id"> @doc.Name @doc.LastName </option>
         }
-    </select>
+        </select>
+    }
+    else
+    {
+        <span>Доктор: @Id </span>    
+    }
     <button class="btn-showrecording" @onclick="ShowRecording">Показать расписание</button>
     <div class="recording-div">
         @if (_timeRecordings.Count != 0)
@@ -47,6 +53,7 @@
 </div>
 
 @code {
+    [Parameter] public int Id { get; set; }
     private int _id;
     private DateTime _date;
     private DateTime _crntDate;
@@ -70,7 +77,15 @@
 
     private void ShowRecording()
     {
-        _timeRecordings = new TimeRecordingManager().GetAllTimeRecordingsByDoctorIdAndDay(_crntDate, _id);
+        if (Id == null || Id == 0)
+        {
+            _timeRecordings = new TimeRecordingManager().GetAllTimeRecordingsByDoctorIdAndDay(_crntDate, _id);
+        }
+        else
+        {
+            _timeRecordings = new TimeRecordingManager().GetAllTimeRecordingsByDoctorIdAndDay(_crntDate, Id);
+        }
+
         InvokeAsync(StateHasChanged);
         _date = DateTime.Now;
     }
