@@ -12,5 +12,6 @@ namespace RecordingSystem.DAL.Interfaces
         public List<DoctorDto> GetAllDoctorsByServiceId(int id);
         public List<DoctorDto> GetAllDoctorBySpecializationId(int id);
         public List<DoctorDto> GetAllFreeDoctorsByDayOfWeekId(int id);
+        public DoctorDto GetDoctorById(int id);
     }
 }

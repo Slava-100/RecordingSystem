@@ -17,7 +17,8 @@
     }
     else
     {
-        <span>Доктор: @Id </span>    
+        var doctor = new DoctorManager().GetDoctorById(Id);
+        <span>Доктор: @doctor.Name @doctor.LastName </span>
     }
     <button class="btn-showrecording" @onclick="ShowRecording">Показать расписание</button>
     <div class="recording-div">

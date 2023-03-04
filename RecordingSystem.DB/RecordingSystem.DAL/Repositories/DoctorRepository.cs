@@ -177,5 +177,17 @@ namespace RecordingSystem.DAL.Repositories
                 return result;
             }
         }
+
+        public DoctorDto GetDoctorById(int id)
+        {
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
+            {
+                sqlConnection.Open();
+                return sqlConnection.QuerySingle<DoctorDto>(StoredNamesProcedures.GetDoctorById,
+                    new { Id = id },
+                    commandType: CommandType.StoredProcedure);
+            }
+        }
+        
     }
 }

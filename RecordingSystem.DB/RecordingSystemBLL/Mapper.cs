@@ -70,7 +70,7 @@ namespace RecordingSystem.BLL
             return _configuration.CreateMapper().Map<PatientDto>(patient);
         }
 
-        public List<DoctorOutputModel> MapDoctorDtoToDoctorOutputModel(List<DoctorDto> doctors)
+        public List<DoctorOutputModel> MapListDoctorDtoToListDoctorOutputModel(List<DoctorDto> doctors)
         {
             return _configuration.CreateMapper().Map<List<DoctorOutputModel>>(doctors);
         }
@@ -158,6 +158,11 @@ namespace RecordingSystem.BLL
         public TimeRecordingOutputModel MapTimeRecordingDtoToTimeRecordingOutputModel(TimeRecordingDto timeRecording)
         {
             return _configuration.CreateMapper().Map<TimeRecordingOutputModel>(timeRecording);
+        }
+
+        public DoctorOutputModel MapDoctorDtoToDoctorOutputModel(DoctorDto doctor)
+        {
+            return _configuration.CreateMapper().Map<DoctorOutputModel>(doctor);
         }
     }
 }
