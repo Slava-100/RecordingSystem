@@ -16,10 +16,19 @@ namespace RecordingSystem.BLL
             TimeRecordingRepository = new TimeRecordingRepository();
         }
 
-        public List<TimeRecordingOutputModel> GetAllTimeRecordingsByDoctorId(int id)
+        public List<TimeRecordingOutputModel> GetAllTimeRecordingsByDoctorIdAndDay(DateTime date, int id)
         {
             var timeRecordings = TimeRecordingRepository.GetAllTimeRecordingsByDoctorId(id);
-            var result = _mapperrr.MapListTimeRecordingDtoToListTimeRecordingOutputModel(timeRecordings);
+            var map = _mapperrr.MapListTimeRecordingDtoToListTimeRecordingOutputModel(timeRecordings);
+            List<TimeRecordingOutputModel> result = new List<TimeRecordingOutputModel>();
+            foreach (var i in map)
+            {
+                if (i.Date.Date == date.Date)
+                {
+                    result.Add(i);
+                }
+            }
+
             return result;
         }
 
@@ -35,6 +44,13 @@ namespace RecordingSystem.BLL
             TimeRecordingRepository.UpdateTimeRecordingById(timeRecordingDto);
         }
 
+        public TimeRecordingOutputModel GetTimeRecordingById(int id)
+        {
+            var timeRecording = TimeRecordingRepository.GetTimeRecordingById(id);
+            var result = _mapperrr.MapTimeRecordingDtoToTimeRecordingOutputModel(timeRecording);
+            return result;
+        }
+
         public void FillAllTimeRecordingInForAOneDay(DateTime date)
         {
             IDoctorRepository DoctorRepository = new DoctorRepository();
@@ -45,7 +61,7 @@ namespace RecordingSystem.BLL
 
             foreach (var d in listDoctors)
             {
-                if (TimeRecordingRepository.GetAllTimeRecordingsByDoctorId(d.Id).Count == 0 || !listDays.Any(d => d.Date == date))
+                if (TimeRecordingRepository.GetAllTimeRecordingsByDoctorId(d.Id).Count == 0 || !listDays.Any(d => d.Date.Date == date.Date))
                 {
                     var crntListTimeTabelByDoctor = TimeTableRepository.GetTimeTableByDoctorId(d.Id);
                     if (crntListTimeTabelByDoctor.Count() != 0)
@@ -56,7 +72,7 @@ namespace RecordingSystem.BLL
                             {
                                 TimeRecordingDto crntTimeRecording = new TimeRecordingDto()
                                 {
-                                    Date = date,
+                                    Date = date.Date,
                                     TimeTableId = timeTable.Id,
                                     Occupied = false
                                 };

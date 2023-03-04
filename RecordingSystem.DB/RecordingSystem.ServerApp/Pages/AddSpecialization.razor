@@ -15,7 +15,7 @@
 
     private void CreateSpecialization()
     {
-        if (_specialization.Name != "")
+        if (_specialization.Name is not null)
         {
             var pm = new SpecializationManager();
             pm.AddSpecialization(_specialization);

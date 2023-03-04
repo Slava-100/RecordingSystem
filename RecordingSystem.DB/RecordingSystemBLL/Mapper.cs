@@ -154,6 +154,10 @@ namespace RecordingSystem.BLL
         {
             return _configuration.CreateMapper().Map<SpecializationOutputModel>(specialization);
         }
-        
+
+        public TimeRecordingOutputModel MapTimeRecordingDtoToTimeRecordingOutputModel(TimeRecordingDto timeRecording)
+        {
+            return _configuration.CreateMapper().Map<TimeRecordingOutputModel>(timeRecording);
+        }
     }
 }

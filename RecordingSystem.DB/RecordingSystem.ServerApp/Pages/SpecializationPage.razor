@@ -1,12 +1,17 @@
 ﻿@page "/specialization/{Id:int}"
 
 <div class="specialization-page">
-    <ul class="specialization-page-menu">
+    <ul class="page-menu">
         <li>@_specialization.Name</li>
         @foreach (var i in _services)
         {
                 <ServiceCard Service = "i"/>
         }
+        <a href="/add-service/SpecializationId/@Id">
+            <li class="plus-li"> 
+                <span> + </span>
+            </li>
+        </a>
     </ul>
 </div>
 

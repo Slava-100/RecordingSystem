@@ -120,6 +120,17 @@ namespace RecordingSystem.DAL.Repositories
 
             return result;
         }
+
+        public TimeRecordingDto GetTimeRecordingById(int id)
+        {
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
+            {
+                sqlConnection.Open();
+                return sqlConnection.QuerySingle<TimeRecordingDto>(StoredNamesProcedures.GetTimeRecordingById,
+                    new { Id = id },
+                    commandType: CommandType.StoredProcedure);
+            }
+        }
     }
 }
 

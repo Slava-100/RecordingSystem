@@ -38,7 +38,7 @@ namespace RecordingSystem.BLL
             var result = _mapperrr.MapListServiceDtoToListServiceOutputModel(service);
             return result;
         }
-        public List<ServiceOutputModel> GetAllServiceByMale(bool male)
+        public List<ServiceOutputModel> GetAllServiceByMale(bool? male)
         {
             var service = ServiceRepository.GetAllServiceByMale(male);
             var result = _mapperrr.MapListServiceDtoToListServiceOutputModel(service);

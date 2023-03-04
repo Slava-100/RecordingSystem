@@ -1,8 +1,16 @@
-
 <a href="/service/@Service.Id">
-    <li><span>"@Service.Name"</span><em>@Service.Price руб</em></li>
+    @if (@Service.Male == true) 
+    { 
+        Male = "(муж)"; 
+    }
+    else if(@Service.Male == false) 
+    {
+        Male = "(жен)";
+    }
+    <li class="li-service"><span>@Service.Name @Male</span><em>@Service.Price руб</em></li>
 </a>
 
 @code {
+    private string Male;
     [Parameter] public ServiceOutputModel Service { get; set; }
 }
