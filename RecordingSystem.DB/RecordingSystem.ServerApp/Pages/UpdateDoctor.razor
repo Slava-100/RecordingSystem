@@ -1,11 +1,14 @@
 ﻿@page "/update-doctor/{Id:int}"
+@inject NavigationManager Navigator
+
 
 <h3>UpdateDoctor</h3>
 
 <div>
 	<span>Имя:</span><input type="text" @bind="_doctor.Name"/> <br />
 	<span>Фамилия:</span><input type="text" @bind="_doctor.LastName"/> <br />
-	<span>Пол</span><select  class="doctor-update-select" @bind="Male">
+	<span>Пол</span><select  class="doctor-update-select" @bind="Male1">
+			<option value is null></option>
 			<option value="true">Мужчина</option>
 			<option value="false">Женщина</option>
 	</select><br />
@@ -17,6 +20,7 @@
 	</select><br />
 	@if(_doctor.Cabinet is not null){
 	<span>Кабинет:</span><select class="doctor-update-select" @bind="_doctor.Cabinet.Id">
+		<option value is null> </option>
 		@foreach( var a in Cabinets )
 		{
 			<option value="@a.Id">@a.Number</option>
@@ -24,17 +28,18 @@
 		</select><br />
 	}
 	else{
-		var cabinet = new CabinetOutputModel() { Id = 1 , Number = 546 };
+		var cabinet = new CabinetOutputModel() { Id = null , Number = null};
 		_doctor.Cabinet = cabinet;
 		<span>Кабинет:</span>
 
 		<select class="doctor-update-select" @bind="_doctor.Cabinet.Id">
+			<option value is null> </option>
 			@foreach (var a in Cabinets)
 			{
-					<option value="@a.Id">@a.Number</option>
+			<option value="@a.Id">@a.Number</option>
 			}
-			</select>
-
+		</select>
+			<span style="color: red">Нет кабинета</span>
 		<br />
 	}
 	<span>Телефон:</span><input type="tel" placeholder="8-999-123-45-67" @bind="_doctor.PhoneNumber"/> <br />
@@ -53,7 +58,7 @@
 
 	public List<CabinetOutputModel> Cabinets;
 
-	public string Male;
+	public string Male1;
 
 	protected override void OnInitialized()
 	{
@@ -62,13 +67,15 @@
 		_doctor = doctors[index];
 		Specializations = new SpecializationManager().GetAllSpecializations();
 		Cabinets = new CabinetManager().GetAllCabinets();
-		var Male = Convert.ToString(_doctor.Male);
-
+		if (_doctor.Male)
+		Male1 = "true";
+		else
+		Male1 = "false";
 	}
 
 	private void EditDoctor()
 	{
-		_doctor.Male = Convert.ToBoolean(Male);
+		_doctor.Male = Convert.ToBoolean(Male1);
 		var doc = new DoctorInputModel()
 			{
 				Id = _doctor.Id,
@@ -82,6 +89,7 @@
 				Birthday = _doctor.Birthday
 			};
 		new DoctorManager().UpdateDoctor(doc);
+		Navigator.NavigateTo("/Doctors", true);
 	}
 
 	private int IndexDoctorByListDoctors(List<DoctorOutputModel> doctors)
