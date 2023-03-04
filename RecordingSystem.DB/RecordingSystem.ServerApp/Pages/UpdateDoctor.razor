@@ -7,41 +7,35 @@
 <div>
 	<span>Имя:</span><input type="text" @bind="_doctor.Name"/> <br />
 	<span>Фамилия:</span><input type="text" @bind="_doctor.LastName"/> <br />
-	<span>Пол</span><select  class="doctor-update-select" @bind="Male1">
+	<span>Пол</span><select  class="doctor-update-select" @bind="Male">
 			<option value is null></option>
 			<option value="true">Мужчина</option>
 			<option value="false">Женщина</option>
 	</select><br />
-	<span>Специализация:</span><select  class="doctor-update-select" @bind="_doctor.Specialization.Id">
+	<span>Специализация:</span><select  class="doctor-update-select" @bind="SpecId">
+		<option value is null></option>
 		@foreach (var a in Specializations)
 		{
 			<option value="@a.Id">@a.Name</option>
 		}
-	</select><br />
-	@if(_doctor.Cabinet is not null){
-	<span>Кабинет:</span><select class="doctor-update-select" @bind="_doctor.Cabinet.Id">
+		</select>
+		@if (SpecId is null)
+		{
+			<span style="color: red">Нет специализации</span>
+		}
+	<br />
+	
+	<span>Кабинет:</span><select class="doctor-update-select" @bind="CabId">
 		<option value is null> </option>
 		@foreach( var a in Cabinets )
 		{
 			<option value="@a.Id">@a.Number</option>
 		}
-		</select><br />
-	}
-	else{
-		var cabinet = new CabinetOutputModel() { Id = null , Number = null};
-		_doctor.Cabinet = cabinet;
-		<span>Кабинет:</span>
-
-		<select class="doctor-update-select" @bind="_doctor.Cabinet.Id">
-			<option value is null> </option>
-			@foreach (var a in Cabinets)
-			{
-			<option value="@a.Id">@a.Number</option>
-			}
 		</select>
+		@if(CabId is null){
 			<span style="color: red">Нет кабинета</span>
-		<br />
-	}
+		}
+	<br />
 	<span>Телефон:</span><input type="tel" placeholder="8-999-123-45-67" @bind="_doctor.PhoneNumber"/> <br />
 	<span>Почта:</span><input placeholder="default@example.com" type="email" @bind="_doctor.Email" /> <br />
 	<span>День рождения:</span><input type="date" @bind="_doctor.Birthday"/> <br />
@@ -58,7 +52,9 @@
 
 	public List<CabinetOutputModel> Cabinets;
 
-	public string Male1;
+	public string Male;
+	public int? SpecId;
+	public int? CabId;
 
 	protected override void OnInitialized()
 	{
@@ -68,14 +64,23 @@
 		Specializations = new SpecializationManager().GetAllSpecializations();
 		Cabinets = new CabinetManager().GetAllCabinets();
 		if (_doctor.Male)
-		Male1 = "true";
+			Male = "true";
 		else
-		Male1 = "false";
+			Male = "false";
+		if (_doctor.Cabinet is null)
+			CabId = null;
+		else
+			CabId = _doctor.Cabinet.Id;
+		if (_doctor.Specialization is null)
+			SpecId = null;
+		else
+			SpecId = _doctor.Specialization.Id;
+
 	}
 
 	private void EditDoctor()
 	{
-		_doctor.Male = Convert.ToBoolean(Male1);
+		_doctor.Male = Convert.ToBoolean(Male);
 		var doc = new DoctorInputModel()
 			{
 				Id = _doctor.Id,
@@ -84,8 +89,8 @@
 				Male = _doctor.Male,
 				PhoneNumber = _doctor.PhoneNumber,
 				Email = _doctor.Email,
-				SpecializationId = _doctor.Specialization.Id,
-				CabinetId = _doctor.Cabinet.Id,
+				SpecializationId = SpecId,
+				CabinetId = CabId,
 				Birthday = _doctor.Birthday
 			};
 		new DoctorManager().UpdateDoctor(doc);

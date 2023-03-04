@@ -1,4 +1,5 @@
 ﻿@page "/add-doctor"
+@inject NavigationManager Navigator
 
 <h3>AddDoctor</h3>
 
@@ -78,9 +79,7 @@
             <input type="text" @bind="_doctor.Birthday"/> 
         }
         <br />
-        <span class="span-info">Специализация ID:</span>
-        @if (_doctor.SpecializationId is null)
-        {
+        <span class="span-info">Специализация:</span>
             <select  class="doctor-update-select-red" @bind="_doctor.SpecializationId">
                <option value is null> </option>
                @foreach(var a in Specializations)
@@ -88,20 +87,18 @@
                      <option value="@a.Id">@a.Name</option>
                }
             </select>
-        }
-        else
-        {
-            <select  class="doctor-update-select" @bind="_doctor.SpecializationId">
-                        <option value is null> </option>
-            @foreach (var a in Specializations)
-            {
-                  <option value="@a.Id">@a.Name</option>
-            }
+        <br />
+        <span class="span-info">Кабинет:</span>
+            <select  class="doctor-update-select-red" @bind="_doctor.CabinetId">
+               <option value is null> </option>
+               @foreach(var a in Cabinets)
+               {
+                     <option value="@a.Id">@a.Number</option>
+               }
             </select>
-        }
     </div>
 
-@if (_doctor.Name is not null & _doctor.LastName is not null & _doctor.PhoneNumber is not null & _doctor.Email is not null & Male is not null & _doctor.Birthday is not null & Convert.ToInt64(_doctor.PhoneNumber) > 80000000000 & Convert.ToInt64(_doctor.PhoneNumber) < 90000000000 & _doctor.SpecializationId is not null)
+@if (_doctor.Name is not null & _doctor.LastName is not null & _doctor.PhoneNumber is not null & _doctor.Email is not null & Male is not null & _doctor.Birthday is not null & Convert.ToInt64(_doctor.PhoneNumber) > 80000000000 & Convert.ToInt64(_doctor.PhoneNumber) < 90000000000)
     {
         <button @onclick="AddNewDoctor">Добавить</button>
     }
@@ -116,12 +113,15 @@
 
     public List<SpecializationOutputModel> Specializations;
 
+    public List<CabinetOutputModel> Cabinets;
+
     public string Male;
 
     protected override void OnInitialized()
     {
         _doctor = new DoctorInputModel();
         Specializations = new SpecializationManager().GetAllSpecializations();
+        Cabinets = new CabinetManager().GetAllCabinets();
     }
 
     private void AddNewDoctor()
@@ -129,5 +129,6 @@
         _doctor.Male = Convert.ToBoolean(Male);
         var dm = new DoctorManager();
         dm.AddDoctor(_doctor);
+        Navigator.NavigateTo("/Doctors", true);
     }
 }
