@@ -40,7 +40,6 @@
 	<span>Почта:</span><input placeholder="default@example.com" type="email" @bind="_doctor.Email" /> <br />
 	<span>День рождения:</span><input type="date" @bind="_doctor.Birthday"/> <br />
 	<button @onclick="EditDoctor">Сохранить изменения</button> <br />
-	<button @onclick="DeleteDoctor">Удалить доктора</button> <br />
 	<NavLink href="/Doctors"><div class="back">Назад</div></NavLink>
 </div>
 
@@ -95,25 +94,6 @@
 				Birthday = _doctor.Birthday
 			};
 		new DoctorManager().UpdateDoctor(doc);
-		Navigator.NavigateTo("/Doctors", true);
-	}
-
-	private void DeleteDoctor()
-	{
-		_doctor.Male = Convert.ToBoolean(Male);
-		var doc = new DoctorInputModel()
-			{
-				Id = _doctor.Id,
-				Name = _doctor.Name,
-				LastName = _doctor.LastName,
-				Male = _doctor.Male,
-				PhoneNumber = _doctor.PhoneNumber,
-				Email = _doctor.Email,
-				SpecializationId = SpecId,
-				CabinetId = CabId,
-				Birthday = _doctor.Birthday
-			};
-		new DoctorManager().UpdateIsDeletedDoctorById(doc);
 		Navigator.NavigateTo("/Doctors", true);
 	}
 
