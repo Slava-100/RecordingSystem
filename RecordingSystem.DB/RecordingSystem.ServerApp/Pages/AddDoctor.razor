@@ -33,11 +33,11 @@
         {
             if (Convert.ToInt64(_doctor.PhoneNumber) > 80000000000 & Convert.ToInt64(_doctor.PhoneNumber) < 90000000000)
             {
-                <input type="tel" @bind="_doctor.PhoneNumber"/>
+                <input type="number" @bind="_doctor.PhoneNumber"/>
             }
             else
             {
-                <input class="input-red" type="tel" placeholder="8-999-123-45-67" @bind="_doctor.PhoneNumber"/> <div class="doctor-proverka">Некоректные данные</div>
+                <input class="input-red" type="number" placeholder="8-999-123-45-67" @bind="_doctor.PhoneNumber"/> <div class="doctor-proverka">Некоректные данные</div>
             }
         }
         <br />
@@ -107,7 +107,8 @@
         <div class="doctor-proverka">ЗАПОЛНИТЕ ДАННЫЕ</div>
     }
 
-    <NavLink href="/Doctors"><div class="back">Назад</div></NavLink>
+    <NavLink href="/Doctors"><a class="back">Назад</a></NavLink>
+
 @code {
     public DoctorInputModel _doctor;
 
