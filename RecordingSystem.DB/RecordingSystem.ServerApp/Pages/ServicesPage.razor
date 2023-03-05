@@ -67,12 +67,13 @@
 
 @code {
     private string _tmpHref;
-    private string? _gender;
+    private string _gender;
     private List<ServiceOutputModel> _allServices = new List<ServiceOutputModel>();
     private List<ServiceOutputModel> _servicesByGender = new List<ServiceOutputModel>();
 
     protected override void OnInitialized()
     {
+        _gender = "all";
         var sm = new ServiceManager();
         _allServices = sm.GetAllServiceByMale(null); 
 

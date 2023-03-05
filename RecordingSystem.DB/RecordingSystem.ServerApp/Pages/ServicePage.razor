@@ -1,11 +1,47 @@
 @page "/service/{Id:int}"
+<div>
+    <h1><strong>Название:</strong> @_service.Name</h1>
+    @if (_service.Price is not null)
+    {
+        <h2><strong>Price:</strong> @_service.Price</h2>
+    } 
+    else 
+    {
+        <h2>Price: NaN</h2>
+    }
 
-<h3>@_service.Name</h3>
+    @if (_service.Male is not null)
+    {
+        @if (_service.Male == true)
+        { 
+        Male = "(муж)"; 
+    }
+        else if (_service.Male == false)
+        {
+        Male = "(жен)";
+    }
+        <h1><strong>Пол:</strong> @Male</h1>
+    } 
+    else 
+    {
+        <h2>Male: Все</h2>
+    } 
+
+    @if (_service.Specialization is not null) 
+    { 
+        <h2>Specialization: @_service.Specialization.Name</h2> 
+    } 
+    else 
+    { 
+        <h2>Specialization: NaN</h2> 
+    } 
+</div>
 
 @code {
+    private string Male;
     [Parameter] public int Id { get; set; }
-
-    private ServiceOutputModel _service;
+    public string Specialization { get; set; }
+    [Parameter] public ServiceOutputModel _service { get; set; }
 
     protected override void OnInitialized()
     {
