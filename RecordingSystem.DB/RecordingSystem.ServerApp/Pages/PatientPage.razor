@@ -6,6 +6,7 @@
 <br />
 <button @onclick="UpdateCabinet" type="button" class="btn btn-primary">Update</button>
 *@
+<div class="div_patient">
 <h3><PatientCard patient="_patient" /></h3>
 
 <Dropdown>
@@ -16,13 +17,37 @@
         <DropdownDivider />
         <DropdownItem>Another Action</DropdownItem>
     </DropdownMenu>
-</Dropdown>
-
+</Dropdown> 
+<br /> <br />
+ <button @onclick="ShowActiveRecordings">Активные записи</button>
+    <div class="div_active">
+    @if (_activeRecordings.Count() == 0 && _showActive == true)
+    {
+            <h3>Активных записей нет</h3>
+    }
+    else if (_showActive == true)
+    {
+    <ul class="page-menu">
+        <li>
+            <a href=""><span>|Врач|</span></a>
+            <em>|Время|</em>
+        </li>
+        @foreach (var a in _activeRecordings)
+        {
+                    <li class="li-recording"><span> @a.Doctor.Name @a.Doctor.LastName </span> <em>@a.DateTime</em></li>
+        }
+    </ul>
+    }
+    </div>
+    <button>История</button>
+</div>
 
 @code {
     [Parameter] public int Id { get; set; }
     private List<PatientOutputModel> _patientList;
     private PatientOutputModel _patient;
+    private List<ActiveRecordingOutputModel> _activeRecordings;
+    private bool _showActive = false;
 
     protected override void OnInitialized()
     {
@@ -34,6 +59,7 @@
                 _patient = i;
             }
         }
+        _activeRecordings = new List<ActiveRecordingOutputModel>();
 
     }
     private void UpdatePatient()
@@ -44,5 +70,12 @@
                 PhoneNumber = _patient.PhoneNumber
             };
         new PatientManager().UpdatePatient(up);
+    }
+
+    private void ShowActiveRecordings()
+    {
+        _showActive = true;
+        _activeRecordings = new ActiveRecordingManager().GetAllActiveRecordingsByPatientId(Id);
+        InvokeAsync(StateHasChanged);
     }
 }
