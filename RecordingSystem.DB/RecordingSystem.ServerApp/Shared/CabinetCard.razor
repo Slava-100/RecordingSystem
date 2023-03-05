@@ -1,8 +1,10 @@
-﻿<div class="Cabinet-card">
-    <h1>Cabinet №: @cabinet.Number</h1>
-    <h2>Status: @cabinet.Status</h2>
+﻿<div class="cabinet-info">
+        <h2><strong>Cabinet №</strong>: @cabinet.Number</h2>
+        <p><strong>Status:</strong>  @cabinet.Status</p>
+        @AdditionalData
 </div>
 
 @code {
     [Parameter] public CabinetOutputModel cabinet { get; set; }
+    [Parameter] public RenderFragment AdditionalData { get; set; }
 }

@@ -1,19 +1,23 @@
 ﻿@page "/cabinet/{Id:int}"
 
-<span>@_cabinet.Number :</span>
-<input type="number" @bind="_cabinet.Number"></input>
-<br />
-<span>@_cabinet.Status 2:</span>
-<input type="checkbox" @bind="_cabinet.Status"></input>
-<br />
-<button @onclick="UpdateCabinet" type="button" class="btn btn-primary">Update</button>
+<div class="cabinet-card">
+    <CabinetCard cabinet="_cabinet" />
+</div>
 
-<h3>@_cabinet.Id @_cabinet.Number @_cabinet.Status</h3>
-<h3><CabinetCard cabinet="_cabinet" /></h3>
-
+<div class="input-card">
+    <label for="input-number">Number:</label>
+    <input type="number" id="input-number" name="input-number" @bind="_cabinet.Number">
+    <div class="checkbox-wrapper">
+        <input type="checkbox" id="input-checkbox" name="input-checkbox" @bind="_cabinet.Status">
+        <label class="checkbox-label" for="input-checkbox">Label text</label>
+    </div>
+    <button @onclick="UpdateCabinet" type="button" class="btn btn-primary">Update</button>
+</div>
 
 @code {
     [Parameter] public int Id { get; set; }
+    [Parameter] public EventCallback<int> BtnEvent { get; set; }
+
     private List<CabinetOutputModel> _cabinetsList;
     private CabinetOutputModel _cabinet;
 
