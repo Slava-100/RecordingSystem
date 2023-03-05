@@ -2,40 +2,79 @@
 
 <h3>ServicesPage</h3>
 
-@if (_services.Count != 0)
-{
 <div class="specialization-page">
-<select name="gender" id="gender">
-    <option value="male">male</option>
-    <option value="female">female</option>
+<select name="gender" id="gender" @bind="_gender">
+    <option value="true">male</option>
+    <option value="false">female</option>
     <option value="all">all</option>
 </select>
-    <ul class="page-menu">
-        <li>Услуги</li>
-        @foreach (var i in _services)
+    @if(_gender == "all")
+    {
+        @if (_allServices.Count != 0)
         {
-                <ServiceCard Service = "i"/>
+            <ul class="page-menu">
+                <li>Услуги</li>
+                    @foreach (var i in _allServices)
+                {
+                        <ServiceCard Service = "i"/>
+                }
+                <a href="/add-service">
+                    <li class="plus-li">
+                        <span> + </span>
+                    </li>
+                </a>
+            </ul>
         }
-        <a href="/add-service">
-            <li class="plus-li">
-                <span> + </span>
-            </li>
-        </a>
-    </ul>
+        else
+        {
+                    <h2>there are no offices or an error has occurred</h2>
+        }
+    }
+
+    else
+    {
+        @if (_allServices.Count != 0)
+        {
+            <ul class="page-menu">
+                <li>Услуги</li>
+                    @foreach (var i in _allServices)
+                {
+                    if(_gender == "true")
+                    {
+                        if(i.Male == true)
+                            {
+                                <ServiceCard Service = "i"/>
+                            }    
+                    }
+                    if(_gender == "false")
+                    {
+                        if(i.Male == false)
+                            {
+                                <ServiceCard Service = "i"/>
+                            }    
+                    }
+                }
+                <a href="/add-service">
+                    <li class="plus-li">
+                        <span> + </span>
+                    </li>
+                </a>
+            </ul>
+        }
+        
+    }
 </div>
-}
-else
-{
-            <h2>there are no offices or an error has occurred</h2>
-}
 
 @code {
-    private string _tmpHref { get; set; }
-    private List<ServiceOutputModel> _services = new List<ServiceOutputModel>();
+    private string _tmpHref;
+    private string? _gender;
+    private List<ServiceOutputModel> _allServices = new List<ServiceOutputModel>();
+    private List<ServiceOutputModel> _servicesByGender = new List<ServiceOutputModel>();
 
     protected override void OnInitialized()
     {
         var sm = new ServiceManager();
-        _services = sm.GetAllServiceByMale(null);
+        _allServices = sm.GetAllServiceByMale(null); 
+
     }
 }
