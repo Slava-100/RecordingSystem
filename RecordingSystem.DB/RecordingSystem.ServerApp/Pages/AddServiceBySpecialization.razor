@@ -1,0 +1,49 @@
+﻿@page "/add-service/SpecializationId/{Id:int}"
+
+<div class="add-service"> 
+    <span>Название:</span><input type="text" @bind="_service.Name" /> <br /> <br/>
+    <span>Для:</span><select @bind="Male">
+        <option value="true"> Мужчин </option>
+        <option value="false"> Женщин </option>
+        <option value="null"> Всех </option>
+    </select> <br /> <br />
+    <span>Стоимость:</span><input type="number" @bind="_service.Price" />
+    <button @onclick="CreateService">Добавить!</button>
+</div>
+
+@code {
+    public ServiceInputModel _service;
+    private string Male;
+    [Parameter] public int Id { get; set; }
+
+    protected override void OnInitialized()
+    {
+        _service = new ServiceInputModel();
+        _service.SpecializationId = Id;
+        _service.Male = true;
+    }
+
+    private void CreateService()
+    {
+
+        if(Male == "true")
+        {
+            _service.Male = true;    
+        }
+        else if(Male == "false")
+        {
+            _service.Male = false;    
+        }
+        else if(Male == "null")
+        {
+            _service.Male = null;
+        }
+
+        if (_service.Name is not null)
+        {
+            var pm = new ServiceManager();
+            pm.AddService(_service);
+            _service = new ServiceInputModel();
+        }
+    }
+}

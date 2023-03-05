@@ -51,6 +51,8 @@ namespace RecordingSystem.DAL.Options
         public const string AddDayOfWeek = "AddDayOfWeek"; 
         public const string GetAllTimeRecording = "GetAllTimeRecording"; 
         public const string GetSpecializationById = "GetSpecializationById"; 
-        public const string GetServiceById = "GetServiceById";
+        public const string GetServiceById = "GetServiceById"; 
+        public const string GetTimeRecordingById = "GetTimeRecordingById"; 
+        public const string GetDoctorById = "GetDoctorById";
     }
 }

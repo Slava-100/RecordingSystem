@@ -8,6 +8,7 @@
     bottom: 0;
     text-align: center;
     padding: 12px;
+    border-radius: 5px;
 }
 
 html, body {
@@ -92,7 +93,7 @@ nav {
 
     nav ul {
         list-style: none;
-        margin: 10;
+        margin: 10px;
         padding: 0;
         display: flex;
     }
@@ -336,41 +337,49 @@ body .button {
     font-size: 40px;
 }
 
-.specialization-page-menu {
+.page-menu {
     list-style: none;
     padding: 0;
     border: 1px solid gray;
     border-radius: 10px;
 }
 
-.specialization-page-menu li {
+.page-menu li {
     overflow: hidden;
     padding: 6px 10px;
     font-size: 20px;
-    margin-bottom: 5px;
 }
 
-.specialization-page-menu li:first-child {
+.li-service:hover {
+    background-color: lightyellow;
+    transition: all 0.5s ease;
+}
+
+.li-service {
+    cursor: pointer;
+}
+
+
+.page-menu li:first-child {
     font-weight: bold;
     padding: 15px 0 10px 15px;
     border-bottom: 1px solid rgba(0,0,0, .2);
-    border-radius: 10px;
     color: #679bb7;
     font-size: 24px;
     box-shadow: 0 5px 10px -5px rgba(0,0,0, .2);
 }
 
-.specialization-page-menu li:first-child:before {
+.page-menu li:first-child:before {
     margin-right: 10px;
 }
 
-.specialization-page-menu span {
+.page-menu span {
     float: left;
-    width: 75%;
+    width: 50%;
     color: #7C7D7F;
 }
 
-.specialization-page-menu em {
+.page-menu em {
     float: right;
     color: #9c836e;
     font-weight: bold;
@@ -390,10 +399,10 @@ body .button {
 }
 
 .doctor-card {
-    margin: 5px;
-    height: 500px;
-    width: 24%;
-    box-shadow: 0px 5px 20px 0px;
+    margin: 10px;
+    height: 600px;
+    width: 23.5%;
+    box-shadow: 0px 5px 15px 0px;
     border-radius: 6px;
     position: relative;
 }
@@ -401,13 +410,14 @@ body .button {
 .container-doctors {
     margin-left: auto;
     margin-right: auto;
-    width: 1200px;
+    width: 1400px;
 }
 
 .doctor-pic {
     height: 320px;
     background-color: #f8f8f8;
     text-align: center;
+    border-radius: 6px;
 }
 
 .photo-doctor {
@@ -421,4 +431,109 @@ body .button {
     text-align: center;
     margin-top: 63%;
     font-size: 70px;
+}
+
+.doctor-text-in-card{
+    margin:20px;
+}
+
+.doctor-update-select{
+    border:1px solid black;
+}
+
+.doctor-update-select-red {
+    border: 1px solid red;
+}
+
+.doctor-proverka{
+    color:red;
+}
+
+.input-red {
+    border: 1px solid red;
+}
+
+.plus-li {
+    text-align: center;
+    cursor: cell;
+}
+
+.plus-li span{
+    width: 98%;
+    text-align: center;
+}
+
+.plus-li:hover{
+    background-color: lightyellow;
+    transition: all 0.5s ease;
+}
+
+.add-service{
+    width: 800px;
+    height: 800px;
+    margin-left: 19%;
+    margin-top: 20px;
+}
+
+.recording-div{
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+}
+
+.btn-showrecording {
+    margin-left: 30px;
+    border: none;
+    background: rgb(13,202,240);
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    position: relative;
+    box-sizing: border-box;
+    transition: all 500ms ease;
+}
+
+.btn-showrecording:hover {
+  background: rgba(0,0,0,0);
+  color: rgb(13,202,240);
+  box-shadow: inset 0 0 0 3px rgb(13,202,240);
+}
+
+.a-rec{
+    width: 100px;
+}
+
+.btn-recording {
+    left: 100px;
+    border: none;
+    background: lawngreen;
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    position: relative;
+    box-sizing: border-box;
+    transition: all 500ms ease;
+}
+
+#norec {
+    background: Silver;
+}
+
+#rec:hover {
+  background: rgba(0,0,0,0);
+  color: black;
+  box-shadow: inset 0 0 0 3px lawngreen;
+}
+
+.li-recording {
+    cursor: pointer;
+    border-top: 1px solid gray;
+}
+
+.div-recording{
+    width: 800px;
+    height: 500px;
+    margin-left: 15%;
+    margin-top: 50px;
 }

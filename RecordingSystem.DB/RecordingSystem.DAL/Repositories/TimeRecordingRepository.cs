@@ -1,4 +1,4 @@
-﻿using Dapper;
+﻿  using Dapper;
 using Microsoft.Data.SqlClient;
 using RecordingSystem.DAL.Interfaces;
 using RecordingSystem.DAL.Models;
@@ -119,6 +119,36 @@ namespace RecordingSystem.DAL.Repositories
             }
 
             return result;
+        }
+
+        public TimeRecordingDto GetTimeRecordingById(int id)
+        {
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
+            {
+                TimeRecordingDto result = new TimeRecordingDto();
+                sqlConnection.Open();
+                sqlConnection.Query<TimeRecordingDto,TimeTableDto,TimeSpanDto,DoctorDto,TimeRecordingDto>(StoredNamesProcedures.GetTimeRecordingById,
+                    (timeRecording, timeTable, timeSpan, doctor) =>
+                    {
+                        timeTable.TimeSpan = timeSpan;
+                        timeTable.Doctor = doctor;
+                        timeRecording.TimeTable = timeTable;
+
+                        if (timeRecording.TimeTable is not null)
+                        {
+                            timeRecording.TimeTableId = timeRecording.TimeTable.Id;
+                        }
+
+                        result = timeRecording;
+
+                        return timeRecording;
+                    },
+                    new { Id = id },
+                    splitOn: "Id",
+                    commandType: CommandType.StoredProcedure);
+
+                return result;
+            }
         }
     }
 }

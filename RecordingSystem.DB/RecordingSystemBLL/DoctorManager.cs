@@ -18,7 +18,7 @@ namespace RecordingSystem.BLL
         public List<DoctorOutputModel> GetAllDoctors()
         {
             var doctors = DoctorRepository.GetAllDoctors();
-            var result = _mapperrr.MapDoctorDtoToDoctorOutputModel(doctors);
+            var result = _mapperrr.MapListDoctorDtoToListDoctorOutputModel(doctors);
 
             return result;
         }
@@ -26,7 +26,7 @@ namespace RecordingSystem.BLL
         public List<DoctorOutputModel> GetAllDoctorsByServiceId(int id)
         {
             var doctors = DoctorRepository.GetAllDoctorsByServiceId(id);
-            var result = _mapperrr.MapDoctorDtoToDoctorOutputModel(doctors);
+            var result = _mapperrr.MapListDoctorDtoToListDoctorOutputModel(doctors);
 
             return result;
         }
@@ -34,14 +34,14 @@ namespace RecordingSystem.BLL
         public List<DoctorOutputModel> GetAllDoctorBySpecializationId(int id)
         {
             var doctors = DoctorRepository.GetAllDoctorBySpecializationId(id);
-            var result = _mapperrr.MapDoctorDtoToDoctorOutputModel(doctors);
+            var result = _mapperrr.MapListDoctorDtoToListDoctorOutputModel(doctors);
 
             return result;
         }
         public List<DoctorOutputModel> GetAllFreeDoctorsByDayOfWeekId(int id)
         {
             var doctors = DoctorRepository.GetAllFreeDoctorsByDayOfWeekId(id);
-            var result = _mapperrr.MapDoctorDtoToDoctorOutputModel(doctors);
+            var result = _mapperrr.MapListDoctorDtoToListDoctorOutputModel(doctors);
 
             return result;
         }
@@ -56,6 +56,13 @@ namespace RecordingSystem.BLL
         {
             var doctorDto = _mapperrr.MapDoctorInputModelToDoctorDto(doctor);
             DoctorRepository.UpdateDoctor(doctorDto);
+        }
+
+        public DoctorOutputModel GetDoctorById(int id)
+        {
+            var doctor = DoctorRepository.GetDoctorById(id);
+            var result = _mapperrr.MapDoctorDtoToDoctorOutputModel(doctor);
+            return result;
         }
     }
 }

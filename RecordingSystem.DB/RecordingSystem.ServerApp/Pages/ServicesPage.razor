@@ -1,25 +1,28 @@
 ﻿@page "/services"
 
 <h3>ServicesPage</h3>
-<NavLink href="/add-service"><button type="button" class="btn btn-info">Add Service</button></NavLink>
 
+@if (_services.Count != 0)
+{
+<div class="specialization-page">
 <select name="gender" id="gender">
     <option value="male">male</option>
     <option value="female">female</option>
     <option value="all">all</option>
 </select>
-
-@if (_services.Count != 0)
-{
-    <div class="Services-list">
+    <ul class="page-menu">
+        <li>Услуги</li>
         @foreach (var i in _services)
         {
-            _tmpHref = "/services/" + i.Id;
-            <NavLink href=@{
-        _tmpHref
-}><button type="button" class="btn btn-outline-secondary"><ServiceCard Service="i" /></button></NavLink>
+                <ServiceCard Service = "i"/>
         }
-        </div>
+        <a href="/add-service">
+            <li class="plus-li">
+                <span> + </span>
+            </li>
+        </a>
+    </ul>
+</div>
 }
 else
 {
@@ -33,6 +36,6 @@ else
     protected override void OnInitialized()
     {
         var sm = new ServiceManager();
-        _services = sm.GetAllServiceByMale(true);
+        _services = sm.GetAllServiceByMale(null);
     }
 }

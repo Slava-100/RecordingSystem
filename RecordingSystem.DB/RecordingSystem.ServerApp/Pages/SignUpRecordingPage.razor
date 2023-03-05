@@ -1,0 +1,42 @@
+﻿@page "/recordingall/sign/{Id:int}"
+@inject NavigationManager Navigator
+
+<div class="div-recording"><h1>Запись</h1>
+<span>|Дата: @_timeRecording.Date.ToShortDateString()| |Время: @_timeRecording.TimeTable.TimeSpan.Start - @_timeRecording.TimeTable.TimeSpan.End| 
+    |Врач: @_timeRecording.TimeTable.Doctor.Name @_timeRecording.TimeTable.Doctor.LastName| </span>
+<br />
+<span>Авторизуйся:</span>
+<select @bind="_crntId">
+    @foreach(var i in _patients)
+    {
+        <option value="@i.Id">@i.Name @i.LastName</option>
+    }
+</select> <br />
+<button @onclick="UpdateOccuoied">Подтвердить</button>
+</div>
+
+@code {
+    [Parameter] public int Id { get; set; }
+    private int _crntId;
+    private TimeRecordingOutputModel _timeRecording;
+    private List<PatientOutputModel> _patients;
+    private UpdateTimeRecordingInputModel _timeRecordingUpdate = new UpdateTimeRecordingInputModel();
+
+    protected override void OnInitialized()
+    {
+        _timeRecording = new TimeRecordingManager().GetTimeRecordingById(Id);
+        _patients = new PatientManager().GetAllPatients();
+        _timeRecordingUpdate.Id = _timeRecording.Id;
+        _timeRecordingUpdate.Date = _timeRecording.Date;
+        _timeRecordingUpdate.Occupied = _timeRecording.Occupied;
+        _timeRecordingUpdate.TimeTableId = _timeRecording.TimeTableId;
+    }
+
+    private void UpdateOccuoied()
+    {
+        var t = new TimeRecordingManager();
+        _timeRecordingUpdate.Occupied = true;
+        t.UpdateTimeRecordingById(_timeRecordingUpdate);       
+        Navigator.NavigateTo("/", true);
+    }
+}

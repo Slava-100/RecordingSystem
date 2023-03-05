@@ -4,12 +4,10 @@
 
 <div class="container-doctors">
     <div class="doctor-setka">
-        <div class="doctor-card">
-            <NavLink href="/add-doctor">
+        <a href="/add-doctor" class="doctor-card" >
             <div class="plus-doc">+</div>
-            </NavLink>
-        </div>
-        @foreach (var i in _doctor)
+        </a>
+        @foreach (var i in _doctors)
             {
                 <DoctorCard doctor="i"/>
             }
@@ -17,11 +15,11 @@
 </div>
 
 @code{
-    private List<DoctorOutputModel> _doctor = new List<DoctorOutputModel>();
+    private List<DoctorOutputModel> _doctors = new List<DoctorOutputModel>();
 
     protected override void OnInitialized()
     {
         var dm = new DoctorManager();
-        _doctor = dm.GetAllDoctors();
+        _doctors = dm.GetAllDoctors();
     }
 }

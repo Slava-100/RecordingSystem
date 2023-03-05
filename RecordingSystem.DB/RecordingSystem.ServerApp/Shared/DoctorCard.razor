@@ -11,15 +11,27 @@
       <img  class="photo-doctor" src="/css/Images/Male/{False}.png" alt="photo" />
       </div>
     }
-    <h4>Имя: @doctor.Name  <br />
-        Фамилия: @doctor.LastName</h4>
-    <div class="">
+    <div class="doctor-text-in-card">
+    @if (doctor.Specialization is not null)
+    {
+       <h6>@doctor.Specialization.Name</h6>
+    }
+    else
+    {
+        <h6>Стажер</h6>
+    }
+    <h4>@doctor.LastName</h4>
+    <h5>@doctor.Name</h5>
+    <p>Почта: @doctor.Email</p>
+    <p>Телефон: @doctor.PhoneNumber</p>
+    </div>
+    <div>
         <a href="/update-doctor/@doctor.Id">
             Изменить данные
         </a>
     </div>
     <div class="btn-zapis">
-        <a href="/timetable-doctor/@doctor.Id">
+        <a href="/recording/@doctor.Id">
             Записаться
         </a>
     </div>

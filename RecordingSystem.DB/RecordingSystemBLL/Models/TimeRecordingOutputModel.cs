@@ -11,7 +11,7 @@ namespace RecordingSystem.BLL.Models
     public class TimeRecordingOutputModel
     {
         public int Id { get; set; }
-        public DateTime? Date { get; set; }
+        public DateTime Date { get; set; }
         public int TimeTableId { get; set; }
         public bool? Occupied { get; set; }
         public TimeTableOutputModel TimeTable { get; set; }
