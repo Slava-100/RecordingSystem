@@ -51,6 +51,10 @@
             </ul>
         }
     </div>
+    @if (_timeRecordings.Count == 0 && _crntDate != DateTime.MinValue && _id != 0 && _flagShow == true)
+    {
+        <button @onclick="FillRecordingByDay">Заполнить расписание</button>
+    }
 </div>
 
 @code {
@@ -61,6 +65,7 @@
     private List<DoctorOutputModel> _doctors;
     private List<TimeRecordingOutputModel> _timeRecordings { get; set; }
     private TimeRecordingOutputModel tt;
+    private bool _flagShow = false;
 
     protected override void OnInitialized()
     {
@@ -78,6 +83,7 @@
 
     private void ShowRecording()
     {
+        _flagShow = true;
         if (Id == null || Id == 0)
         {
             _timeRecordings = new TimeRecordingManager().GetAllTimeRecordingsByDoctorIdAndDay(_crntDate, _id);
@@ -89,5 +95,12 @@
 
         InvokeAsync(StateHasChanged);
         _date = DateTime.Now;
+    }
+
+    private void FillRecordingByDay()
+    {
+        new TimeRecordingManager().FillAllTimeRecordingInForAOneDay(_crntDate);
+        _flagShow = false;
+        InvokeAsync(StateHasChanged);
     }
 }
