@@ -25,8 +25,8 @@
         }
         <br />
         <span>Телефон:</span>
-        @if (_doctor.PhoneNumber is null)
-        {
+    @if (_doctor.PhoneNumber is null || _doctor.PhoneNumber == "")
+    {
             <input class="input-red" type="number" placeholder="8-999-123-45-67" @bind="_doctor.PhoneNumber" required/>
         }
         else
@@ -98,8 +98,8 @@
             </select>
     </div>
 
-@if (_doctor.Name is not null & _doctor.LastName is not null & _doctor.PhoneNumber is not null & _doctor.Email is not null & Male is not null & _doctor.Birthday is not null & Convert.ToInt64(_doctor.PhoneNumber) > 80000000000 & Convert.ToInt64(_doctor.PhoneNumber) < 90000000000)
-    {
+@if (_doctor.Name is not null && _doctor.LastName is not null && _doctor.PhoneNumber is not null && _doctor.Email is not null && Male is not null && _doctor.Birthday is not null && _doctor.PhoneNumber != "")
+{
         <button @onclick="AddNewDoctor">Добавить</button>
     }
     else
