@@ -2,6 +2,7 @@
 
 <h3>Наши врачи</h3>
 
+    <div class="container-doctors">
 <select  class="doctor-update-select" @bind=_bindSpecializationId>
                <option value is null> </option>
                @foreach(var a in _specializations)
@@ -12,7 +13,7 @@
 
 @if (_bindSpecializationId is null)
 {
-    <div class="container-doctors">
+
         <div class="doctor-setka">
             <a href="/add-doctor" class="doctor-card" >
                 <div class="plus-doc">+</div>
@@ -22,11 +23,11 @@
                     <DoctorCard doctor="i"/>
                 }
         </div>
-    </div>
+
 }
 else
 {
-    <div class="container-doctors">
+
         <div class="doctor-setka">
             @foreach (var i in _doctors)
             {
@@ -40,9 +41,9 @@ else
                 }
             }
         </div>
-    </div>
-}
 
+}
+    </div>
 
 @code{
     private List<DoctorOutputModel> _doctors = new List<DoctorOutputModel>();
