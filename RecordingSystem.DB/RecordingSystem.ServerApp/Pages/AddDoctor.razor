@@ -80,7 +80,7 @@
         }
         <br />
         <span class="span-info">Специализация:</span>
-            <select  class="doctor-update-select-red" @bind="_doctor.SpecializationId">
+            <select  class="doctor-update-select" @bind="_doctor.SpecializationId">
                <option value is null> </option>
                @foreach(var a in Specializations)
                {
@@ -89,7 +89,7 @@
             </select>
         <br />
         <span class="span-info">Кабинет:</span>
-            <select  class="doctor-update-select-red" @bind="_doctor.CabinetId">
+            <select  class="doctor-update-select" @bind="_doctor.CabinetId">
                <option value is null> </option>
                @foreach(var a in Cabinets)
                {
