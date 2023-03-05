@@ -9,6 +9,7 @@
   <ItemGroup>
     <Content Remove="wwwroot\css\Images\At.svg" />
     <Content Remove="wwwroot\css\Images\Birthday.svg" />
+    <Content Remove="wwwroot\css\Images\Check.svg" />
     <Content Remove="wwwroot\css\Images\Gender.svg" />
     <Content Remove="wwwroot\css\Images\MedicalCard.svg" />
     <Content Remove="wwwroot\css\Images\Telephone.svg" />
@@ -20,6 +21,7 @@
     <None Include="wwwroot\css\Images\At.svg" />
     <None Include="wwwroot\css\Images\MedicalCard.svg" />
     <None Include="wwwroot\css\Images\Gender.svg" />
+    <None Include="wwwroot\css\Images\Check.svg" />
     <None Include="wwwroot\css\Images\Telephone.svg" />
     <None Include="wwwroot\css\Images\hospital.svg" />
   </ItemGroup>

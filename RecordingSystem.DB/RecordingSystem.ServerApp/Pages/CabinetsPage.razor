@@ -6,8 +6,6 @@
 {       
         @foreach (var i in _cabinets)
         {
-@*        ListOfCabinetsNumbers.Add(i.Number);
-        ListOfCabinetsNumbers.Sort();*@
         _tmpHref = "/cabinet/"+i.Id;
         <div class="cabinet-card">
             <CabinetCard cabinet="i"/>
