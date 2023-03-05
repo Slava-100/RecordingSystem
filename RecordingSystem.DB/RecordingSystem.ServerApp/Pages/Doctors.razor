@@ -4,11 +4,9 @@
 
 <div class="container-doctors">
     <div class="doctor-setka">
-        <div class="doctor-card">
-            <NavLink href="/add-doctor">
+        <a href="/add-doctor" class="doctor-card" >
             <div class="plus-doc">+</div>
-            </NavLink>
-        </div>
+        </a>
         @foreach (var i in _doctors)
             {
                 <DoctorCard doctor="i"/>
