@@ -2,24 +2,62 @@
 
 <h3>Наши врачи</h3>
 
-<div class="container-doctors">
-    <div class="doctor-setka">
-        <a href="/add-doctor" class="doctor-card" >
-            <div class="plus-doc">+</div>
-        </a>
-        @foreach (var i in _doctors)
-            {
-                <DoctorCard doctor="i"/>
-            }
+<select  class="doctor-update-select" @bind=_bindSpecializationId>
+               <option value is null> </option>
+               @foreach(var a in _specializations)
+               {
+                     <option value="@a.Id">@a.Name</option>
+               }
+</select>
+
+@if (_bindSpecializationId is null)
+{
+    <div class="container-doctors">
+        <div class="doctor-setka">
+            <a href="/add-doctor" class="doctor-card" >
+                <div class="plus-doc">+</div>
+            </a>
+            @foreach (var i in _doctors)
+                {
+                    <DoctorCard doctor="i"/>
+                }
+        </div>
     </div>
-</div>
+}
+else
+{
+    <div class="container-doctors">
+        <div class="doctor-setka">
+            @foreach (var i in _doctors)
+            {
+                @if (i.Specialization is null)
+                    _specId = null;
+                else
+                    _specId = i.Specialization.Id;
+                @if (_specId == _bindSpecializationId)
+                {
+                    <DoctorCard doctor="i"/>
+                }
+            }
+        </div>
+    </div>
+}
+
 
 @code{
     private List<DoctorOutputModel> _doctors = new List<DoctorOutputModel>();
 
+    private List<SpecializationOutputModel> _specializations = new List<SpecializationOutputModel>();
+
+    private int? _bindSpecializationId;
+
+    private int? _specId;
+    
     protected override void OnInitialized()
     {
         var dm = new DoctorManager();
         _doctors = dm.GetAllDoctors();
+        var sm = new SpecializationManager();
+        _specializations = sm.GetAllSpecializations();
     }
 }
