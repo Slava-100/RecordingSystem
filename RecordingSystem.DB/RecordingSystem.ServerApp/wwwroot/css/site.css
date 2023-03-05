@@ -537,3 +537,19 @@ body .button {
     margin-left: 15%;
     margin-top: 50px;
 }
+
+.div_active{
+    width: 800px;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.div_patient {
+    width: 1500px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid gray;
+    border-radius: 3px;
+    padding: 5px;
+}
