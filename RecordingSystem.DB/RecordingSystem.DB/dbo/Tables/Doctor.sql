@@ -3,7 +3,7 @@
     [Name]             NVARCHAR (20) NOT NULL,
     [LastName]         NVARCHAR (30) NOT NULL,
     [Male]             BIT           NOT NULL,
-    [PhoneNumber]      NVARCHAR (10) NULL,
+    [PhoneNumber]      NVARCHAR (11) NULL,
     [Email]            NVARCHAR (20) NULL,
     [SpecializationId] INT           NULL,
     [CabinetId]        INT           NULL,

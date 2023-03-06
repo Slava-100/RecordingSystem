@@ -56,13 +56,19 @@
     }
     else
     {
-		if (Convert.ToInt64(_doctor.PhoneNumber) > 80000000000 & Convert.ToInt64(_doctor.PhoneNumber) < 90000000000)
-		{
-		    <input type="number" @bind="_doctor.PhoneNumber"/>
+		if(_doctor.PhoneNumber.Length == 11)
+			if (Convert.ToInt64(_doctor.PhoneNumber) > 80000000000 & Convert.ToInt64(_doctor.PhoneNumber) < 90000000000)
+			{
+			    <input type="number" @bind="_doctor.PhoneNumber"/>
+			}
+			else
+			{
+			    <input class="input-red" type="number" placeholder="8-999-123-45-67" @bind="_doctor.PhoneNumber"/> <span class="doctor-proverka">Некорректные данные</span>
+			}
 		}
 		else
 		{
-		    <input class="input-red" type="number" placeholder="8-999-123-45-67" @bind="_doctor.PhoneNumber"/> <span class="doctor-proverka">Некорректные данные</span>
+			<input class="input-red" type="number" placeholder="8-999-123-45-67" @bind="_doctor.PhoneNumber"/> <span class="doctor-proverka">Некорректные данные</span>
 		}
 	}
 	<br />
@@ -73,9 +79,16 @@
 	{
 		if (_doctor.PhoneNumber is not null && _doctor.PhoneNumber != "")
 		{
-			if (Convert.ToInt64(_doctor.PhoneNumber) > 80000000000 & Convert.ToInt64(_doctor.PhoneNumber) < 90000000000)
+			if(_doctor.PhoneNumber.Length == 11)
 			{
-				<button @onclick="EditDoctor">Сохранить изменения</button> <br />
+				if (Convert.ToInt64(_doctor.PhoneNumber) > 80000000000 & Convert.ToInt64(_doctor.PhoneNumber) < 90000000000)
+				{
+					<button @onclick="EditDoctor">Сохранить изменения</button> <br />
+				}
+				else
+				{
+					<span class="doctor-proverka">ИСПРАВЬТЕ НОМЕР ТЕЛЕФОНА</span> <br />
+				}
 			}
 			else
 			{
