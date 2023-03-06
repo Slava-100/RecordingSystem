@@ -47,5 +47,32 @@ namespace RecordingSystem.DAL.Repositories
                 return result;
             }
         }
+
+        public RecordingHistoryDto GetRecordingHistoryById(int id)
+        {
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
+            {
+                RecordingHistoryDto result = new RecordingHistoryDto();
+
+                sqlConnection.Open();
+                sqlConnection.Query<RecordingHistoryDto, ActiveRecordingDto, PatientDto, DoctorDto, DiagnosisDto, RecordingHistoryDto>(
+                    StoredNamesProcedures.GetRecordingHistoryById,
+                    (recordingHistory, activeRecording, patient, doctor, diagnosis) =>
+                    {
+                        activeRecording.Patient = patient;
+                        activeRecording.Doctor = doctor;
+                        recordingHistory.ActiveRecording = activeRecording;
+                        recordingHistory.Diagnosis = diagnosis;
+                        result = recordingHistory;
+
+                        return recordingHistory;
+                    },
+                    new { Id = id },
+                    splitOn: "Id",
+                    commandType: CommandType.StoredProcedure);
+
+                return result;
+            }
+        }
     }
 }

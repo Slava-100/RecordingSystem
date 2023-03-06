@@ -1,18 +1,53 @@
 ﻿@page "/addDiagnosis/{Id:int}"
+@inject NavigationManager Navigator
 
 <div class="add-diagnosis">
-<h3>Диагноз</h3>
-    <span>Заключение:</span> <br /><textarea class="write-diagnosis"></textarea><br /><br />
-    <span>Реккомендации:</span> <br /><textarea class="write-diagnosis"></textarea>
+    <h3>|Диагноз| |Пациент: @_activeRecording.Patient.Name @_activeRecording.Patient.LastName| |Лечащий врач: @_activeRecording.Doctor.Name @_activeRecording.Doctor.LastName|</h3>
+    <span>Заключение:</span> <br /><textarea class="write-diagnosis" @bind="_diagnosis"></textarea><br /><br />
+    <span>Реккомендации:</span> <br /><textarea class="write-diagnosis" @bind="_recommendation"></textarea> <br />
+    <button @onclick="FillDiagnosis">Записать</button>
 </div>
 
 @code {
     [Parameter] public int Id { get; set; }
+    private string _diagnosis;
+    private string _recommendation;
 
     private ActiveRecordingOutputModel _activeRecording;
 
     protected override void OnInitialized()
     {
+        _activeRecording = new ActiveRecordingManager().GetActiveRecordingById(Id);
+    }
+
+    private void FillDiagnosis()
+    {
+        DiagnosisInputModel diagnosisInputModel = new DiagnosisInputModel()
+        {
+            Name = _diagnosis,
+            Recommendations = _recommendation
+        };
+        new DiagnosisManager().AddDiagnosis(diagnosisInputModel);
+
+        var listDiagnoses = new DiagnosisManager().GetAllDiagnosis();
+        var maxId = listDiagnoses.Max(d => d.Id);
+
+        RecordingHistoryInputModel recordingHistoryInputModel = new RecordingHistoryInputModel()
+        {
+            DiagnosisId = maxId,
+            ActiveRecordingId = Id
+        };
+
+        new RecordingHistoryManager().AddRecordingHistory(recordingHistoryInputModel);
+
+        UpdateActiveRecordingModel updateActiveRecordingModel = new UpdateActiveRecordingModel()
+        {
+            Id = _activeRecording.Id,
+            Coming = true
+        };
+
+        new ActiveRecordingManager().UpdateComingInActiveRecordingById(updateActiveRecordingModel);
         
+        Navigator.NavigateTo("/patient/" + _activeRecording.PatientId.ToString(), true);
     }
 }

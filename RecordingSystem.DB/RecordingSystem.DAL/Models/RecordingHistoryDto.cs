@@ -13,6 +13,5 @@ namespace RecordingSystem.DAL.Models
         public int ActiveRecordingId { get; set; }
         public ActiveRecordingDto ActiveRecording { get; set;}
         public DiagnosisDto Diagnosis { get; set; }
-
     }
 }

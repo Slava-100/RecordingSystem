@@ -572,7 +572,17 @@ body .button {
     border-top: 1px solid gray;
 }
 
-.div-recording{
+.li-history {
+    cursor: pointer;
+    border-top: 1px solid gray;
+}
+
+.li-history:hover {
+   background: lightyellow;
+   transition: all 0.5s ease;
+}
+
+.div-recording {
     width: 800px;
     height: 500px;
     margin-left: 15%;
@@ -586,6 +596,13 @@ body .button {
     margin-right: auto;
 }
 
+.div_history {
+    width: 800px;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .div_patient {
     width: 1500px;
     margin-left: auto;
@@ -593,6 +610,16 @@ body .button {
     border: 1px solid gray;
     border-radius: 3px;
     padding: 5px;
+}
+
+.div_diagnosis {
+    width: 1500px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid gray;
+    border-radius: 3px;
+    padding: 5px;
+    margin-top: 50px;
 }
 
 .write-diagnosis {

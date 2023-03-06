@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RecordingSystem.DAL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,5 +10,6 @@ namespace RecordingSystem.DAL.Interfaces
     public interface IDiagnosRepository
     {
         public void AddDiagnosis(string name, string recommendations);
+        public List<DiagnosisDto> GetAllDiagnosis();
     }
 }
