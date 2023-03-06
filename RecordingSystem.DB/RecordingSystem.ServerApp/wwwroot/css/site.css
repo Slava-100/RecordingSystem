@@ -617,3 +617,28 @@ body .button {
     background-color: lightgreen;
     transition: all 0.5s ease;
 }
+
+.main-btn
+{
+    background-color:white;
+    height:50px;
+    width:100px;
+    border-radius:8px;
+}
+
+.main-btn:hover{
+    background-color: lightblue;
+}
+
+.patients-container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+}
+
+.patient-card {
+    border: 1px solid black;
+}
+.patient-card:hover {
+    background-color: lightblue;
+}
