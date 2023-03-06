@@ -1,4 +1,6 @@
-﻿<div class="doctor-card">
+﻿@inject NavigationManager Navigator
+
+<div class="doctor-card">
     @if (doctor.Male == true)
     {
       <div class="doctor-pic">
@@ -29,6 +31,7 @@
         <a href="/update-doctor/@doctor.Id">
             Изменить данные
         </a>
+        <button @onclick="DeleteDoctor">Удалить</button> <br />
     </div>
     <div class="btn-zapis">
         <a href="/recording/@doctor.Id">
@@ -39,4 +42,14 @@
 
 @code {
     [Parameter] public DoctorOutputModel doctor { get; set; }
+
+    private void DeleteDoctor()
+    {
+        var doc = new DoctorInputModel()
+            {
+                Id = doctor.Id,
+            };
+        new DoctorManager().UpdateIsDeletedDoctorById(doc);
+        Navigator.NavigateTo("/Doctors", true);
+    }
 }

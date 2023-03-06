@@ -4,7 +4,7 @@
 <h3>AddDoctor</h3>
 
     <div>
-        <span class="span-info">Имя:</span>
+        <span class="span-info">Имя*:</span>
         @if (_doctor.Name is null )
         {
             <input class="input-red" type="text" placeholder="Ivan" @bind="_doctor.Name"/>
@@ -14,44 +14,17 @@
             <input type="text" @bind="_doctor.Name"/> 
         }
         <br /> 
-        <span>Фамилия:</span>
+        <span>Фамилия*:</span>
         @if (_doctor.LastName is null)
         {
-                <input class="input-red" type="text" placeholder="Ivanov" @bind="_doctor.LastName"/>
+            <input class="input-red" type="text" placeholder="Ivanov" @bind="_doctor.LastName"/>
         }
         else
         {
             <input type="text" @bind="_doctor.LastName"/> 
         }
         <br />
-        <span>Телефон:</span>
-        @if (_doctor.PhoneNumber is null)
-        {
-            <input class="input-red" type="number" placeholder="8-999-123-45-67" @bind="_doctor.PhoneNumber" required/>
-        }
-        else
-        {
-            if (Convert.ToInt64(_doctor.PhoneNumber) > 80000000000 & Convert.ToInt64(_doctor.PhoneNumber) < 90000000000)
-            {
-                <input type="tel" @bind="_doctor.PhoneNumber"/>
-            }
-            else
-            {
-                <input class="input-red" type="tel" placeholder="8-999-123-45-67" @bind="_doctor.PhoneNumber"/> <div class="doctor-proverka">Некоректные данные</div>
-            }
-        }
-        <br />
-        <span>Почта:</span>
-        @if (_doctor.Email is null)
-        {
-            <input class="input-red" type="email" placeholder="default@example.com" @bind="_doctor.Email"/> 
-        }
-        else
-        {
-            <input type="email" @bind="_doctor.Email"/> 
-        }
-        <br />
-        <span>Пол</span>
+        <span>Пол*:</span>
         @if (Male is null)
         {
              <select  class="doctor-update-select-red" @bind="Male">
@@ -67,9 +40,8 @@
                 <option value="false">Женщина</option>
             </select>
         }
-
         <br />
-        <span>День рождения:</span>
+        <span>День рождения*:</span>
         @if (_doctor.Birthday is null)
         {
             <input class="input-red" type="date" @bind="_doctor.Birthday"/> 
@@ -78,6 +50,26 @@
         {
             <input type="text" @bind="_doctor.Birthday"/> 
         }
+        <br />
+        <span>Телефон:</span>
+    @if (_doctor.PhoneNumber is null || _doctor.PhoneNumber == "")
+    {
+        <input type="number" placeholder="8-999-123-45-67" @bind="_doctor.PhoneNumber" required/>
+    }
+    else
+    {
+            if (Convert.ToInt64(_doctor.PhoneNumber) > 80000000000 & Convert.ToInt64(_doctor.PhoneNumber) < 90000000000)
+            {
+                <input type="number" @bind="_doctor.PhoneNumber"/>
+            }
+            else
+            {
+                <input class="input-red" type="number" placeholder="8-999-123-45-67" @bind="_doctor.PhoneNumber"/> <span class="doctor-proverka">  Некорректные данные</span>
+            }
+    }
+        <br />
+        <span>Почта:</span>
+            <input type="email" placeholder="default@example.com" @bind="_doctor.Email"/> 
         <br />
         <span class="span-info">Специализация:</span>
             <select  class="doctor-update-select" @bind="_doctor.SpecializationId">
@@ -98,16 +90,30 @@
             </select>
     </div>
 
-@if (_doctor.Name is not null & _doctor.LastName is not null & _doctor.PhoneNumber is not null & _doctor.Email is not null & Male is not null & _doctor.Birthday is not null & Convert.ToInt64(_doctor.PhoneNumber) > 80000000000 & Convert.ToInt64(_doctor.PhoneNumber) < 90000000000)
-    {
-        <button @onclick="AddNewDoctor">Добавить</button>
+@if (_doctor.Name is not null && _doctor.LastName is not null && Male is not null && _doctor.Birthday is not null)
+{
+    if(_doctor.PhoneNumber is not null && _doctor.PhoneNumber != ""){
+        if (Convert.ToInt64(_doctor.PhoneNumber) > 80000000000 & Convert.ToInt64(_doctor.PhoneNumber) < 90000000000)
+        {
+            <button @onclick="AddNewDoctor">Добавить</button> <br />
+        }
+        else
+        {
+            <div class="doctor-proverka">ИСПРАВЬТЕ НОМЕР ТЕЛЕФОНА</div> <br />
+        }
     }
+    else{
+        <button @onclick="AddNewDoctor">Добавить</button> <br />
+    }
+}
     else
     {
-        <div class="doctor-proverka">ЗАПОЛНИТЕ ДАННЫЕ</div>
+        <div class="doctor-proverka">ЗАПОЛНИТЕ ДАННЫЕ</div> <br />
     }
 
-    <NavLink href="/Doctors"><div class="back">Назад</div></NavLink>
+    <NavLink href="/Doctors"><span class="back">Назад</span></NavLink>
+
+
 @code {
     public DoctorInputModel _doctor;
 
@@ -128,6 +134,8 @@
     {
         _doctor.Male = Convert.ToBoolean(Male);
         var dm = new DoctorManager();
+        if (_doctor.PhoneNumber == "")
+            _doctor.PhoneNumber = null;
         dm.AddDoctor(_doctor);
         Navigator.NavigateTo("/Doctors", true);
     }
