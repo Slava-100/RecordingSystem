@@ -7,7 +7,7 @@ namespace RecordingSystem.BLL.Models
         public int Id { get; set; }
         public int? PatientId { get; set; }
         public int? DoctorId { get; set; }
-        public DateTime? DateTime { get; set; }
+        public DateTime DateTime { get; set; }
         public bool? Coming { get; set; }
         public PatientOutputModel Patient { get; set; }
         public DoctorOutputModel Doctor { get; set; }

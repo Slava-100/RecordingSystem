@@ -58,7 +58,7 @@ namespace RecordingSystem.BLL
 
             var listDoctors = DoctorRepository.GetAllDoctors();
             var listDays = TimeRecordingRepository.GetAllDaysInTimeRecording();
-
+              
             foreach (var d in listDoctors)
             {
                 if (TimeRecordingRepository.GetAllTimeRecordingsByDoctorId(d.Id).Count == 0 || !listDays.Any(d => d.Date.Date == date.Date))
