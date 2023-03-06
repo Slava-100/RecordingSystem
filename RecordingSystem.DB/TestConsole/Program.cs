@@ -183,12 +183,12 @@ using RecordingSystem.BLL.Models;
 
 //Console.WriteLine("qwe");
 
-//var s = new ServiceManager();
-//var service = new ServiceOutputModel();
-//service.Id = 1009;
-//service.Name = "bestmassage";
-//service.Price = 2222;
-//s.UpdateService(service);
+var s = new ServiceManager();
+var service = new UpdateServiceInputModel();
+service.Id = 14;
+service.Name = "bestmassage";
+service.Price = 2222;
+s.UpdateService(service);
 //var service = s.GetAllServiceByMale(false);
 
 //SpecializationManager s = new SpecializationManager();
@@ -217,17 +217,17 @@ using RecordingSystem.BLL.Models;
 
 //var p = new TimeTableManager();
 
-//var ppp = p.GetTimeTableByDoctorId(11);
-var ppp = new TimeRecordingManager();
-//var p = new SpecializationManager();
-//var ppp = p.GetSpecializationById(1);
-DateTime someDate = DateTime.Now;
+////var ppp = p.GetTimeTableByDoctorId(11);
+//var ppp = new TimeRecordingManager();
+////var p = new SpecializationManager();
+////var ppp = p.GetSpecializationById(1);
+//DateTime someDate = DateTime.Now;
 
-for (int i = 0; i < 7; i++)
-{
-    ppp.FillAllTimeRecordingInForAOneDay(someDate);
-    someDate = someDate.AddDays(1);
-}
+//for (int i = 0; i < 7; i++)
+//{
+//    ppp.FillAllTimeRecordingInForAOneDay(someDate);
+//    someDate = someDate.AddDays(1);
+//}
 //var p = ppp.GetAllTimeRecordingsByDoctorIdAndDay(someDate, 11);
 
 //Console.WriteLine("qwe");
