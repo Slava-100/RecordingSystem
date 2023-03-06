@@ -1,0 +1,100 @@
+﻿@page "/doctors/{Id:int}"
+
+<div class="container-doctors">
+	<div class="doctor-card">
+		@if (doctor.Male == true)
+		{
+			  <div class="doctor-pic">
+			  <img class="photo-doctor" src="/css/Images/Male/{True}.png" alt="photo" />
+			  </div>
+		}
+		else
+		{
+			  <div class="doctor-pic">
+			  <img  class="photo-doctor" src="/css/Images/Male/{False}.png" alt="photo" />
+			  </div>
+		}
+		<div class="doctor-text-in-card">
+			<h6>Имя: @doctor.Name</h6>
+			<h6>Фамилия: @doctor.LastName</h6>
+			
+			@if (@doctor.Male) 
+			{
+				<h6>Пол: "Мужской"</h6>
+			}
+			else
+			{
+				<h6>"Женский"</h6>
+			}
+			
+			@if (@doctor.Specialization is not null)
+			{
+				<h6>Специализация : @doctor.Specialization.Name</h6>
+			}
+			else
+			{
+				<h6 style="color:red">Специализация :Нет специализации</h6>
+			}
+			@if (@doctor.Cabinet is not null)
+			{
+				<h6>Кабинет: @doctor.Cabinet.Number</h6>
+			}
+			else
+			{
+				<h6 style="color:red">Кабинет: :Нет кабинета</h6>
+			}
+			
+			<h6>День рождения: @doctor.Birthday</h6>
+			
+			@if (@doctor.Email is not null)
+			{
+				<h6>Почта: @doctor.Email</h6>
+			}
+			else
+			{
+				<h6 style="color:red">Почта: :Нет почты</h6>
+			}
+			
+			@if (@doctor.PhoneNumber is not null)
+			{
+				<h6>Номер телефона: @doctor.PhoneNumber</h6>
+			}
+			else
+			{
+				<h6 style="color:red">Номер телефона: :Нет номера</h6>
+			}
+		</div>
+	</div>
+</div
+
+
+
+@code {
+
+	[Parameter] public int Id { get; set; }
+
+	private List<DoctorOutputModel> doctors;
+
+	private DoctorOutputModel doctor;
+
+	protected override void OnInitialized()
+	{
+		doctors = new DoctorManager().GetAllDoctors();
+		doctor = doctors[IndexDoctorByListDoctorsAndId(doctors , Id)];
+	}
+
+		private int IndexDoctorByListDoctorsAndId(List<DoctorOutputModel> doctors , int Id)
+	{
+		int index = 0;
+		int counter = -1;
+		foreach (var i in doctors)
+		{
+			counter++;
+			if (i.Id == Id)
+			{
+				index = counter;
+			}
+		}
+		return index;
+	}
+}
