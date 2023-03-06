@@ -43,7 +43,28 @@
     </ul>
     }
     </div>
-    <button>История</button>
+    <button @onclick="ShowHistory">История</button>
+    <div class="div_history">
+        @if(_showHistory == true){
+            @if (_recordingHistory.Count() == 0)
+            {
+                <h3>Нет записей в истории</h3>
+            }
+            else
+            {
+            <ul class="page-menu">
+                <li>
+                    <a href=""><span>|Диагноз|</span></a>
+                    <em>|Дата|</em>
+                </li>
+                @foreach (var r in _recordingHistory)
+                {
+                    <a href="/recording-history/@r.Id"><li class="li-history"><span> @r.Diagnosis.Name </span><em>@r.ActiveRecording.DateTime</em></li></a>
+                }
+            </ul>
+            }
+        }
+    </div>
 </div>
 
 @code {
@@ -52,6 +73,8 @@
     private PatientOutputModel _patient;
     private List<ActiveRecordingOutputModel> _activeRecordings;
     private bool _showActive = false;
+    private bool _showHistory = false;
+    private List<RecordingHistoryOutputModel> _recordingHistory;
 
     protected override void OnInitialized()
     {
@@ -64,8 +87,8 @@
             }
         }
         _activeRecordings = new List<ActiveRecordingOutputModel>();
-
     }
+
     private void UpdatePatient()
     {
         var up = new PatientInputModel()
@@ -112,5 +135,12 @@
     private void AddDiagnosis(ActiveRecordingOutputModel activeRecording)
     {
         Navigator.NavigateTo("/addDiagnosis/" + activeRecording.Id.ToString(), true);
+    }
+
+    private void ShowHistory()
+    {
+        _showHistory = true;
+        _recordingHistory = new RecordingHistoryManager().GetRecordingHistoryByPatientId(Id);
+        InvokeAsync(StateHasChanged);
     }
 }
