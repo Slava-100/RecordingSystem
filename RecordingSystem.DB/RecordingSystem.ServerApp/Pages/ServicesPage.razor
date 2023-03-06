@@ -27,7 +27,7 @@
         }
         else
         {
-                    <h2>there are no offices or an error has occurred</h2>
+            <h2>sorry the nothing to this search</h2>
         }
     }
 
@@ -70,12 +70,12 @@
     private string _gender;
     private List<ServiceOutputModel> _allServices = new List<ServiceOutputModel>();
     private List<ServiceOutputModel> _servicesByGender = new List<ServiceOutputModel>();
+    public List<SpecializationOutputModel> _specializations;
 
     protected override void OnInitialized()
     {
         _gender = "all";
         var sm = new ServiceManager();
         _allServices = sm.GetAllServiceByMale(null); 
-
     }
 }

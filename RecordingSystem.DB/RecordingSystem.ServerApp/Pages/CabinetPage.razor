@@ -1,4 +1,5 @@
 ﻿@page "/cabinet/{Id:int}"
+@inject NavigationManager Navigator
 
 <div class="cabinet-card">
     <CabinetCard cabinet="_cabinet" />
@@ -42,5 +43,6 @@
                 Status = _cabinet.Status
         };
         new CabinetManager().UpdateCabinetById(up);
+        Navigator.NavigateTo("/cabinets", true);
     }
 }
