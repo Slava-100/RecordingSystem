@@ -5,7 +5,7 @@
     @if (doctor.Male == true)
     {
         <a href="/doctors/@doctor.Id">
-            <div class="doctor-pic">
+            <div class="doctor-pic" id="pic-hover">
             <img class="photo-doctor" src="/css/Images/Male/{True}.png" alt="photo" />
             </div>
         </a>
@@ -13,7 +13,7 @@
     else
     {
         <a href="/doctors/@doctor.Id">
-        <div class="doctor-pic">
+            <div class="doctor-pic" id="pic-hover">
         <img  class="photo-doctor" src="/css/Images/Male/{False}.png" alt="photo" />
         </div>
         </a>
@@ -32,9 +32,15 @@
         @if(doctor.Cabinet is not null)
         {
         <p>Кабинет: @doctor.Cabinet.Number</p>
-        }    
-        <p>Почта: @doctor.Email</p>
-        <p>Телефон: @doctor.PhoneNumber</p>
+        }
+        @if (doctor.Email is not null)
+        {
+            <p>Почта: @doctor.Email</p>
+        }
+        @if (doctor.PhoneNumber is not null)
+        {
+            <p>Телефон: @doctor.PhoneNumber</p>
+        }
     </div>
 
     <div>
@@ -45,9 +51,9 @@
     </div>
 
     <a href="/recording/@doctor.Id">
-    <div class="btn-zapis">
-        Записаться
-    </div>
+        <div class="btn-zapis">
+            Записаться
+        </div>
     </a>
 </div>
 
