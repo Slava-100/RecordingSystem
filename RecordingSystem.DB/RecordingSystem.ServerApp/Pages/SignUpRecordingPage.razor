@@ -36,7 +36,13 @@
     {
         var t = new TimeRecordingManager();
         _timeRecordingUpdate.Occupied = true;
-        t.UpdateTimeRecordingById(_timeRecordingUpdate);       
+        t.UpdateTimeRecordingById(_timeRecordingUpdate);
+        new ActiveRecordingManager().AddActiveRecording(new ActiveRecordingInputModel()
+        {
+            PatientId = _crntId,
+            DoctorId = _timeRecording.TimeTable.Doctor.Id,
+            DateTime = _timeRecording.Date +_timeRecording.TimeTable.TimeSpan.Start
+        });
         Navigator.NavigateTo("/", true);
     }
 }

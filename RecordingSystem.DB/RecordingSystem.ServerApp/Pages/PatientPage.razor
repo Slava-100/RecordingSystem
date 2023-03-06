@@ -1,4 +1,5 @@
 ﻿@page "/patient/{Id:int}"
+@inject NavigationManager Navigator
 
 <h3>PatientPage</h3>
 @*<span>@_patient.PhoneNumber:</span>
@@ -6,6 +7,7 @@
 <br />
 <button @onclick="UpdateCabinet" type="button" class="btn btn-primary">Update</button>
 *@
+<div class="div_patient">
 <h3><PatientCard patient="_patient" /></h3>
 
 <Dropdown>
@@ -16,13 +18,40 @@
         <DropdownDivider />
         <DropdownItem>Another Action</DropdownItem>
     </DropdownMenu>
-</Dropdown>
-
+</Dropdown> 
+<br /> <br />
+ <button @onclick="ShowActiveRecordings">Активные записи</button>
+    <div class="div_active">
+    @if (_activeRecordings.Count() == 0 && _showActive == true)
+    {
+            <h3>Активных записей нет</h3>
+    }
+    else if (_showActive == true)
+    {
+    <ul class="page-menu" id="active">
+        <li>
+            <a href=""><span>|Врач|</span></a>
+            <em>|Время|</em>
+        </li>
+        @foreach (var a in _activeRecordings)
+        {
+            <li class="li-recording"><span> @a.Doctor.Name @a.Doctor.LastName </span>
+                        <button @onclick="(() => AddDiagnosis(a))" class="btn-active" id="diagnoz">Поставить диагноз</button>
+                        <button @onclick="(() => DeleteActiveRecording(a))" class="btn-active" id="cancel">Отменить запись</button>
+                <em>@a.DateTime</em></li>
+        }
+    </ul>
+    }
+    </div>
+    <button>История</button>
+</div>
 
 @code {
     [Parameter] public int Id { get; set; }
     private List<PatientOutputModel> _patientList;
     private PatientOutputModel _patient;
+    private List<ActiveRecordingOutputModel> _activeRecordings;
+    private bool _showActive = false;
 
     protected override void OnInitialized()
     {
@@ -34,6 +63,7 @@
                 _patient = i;
             }
         }
+        _activeRecordings = new List<ActiveRecordingOutputModel>();
 
     }
     private void UpdatePatient()
@@ -44,5 +74,43 @@
                 PhoneNumber = _patient.PhoneNumber
             };
         new PatientManager().UpdatePatient(up);
+    }
+
+    private void ShowActiveRecordings()
+    {
+        _showActive = true;
+        _activeRecordings = new ActiveRecordingManager().GetAllActiveRecordingsByPatientId(Id);
+        InvokeAsync(StateHasChanged);
+    }
+
+    private void DeleteActiveRecording(ActiveRecordingOutputModel activeRecording)
+    {
+        UpdateIsDeletedActiveRecordingModel updateIsDeletedActiveRecordingModel = new UpdateIsDeletedActiveRecordingModel()
+        {
+            Id = activeRecording.Id,
+            IsDeleted = true
+        };
+        new ActiveRecordingManager().UpdateIsDeletedActiveRecordingById(updateIsDeletedActiveRecordingModel);
+
+        var crntListOutputTimeR = new TimeRecordingManager().GetAllTimeRecordingsByDoctorIdAndDay(activeRecording.DateTime, activeRecording.Doctor.Id);
+        var crntOutputTimeRecording = crntListOutputTimeR.Find(tr => activeRecording.DateTime == tr.Date + tr.TimeTable.TimeSpan.Start);
+
+        UpdateTimeRecordingInputModel updateTimeRecordingInputModel = new UpdateTimeRecordingInputModel()
+        {
+            Id = crntOutputTimeRecording.Id,
+            Date = crntOutputTimeRecording.Date,
+            TimeTableId = crntOutputTimeRecording.TimeTableId,
+            Occupied = false
+        };
+
+        new TimeRecordingManager().UpdateTimeRecordingById(updateTimeRecordingInputModel);
+
+        _activeRecordings = new ActiveRecordingManager().GetAllActiveRecordingsByPatientId(Id);
+        InvokeAsync(StateHasChanged);
+    }
+
+    private void AddDiagnosis(ActiveRecordingOutputModel activeRecording)
+    {
+        Navigator.NavigateTo("/addDiagnosis/" + activeRecording.Id.ToString(), true);
     }
 }

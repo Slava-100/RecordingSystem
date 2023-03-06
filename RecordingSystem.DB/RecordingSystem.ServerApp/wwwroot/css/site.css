@@ -400,13 +400,23 @@ body .button {
     float: left;
     width: 50%;
     color: #7C7D7F;
+    padding-top: 7px;
 }
+
+#active span {
+    float: left;
+    width: 30%;
+    color: #7C7D7F;
+    padding-top: 7px;
+}
+
 
 .page-menu em {
     float: right;
     color: #9c836e;
     font-weight: bold;
     padding-right: 20px;
+    padding-top: 7px;
 }
 
 .specialization-page{
@@ -423,7 +433,7 @@ body .button {
 
 .doctor-card {
     margin: 10px;
-    height: 600px;
+    height: 650px;
     width: 23.5%;
     box-shadow: 0px 5px 15px 0px;
     border-radius: 6px;
@@ -528,15 +538,46 @@ body .button {
 }
 
 .btn-recording {
-    left: 100px;
+    left: 140px;
+    font-size: 18px;
     border: none;
     background: lawngreen;
     color: black;
-    padding: 10px;
+    padding: 8px;
     border-radius: 5px;
     position: relative;
     box-sizing: border-box;
     transition: all 500ms ease;
+}
+
+.btn-active {
+    right: 0px;
+    font-size: 18px;
+    border: none;
+    background: red;
+    color: black;
+    padding: 8px;
+    border-radius: 5px;
+    position: relative;
+    box-sizing: border-box;
+    transition: all 500ms ease;
+}
+
+#diagnoz {
+    left: 0px;
+    background: lawngreen;
+}
+
+#diagnoz:hover{
+  background: rgba(0,0,0,0);
+  color: black;
+  box-shadow: inset 0 0 0 3px lawngreen;
+}
+
+#cancel:hover {
+    background: rgba(0,0,0,0);
+    color: black;
+    box-shadow: inset 0 0 0 3px red;
 }
 
 #norec {
@@ -559,4 +600,43 @@ body .button {
     height: 500px;
     margin-left: 15%;
     margin-top: 50px;
+}
+
+.div_active{
+    width: 800px;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.div_patient {
+    width: 1500px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid gray;
+    border-radius: 3px;
+    padding: 5px;
+}
+
+.write-diagnosis {
+    border-radius: 5px;
+    width: 50%;
+    height: 100px;
+}
+
+.add-diagnosis{
+    width: 800px;
+    height: 500px;
+    margin-left: 20%;
+    margin-top: 50px;
+}
+
+#pic-hover:hover {
+    background-color: lightyellow;
+    transition: all 0.5s ease;
+}
+
+.btn-zapis:hover {
+    background-color: lightgreen;
+    transition: all 0.5s ease;
 }

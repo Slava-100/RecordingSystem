@@ -64,5 +64,11 @@ namespace RecordingSystem.BLL
             var result = _mapperrr.MapDoctorDtoToDoctorOutputModel(doctor);
             return result;
         }
+
+        public void UpdateIsDeletedDoctorById(DoctorInputModel doctor)
+        {
+            var doctorDto = _mapperrr.MapDoctorInputModelToDoctorDto(doctor);
+            DoctorRepository.UpdateIsDeletedDoctorById(doctorDto);
+        }
     }
 }

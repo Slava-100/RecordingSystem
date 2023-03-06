@@ -34,5 +34,11 @@ namespace RecordingSystem.BLL
             var activeRecordingDto = _mapperrr.MapUpdateActiveRecordingModelToActiveRecordingDto(activeRecording);
             ActiveRecordingRepository.UpdateComingInActiveRecordingById(activeRecordingDto);
         }
+
+        public void UpdateIsDeletedActiveRecordingById(UpdateIsDeletedActiveRecordingModel activeRecording)
+        {
+            var activeRecordingDto = _mapperrr.MapUpdateIsDeletedActiveRecordingModelToActiveRecordingDto(activeRecording);
+            ActiveRecordingRepository.UpdateIsDeletedActiveRecordingById(activeRecordingDto);
+        }
     }
 }

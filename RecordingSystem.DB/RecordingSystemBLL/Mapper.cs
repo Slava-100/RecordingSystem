@@ -37,6 +37,7 @@ namespace RecordingSystem.BLL
                 cfg.CreateMap<StatusDto, StatusOutputModel>();
                 cfg.CreateMap<TimeSpanDto, TimeSpanOutputModel>();
                 cfg.CreateMap<TimeTableInputModel, TimeTableDto>();
+                cfg.CreateMap<UpdateIsDeletedActiveRecordingModel, ActiveRecordingDto>();
                 });
         }
 
@@ -83,6 +84,11 @@ namespace RecordingSystem.BLL
         {
             return _configuration.CreateMapper().Map<List<ActiveRecordingOutputModel>>(activeRecordings);
         }
+        public ActiveRecordingDto MapUpdateIsDeletedActiveRecordingModelToActiveRecordingDto(UpdateIsDeletedActiveRecordingModel activeRecording)
+        {
+            return _configuration.CreateMapper().Map<ActiveRecordingDto>(activeRecording);
+        }
+        
         public List<CabinetOutputModel> MapListCabinetDtoToListCabinetOutputModel(List<CabinetDto> cabinets)
         {
             return _configuration.CreateMapper().Map<List<CabinetOutputModel>>(cabinets);
