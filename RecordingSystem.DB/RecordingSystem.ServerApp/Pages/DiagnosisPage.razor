@@ -1,0 +1,18 @@
+﻿@page "/addDiagnosis/{Id:int}"
+
+<div class="add-diagnosis">
+<h3>Диагноз</h3>
+    <span>Заключение:</span> <br /><textarea class="write-diagnosis"></textarea><br /><br />
+    <span>Реккомендации:</span> <br /><textarea class="write-diagnosis"></textarea>
+</div>
+
+@code {
+    [Parameter] public int Id { get; set; }
+
+    private ActiveRecordingOutputModel _activeRecording;
+
+    protected override void OnInitialized()
+    {
+        
+    }
+}

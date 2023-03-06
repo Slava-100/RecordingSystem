@@ -101,6 +101,7 @@
     {
         new TimeRecordingManager().FillAllTimeRecordingInForAOneDay(_crntDate);
         _flagShow = false;
+        _date = DateTime.Now;
         InvokeAsync(StateHasChanged);
     }
 }

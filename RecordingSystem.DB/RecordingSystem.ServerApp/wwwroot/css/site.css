@@ -380,6 +380,14 @@ body .button {
     padding-top: 7px;
 }
 
+#active span {
+    float: left;
+    width: 30%;
+    color: #7C7D7F;
+    padding-top: 7px;
+}
+
+
 .page-menu em {
     float: right;
     color: #9c836e;
@@ -520,7 +528,7 @@ body .button {
 }
 
 .btn-active {
-    left: 20px;
+    right: 0px;
     font-size: 18px;
     border: none;
     background: red;
@@ -532,10 +540,21 @@ body .button {
     transition: all 500ms ease;
 }
 
-.btn-active:hover{
-      background: rgba(0,0,0,0);
-      color: black;
-      box-shadow: inset 0 0 0 3px red;
+#diagnoz {
+    left: 0px;
+    background: lawngreen;
+}
+
+#diagnoz:hover{
+  background: rgba(0,0,0,0);
+  color: black;
+  box-shadow: inset 0 0 0 3px lawngreen;
+}
+
+#cancel:hover {
+    background: rgba(0,0,0,0);
+    color: black;
+    box-shadow: inset 0 0 0 3px red;
 }
 
 #norec {
@@ -574,6 +593,19 @@ body .button {
     border: 1px solid gray;
     border-radius: 3px;
     padding: 5px;
+}
+
+.write-diagnosis {
+    border-radius: 5px;
+    width: 50%;
+    height: 100px;
+}
+
+.add-diagnosis{
+    width: 800px;
+    height: 500px;
+    margin-left: 20%;
+    margin-top: 50px;
 }
 
 #pic-hover:hover {
