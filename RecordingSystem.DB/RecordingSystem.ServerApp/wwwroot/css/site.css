@@ -607,3 +607,13 @@ body .button {
     margin-left: 20%;
     margin-top: 50px;
 }
+
+#pic-hover:hover {
+    background-color: lightyellow;
+    transition: all 0.5s ease;
+}
+
+.btn-zapis:hover {
+    background-color: lightgreen;
+    transition: all 0.5s ease;
+}

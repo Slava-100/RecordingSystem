@@ -3,7 +3,7 @@
 	@Name nvarchar(20), 
 	@LastName nvarchar(30), 
 	@Male bit, 
-	@PhoneNumber nvarchar(10), 
+	@PhoneNumber nvarchar(11), 
 	@Email nvarchar(20), 
 	@SpecializationId int, 
 	@CabinetId int, 

@@ -52,12 +52,12 @@
         }
         <br />
         <span>Телефон:</span>
-    @if (_doctor.PhoneNumber is null || _doctor.PhoneNumber == "")
-    {
-        <input type="number" placeholder="8-999-123-45-67" @bind="_doctor.PhoneNumber" required/>
-    }
-    else
-    {
+        @if (_doctor.PhoneNumber is null || _doctor.PhoneNumber == "")
+        {
+            <input type="number" placeholder="8-999-123-45-67" @bind="_doctor.PhoneNumber" required/>
+        }
+        else
+        {
             if (Convert.ToInt64(_doctor.PhoneNumber) > 80000000000 & Convert.ToInt64(_doctor.PhoneNumber) < 90000000000)
             {
                 <input type="number" @bind="_doctor.PhoneNumber"/>
@@ -66,10 +66,10 @@
             {
                 <input class="input-red" type="number" placeholder="8-999-123-45-67" @bind="_doctor.PhoneNumber"/> <span class="doctor-proverka">  Некорректные данные</span>
             }
-    }
+        }
         <br />
         <span>Почта:</span>
-            <input type="email" placeholder="default@example.com" @bind="_doctor.Email"/> 
+        <input type="email" placeholder="default@example.com" @bind="_doctor.Email"/> 
         <br />
         <span class="span-info">Специализация:</span>
             <select  class="doctor-update-select" @bind="_doctor.SpecializationId">
@@ -106,10 +106,10 @@
         <button @onclick="AddNewDoctor">Добавить</button> <br />
     }
 }
-    else
-    {
-        <div class="doctor-proverka">ЗАПОЛНИТЕ ДАННЫЕ</div> <br />
-    }
+else
+{
+    <div class="doctor-proverka">ЗАПОЛНИТЕ ДАННЫЕ</div> <br />
+}
 
     <NavLink href="/Doctors"><span class="back">Назад</span></NavLink>
 

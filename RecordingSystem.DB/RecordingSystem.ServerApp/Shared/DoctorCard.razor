@@ -1,43 +1,60 @@
 ﻿@inject NavigationManager Navigator
 
+
 <div class="doctor-card">
     @if (doctor.Male == true)
     {
-      <div class="doctor-pic">
-      <img class="photo-doctor" src="/css/Images/Male/{True}.png" alt="photo" />
-      </div>
+        <a href="/doctors/@doctor.Id">
+            <div class="doctor-pic" id="pic-hover">
+            <img class="photo-doctor" src="/css/Images/Male/{True}.png" alt="photo" />
+            </div>
+        </a>
     }
     else
     {
-      <div class="doctor-pic">
-      <img  class="photo-doctor" src="/css/Images/Male/{False}.png" alt="photo" />
-      </div>
+        <a href="/doctors/@doctor.Id">
+            <div class="doctor-pic" id="pic-hover">
+        <img  class="photo-doctor" src="/css/Images/Male/{False}.png" alt="photo" />
+        </div>
+        </a>
     }
     <div class="doctor-text-in-card">
-    @if (doctor.Specialization is not null)
-    {
-       <h6>@doctor.Specialization.Name</h6>
-    }
-    else
-    {
-        <h6>Стажер</h6>
-    }
-    <h4>@doctor.LastName</h4>
-    <h5>@doctor.Name</h5>
-    <p>Почта: @doctor.Email</p>
-    <p>Телефон: @doctor.PhoneNumber</p>
+        @if (doctor.Specialization is not null)
+        {
+           <h6>@doctor.Specialization.Name</h6>
+        }
+        else
+        {
+            <h6>Стажер</h6>
+        }
+        <h4>@doctor.LastName</h4>
+        <h5>@doctor.Name</h5>
+        @if(doctor.Cabinet is not null)
+        {
+        <p>Кабинет: @doctor.Cabinet.Number</p>
+        }
+        @if (doctor.Email is not null)
+        {
+            <p>Почта: @doctor.Email</p>
+        }
+        @if (doctor.PhoneNumber is not null)
+        {
+            <p>Телефон: @doctor.PhoneNumber</p>
+        }
     </div>
+
     <div>
         <a href="/update-doctor/@doctor.Id">
             Изменить данные
         </a>
         <button @onclick="DeleteDoctor">Удалить</button> <br />
     </div>
-    <div class="btn-zapis">
-        <a href="/recording/@doctor.Id">
+
+    <a href="/recording/@doctor.Id">
+        <div class="btn-zapis">
             Записаться
-        </a>
-    </div>
+        </div>
+    </a>
 </div>
 
 @code {

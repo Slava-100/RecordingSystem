@@ -5,10 +5,23 @@
 <h3>UpdateDoctor</h3>
 
 <div>
-	<span>Имя:</span><input type="text" @bind="_doctor.Name"/> <br />
-	<span>Фамилия:</span><input type="text" @bind="_doctor.LastName"/> <br />
+	@if (_doctor.Name != "")
+	{
+		<span>Имя:</span><input type="text" @bind="_doctor.Name"/> <br />
+	}
+	else
+	{
+		<span>Имя:</span><input style="border-color: red" type="text" @bind="_doctor.Name"/> <br />
+	}
+	@if (_doctor.LastName != "")
+	{
+		<span>Фамилия:</span><input type="text" @bind="_doctor.LastName"/> <br />
+	}
+	else
+	{
+		<span>Фамилия</span><input style="border-color: red" type="text" @bind="_doctor.LastName"/> <br />
+	}
 	<span>Пол</span><select  class="doctor-update-select" @bind="Male">
-			<option value is null></option>
 			<option value="true">Мужчина</option>
 			<option value="false">Женщина</option>
 	</select><br />
@@ -36,10 +49,62 @@
 			<span style="color: red">Нет кабинета</span>
 		}
 	<br />
-	<span>Телефон:</span><input type="tel" placeholder="8-999-123-45-67" @bind="_doctor.PhoneNumber"/> <br />
+	<span>Телефон:</span>
+    @if (_doctor.PhoneNumber is null || _doctor.PhoneNumber == "")
+    {
+        <input type="number" placeholder="8-999-123-45-67" @bind="_doctor.PhoneNumber" required/>
+    }
+    else
+    {
+		if(_doctor.PhoneNumber.Length == 11)
+			if (Convert.ToInt64(_doctor.PhoneNumber) > 80000000000 & Convert.ToInt64(_doctor.PhoneNumber) < 90000000000)
+			{
+			    <input type="number" @bind="_doctor.PhoneNumber"/>
+			}
+			else
+			{
+			    <input class="input-red" type="number" placeholder="8-999-123-45-67" @bind="_doctor.PhoneNumber"/> <span class="doctor-proverka">Некорректные данные</span>
+			}
+		}
+		else
+		{
+			<input class="input-red" type="number" placeholder="8-999-123-45-67" @bind="_doctor.PhoneNumber"/> <span class="doctor-proverka">Некорректные данные</span>
+		}
+	}
+	<br />
 	<span>Почта:</span><input placeholder="default@example.com" type="email" @bind="_doctor.Email" /> <br />
 	<span>День рождения:</span><input type="date" @bind="_doctor.Birthday"/> <br />
-	<button @onclick="EditDoctor">Сохранить изменения</button> <br />
+	
+	@if (_doctor.Name != "" && _doctor.LastName != "" && _doctor.Birthday is not null)
+	{
+		if (_doctor.PhoneNumber is not null && _doctor.PhoneNumber != "")
+		{
+			if(_doctor.PhoneNumber.Length == 11)
+			{
+				if (Convert.ToInt64(_doctor.PhoneNumber) > 80000000000 & Convert.ToInt64(_doctor.PhoneNumber) < 90000000000)
+				{
+					<button @onclick="EditDoctor">Сохранить изменения</button> <br />
+				}
+				else
+				{
+					<span class="doctor-proverka">ИСПРАВЬТЕ НОМЕР ТЕЛЕФОНА</span> <br />
+				}
+			}
+			else
+			{
+				<span class="doctor-proverka">ИСПРАВЬТЕ НОМЕР ТЕЛЕФОНА</span> <br />
+			}
+		}
+		else
+		{
+			<button @onclick="EditDoctor">Сохранить изменения</button> <br />
+		}
+	}
+	else
+	{
+		<div class="doctor-proverka">ЗАПОЛНИТЕ ДАННЫЕ</div> <br />
+	}
+	
 	<NavLink href="/Doctors"><span class="back">Назад</span></NavLink>
 </div>
 
@@ -75,12 +140,15 @@
 			SpecId = null;
 		else
 			SpecId = _doctor.Specialization.Id;
-
 	}
 
 	private void EditDoctor()
 	{
 		_doctor.Male = Convert.ToBoolean(Male);
+		if (_doctor.PhoneNumber == "")
+			_doctor.PhoneNumber = null;
+		if (_doctor.Email == "")
+			_doctor.Email = null;
 		var doc = new DoctorInputModel()
 			{
 				Id = _doctor.Id,
