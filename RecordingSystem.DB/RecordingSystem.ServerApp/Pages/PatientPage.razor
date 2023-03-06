@@ -1,4 +1,5 @@
 ﻿@page "/patient/{Id:int}"
+@inject NavigationManager Navigator
 
 <h3>PatientPage</h3>
 @*<span>@_patient.PhoneNumber:</span>
@@ -27,7 +28,7 @@
     }
     else if (_showActive == true)
     {
-    <ul class="page-menu">
+    <ul class="page-menu" id="active">
         <li>
             <a href=""><span>|Врач|</span></a>
             <em>|Время|</em>
@@ -35,7 +36,8 @@
         @foreach (var a in _activeRecordings)
         {
             <li class="li-recording"><span> @a.Doctor.Name @a.Doctor.LastName </span>
-                        <button @onclick="(() => DeleteActiveRecording(a))" class="btn-active">Отменить запись</button>
+                        <button @onclick="(() => AddDiagnosis(a))" class="btn-active" id="diagnoz">Поставить диагноз</button>
+                        <button @onclick="(() => DeleteActiveRecording(a))" class="btn-active" id="cancel">Отменить запись</button>
                 <em>@a.DateTime</em></li>
         }
     </ul>
@@ -105,5 +107,10 @@
 
         _activeRecordings = new ActiveRecordingManager().GetAllActiveRecordingsByPatientId(Id);
         InvokeAsync(StateHasChanged);
+    }
+
+    private void AddDiagnosis(ActiveRecordingOutputModel activeRecording)
+    {
+        Navigator.NavigateTo("/addDiagnosis/" + activeRecording.Id.ToString(), true);
     }
 }
