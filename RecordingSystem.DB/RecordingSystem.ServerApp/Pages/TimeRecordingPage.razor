@@ -4,7 +4,7 @@
         @for(int i = 0; i < 7; i++)
         {
             <option value="@_date"> @_date.ToShortDateString() </option>
-            _date = _date.AddDays(20);
+            _date = _date.AddDays(1);
         }
     </select>
    @if(Id == null || Id == 0)
