@@ -641,16 +641,16 @@ body .button {
     transition: all 0.5s ease;
 }
 
-.main-btn
-{
-    background-color:white;
-    height:50px;
-    width:100px;
-    border-radius:8px;
+.main-btn {
+    background-color: #f8f8f8;
+    height: 50px;
+    width: 100px;
+    border-radius: 8px;
 }
 
-.main-btn:hover{
-    background-color: lightblue;
+.main-btn:hover
+{
+    background-color:lightblue;
 }
 
 .patients-container {
@@ -660,8 +660,5 @@ body .button {
 }
 
 .patient-card {
-    border: 1px solid black;
-}
-.patient-card:hover {
-    background-color: lightblue;
+    padding-right:100%;
 }
