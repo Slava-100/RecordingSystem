@@ -53,7 +53,15 @@
     </div>
     @if (_timeRecordings.Count == 0 && _crntDate != DateTime.MinValue && _id != 0 && _flagShow == true)
     {
-        <button @onclick="FillRecordingByDay">Заполнить расписание</button>
+        @if (new TimeTableManager().GetTimeTableByDoctorId(_id).Count() == 0 && new TimeTableManager().GetTimeTableByDoctorId(Id).Count() == 0)
+        {
+            <h3>Рабочее расписание доктора не заполнено</h3>
+            <button @onclick="FillTimeTableByDoctor">Заполнить</button>
+        }
+        else
+        {
+            <button @onclick="FillRecordingByDay">Заполнить расписание</button>
+        }
     }
 </div>
 
@@ -100,6 +108,21 @@
     private void FillRecordingByDay()
     {
         new TimeRecordingManager().FillAllTimeRecordingInForAOneDay(_crntDate);
+        _flagShow = false;
+        _date = DateTime.Now;
+        InvokeAsync(StateHasChanged);
+    }
+
+    private void FillTimeTableByDoctor()
+    {
+        if(Id == 0)
+        {
+            new TimeTableManager().FillTimeTableByDoctorId(_id);
+        }
+        else
+        {
+            new TimeTableManager().FillTimeTableByDoctorId(Id);
+        }
         _flagShow = false;
         _date = DateTime.Now;
         InvokeAsync(StateHasChanged);

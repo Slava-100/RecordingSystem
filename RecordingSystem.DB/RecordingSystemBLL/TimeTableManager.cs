@@ -59,8 +59,30 @@ namespace RecordingSystem.BLL
                         }
                     }
                 }
+            }   
+        }
+
+        public void FillTimeTableByDoctorId(int doctorId)
+        {
+            IDayOfWeekRepository DayOfWeekRepository = new DayOfWeekRepository();
+            ITimeSpanRepository SpanRepository = new TimeSpanRepository();
+
+            if (TimeTableRepository.GetTimeTableByDoctorId(doctorId).Count() == 0)
+            {
+                foreach (var day in DayOfWeekRepository.GetAllDayOfWeek())
+                {
+                    foreach (var span in SpanRepository.GetAllTimeSpan())
+                    {
+                        TimeTableDto timeTableDto = new TimeTableDto()
+                        {
+                            DoctorId = doctorId,
+                            DayOfWeekId = day.Id,
+                            TimeSpanId = span.Id
+                        };
+                        TimeTableRepository.AddTimeTable(timeTableDto);
+                    }
+                }
             }
-                    
         }
     }
 }

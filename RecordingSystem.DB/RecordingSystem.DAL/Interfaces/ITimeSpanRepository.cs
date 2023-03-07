@@ -6,5 +6,7 @@ namespace RecordingSystem.DAL.Interfaces
     {
         public void AddTimeSpan(TimeSpanDto timeSpanDto);
         public List<TimeSpanDto> GetAllTimeSpan();
-    }
+        public void UpdateTimeSpanById(TimeSpanDto timeSpanDto);
+
+	}
 }

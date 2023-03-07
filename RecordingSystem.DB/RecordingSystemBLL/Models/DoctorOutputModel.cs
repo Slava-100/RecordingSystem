@@ -11,6 +11,7 @@ namespace RecordingSystem.BLL.Models
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public DateTime Birthday { get; set; }
+        public bool? IsDeleted { get; set; }
         public SpecializationOutputModel Specialization { get; set; }
         public CabinetOutputModel Cabinet { get; set; }
         public List<ServiceOutputModel> Services { get; set; } = new List<ServiceOutputModel>();
@@ -56,6 +57,7 @@ namespace RecordingSystem.BLL.Models
                    PhoneNumber == model.PhoneNumber &&
                    Email == model.Email &&
                    Birthday == model.Birthday &&
+                   IsDeleted == model.IsDeleted &&
                    Specialization.Equals(model.Specialization) &&
                    Cabinet.Equals(model.Cabinet);
         }

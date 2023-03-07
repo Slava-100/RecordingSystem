@@ -18,6 +18,7 @@ namespace RecordingSystem.BLL
                 cfg.CreateMap<DoctorDto, DoctorOutputModel>();
                 cfg.CreateMap<DoctorInputModel, DoctorDto>();
                 cfg.CreateMap<PatientInputModel, PatientDto>();
+                cfg.CreateMap<UpdateIsDeletedPatientModel, PatientDto>();
                 cfg.CreateMap<ActiveRecordingDto, ActiveRecordingOutputModel>()
                 .ForMember(outputModel => outputModel.Cabinet, opt => opt.MapFrom(activeRecordingDto => activeRecordingDto.Doctor.Cabinet));
                 cfg.CreateMap<ActiveRecordingInputModel, ActiveRecordingDto>();
@@ -42,7 +43,8 @@ namespace RecordingSystem.BLL
                 cfg.CreateMap<DiagnosisDto, DiagnosisOutputModel>();
                 cfg.CreateMap<RecordingHistoryInputModel, RecordingHistoryDto>();
                 cfg.CreateMap<RecordingHistoryDto, RecordingHistoryOutputModel>(); 
-                });
+                cfg.CreateMap<UpdateTimeSpanInputModel, TimeSpanDto>();
+				});
         }
 
         public List<ServiceOutputModel> MapListServiceDtoToListServiceOutputModel(List<ServiceDto> services)
@@ -75,10 +77,16 @@ namespace RecordingSystem.BLL
             return _configuration.CreateMapper().Map<PatientDto>(patient);
         }
 
+        public PatientDto MapUpdateIsDeletedPatientModelToPatientDto(UpdateIsDeletedPatientModel patient)
+        {
+            return _configuration.CreateMapper().Map<PatientDto>(patient);
+        }
+
         public List<DoctorOutputModel> MapListDoctorDtoToListDoctorOutputModel(List<DoctorDto> doctors)
         {
             return _configuration.CreateMapper().Map<List<DoctorOutputModel>>(doctors);
         }
+
         public DoctorDto MapDoctorInputModelToDoctorDto(DoctorInputModel inputDoctor)
         {
             return _configuration.CreateMapper().Map<DoctorDto>(inputDoctor);
@@ -204,5 +212,15 @@ namespace RecordingSystem.BLL
         {
             return _configuration.CreateMapper().Map<RecordingHistoryOutputModel>(recordingHistory);
         }
-    }
+
+		public TimeSpanDto MapUpdateTimeSpanInputModelToTimeSpanDto(UpdateTimeSpanInputModel updateTimeSpanInputModel)
+		{
+			return _configuration.CreateMapper().Map<TimeSpanDto>(updateTimeSpanInputModel);
+		}
+
+		public List<TimeSpanOutputModel> MapListTimeSpanDtoToListTimeSpanOutputModel(List<TimeSpanDto> timeSpans)
+		{
+			return _configuration.CreateMapper().Map<List<TimeSpanOutputModel>>(timeSpans);
+		}
+	}
 }

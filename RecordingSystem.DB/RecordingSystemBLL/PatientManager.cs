@@ -40,6 +40,11 @@ namespace RecordingSystem.BLL
             var patientDto = _mapperrr.MapUpdatePatientInputModelToPatientDto(patient);
             PatientRepository.UpdatePatientById(patientDto);
         }
+        public void DeletePatient(UpdateIsDeletedPatientModel patient)
+        {
+            var patientDto = _mapperrr.MapUpdateIsDeletedPatientModelToPatientDto(patient);
+            PatientRepository.UpdateIsDeletedPatientById(patientDto);
+        }
 
     }
 }

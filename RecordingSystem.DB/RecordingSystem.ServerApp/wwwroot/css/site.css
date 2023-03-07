@@ -148,7 +148,16 @@ body .button {
     margin-right: auto;
     display: block;
     margin-bottom: 20px;
-} 
+}
+
+/* Patient*/
+.patient-center {
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-bottom: 20px;
+}
 
 /* Cabinet */
 .cabinet-center {
@@ -156,7 +165,7 @@ body .button {
     margin-left: auto;
     margin-right: auto;
     display: block;
-    margin-bottom:20px;
+    margin-bottom: 20px;
 }
 
 .cabinet-card {
@@ -446,6 +455,10 @@ body .button {
     width: 1400px;
 }
 
+#show{
+    display: flex;
+}
+
 .doctor-pic {
     height: 320px;
     background-color: #f8f8f8;
@@ -600,6 +613,11 @@ body .button {
     border-top: 1px solid gray;
 }
 
+.li-timeTable {
+    cursor: pointer;
+    border-top: 1px solid gray;
+}
+
 .li-history:hover {
    background: lightyellow;
    transition: all 0.5s ease;
@@ -688,4 +706,8 @@ body .button {
 
 .patient-card {
     padding-right:100%;
+}
+
+.show-timeTable {
+    width: 900px;
 }
