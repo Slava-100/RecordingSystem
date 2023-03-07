@@ -45,7 +45,8 @@
 			<option value="@a.Id">@a.Number</option>
 		}
 		</select>
-		@if(CabId is null){
+		@if(CabId is null)
+		{
 			<span style="color: red">Нет кабинета</span>
 		}
 	<br />
@@ -54,28 +55,35 @@
     {
         <input type="number" placeholder="8-999-123-45-67" @bind="_doctor.PhoneNumber" required/>
     }
-    else
+    else if (_doctor.PhoneNumber.Length == 11)
     {
-		if(_doctor.PhoneNumber.Length == 11)
-			if (Convert.ToInt64(_doctor.PhoneNumber) > 80000000000 & Convert.ToInt64(_doctor.PhoneNumber) < 90000000000)
-			{
-			    <input type="number" @bind="_doctor.PhoneNumber"/>
-			}
-			else
-			{
-			    <input class="input-red" type="number" placeholder="8-999-123-45-67" @bind="_doctor.PhoneNumber"/> <span class="doctor-proverka">Некорректные данные</span>
-			}
+		@if (Convert.ToInt64(_doctor.PhoneNumber) > 80000000000 & Convert.ToInt64(_doctor.PhoneNumber) < 90000000000)
+		{
+		    <input type="number" @bind="_doctor.PhoneNumber"/>
 		}
 		else
 		{
-			<input class="input-red" type="number" placeholder="8-999-123-45-67" @bind="_doctor.PhoneNumber"/> <span class="doctor-proverka">Некорректные данные</span>
+		    <input class="input-red" type="number" placeholder="8-999-123-45-67" @bind="_doctor.PhoneNumber"/> <span class="doctor-proverka">Некорректные данные</span>
 		}
+	}
+	else
+	{
+	    <input class="input-red" type="number" placeholder="8-999-123-45-67" @bind="_doctor.PhoneNumber"/> <span class="doctor-proverka">Некорректные данные</span>
 	}
 	<br />
 	<span>Почта:</span><input placeholder="default@example.com" type="email" @bind="_doctor.Email" /> <br />
-	<span>День рождения:</span><input type="date" @bind="_doctor.Birthday"/> <br />
-	
-	@if (_doctor.Name != "" && _doctor.LastName != "" && _doctor.Birthday is not null)
+	<span>День рождения:</span>
+	@if (_doctor.Birthday > DateTime.Now.AddYears(-18))
+    {
+		<input class="input-red" type="date" @bind="_doctor.Birthday"/> <span class="doctor-proverka">  Некорректные данные</span>
+    }
+    else
+    {
+        <input type="date" @bind="_doctor.Birthday"/> 
+    }
+    <br />
+
+	@if (_doctor.Name != "" && _doctor.LastName != "" && _doctor.Birthday < DateTime.Now.AddYears(-18))
 	{
 		if (_doctor.PhoneNumber is not null && _doctor.PhoneNumber != "")
 		{

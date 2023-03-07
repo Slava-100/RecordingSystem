@@ -42,13 +42,13 @@
         }
         <br />
         <span>День рождения*:</span>
-        @if (_doctor.Birthday is null)
+        @if (_doctor.Birthday == DateTime.Now || _doctor.Birthday > DateTime.Now.AddYears(-18))
         {
-            <input class="input-red" type="date" @bind="_doctor.Birthday"/> 
+                <input class="input-red" type="date" @bind="_doctor.Birthday"/> <span class="doctor-proverka">  Некорректные данные</span>
         }
         else
         {
-            <input type="text" @bind="_doctor.Birthday"/> 
+            <input type="date" @bind="_doctor.Birthday"/> 
         }
         <br />
         <span>Телефон:</span>
@@ -56,7 +56,7 @@
         {
             <input type="number" placeholder="8-999-123-45-67" @bind="_doctor.PhoneNumber" required/>
         }
-        else
+        else if (_doctor.PhoneNumber.Length == 11)
         {
             if (Convert.ToInt64(_doctor.PhoneNumber) > 80000000000 & Convert.ToInt64(_doctor.PhoneNumber) < 90000000000)
             {
@@ -67,6 +67,10 @@
                 <input class="input-red" type="number" placeholder="8-999-123-45-67" @bind="_doctor.PhoneNumber"/> <span class="doctor-proverka">  Некорректные данные</span>
             }
         }
+        else
+            {
+                <input class="input-red" type="number" placeholder="8-999-123-45-67" @bind="_doctor.PhoneNumber"/> <span class="doctor-proverka">  Некорректные данные</span>
+            }
         <br />
         <span>Почта:</span>
         <input type="email" placeholder="default@example.com" @bind="_doctor.Email"/> 
@@ -90,7 +94,7 @@
             </select>
     </div>
 
-@if (_doctor.Name is not null && _doctor.LastName is not null && Male is not null && _doctor.Birthday is not null)
+@if (_doctor.Name is not null && _doctor.LastName is not null && Male is not null && _doctor.Birthday < DateTime.Now.AddYears(-18))
 {
     if(_doctor.PhoneNumber is not null && _doctor.PhoneNumber != ""){
         if (Convert.ToInt64(_doctor.PhoneNumber) > 80000000000 & Convert.ToInt64(_doctor.PhoneNumber) < 90000000000)
@@ -128,6 +132,7 @@ else
         _doctor = new DoctorInputModel();
         Specializations = new SpecializationManager().GetAllSpecializations();
         Cabinets = new CabinetManager().GetAllCabinets();
+        _doctor.Birthday = DateTime.Now;
     }
 
     private void AddNewDoctor()
