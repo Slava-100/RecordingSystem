@@ -103,6 +103,23 @@
     {
         _showActive = true;
         _activeRecordings = new ActiveRecordingManager().GetAllActiveRecordingsByPatientId(Id);
+
+        foreach (var a in _activeRecordings)
+        {
+            if (a.DateTime.TimeOfDay < DateTime.Now.TimeOfDay && a.DateTime.Day <= DateTime.Now.Day)
+            {
+                UpdateActiveRecordingModel updateActiveRecordingModel = new UpdateActiveRecordingModel()
+                {
+                    Id = a.Id,
+                    Coming = false,
+                    IsDeleted = false
+                };
+
+                new ActiveRecordingManager().UpdateComingInActiveRecordingById(updateActiveRecordingModel);
+            }
+        }
+
+        _activeRecordings = new ActiveRecordingManager().GetAllActiveRecordingsByPatientId(Id);
         InvokeAsync(StateHasChanged);
     }
 
