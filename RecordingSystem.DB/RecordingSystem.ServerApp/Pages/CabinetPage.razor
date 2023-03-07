@@ -1,23 +1,89 @@
 ﻿@page "/cabinet/{Id:int}"
 @inject NavigationManager Navigator
 
+@using System.Timers
+@using System.Threading.Tasks
+
 <div class="cabinet-card">
     <CabinetCard cabinet="_cabinet" />
 </div>
 
 <div class="input-card">
     <label for="input-number">Number:</label>
-    <input type="number" id="input-number" name="input-number" @bind="_cabinet.Number">
+    @if (_cabinet.Number <= 0)
+    {
+        <input type="number" id="input-number" name="input-number" style="border: 1px solid red" @bind="_cabinet.Number">
+    }
+    else
+    {
+    <input type="number" id="input-number" name="input-number" @bind="_cabinet.Number">    
+    }
     <div class="checkbox-wrapper">
         <input type="checkbox" id="input-checkbox" name="input-checkbox" @bind="_cabinet.Status">
         <label class="checkbox-label" for="input-checkbox">Label text</label>
     </div>
-    <button @onclick="UpdateCabinet" type="button" class="btn btn-primary">Update</button>
+
+    @if (_cabinet.Number > 0)
+    {
+        <button class="btn btn-primary" @onclick="@(() => { showModal = true; })">Update </button>
+    }
+    @if (showModal)
+    {
+        <div class="modal fade show" tabindex="-1" role="dialog" style="display: block;">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h1>Вы уверены?</h1>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" @onclick="UpdateCabinet">Да</button>
+                        @if (showInfoModal && StatusOfOperation == false)
+                        {
+                            showModal = false;
+
+                            <div class="modal fade show" tabindex="-1" role="dialog" style="display: block;">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <h1>
+                                                <img width="110" src="/css/Images/Check.svg" alt="icon of Check">OK 
+                                            </h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <button type="button" class="btn btn-secondary" @onclick="DoСancellation">Нет</button>
+                        @if (showInfoModal && StatusOfOperation == true)
+                        {
+                            showModal = false;
+
+                            <div class="modal fade show" tabindex="-1" role="dialog" style="display: block;">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <h1>
+                                                <img width="110" src="/css/Images/Remove.svg" alt="icon of Check">Отмена 
+                                            </h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 </div>
 
 @code {
     [Parameter] public int Id { get; set; }
     [Parameter] public EventCallback<int> BtnEvent { get; set; }
+    private bool showModal;
+    private bool showInfoModal;
+    private bool StatusOfOperation;
+    private Timer _timer;
 
     private List<CabinetOutputModel> _cabinetsList;
     private CabinetOutputModel _cabinet;
@@ -32,6 +98,11 @@
                 _cabinet = i;
             }
         }
+        showModal = false;
+        showInfoModal = false;
+        _timer = new Timer();
+        _timer.Interval = 2000;
+        _timer.Elapsed += StopShowing;
 
     }
     private void UpdateCabinet()
@@ -43,6 +114,26 @@
                 Status = _cabinet.Status
         };
         new CabinetManager().UpdateCabinetById(up);
+
+        showInfoModal = true;
+        StatusOfOperation = false;
+        _timer.Start();
+        
+    }
+
+    private void DoСancellation()
+    {
+        showInfoModal = true;
+        StatusOfOperation = true;
+        _timer.Start();
+    }
+
+    private void StopShowing(object sender, ElapsedEventArgs args)
+    {
+        showModal = false;
+        showInfoModal = false;
+        InvokeAsync(StateHasChanged);
+        _timer.Stop();
         Navigator.NavigateTo("/cabinets", true);
     }
 }
