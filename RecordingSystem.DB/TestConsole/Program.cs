@@ -4,6 +4,7 @@ using RecordingSystem.DAL.Models;
 using System.Collections.Generic;
 using RecordingSystem.DAL.Interfaces;
 using RecordingSystem.BLL.Models;
+using System.Net.WebSockets;
 
 //DateTime someDate = new DateTime(2001, 01, 01);
 //Console.WriteLine(someDate);
@@ -238,5 +239,9 @@ p.DeletePatient(patient);
 
 //patient.LastName = "Dog";
 //p.UpdatePatient(patient);
+
+var a = new DayOfWeekManager();
+
+var aaa = a.GetAllDayOfWeek();
 
 Console.WriteLine("qwe");

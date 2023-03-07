@@ -74,5 +74,21 @@ namespace RecordingSystem.DAL.Repositories
                 return result;
             }
         }
+
+        public void UpdateRecordingHistory(RecordingHistoryDto recordingHistoryDto)
+        {
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
+            {
+                sqlConnection.Open();
+                sqlConnection.Query<TimeSpanDto>(StoredNamesProcedures.UpdateRecordingHistory,
+                    new
+                    {
+                        recordingHistoryDto.Id,
+                        recordingHistoryDto.DiagnosisId,
+                        recordingHistoryDto.ActiveRecordingId
+                    },
+                    commandType: CommandType.StoredProcedure);
+            }
+        }
     }
 }
