@@ -9,7 +9,7 @@ namespace RecordingSystem.BLL
     {
         private DateTime dateTimeNow = DateTime.Now;
         private Mapperrr _mapperrr = new Mapperrr();
-        public ITimeRecordingRepository TimeRecordingRepository { get; set; }
+        private ITimeRecordingRepository TimeRecordingRepository { get; set; }
       
         public TimeRecordingManager()
         {
