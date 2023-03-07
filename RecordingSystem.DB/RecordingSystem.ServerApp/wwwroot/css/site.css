@@ -148,7 +148,16 @@ body .button {
     margin-right: auto;
     display: block;
     margin-bottom: 20px;
-} 
+}
+
+/* Patient*/
+.patient-center {
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-bottom: 20px;
+}
 
 /* Cabinet */
 .cabinet-center {
@@ -156,7 +165,7 @@ body .button {
     margin-left: auto;
     margin-right: auto;
     display: block;
-    margin-bottom:20px;
+    margin-bottom: 20px;
 }
 
 .cabinet-card {
@@ -304,7 +313,7 @@ body .button {
 }
 
 .container{
-    max-width: 1200px;
+    max-width: 1130px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -696,7 +705,7 @@ body .button {
 }
 
 .patient-card {
-    padding-right:100%;
+    text-align: left;
 }
 
 .show-timeTable {

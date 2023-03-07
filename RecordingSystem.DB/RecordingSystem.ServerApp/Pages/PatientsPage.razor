@@ -1,11 +1,13 @@
 ﻿@page "/patients"
 
-<h3>PatientsPage</h3>
-
-<NavLink href="/add-patient"><button type="button" class="btn btn-info">Add Patient</button></NavLink>
+<div class="patient-center">
+    <h3>PatientsPage</h3>
+    <NavLink href="/add-patient"><button type="button" class="btn btn-info">Add Patient</button></NavLink>
+</div>
 
 @if (_patients.Count != 0)
 {
+    
     <div class="Patients-list">
         @foreach (var i in _patients)
         {

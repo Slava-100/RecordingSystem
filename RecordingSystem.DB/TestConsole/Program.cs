@@ -142,6 +142,10 @@ using System.Net.WebSockets;
 //var p = new PatientManager(rep);
 //var patient = new UpdatePatientInputModel() { Name = "Busaaa", LastName = "Cat", Birthday = someDate, Email = "@", Male = false, PhoneNumber = "123", StatusId = 1, Id = 1006 };
 
+var p = new PatientManager();
+var patient = new UpdateIsDeletedPatientModel() {Id = 1019 , IsDeleted = true};
+p.DeletePatient(patient);
+
 //var p = new PatientManager();
 //var patient = new PatientInputModel() { Name = "Busaaa", LastName = "Cat", Birthday = someDate, Email = "@", Male = false, PhoneNumber = "123", StatusId = 1, Id = 1016 };
 
@@ -184,12 +188,12 @@ using System.Net.WebSockets;
 
 //Console.WriteLine("qwe");
 
-var s = new ServiceManager();
-var service = new UpdateServiceInputModel();
-service.Id = 14;
-service.Name = "bestmassage";
-service.Price = 2222;
-s.UpdateService(service);
+//var s = new ServiceManager();
+//var service = new UpdateServiceInputModel();
+//service.Id = 14;
+//service.Name = "bestmassage";
+//service.Price = 2222;
+//s.UpdateService(service);
 //var service = s.GetAllServiceByMale(false);
 
 //SpecializationManager s = new SpecializationManager();
