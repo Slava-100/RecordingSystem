@@ -1,5 +1,6 @@
 ﻿using RecordingSystem.BLL.Models;
 using RecordingSystem.DAL.Interfaces;
+using RecordingSystem.DAL.Models;
 using RecordingSystem.DAL.Repositories;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,12 @@ namespace RecordingSystem.BLL
 			var result = _mapperrr.MapListTimeSpanDtoToListTimeSpanOutputModel(timeSpans);
 
 			return result;
+		}
+
+		public void AddTimeSpan(TimeSpanInputModel timeSpan)
+		{
+			var timeSpanDto = _mapperrr.MapTimeSpanInputModelToTimeSpanDto(timeSpan);
+			TimeSpanRepository.AddTimeSpan(timeSpanDto);
 		}
 	}
 }
