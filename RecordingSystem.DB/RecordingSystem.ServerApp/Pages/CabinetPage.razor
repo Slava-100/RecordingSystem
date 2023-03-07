@@ -12,18 +12,25 @@
     <label for="input-number">Number:</label>
     @if (_cabinet.Number <= 0)
     {
-        <input type="number" id="input-number" name="input-number" style="border: 1px solid red" @bind="_cabinet.Number">
+        <input type="number" id="input-number" name="input-number" style="border: 1px solid red" @bind="_bindNumber">
     }
     else
     {
-    <input type="number" id="input-number" name="input-number" @bind="_cabinet.Number">    
+        if (SearchExistingCabinet(_bindNumber))
+        {
+                    <input type="number" id="input-number" name="input-number" @bind="_bindNumber">  <span style="color:red">Такой кабинет существует</span> 
+        }
+        else
+        {
+                    <input type="number" id="input-number" name="input-number" @bind="_bindNumber">   
+        }
     }
     <div class="checkbox-wrapper">
         <input type="checkbox" id="input-checkbox" name="input-checkbox" @bind="_cabinet.Status">
         <label class="checkbox-label" for="input-checkbox">Label text</label>
     </div>
 
-    @if (_cabinet.Number > 0)
+    @if (_bindNumber > 0 && !SearchExistingCabinet(_bindNumber))
     {
         <button class="btn btn-primary" @onclick="@(() => { showModal = true; })">Update </button>
     }
@@ -84,6 +91,7 @@
     private bool showInfoModal;
     private bool StatusOfOperation;
     private Timer _timer;
+    private int _bindNumber;
 
     private List<CabinetOutputModel> _cabinetsList;
     private CabinetOutputModel _cabinet;
@@ -103,14 +111,13 @@
         _timer = new Timer();
         _timer.Interval = 2000;
         _timer.Elapsed += StopShowing;
-
     }
     private void UpdateCabinet()
     {
         var up = new UpdateCabinetInputModel()
             {
                 Id = _cabinet.Id,
-                Number = _cabinet.Number,
+                Number = _bindNumber,
                 Status = _cabinet.Status
         };
         new CabinetManager().UpdateCabinetById(up);
@@ -118,7 +125,7 @@
         showInfoModal = true;
         StatusOfOperation = false;
         _timer.Start();
-        
+
     }
 
     private void DoСancellation()
@@ -135,5 +142,17 @@
         InvokeAsync(StateHasChanged);
         _timer.Stop();
         Navigator.NavigateTo("/cabinets", true);
+    }
+
+    private bool SearchExistingCabinet(int numberCabinet)
+    {
+        foreach (var i in _cabinetsList)
+        {
+            if(i.Number == numberCabinet)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
