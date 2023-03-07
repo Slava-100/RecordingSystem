@@ -10,7 +10,7 @@
 
 <div class="input-card">
     <label for="input-number">Number:</label>
-    @if (_cabinet.Number <= 0)
+    @if (_bindNumber <= 0)
     {
         <input type="number" id="input-number" name="input-number" style="border: 1px solid red" @bind="_bindNumber">
     }
@@ -26,8 +26,8 @@
         }
     }
     <div class="checkbox-wrapper">
+        <label class="checkbox-label" for="input-checkbox">Status</label>
         <input type="checkbox" id="input-checkbox" name="input-checkbox" @bind="_cabinet.Status">
-        <label class="checkbox-label" for="input-checkbox">Label text</label>
     </div>
 
     @if (_bindNumber > 0 && !SearchExistingCabinet(_bindNumber))
