@@ -1,25 +1,60 @@
 ﻿@page "/add-cabinet"
+@inject NavigationManager Navigator
 
 <h3>AddCabinet</h3>
 
 <div>
-    <span>Number:</span><input type="number" @bind="Cabinet.Number"></input><br />
+    <span>Number:</span>@if (_bindNumber <= 0)
+    {
+        <input type="number" id="input-number" name="input-number" style="border: 1px solid red" @bind="_bindNumber">
+    }
+    else
+    {
+        if (SearchExistingCabinet(_bindNumber))
+        {
+            <input type="number" id="input-number" name="input-number" @bind="_bindNumber">  <span style="color:red">Такой кабинет существует</span> 
+        }
+        else
+        {
+            <input type="number" id="input-number" name="input-number" @bind="_bindNumber">
+        }
+    }<br />
     <span>Status:</span><input type="checkbox" @bind="Cabinet.Status"></input><br />
-    <button type="button" class="btn btn-primary" @onclick="AddCabinetFront">Add</button>
+    @if (_bindNumber > 0 && !SearchExistingCabinet(_bindNumber))
+    {
+        <button type="button" class="btn btn-primary" @onclick="AddCabinetFront">Add</button>
+    }
 </div>
 
 @code {
     public CabinetInputModel Cabinet;
+    private List<CabinetOutputModel> _cabinetsList;
+    private int _bindNumber;
 
     protected override void OnInitialized()
     {
         Cabinet = new CabinetInputModel();
+        _cabinetsList = new CabinetManager().GetAllCabinets();
     }
 
     private void AddCabinetFront()
     {
-            var acf = new CabinetManager();
-            acf.AddCabinet(Cabinet);
-            Cabinet = new CabinetInputModel();
+        var acf = new CabinetManager();
+        Cabinet.Number = _bindNumber;
+        acf.AddCabinet(Cabinet);
+        Cabinet = new CabinetInputModel();
+        Navigator.NavigateTo("/cabinets" , true);
+    }
+
+    private bool SearchExistingCabinet(int numberCabinet)
+    {
+        foreach (var i in _cabinetsList)
+        {
+            if (i.Number == numberCabinet)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
