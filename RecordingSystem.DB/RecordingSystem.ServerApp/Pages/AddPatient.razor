@@ -1,37 +1,110 @@
-﻿@page "/add-patient"
-
-<div class="patient-center">
-<h3>AddPatient</h3>
-<div>
-    <span>Name:</span><input type="text" @bind="Patient.Name"></input><br />
-    <span>LastName:</span><input type="text" @bind="Patient.LastName"></input><br />
-    <span>PhoneNumber:</span><input type="text" @bind="Patient.PhoneNumber"></input><br />
-    <span>Email:</span><input type="text" @bind="Patient.Email"></input><br />
-    <span>StatusId:</span><input type="int" @bind="Patient.StatusId"></input><br />
-        <select name="gender" id="gender" @bind="Patient.Male">
-            <option value="true">муж</option>
-            <option value="false">жен</option>
-        </select>
-    <span>Birthday:</span><input type="date" @bind="Patient.Birthday"></input><br />
-    <select class="form-select" aria-label="Default select example">
-        <option selected>выбрать статус пациента</option>
-@*            @foreach (var i in _patients)
-            {
-
-                <option value="i.StatusId">@i.StatusId</option>
-            }*@
-    </select>
-    <button type="button" class="btn btn-primary" @onclick="AddPatientFront">Add</button>
-</div>
-</div>
-
-@code {
-    public PatientInputModel Patient;
+﻿@page "/add-patient" 
+@inject NavigationManager Navigator 
+ 
+<div class="patient-center"> 
+    <h3>AddPatient</h3> 
+    <div> 
+        <span class="span-info">Имя*:</span> 
+        @if (Patient.Name is null) 
+        { 
+            <input class="input-red" type="text" placeholder="Ivan" @bind="Patient.Name" /> 
+        } 
+        else 
+        { 
+            <input type="text" @bind="Patient.Name" /> 
+        } 
+        <br /> 
+        @*<span>Name:</span><input type="text" @bind="Patient.Name"></input><br />*@ 
+        <span>Фамилия*:</span> 
+        @if (Patient.LastName is null) 
+        { 
+            <input class="input-red" type="text" placeholder="Ivanov" @bind="Patient.LastName" /> 
+        } 
+        else 
+        { 
+            <input type="text" @bind="Patient.LastName" /> 
+        } 
+        <br /> 
+        @if (Gender is null) 
+        { 
+            <select class="doctor-update-select-red" @bind="Gender"> 
+                <option value is null> </option> 
+                <option value="true">Мужчина</option> 
+                <option value="false">Женщина</option> 
+            </select> 
+        } 
+        else 
+        { 
+            <select class="doctor-update-select" @bind="Gender"> 
+                <option value="true">Мужчина</option> 
+                <option value="false">Женщина</option> 
+            </select> 
+        } 
+        <br /> 
+        <span>День рождения*:</span> 
+        @if (Patient.Birthday == DateTime.Now || Patient.Birthday > DateTime.Now.AddYears(-18)) 
+        { 
+            <input class="input-red" type="date" @bind="Patient.Birthday" /> <span class="doctor-proverka">  Некорректные данные</span> 
+        } 
+        else 
+        { 
+            <input type="date" @bind="Patient.Birthday" /> 
+        } 
+        <br /> 
+        <span>Телефон:</span> 
+        @if (Patient.PhoneNumber is null || Patient.PhoneNumber == "") 
+        { 
+            <input type="number" placeholder="8-999-123-45-67" @bind="Patient.PhoneNumber" required /> 
+        } 
+        else if (Patient.PhoneNumber.Length == 11) 
+        { 
+            if (Convert.ToInt64(Patient.PhoneNumber) > 80000000000 & Convert.ToInt64(Patient.PhoneNumber) < 90000000000) 
+            { 
+                <input type="number" @bind="Patient.PhoneNumber" /> 
+            } 
+            else 
+            { 
+                <input class="input-red" type="number" placeholder="8-999-123-45-67" @bind="Patient.PhoneNumber" /> <span class="doctor-proverka">  Некорректные данные</span> 
+            } 
+        } 
+        else 
+        { 
+            <input class="input-red" type="number" placeholder="8-999-123-45-67" @bind="Patient.PhoneNumber" /> <span class="doctor-proverka">  Некорректные данные</span> 
+        } 
+        <br /> 
+        <span>Почта:</span> 
+        <input type="email" placeholder="default@example.com" @bind="Patient.Email" /> 
+        <br /> 
+        @*<span>LastName:</span><input type="text" @bind="Patient.LastName"></input><br />*@ 
+        @*<span>PhoneNumber:</span><input type="text" @bind="Patient.PhoneNumber"></input><br />*@ 
+        @*<span>Email:</span><input type="text" @bind="Patient.Email"></input><br />*@ 
+        <span>StatusId:</span><input type="int" @bind="Patient.StatusId"></input><br /> 
+        @*<select name="gender" id="gender" @bind="Patient.Male"> 
+            <option value="true">муж</option> 
+            <option value="false">жен</option> 
+        </select>*@ 
+        @*<span>Birthday:</span><input type="date" @bind="Patient.Birthday"></input><br />*@ 
+        @*<select class="form-select" aria-label="Default select example"> 
+            <option selected>выбрать статус пациента</option>*@ 
+            @*            @foreach (var i in _patients) 
+            { 
+ 
+                <option value="i.StatusId">@i.StatusId</option> 
+            }*@ 
+        @*</select>*@ 
+        <button type="button" class="btn btn-primary" @onclick="AddPatientFront">Add</button> 
+    </div> 
+</div> 
+ 
+@code { 
+    public PatientInputModel Patient; 
     public List<StatusOutputModel> Statuses;
+    public string Gender;
     private List<PatientOutputModel> _patients = new List<PatientOutputModel>();
 
     protected override void OnInitialized()
     {
+
         var pm = new PatientManager();
         _patients = pm.GetAllPatients();
         Patient = new PatientInputModel();
@@ -40,8 +113,12 @@
 
     private void AddPatientFront()
     {
+        Patient.Male = Convert.ToBoolean(Gender);
         var apf = new PatientManager();
+        if (Patient.PhoneNumber == "")
+            Patient.PhoneNumber = null;
         apf.AddPatient(Patient);
         Patient = new PatientInputModel();
+        Navigator.NavigateTo("/patients", true);
     }
-}
+    }
