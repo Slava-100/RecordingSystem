@@ -10,6 +10,10 @@
 <div class="div_patient">
 <h3><PatientCard patient="_patient" /></h3>
 
+    <div>        
+        <button @onclick="DeletePatient" type="button" class="btn btn-primary"><img width="15" src="/css/Images/Trash.svg" alt="icon of medical card"> Удалить</button>
+    </div>
+
 <Dropdown>
     <Button Color="Color.Primary">Split Dropdown</Button>
     <DropdownToggle Color="Color.Primary" Split />
@@ -97,6 +101,17 @@
                 PhoneNumber = _patient.PhoneNumber
             };
         new PatientManager().UpdatePatient(up);
+    }
+
+    private void DeletePatient()
+    {
+        var dp = new UpdateIsDeletedPatientModel()
+            {
+                Id = _patient.Id,
+                IsDeleted = true
+            };
+        new PatientManager().DeletePatient(dp);
+    Navigator.NavigateTo("/patients", true);
     }
 
     private void ShowActiveRecordings()

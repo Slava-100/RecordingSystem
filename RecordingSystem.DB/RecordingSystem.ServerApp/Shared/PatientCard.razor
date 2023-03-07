@@ -1,13 +1,13 @@
 ﻿<div class="patient-card">
     <h1>@patient.Name, @patient.LastName</h1>
-    <h2><img width="15" src="/css/Images/MedicalCard.svg" alt="icon of medical card">Номер карты: @patient.Id</h2>
-    <h2><img width="15" src="/css/Images/Birthday.svg" alt="icon of birthday">Дата рождения: @day</h2>
+    <h2><img width="25" src="/css/Images/MedicalCard.svg" alt="icon of medical card">Номер карты: @patient.Id</h2>
+    <h2><img width="25" src="/css/Images/Birthday.svg" alt="icon of birthday">Дата рождения: @day</h2>
     @if (patient.PhoneNumber is not null){
-        <h4><img width="15" src="/css/Images/Telephone.svg" alt="icon of telephone">@patient.PhoneNumber</h4>
+        <h4><img width="25" src="/css/Images/Telephone.svg" alt="icon of telephone">@patient.PhoneNumber</h4>
     }
     else
     {
-        <h4><img width="15" src="/css/Images/Telephone.svg" alt="icon of telephone">Номер не указан</h4>
+        <h4><img width="25" src="/css/Images/Telephone.svg" alt="icon of telephone">Номер не указан</h4>
     }
 
     @if (patient.Status is not null)
@@ -20,7 +20,6 @@
         <h2>Статус: - </h2>
         <h2>Скидка: 0 </h2>
     }
-    <button></button>
 </div>
 
 @code {
