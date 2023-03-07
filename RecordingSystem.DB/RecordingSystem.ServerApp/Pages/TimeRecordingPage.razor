@@ -31,22 +31,24 @@
                 </li>
                 @foreach (var tt in _timeRecordings)
                 {
-                    <li class="li-recording"><span>@tt.TimeTable.TimeSpan.Start - @tt.TimeTable.TimeSpan.End</span>
-                        @if(tt.Occupied == false)
-                        {
-                            <a href="/recordingall/sign/@tt.Id">
-                            <button  class="btn-recording" id="rec">Записаться</button>
-                            </a>
-                            <em>Свободно</em>  
-                        }
-                        else
-                        {
+                    @if (tt.TimeTable.TimeSpan.Start > DateTime.Now.TimeOfDay || tt.Date.Day != DateTime.Now.Day ) {
+                        <li class="li-recording"><span>@tt.TimeTable.TimeSpan.Start - @tt.TimeTable.TimeSpan.End</span>
+                            @if (tt.Occupied == false)
+                            {
+                                <a href="/recordingall/sign/@tt.Id">
+                                    <button  class="btn-recording" id="rec">Записаться</button>
+                                </a>
+                                <em>Свободно</em>
+                            }
+                            else
+                            {
 
-                            <button class="btn-recording" id="norec">Записаться</button>
+                                <button class="btn-recording" id="norec">Записаться</button>
 
-                            <em>Занято</em>
-                        }
+                                <em>Занято</em>
+                            }
                     </li>
+                    }
                 }
             </ul>
         }

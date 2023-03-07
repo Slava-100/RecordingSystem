@@ -1,4 +1,4 @@
-﻿@page "/doctors/{Id:int}"
+@page "/doctors/{Id:int}"
 @inject NavigationManager Navigator
 
 
@@ -87,16 +87,21 @@
 					</li>
 					@foreach (var d in _dates)
 					{
-						<li class="li-timeTable"><span> @d.DayOfWeek </span>
+						<li class="li-timeTable"><span @onclick="(() => AddTimeSpan(d))"> @d.DayOfWeek </span>
 							<em>
 								<button @onclick="btnUpdate">Обновить</button>
-								@foreach (var t in _timeSpans)
+								<button @onclick="btnAdd">Добавить</button>
+								@foreach (var t in GetTimeTablesByDay(d))
 								{
-									<h3 @onclick="(() => Update(t))">@t.Start - @t.End</h3>
-								}
+										<h3 @onclick="(() => Update(t.TimeSpan))">@t.TimeSpan.Start - @t.TimeSpan.End</h3>
+									}
 								@if (_update == true)
 								{
 									<input type="text" @bind="_start" /> <input type="text" @bind="_end" />
+								}
+								@if (_add == true)
+								{
+									<input type="text" @bind="_startAdd" /> <input type="text" @bind="_endAdd" />
 								}
 				
 								</em>
@@ -122,10 +127,12 @@
 	private List<TimeTableOutputModel> _timeTables;
 	private bool _showTimeTable = false;
 	private List<DateTime> _dates = new List<DateTime>();
-	private List<TimeSpanOutputModel> _timeSpans = new List<TimeSpanOutputModel>();
 	private string _start;
 	private string _end;
+	private string _startAdd;
+	private string _endAdd;
 	private bool _update = false;
+	private bool _add = false;
 
 	protected override void OnInitialized()
 	{
@@ -160,7 +167,6 @@
 			{
 				_dates.Add(t.DayOfWeek.Name);
 			}
-			_timeSpans = new TimeSpanManager().GetAllTimeSpan();
 		}
 
 		InvokeAsync(StateHasChanged);
@@ -180,7 +186,14 @@
 
 	private void btnUpdate()
 	{
-		_update = true;	
+		_update = true;
+		_add = false;
+	}
+
+	private void btnAdd()
+	{
+		_add = true;
+		_update = false;
 	}
 
 	private void Update(TimeSpanOutputModel t)
@@ -196,7 +209,63 @@
 			new TimeSpanManager().UpdateTimeSpanById(updateTimeSpanInputModel);
 		}
 		_update = false;
-		_timeSpans = new TimeSpanManager().GetAllTimeSpan();
+		_timeTables = new TimeTableManager().GetTimeTableByDoctorId(Id);
+		InvokeAsync(StateHasChanged);
+	}
+
+	private List<TimeTableOutputModel> GetTimeTablesByDay(DateTime d)
+	{
+		List<TimeTableOutputModel> result = new List<TimeTableOutputModel>();
+		foreach (var tt in _timeTables)
+		{
+			if(tt.DayOfWeek.Name.DayOfWeek == d.DayOfWeek)
+			{
+				result.Add(tt);
+			}
+		}
+
+		return result;
+	}
+
+	private void AddTimeSpan(DateTime day)
+	{
+		if (_startAdd is not null && _endAdd is not null) 
+		{
+			TimeSpanInputModel ts = new TimeSpanInputModel()
+			{
+				Start = TimeSpan.Parse(_startAdd),
+				End = TimeSpan.Parse(_endAdd),
+			};
+
+			new TimeSpanManager().AddTimeSpan(ts);
+
+			var timeSpans = new TimeSpanManager().GetAllTimeSpan();
+			var MaxTimeSpan = timeSpans.Max(d => d.Id);
+
+			var dayOfWeeks = new DayOfWeekManager().GetAllDayOfWeek();
+			int resyltDayId = 0;
+
+			foreach (var df in dayOfWeeks)
+			{
+				if (df.Name.DayOfWeek == day.DayOfWeek)
+				{
+					resyltDayId = df.Id;
+					break;
+				}
+			}
+
+			TimeTableInputModel timeTableInputModel = new TimeTableInputModel()
+			{
+				DoctorId = Id,
+				DayOfWeekId = resyltDayId,
+				TimeSpanId = MaxTimeSpan
+			};
+
+			new TimeTableManager().AddTimeTable(timeTableInputModel);
+		}
+
+		_add = false;
+		_timeTables = new TimeTableManager().GetTimeTableByDoctorId(Id);
 		InvokeAsync(StateHasChanged);
 	}
 }

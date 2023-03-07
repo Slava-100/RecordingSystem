@@ -39,5 +39,11 @@ namespace RecordingSystem.BLL
             var result = _mapperrr.MapRecordingHistoryDtotoRecordingHistoryOutputModel(recordingHistory);
             return result;
         }
+
+        public void UpdateRecordingHistory(UpdateRecordingHistoryInputModel updateRecordingHistoryInputModel)
+        {
+            var recordingHistoryDto = _mapperrr.MapUpdateRecordingHistoryInputModelToRecordingHistoryDto(updateRecordingHistoryInputModel);
+            RecordingHistoryRepository.UpdateRecordingHistory(recordingHistoryDto);
+        }
     }
 }
