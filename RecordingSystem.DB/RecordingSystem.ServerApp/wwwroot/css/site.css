@@ -148,7 +148,16 @@ body .button {
     margin-right: auto;
     display: block;
     margin-bottom: 20px;
-} 
+}
+
+/* Patient*/
+.patient-center {
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-bottom: 20px;
+}
 
 /* Cabinet */
 .cabinet-center {
@@ -156,7 +165,7 @@ body .button {
     margin-left: auto;
     margin-right: auto;
     display: block;
-    margin-bottom:20px;
+    margin-bottom: 20px;
 }
 
 .cabinet-card {

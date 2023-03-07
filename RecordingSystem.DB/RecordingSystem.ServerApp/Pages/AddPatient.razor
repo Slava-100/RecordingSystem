@@ -1,0 +1,47 @@
+﻿@page "/add-patient"
+
+<div class="patient-center">
+<h3>AddPatient</h3>
+<div>
+    <span>Name:</span><input type="text" @bind="Patient.Name"></input><br />
+    <span>LastName:</span><input type="text" @bind="Patient.LastName"></input><br />
+    <span>PhoneNumber:</span><input type="text" @bind="Patient.PhoneNumber"></input><br />
+    <span>Email:</span><input type="text" @bind="Patient.Email"></input><br />
+    <span>StatusId:</span><input type="int" @bind="Patient.StatusId"></input><br />
+        <select name="gender" id="gender" @bind="Patient.Male">
+            <option value="true">муж</option>
+            <option value="false">жен</option>
+        </select>
+    <span>Birthday:</span><input type="date" @bind="Patient.Birthday"></input><br />
+    <select class="form-select" aria-label="Default select example">
+        <option selected>выбрать статус пациента</option>
+@*            @foreach (var i in _patients)
+            {
+
+                <option value="i.StatusId">@i.StatusId</option>
+            }*@
+    </select>
+    <button type="button" class="btn btn-primary" @onclick="AddPatientFront">Add</button>
+</div>
+</div>
+
+@code {
+    public PatientInputModel Patient;
+    public List<StatusOutputModel> Statuses;
+    private List<PatientOutputModel> _patients = new List<PatientOutputModel>();
+
+    protected override void OnInitialized()
+    {
+        var pm = new PatientManager();
+        _patients = pm.GetAllPatients();
+        Patient = new PatientInputModel();
+        Statuses = new List<StatusOutputModel>();
+    }
+
+    private void AddPatientFront()
+    {
+        var apf = new PatientManager();
+        apf.AddPatient(Patient);
+        Patient = new PatientInputModel();
+    }
+}
