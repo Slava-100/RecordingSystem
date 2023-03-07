@@ -8,5 +8,6 @@ namespace RecordingSystem.DAL.Interfaces
         public void AddRecordingHistory(int diagnosisId, int activeRecordingId);
         public List<RecordingHistoryDto> GetRecordingHistoryByPatientId(int id);
         public RecordingHistoryDto GetRecordingHistoryById(int id);
+        public void UpdateRecordingHistory(RecordingHistoryDto recordingHistoryDto);
     }
 }

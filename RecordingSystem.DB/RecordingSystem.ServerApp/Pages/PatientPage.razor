@@ -116,6 +116,14 @@
                 };
 
                 new ActiveRecordingManager().UpdateComingInActiveRecordingById(updateActiveRecordingModel);
+
+                RecordingHistoryInputModel recordingHistoryInputModel = new RecordingHistoryInputModel()
+                {
+                    DiagnosisId = 1008,
+                    ActiveRecordingId = a.Id
+                };
+
+                new RecordingHistoryManager().AddRecordingHistory(recordingHistoryInputModel);
             }
         }
 

@@ -127,5 +127,6 @@
     <Build Include="dbo\Stored Procedures\GetAllDiagnosis.sql" />
     <Build Include="dbo\Stored Procedures\GetRecordingHistoryById.sql" />
     <Build Include="dbo\Stored Procedures\UpdateTimeSpanById.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateRecordingHistory.sql" />
   </ItemGroup>
 </Project>
