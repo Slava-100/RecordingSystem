@@ -9,5 +9,6 @@ namespace RecordingSystem.DAL.Interfaces
         public void UpdateComingInActiveRecordingById(ActiveRecordingDto recording);
         public void UpdateIsDeletedActiveRecordingById(ActiveRecordingDto recording);
         public List<ActiveRecordingDto> GetAllActiveRecordingsByPatientId(int id);
+        public ActiveRecordingDto GetActiveRecordingById(int id);
     }
 }

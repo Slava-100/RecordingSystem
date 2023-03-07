@@ -20,5 +20,15 @@ namespace RecordingSystem.DAL.Repositories
                     commandType: CommandType.StoredProcedure);
             }
         }
+
+        public List<DiagnosisDto> GetAllDiagnosis()
+        {
+            using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
+            {
+                sqlConnection.Open();
+                return sqlConnection.Query<DiagnosisDto>(StoredNamesProcedures.GetAllDiagnosis,
+                    commandType: CommandType.StoredProcedure).ToList();
+            }
+        }
     }
 }

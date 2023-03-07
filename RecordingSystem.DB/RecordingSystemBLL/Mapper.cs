@@ -38,6 +38,10 @@ namespace RecordingSystem.BLL
                 cfg.CreateMap<TimeSpanDto, TimeSpanOutputModel>();
                 cfg.CreateMap<TimeTableInputModel, TimeTableDto>();
                 cfg.CreateMap<UpdateIsDeletedActiveRecordingModel, ActiveRecordingDto>();
+                cfg.CreateMap<DiagnosisInputModel, DiagnosisDto>();
+                cfg.CreateMap<DiagnosisDto, DiagnosisOutputModel>();
+                cfg.CreateMap<RecordingHistoryInputModel, RecordingHistoryDto>();
+                cfg.CreateMap<RecordingHistoryDto, RecordingHistoryOutputModel>(); 
                 });
         }
 
@@ -88,7 +92,12 @@ namespace RecordingSystem.BLL
         {
             return _configuration.CreateMapper().Map<ActiveRecordingDto>(activeRecording);
         }
-        
+
+        public ActiveRecordingOutputModel MapActiveRecordingDtotoActiveRecordingOutputModel(ActiveRecordingDto activeRecording)
+        {
+            return _configuration.CreateMapper().Map<ActiveRecordingOutputModel>(activeRecording);
+        }
+
         public List<CabinetOutputModel> MapListCabinetDtoToListCabinetOutputModel(List<CabinetDto> cabinets)
         {
             return _configuration.CreateMapper().Map<List<CabinetOutputModel>>(cabinets);
@@ -169,6 +178,31 @@ namespace RecordingSystem.BLL
         public DoctorOutputModel MapDoctorDtoToDoctorOutputModel(DoctorDto doctor)
         {
             return _configuration.CreateMapper().Map<DoctorOutputModel>(doctor);
+        }
+
+        public DiagnosisDto MapDiagnosisInputModelToDiagnosisDto(DiagnosisInputModel diagnosis)
+        {
+            return _configuration.CreateMapper().Map<DiagnosisDto>(diagnosis);
+        }
+
+        public List<DiagnosisOutputModel> MapListDiagnosisDtoToListDiagnosisOutputModel(List<DiagnosisDto> diagnoses)
+        {
+            return _configuration.CreateMapper().Map<List<DiagnosisOutputModel>>(diagnoses);
+        }
+
+        public RecordingHistoryDto MapRecordingHistoryInputModelToRecordingHistoryDto(RecordingHistoryInputModel recordingHistory)
+        {
+            return _configuration.CreateMapper().Map<RecordingHistoryDto>(recordingHistory);
+        }
+
+        public List<RecordingHistoryOutputModel> MapListRecordingHistoryDtotoListRecordingHistoryOutputModel(List<RecordingHistoryDto> recordingHistories)
+        {
+            return _configuration.CreateMapper().Map<List<RecordingHistoryOutputModel>>(recordingHistories);
+        }
+
+        public RecordingHistoryOutputModel MapRecordingHistoryDtotoRecordingHistoryOutputModel(RecordingHistoryDto recordingHistory)
+        {
+            return _configuration.CreateMapper().Map<RecordingHistoryOutputModel>(recordingHistory);
         }
     }
 }

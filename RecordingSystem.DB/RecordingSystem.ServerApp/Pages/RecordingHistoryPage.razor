@@ -1,0 +1,26 @@
+﻿@page "/recording-history/{Id:int}"
+@inject NavigationManager Navigator
+
+<div class="div_diagnosis">
+    <h3>Справка Пациент: <u>@_recordingHistory.ActiveRecording.Patient.Name @_recordingHistory.ActiveRecording.Patient.LastName</u></h3>
+    <span>Диагноз: @_recordingHistory.Diagnosis.Name</span><br />
+    <span>Рекомендации: @_recordingHistory.Diagnosis.Recommendations</span><br />
+    <span>Врач поставивший диагноз: @_recordingHistory.ActiveRecording.Doctor.Name @_recordingHistory.ActiveRecording.Doctor.LastName</span><br />
+    <span>Дата приёма: @_recordingHistory.ActiveRecording.DateTime</span><br /> 
+    <button @onclick="Back">Назад</button>
+</div>
+
+@code {
+    [Parameter] public int Id { get; set; }
+    private RecordingHistoryOutputModel _recordingHistory;
+
+    protected override void OnInitialized()
+    {
+        _recordingHistory = new RecordingHistoryManager().GetRecordingHistoryById(Id);
+    }
+
+    private void Back()
+    {
+        Navigator.NavigateTo("/patient/" + _recordingHistory.ActiveRecording.Patient.Id.ToString(), true);
+    }
+}
