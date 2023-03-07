@@ -14,7 +14,7 @@
             <input type="text" @bind="Patient.Name" /> 
         } 
         <br /> 
-        @*<span>Name:</span><input type="text" @bind="Patient.Name"></input><br />*@ 
+
         <span>Фамилия*:</span> 
         @if (Patient.LastName is null) 
         { 
@@ -41,6 +41,7 @@
             </select> 
         } 
         <br /> 
+
         <span>День рождения*:</span> 
         @if (Patient.Birthday == DateTime.Now || Patient.Birthday > DateTime.Now.AddYears(-18)) 
         { 
@@ -51,6 +52,7 @@
             <input type="date" @bind="Patient.Birthday" /> 
         } 
         <br /> 
+
         <span>Телефон:</span> 
         @if (Patient.PhoneNumber is null || Patient.PhoneNumber == "") 
         { 
@@ -74,24 +76,18 @@
         <br /> 
         <span>Почта:</span> 
         <input type="email" placeholder="default@example.com" @bind="Patient.Email" /> 
-        <br /> 
-        @*<span>LastName:</span><input type="text" @bind="Patient.LastName"></input><br />*@ 
-        @*<span>PhoneNumber:</span><input type="text" @bind="Patient.PhoneNumber"></input><br />*@ 
-        @*<span>Email:</span><input type="text" @bind="Patient.Email"></input><br />*@ 
-        <span>StatusId:</span><input type="int" @bind="Patient.StatusId"></input><br /> 
-        @*<select name="gender" id="gender" @bind="Patient.Male"> 
-            <option value="true">муж</option> 
-            <option value="false">жен</option> 
-        </select>*@ 
-        @*<span>Birthday:</span><input type="date" @bind="Patient.Birthday"></input><br />*@ 
-        @*<select class="form-select" aria-label="Default select example"> 
-            <option selected>выбрать статус пациента</option>*@ 
-            @*            @foreach (var i in _patients) 
-            { 
- 
-                <option value="i.StatusId">@i.StatusId</option> 
-            }*@ 
-        @*</select>*@ 
+        <br />
+
+        <span>StatusId: @Patient.StatusId</span>
+        <select class="doctor-update-select" @bind="Patient.StatusId">
+            <option value is null> </option>
+            <option value=1>Многодетный</option>
+            <option value=2>Пенсионер</option>
+            <option value=3>Инвалид</option>
+            <option value=1002>НормЧел</option>
+        </select> 
+        <br />
+
         <button type="button" class="btn btn-primary" @onclick="AddPatientFront">Add</button> 
     </div> 
 </div> 
