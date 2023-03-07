@@ -55,7 +55,7 @@
     {
         @if (new TimeTableManager().GetTimeTableByDoctorId(_id).Count() == 0 && new TimeTableManager().GetTimeTableByDoctorId(Id).Count() == 0)
         {
-            <h1>Рабочее расписание доктора не заполнено</h1>
+            <h3>Рабочее расписание доктора не заполнено</h3>
             <button @onclick="FillTimeTableByDoctor">Заполнить</button>
         }
         else

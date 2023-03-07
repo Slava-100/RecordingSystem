@@ -1,6 +1,8 @@
 ﻿@page "/doctors/{Id:int}"
+@inject NavigationManager Navigator
 
-<div class="container-doctors">
+
+<div class="container-doctors" id="show">
 	<div class="doctor-card">
 		@if (doctor.Male == true)
 		{
@@ -65,7 +67,41 @@
 			}
 		</div>
 	</div>
-</div
+	<div class="show-timeTable">
+	<button @onclick="ShowTimeTable">Показать рабочее расписание</button>
+	<button @onclick="Back">Назад</button>
+	<div>
+		@if (_showTimeTable == true)
+		{
+			@if (_timeTables.Count() == 0)
+			{
+				<h3>Пусто</h3>
+				<button @onclick="FillTimeTableByDoctor">Заполнить</button>
+			}
+			else
+			{
+				<ul class="page-menu">
+					<li>
+						<a href=""><span>|День недели|</span></a>
+						<em>|Время|</em>
+					</li>
+					@foreach (var d in _dates)
+					{
+						<li class="li-timeTable"><span> @d.DayOfWeek </span>
+							<em>
+								@foreach (var t in _timeSpans)
+								{
+									<h3>@t.Start - @t.End</h3>
+								}
+							</em>
+						</li>
+					}
+				</ul>
+			}
+		}
+	</div>
+	</div>
+</div>
 
 
 
@@ -77,15 +113,20 @@
 
 	private DoctorOutputModel doctor;
 	private string birthday;
+	private List<TimeTableOutputModel> _timeTables;
+	private bool _showTimeTable = false;
+	private List<DateTime> _dates = new List<DateTime>();
+	private List<TimeSpanOutputModel> _timeSpans = new List<TimeSpanOutputModel>();
 
 	protected override void OnInitialized()
 	{
 		doctors = new DoctorManager().GetAllDoctors();
 		doctor = doctors[IndexDoctorByListDoctorsAndId(doctors , Id)];
 		birthday = doctor.Birthday.ToString("dd.MM.yyyy");
+		_timeTables = new List<TimeTableOutputModel>();
 	}
 
-		private int IndexDoctorByListDoctorsAndId(List<DoctorOutputModel> doctors , int Id)
+	private int IndexDoctorByListDoctorsAndId(List<DoctorOutputModel> doctors , int Id)
 	{
 		int index = 0;
 		int counter = -1;
@@ -98,5 +139,43 @@
 			}
 		}
 		return index;
+	}
+
+	private void ShowTimeTable()
+	{
+		_showTimeTable = true;
+		_timeTables = new TimeTableManager().GetTimeTableByDoctorId(Id);
+		foreach(var t in _timeTables)
+		{
+			if(!_dates.Any(d => d == t.DayOfWeek.Name))
+			{
+				_dates.Add(t.DayOfWeek.Name);
+			}
+
+			if (!_timeSpans.Any(ts => ts.End == t.TimeSpan.End && ts.Start == t.TimeSpan.Start))
+			{
+				var crntTimeSpan = new TimeSpanOutputModel()
+				{
+					Start = t.TimeSpan.Start,
+					End = t.TimeSpan.End
+				};
+
+				_timeSpans.Add(crntTimeSpan);
+			}
+		}
+
+		InvokeAsync(StateHasChanged);
+	}
+
+	private void FillTimeTableByDoctor()
+	{
+		_showTimeTable = false;
+		new TimeTableManager().FillTimeTableByDoctorId(Id);
+		InvokeAsync(StateHasChanged);
+	}
+
+	private void Back()
+	{
+		Navigator.NavigateTo("/doctors", true);
 	}
 }
