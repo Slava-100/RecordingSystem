@@ -42,7 +42,8 @@ namespace RecordingSystem.BLL
                 cfg.CreateMap<DiagnosisDto, DiagnosisOutputModel>();
                 cfg.CreateMap<RecordingHistoryInputModel, RecordingHistoryDto>();
                 cfg.CreateMap<RecordingHistoryDto, RecordingHistoryOutputModel>(); 
-                });
+                cfg.CreateMap<UpdateTimeSpanInputModel, TimeSpanDto>();
+				});
         }
 
         public List<ServiceOutputModel> MapListServiceDtoToListServiceOutputModel(List<ServiceDto> services)
@@ -204,5 +205,15 @@ namespace RecordingSystem.BLL
         {
             return _configuration.CreateMapper().Map<RecordingHistoryOutputModel>(recordingHistory);
         }
-    }
+
+		public TimeSpanDto MapUpdateTimeSpanInputModelToTimeSpanDto(UpdateTimeSpanInputModel updateTimeSpanInputModel)
+		{
+			return _configuration.CreateMapper().Map<TimeSpanDto>(updateTimeSpanInputModel);
+		}
+
+		public List<TimeSpanOutputModel> MapListTimeSpanDtoToListTimeSpanOutputModel(List<TimeSpanDto> timeSpans)
+		{
+			return _configuration.CreateMapper().Map<List<TimeSpanOutputModel>>(timeSpans);
+		}
+	}
 }

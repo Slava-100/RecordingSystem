@@ -89,11 +89,17 @@
 					{
 						<li class="li-timeTable"><span> @d.DayOfWeek </span>
 							<em>
+								<button @onclick="btnUpdate">Обновить</button>
 								@foreach (var t in _timeSpans)
 								{
-									<h3>@t.Start - @t.End</h3>
+									<h3 @onclick="(() => Update(t))">@t.Start - @t.End</h3>
 								}
-							</em>
+								@if (_update == true)
+								{
+									<input type="text" @bind="_start" /> <input type="text" @bind="_end" />
+								}
+				
+								</em>
 						</li>
 					}
 				</ul>
@@ -117,6 +123,9 @@
 	private bool _showTimeTable = false;
 	private List<DateTime> _dates = new List<DateTime>();
 	private List<TimeSpanOutputModel> _timeSpans = new List<TimeSpanOutputModel>();
+	private string _start;
+	private string _end;
+	private bool _update = false;
 
 	protected override void OnInitialized()
 	{
@@ -151,17 +160,7 @@
 			{
 				_dates.Add(t.DayOfWeek.Name);
 			}
-
-			if (!_timeSpans.Any(ts => ts.End == t.TimeSpan.End && ts.Start == t.TimeSpan.Start))
-			{
-				var crntTimeSpan = new TimeSpanOutputModel()
-				{
-					Start = t.TimeSpan.Start,
-					End = t.TimeSpan.End
-				};
-
-				_timeSpans.Add(crntTimeSpan);
-			}
+			_timeSpans = new TimeSpanManager().GetAllTimeSpan();
 		}
 
 		InvokeAsync(StateHasChanged);
@@ -177,5 +176,27 @@
 	private void Back()
 	{
 		Navigator.NavigateTo("/doctors", true);
+	}
+
+	private void btnUpdate()
+	{
+		_update = true;	
+	}
+
+	private void Update(TimeSpanOutputModel t)
+	{
+		if (_start is not null && _end is not null)
+		{
+			UpdateTimeSpanInputModel updateTimeSpanInputModel = new UpdateTimeSpanInputModel()
+				{
+					Id = t.Id,
+					Start = TimeSpan.Parse(_start),
+					End = TimeSpan.Parse(_end)
+				};
+			new TimeSpanManager().UpdateTimeSpanById(updateTimeSpanInputModel);
+		}
+		_update = false;
+		_timeSpans = new TimeSpanManager().GetAllTimeSpan();
+		InvokeAsync(StateHasChanged);
 	}
 }

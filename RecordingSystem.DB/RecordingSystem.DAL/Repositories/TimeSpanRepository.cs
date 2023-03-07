@@ -30,5 +30,20 @@ namespace RecordingSystem.DAL.Repositories
                     commandType: CommandType.StoredProcedure).ToList();
             }
         }
-    }
+		public void UpdateTimeSpanById(TimeSpanDto timeSpanDto)
+		{
+			using (var sqlConnection = new SqlConnection(Сonnection.sqlConnection))
+			{
+				sqlConnection.Open();
+                sqlConnection.Query<TimeSpanDto>(StoredNamesProcedures.UpdateTimeSpanById,
+					new
+					{
+						timeSpanDto.Id,
+						timeSpanDto.Start,
+						timeSpanDto.End
+					},
+					commandType: CommandType.StoredProcedure);
+			}
+		}
+	}
 }

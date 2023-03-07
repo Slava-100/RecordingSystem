@@ -56,6 +56,7 @@ namespace RecordingSystem.DAL.Options
         public const string GetDoctorById = "GetDoctorById"; 
         public const string GetActiveRecordingById = "GetActiveRecordingById"; 
         public const string GetAllDiagnosis = "GetAllDiagnosis"; 
-        public const string GetRecordingHistoryById = "GetRecordingHistoryById";
-    }
+        public const string GetRecordingHistoryById = "GetRecordingHistoryById"; 
+	    public const string UpdateTimeSpanById = "UpdateTimeSpanById";
+	}
 }
