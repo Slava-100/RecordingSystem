@@ -44,7 +44,7 @@
 				<h6 style="color:red">Кабинет: :Нет кабинета</h6>
 			}
 			
-			<h6>День рождения: @doctor.Birthday</h6>
+			<h6>День рождения: @birthday</h6>
 			
 			@if (@doctor.Email is not null)
 			{
@@ -76,11 +76,13 @@
 	private List<DoctorOutputModel> doctors;
 
 	private DoctorOutputModel doctor;
+	private string birthday;
 
 	protected override void OnInitialized()
 	{
 		doctors = new DoctorManager().GetAllDoctors();
 		doctor = doctors[IndexDoctorByListDoctorsAndId(doctors , Id)];
+		birthday = doctor.Birthday.ToString("dd.MM.yyyy");
 	}
 
 		private int IndexDoctorByListDoctorsAndId(List<DoctorOutputModel> doctors , int Id)

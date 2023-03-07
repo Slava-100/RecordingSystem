@@ -10,7 +10,7 @@ namespace RecordingSystem.BLL.Models
         public bool Male { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
-        public DateTime? Birthday { get; set; }
+        public DateTime Birthday { get; set; }
         public SpecializationOutputModel Specialization { get; set; }
         public CabinetOutputModel Cabinet { get; set; }
         public List<ServiceOutputModel> Services { get; set; } = new List<ServiceOutputModel>();

@@ -17,7 +17,7 @@ namespace RecordingSystem.BLL.Models
         public string Email { get; set; }
         public int? SpecializationId { get; set; }
         public int? CabinetId { get; set; }
-        public DateTime? Birthday { get; set; }
+        public DateTime Birthday { get; set; }
 
         public override bool Equals(object? obj)
         {
